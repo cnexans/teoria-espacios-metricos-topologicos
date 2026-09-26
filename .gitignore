@@ -1,0 +1,11 @@
+.campus/
+.DS_Store
+*.aux
+*.log
+*.out
+*.toc
+
+# Material de terceros y archivo local de fuentes (no se publican)
+01-fuentes/
+02-capturas/
+LEEME.md

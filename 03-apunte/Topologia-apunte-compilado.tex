@@ -1,0 +1,2575 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{patterns,arrows.meta,decorations.pathmorphing,calc,positioning}
+\usepackage{mdframed}
+\usepackage{caption}
+\usepackage{longtable}
+
+%%% --- Cajas de intuición ---
+\newmdenv[
+  linecolor=orange!60!black,linewidth=0.7pt,
+  backgroundcolor=orange!6,
+  roundcorner=3pt,
+  innertopmargin=5pt,innerbottommargin=5pt,
+  innerleftmargin=7pt,innerrightmargin=7pt,
+  skipabove=6pt,skipbelow=6pt
+]{cajaint}
+\newenvironment{intuicion}{\begin{cajaint}\small\textbf{Intuición.\ }}{\end{cajaint}}
+
+%%% --- Figuras ---
+\newcommand{\noentra}[1]{{\normalfont\small\bfseries\color{red!55!black}[#1]}}
+\newenvironment{lista}{\leavevmode\begin{itemize}[leftmargin=1.5em,itemsep=1pt,topsep=2pt,parsep=0pt]}{\end{itemize}}
+\newcommand{\lgc}[1]{\par\vspace{-3pt}\begin{gather*}\big(\;#1\;\big)\end{gather*}\vspace{-6pt}}
+\newcommand{\figtit}[1]{\par\vspace{2pt}{\footnotesize\itshape #1}\par}
+\tikzset{
+  abierto/.style={fill=blue!10,draw=blue!60!black,thick},
+  cerrado/.style={fill=red!10,draw=red!60!black,thick},
+  pt/.style={circle,fill=black,inner sep=1.2pt},
+  ejes/.style={->,>=Stealth,gray!70,thin}
+}
+
+%%% --- Entornos ---
+\theoremstyle{definition}
+\newtheorem{definicion}{Definición}[section]
+\newtheorem{ejemplo}[definicion]{Ejemplo}
+\newtheorem{observacion}[definicion]{Observación}
+\newtheorem{contraejemplo}[definicion]{Contraejemplo}
+\newtheorem{ejercicio}[definicion]{Ejercicio}
+\theoremstyle{plain}
+\newtheorem{teorema}[definicion]{Teorema}
+\newtheorem{proposicion}[definicion]{Proposición}
+\newtheorem{lema}[definicion]{Lema}
+\newtheorem{corolario}[definicion]{Corolario}
+
+\renewcommand{\proofname}{\normalfont\bfseries Demostración}
+\renewcommand{\contentsname}{Índice}
+\renewcommand{\tablename}{Tabla}
+
+%%% --- Macro de citas ---
+\newcommand{\fnt}[1]{{\normalfont\small\itshape\color{gray!150!black}[#1]}}
+
+%%% --- Notación ---
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\cl}[1]{\overline{#1}}
+\newcommand{\intr}{\operatorname{int}}
+\newcommand{\fr}{\operatorname{fr}}
+\newcommand{\ext}{\operatorname{ext}}
+\newcommand{\Bola}[2]{B(#1,#2)}
+\newcommand{\Bolac}[2]{B[#1,#2]}
+\newcommand{\norm}[1]{\lVert #1 \rVert}
+\newcommand{\tp}{\tau}
+
+\title{\textbf{Topología: apunte compilado}\\[2pt]
+\large Definiciones, propiedades y teoremas asociados a las guías de ejercicios\\
+\normalsize (Espacios métricos, espacios topológicos, bases, separación, continuidad, subespacios, productos, conexidad)}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-2.2em}
+
+\section*{Cómo leer las referencias}
+Cada enunciado lleva entre corchetes la fuente y la página, para poder remitirse al texto original.
+
+\begin{itemize}[leftmargin=1.6em,itemsep=1pt]
+\item \textbf{GT} $=$ \emph{Topología: Espacios Métricos y Topológicos} (Curso 2011/2012, autor no consignado). Es la \emph{Guía Teórica} del curso: es el texto al que remiten los ejercicios cuando citan numeraciones del tipo ``Ejemplo 2.8.16.2''. La numeración interna (1.1.1, 2.8.2, \dots) coincide con la del PDF, y la página impresa coincide con la página del PDF.
+\item \textbf{MS} $=$ Marta Macho Stadler, \emph{Topología}, Curso 2014/2015. Se cita por página \emph{impresa} (la del pie de página): la página impresa $p$ es la página $p+8$ del PDF.
+\item \textbf{EJ} $=$ guía de ejercicios (\texttt{EMyT.pdf}), citada por página del PDF. Sus páginas 14--15 contienen el capítulo ``Topologías iniciales y finales'' (numerado allí como Cap.~3, páginas impresas 17--18).
+\item \textbf{TS} $=$ apunte complementario \emph{Topologías iniciales y finales}, \S3.1 (``Topología del subespacio''), citado por su numeración interna (Def.\ 3.1.1, Props.\ 3.1.2--3.1.3, Obs.\ 3.1.4--3.1.7). Es el mismo texto que aparece en las páginas 14--15 de \textbf{EJ}.
+\item \textbf{TP} $=$ apunte de cátedra \emph{Topología Producto} (4 pp., \texttt{01-fuentes/TP-Topologia-Producto.pdf}). Se cita por página.
+\item \textbf{clase 8}, \textbf{clase 9}, \textbf{clase 10} $=$ notas de clase (\texttt{01-fuentes/Notas-clase-*.pdf}), citadas por la numeración interna de cada nota (``clase 10, Obs.\ 2.3''). Se usan para lo que la docente dictó con una demostración o un enfoque propio que no está en \textbf{GT}.
+\item \textbf{CX} $=$ guía \emph{Ejercicios de Conexidad y Arco-conexidad} (\texttt{01-fuentes/Ejercicios-Conexidad-2020.pdf}), citada por número de ejercicio.
+\item \textbf{[curso]} $=$ definición o resultado que se usa en los ejercicios pero que no aparece enunciado con ese nombre en ninguno de los dos textos (típicamente: diámetro, acotación, distancia entre conjuntos). Conviene fijar la convención de clase.
+\end{itemize}
+
+\medskip
+\noindent\textbf{Convención de notación.} Salvo que el enunciado diga otra cosa: $(X,\tp)$ e $(Y,\tp')$ son espacios topológicos; $(X,d)$ e $(Y,\rho)$ espacios métricos; $A,B,C\subseteq X$; $G$ un abierto y $F$ un cerrado; $\beta$ una base y $\sigma$ una subbase; $\mathcal N_x$ el sistema de entornos de $x$; $f:X\to Y$ una función, y $f^{-1}(B)$ siempre la \emph{preimagen}. De todos modos, cada enunciado vuelve a nombrar los objetos que usa, para que se pueda leer suelto.
+
+\noindent Se incluyen demostraciones solo cuando la idea es la que se evalúa (una técnica reusable, un contraejemplo estructural o una equivalencia clave). El resto va enunciado.
+
+\medskip
+\noindent\textbf{Qué significa cada rótulo.} La distinción importa para saber qué hay que aceptar y qué hay que saber justificar:
+\begin{lista}
+\item \textbf{Definición}: se admite. No se demuestra: fija el significado de una palabra. Lo único que puede pedirse es verificar que un objeto concreto la cumple.
+\item \textbf{Proposición} / \textbf{Teorema} / \textbf{Lema}: hay que poder demostrarlo. La diferencia entre los tres es sólo de peso (el lema es un paso auxiliar, el teorema un resultado central); lógicamente son lo mismo.
+\item \textbf{Corolario}: se deduce en pocos renglones de lo inmediatamente anterior.
+\item \textbf{Ejemplo} / \textbf{Contraejemplo}: no se demuestra en general, se exhibe. Los contraejemplos son los que marcan el límite exacto de un teorema.
+\item \textbf{Observación}: comentario, técnica de demostración o advertencia; no es material que se enuncie por sí solo.
+\end{lista}
+\noindent Cuando un enunciado de los textos mezclaba una definición con una afirmación demostrable, acá aparecen separados: la definición por un lado y la proposición por el otro. Algunos enunciados llevan debajo, entre paréntesis, su versión en lenguaje formal; sólo los que redactados en palabras no quedaban ya escritos en símbolos. Las cajas naranjas de \textbf{Intuición} y las figuras no son parte del contenido evaluable: están para fijar la imagen mental antes de leer el enunciado formal.
+
+\tableofcontents
+
+%======================================================================
+\section{Espacios métricos y normados}\label{sec:metricos}
+
+\begin{definicion}[Distancia, seudodistancia \fnt{GT 1.1.1, p.\,2}]
+Una \emph{distancia} sobre $X$ es $d:X\times X\to\R$ tal que para todos $x,x',x''\in X$:
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em,itemsep=0pt]
+\item $d(x,x')\ge 0$;
+\item $d(x,x')=d(x',x)$ (simetría);
+\item $d(x,x')=0 \iff x=x'$;
+\item $d(x,x')\le d(x,x'')+d(x'',x')$ (desigualdad triangular).
+\end{enumerate}
+$(X,d)$ es un \emph{espacio métrico}. Si (iii) se debilita a $d(x,x)=0$, $d$ es una \emph{seudodistancia} y $(X,d)$ un \emph{espacio seudométrico}.
+\lgc{d\ \text{es distancia}\iff \forall x,x',x''\in X:\
+d(x,x')\ge0\ \wedge\ d(x,x')=d(x',x)\\
+\wedge\ \big(d(x,x')=0\Leftrightarrow x=x'\big)\ \wedge\ d(x,x')\le d(x,x'')+d(x'',x');\\
+d\ \text{es seudodistancia}: \text{lo mismo con } \forall x\ d(x,x)=0\ \text{en lugar de la tercera}.}
+\end{definicion}
+
+
+\subsection{Normas y su distancia asociada}
+
+\begin{definicion}[Norma \fnt{GT 1.1.4, p.\,2}]
+Sea $V$ un $\R$-espacio vectorial. Una \emph{norma} es $\norm{\cdot}:V\to\R$ tal que, para todos $v,w\in V$ y $\lambda\in\R$:
+\begin{lista}
+\item $\norm{v}\ge 0$;
+\item $\norm{\lambda v}=|\lambda|\,\norm{v}$ (homogeneidad);
+\item $\norm{v}=0\iff v=0$;
+\item $\norm{v+w}\le\norm{v}+\norm{w}$ (desigualdad triangular).
+\end{lista}
+\lgc{\norm{\cdot}\ \text{es norma}\iff \forall v,w\in V\ \forall\lambda\in\R:\
+\norm{v}\ge0\ \wedge\ \norm{\lambda v}=|\lambda|\,\norm{v}\\
+\wedge\ \big(\norm{v}=0\Leftrightarrow v=0\big)\ \wedge\ \norm{v+w}\le\norm{v}+\norm{w}.}
+\end{definicion}
+
+\begin{proposicion}[Distancia asociada a una norma \fnt{GT 1.1.5, p.\,3}]
+Si $(V,\norm{\cdot})$ es normado, $d(v,w)=\norm{v-w}$ es una distancia sobre $V$.
+\lgc{\big(V,\norm{\cdot}\big)\ \text{normado}\ \Rightarrow\ d(v,w):=\norm{v-w}\ \text{es distancia en } V.}
+\end{proposicion}
+
+\begin{ejemplo}[Las métricas de referencia \fnt{GT 1.1.6--1.1.10, pp.\,3--4}]
+En $\R^n$: euclídea $d_e(x,y)=\big(\sum_i (x_i-y_i)^2\big)^{1/2}$; taxi $d_{\text{taxi}}(x,y)=\sum_i|x_i-y_i|$; del máximo $d_{\max}(x,y)=\max_i |x_i-y_i|$. En $\R^3$ las bolas cerradas unidad son, respectivamente, la esfera sólida, el octaedro regular sólido y el cubo $[-1,1]^3$ \fnt{EJ, Métricos--C.1, p.\,4}.
+\end{ejemplo}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=1.0]
+% euclidea
+\begin{scope}
+\draw[ejes] (-1.6,0)--(1.6,0); \draw[ejes] (0,-1.6)--(0,1.6);
+\draw[abierto] (0,0) circle (1);
+\node at (0,-2.05) {\small $d_e$: \emph{disco}};
+\node at (0,-2.55) {\scriptsize $\sqrt{x^2+y^2}\le 1$};
+\end{scope}
+% taxi
+\begin{scope}[xshift=4.2cm]
+\draw[ejes] (-1.6,0)--(1.6,0); \draw[ejes] (0,-1.6)--(0,1.6);
+\draw[abierto] (1,0)--(0,1)--(-1,0)--(0,-1)--cycle;
+\node at (0,-2.05) {\small $d_{\text{taxi}}$: \emph{rombo}};
+\node at (0,-2.55) {\scriptsize $|x|+|y|\le 1$};
+\end{scope}
+% max
+\begin{scope}[xshift=8.4cm]
+\draw[ejes] (-1.6,0)--(1.6,0); \draw[ejes] (0,-1.6)--(0,1.6);
+\draw[abierto] (-1,-1) rectangle (1,1);
+\node at (0,-2.05) {\small $d_{\max}$: \emph{cuadrado}};
+\node at (0,-2.55) {\scriptsize $\max\{|x|,|y|\}\le 1$};
+\end{scope}
+\end{tikzpicture}
+\figtit{Figura 1. Las bolas cerradas $B[(0,0),1]$ de las tres métricas de referencia en $\R^2$. En $\R^3$ las mismas fórmulas dan la esfera sólida, el octaedro y el cubo $[-1,1]^3$ (Métricos--C.1).}
+\end{figure}
+
+\begin{intuicion}
+Las tres bolas son distintas \emph{como conjuntos}, pero cada una de las tres contiene una copia encogida de las otras dos alrededor del mismo centro: siempre se puede meter un rombito adentro de un disquito y un disquito adentro de un cuadradito. Eso es \emph{exactamente} lo que significa que las tres métricas den la misma topología (Prop.~\ref{pr:equiv}): la topología no ve la forma de la bola, solo ve ``qué conjuntos contienen una bolita alrededor de cada uno de sus puntos''.
+\end{intuicion}
+
+\begin{ejemplo}[Distancia discreta \fnt{GT 1.1.14--1.1.16, pp.\,6--7}]
+$d_D(x,y)=1$ si $x\ne y$ y $0$ si $x=y$. Es la métrica que induce la topología discreta.
+\end{ejemplo}
+
+\begin{proposicion}[La discreta no proviene de una norma \fnt{GT 1.1.17, p.\,7}]
+No existe ninguna norma en $\R^n$ cuya distancia asociada sea la discreta.
+\lgc{\neg\,\exists\,\norm{\cdot}\ \text{norma en }\R^n:\ \forall x,y\in\R^n\ \ \norm{x-y}=d_D(x,y).}
+\end{proposicion}
+
+\begin{proof}
+Si $d_D(v,w)=\norm{v-w}$, tomo $v\ne 0$, con lo cual $\norm{v}=d_D(v,0)=1$. Pero entonces $\norm{\tfrac12 v}=\tfrac12\norm{v}=\tfrac12$, valor que $d_D$ nunca toma. La obstrucción es la \emph{homogeneidad}: una norma obliga a que el conjunto de distancias sea cerrado bajo multiplicación por escalares positivos.
+\end{proof}
+
+
+\subsection{Producto interno}
+
+\begin{definicion}[Producto interno \fnt{EJ, Ejercicio teórico N$^\circ$1, p.\,3}]
+Sobre un $\R$-espacio vectorial $V$, $(\cdot,\cdot):V\times V\to\R$ es un \emph{producto interno} si, para todos $u,v,w\in V$ y $\alpha\in\R$:
+\begin{lista}
+\item $(u,u)\ge 0$;
+\item $(u,u)=0\iff u=0$;
+\item $(u,v)=(v,u)$ (simetría);
+\item $(u,v+w)=(u,v)+(u,w)$;
+\item $(\alpha u,v)=\alpha\,(u,v)$.
+\end{lista}
+Se define $\norm{u}=\sqrt{(u,u)}$.
+\lgc{(\cdot,\cdot)\ \text{es producto interno}\iff \forall u,v,w\in V\ \forall\alpha\in\R:\
+(u,u)\ge0\ \wedge\ \big((u,u)=0\Leftrightarrow u=0\big)\\
+\wedge\ (u,v)=(v,u)\ \wedge\ (u,v+w)=(u,v)+(u,w)\ \wedge\ (\alpha u,v)=\alpha\,(u,v);\qquad
+\norm{u}:=\sqrt{(u,u)}.}
+\end{definicion}
+
+\begin{teorema}[Desigualdad de Cauchy--Schwarz \fnt{EJ, Ej.\ teórico N$^\circ$1.1, p.\,3}]
+Sea $V$ un $\R$-espacio vectorial con producto interno $(\cdot,\cdot)$ y sea $\norm{u}=\sqrt{(u,u)}$. Entonces $|(u,v)|\le \norm{u}\,\norm{v}$ para todos $u,v\in V$.
+\lgc{\forall u,v\in V:\quad |(u,v)|\le\norm{u}\,\norm{v}.}
+\end{teorema}
+
+\begin{proof}
+Si $v=0$ es trivial. Si $v\ne 0$, para todo $t\in\R$:
+\[
+0\le (u+tv,\,u+tv)=\norm{u}^2+2t\,(u,v)+t^2\norm{v}^2 .
+\]
+Es un polinomio real de grado $2$ en $t$ no negativo, luego su discriminante es $\le 0$:
+$4(u,v)^2-4\norm{u}^2\norm{v}^2\le 0$. (Alternativamente, evaluar en $t=-(u,v)/\norm{v}^2$.)
+\end{proof}
+
+\begin{corolario}[Norma asociada \fnt{EJ, Ej.\ teórico N$^\circ$1.2, p.\,3}]
+Sobre un espacio con producto interno, $\norm{u}=\sqrt{(u,u)}$ es una norma; la desigualdad triangular sale de Cauchy--Schwarz vía
+$\norm{u+v}^2=\norm{u}^2+2(u,v)+\norm{v}^2\le(\norm{u}+\norm{v})^2$.
+\lgc{\norm{u}=\sqrt{(u,u)}\ \text{es norma};\qquad
+\norm{u+v}^2=\norm{u}^2+2(u,v)+\norm{v}^2\le\big(\norm{u}+\norm{v}\big)^2.}
+\end{corolario}
+
+
+\begin{proposicion}[Identidad de polarización \fnt{EJ, Ej.\ teórico N$^\circ$1.4, p.\,3}]
+Sea $V$ con producto interno y $\norm{\cdot}$ su norma asociada. Entonces $(u,v)=\tfrac14\norm{u+v}^2-\tfrac14\norm{u-v}^2$ para todos $u,v\in V$. Una norma proviene de un producto interno si y sólo si la fórmula anterior define un producto interno; equivalentemente, si y sólo si cumple la \emph{ley del paralelogramo}
+$\norm{u+v}^2+\norm{u-v}^2=2\norm{u}^2+2\norm{v}^2$.
+\lgc{(u,v)=\tfrac14\norm{u+v}^2-\tfrac14\norm{u-v}^2;\\
+\norm{\cdot}\ \text{proviene de un producto interno}\iff \forall u,v:\ \norm{u+v}^2+\norm{u-v}^2=2\norm{u}^2+2\norm{v}^2.}
+\end{proposicion}
+
+
+\subsection{Fabricación de métricas nuevas}
+
+Tres de los ejercicios de la guía A son casos particulares de dos principios generales; conviene estudiarlos así y no uno por uno.
+
+\begin{lema}[Deformación por función cóncava \fnt{principio detrás de EJ, Métricos--A.1 y A.2, p.\,1}]
+Sea $f:[0,\infty)\to[0,\infty)$ tal que $f(t)=0\iff t=0$, $f$ es creciente y \emph{subaditiva} ($f(a+b)\le f(a)+f(b)$). Si $d$ es una distancia en $X$, entonces $f\circ d$ también lo es.
+\lgc{\Big[f\ \text{creciente}\ \wedge\ \forall a,b\ f(a+b)\le f(a)+f(b)\ \wedge\ \big(f(t)=0\Leftrightarrow t=0\big)\Big]\ \Rightarrow\ f\circ d\ \text{es distancia}.}
+\end{lema}
+
+\begin{proof}
+Positividad, anulación y simetría son inmediatas. Para la triangular:
+$f(d(x,y))\le f\big(d(x,z)+d(z,y)\big)\le f(d(x,z))+f(d(z,y))$, donde la primera desigualdad usa que $f$ es creciente y la segunda que es subaditiva.
+\end{proof}
+
+
+\begin{lema}[Métrica inducida por una inyección \fnt{principio detrás de EJ, Métricos--A.3, p.\,1}]
+Sean $f:X\to Y$ una función y $(Y,\rho)$ métrico. Entonces $d(x,x'):=\rho(f(x),f(x'))$ es siempre una seudodistancia en $X$, y es una distancia si y sólo si $f$ es inyectiva.
+\lgc{d(x,x'):=\rho\big(f(x),f(x')\big)\ \text{es seudodistancia};\qquad
+d\ \text{es distancia}\iff f\ \text{es inyectiva}.}
+\end{lema}
+
+
+
+
+
+\subsection{Distancia a un conjunto, diámetro, acotación}
+
+\begin{definicion}[\fnt{curso; usada en EJ, Métricos--A.7 y A.9, p.\,2, y Continuidad--A.3, p.\,12}]
+Dados $(X,d)$, subconjuntos no vacíos $A,B\subseteq X$ y $x\in X$:
+\begin{lista}
+\item distancia de un punto a un conjunto: $d(x,A)=\inf\{d(x,a):a\in A\}$;
+\item distancia entre conjuntos: $d(A,B)=\inf\{d(a,b):a\in A,\ b\in B\}$;
+\item diámetro: $\delta(A)=\sup\{d(a,b):a,b\in A\}$;
+\item $A$ es \emph{acotado} si $\delta(A)<\infty$.
+\end{lista}
+\lgc{d(x,A)=\inf\{d(x,a):a\in A\};\qquad d(A,B)=\inf\{d(a,b):a\in A,\ b\in B\};\\
+\delta(A)=\sup\{d(a,b):a,b\in A\};\qquad A\ \text{acotado}\iff \delta(A)<\infty.}
+\end{definicion}
+
+\begin{observacion}[Por qué ínfimo y no mínimo]
+$d(x,A)$ se define como un \emph{ínfimo} porque el mínimo puede no existir: en $\R$ con $A=(0,1)$ y $x=0$, ninguna $a\in A$ realiza la distancia, y sin embargo $d(0,A)=0$. Las dos cosas que se usan en toda demostración con $d(x,A)$ son:
+\begin{lista}
+\item $d(x,A)\le d(x,a)$ para todo $a\in A$ (es cota inferior);
+\item para todo $\varepsilon>0$ existe $a\in A$ con $d(x,a)<d(x,A)+\varepsilon$ (es la \emph{mayor} cota inferior, así que $d(x,A)+\varepsilon$ ya no lo es).
+\end{lista}
+La primera sirve para acotar hacia abajo; la segunda, para fabricar el punto $a$ que hace falta. Lo mismo, dado vuelta, para el supremo en $\delta(A)$. Y es exactamente por esto que $d(x,A)=0$ no obliga a que $x$ esté en $A$: sólo dice que hay puntos de $A$ tan cerca como se quiera, es decir que $x\in\cl A$.
+\end{observacion}
+
+\begin{proposicion}[$d(\cdot,A)$ es $1$-lipschitziana \fnt{EJ, Métricos--A.7, p.\,2; Continuidad--A.3, p.\,12}]\label{pr:lip}
+Para todos $x,y\in X$: $|d(x,A)-d(y,A)|\le d(x,y)$. En consecuencia, $x\mapsto d(x,A)$ es uniformemente continua.
+\lgc{\forall x,y\in X:\ \big|d(x,A)-d(y,A)\big|\le d(x,y);\\
+\forall\varepsilon>0\ \exists\delta>0\ \forall x,y:\ d(x,y)<\delta\Rightarrow \big|d(x,A)-d(y,A)\big|<\varepsilon.}
+\end{proposicion}
+
+\begin{proof}
+Para todo $a\in A$: $d(x,A)\le d(x,a)\le d(x,y)+d(y,a)$. Tomando ínfimo sobre $a\in A$ en el miembro derecho, $d(x,A)\le d(x,y)+d(y,A)$, es decir $d(x,A)-d(y,A)\le d(x,y)$. Intercambiando $x$ e $y$ se obtiene la otra desigualdad. Para la continuidad uniforme basta $\delta=\varepsilon$.
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+\draw[abierto,rounded corners=12pt] (0,0) .. controls (1.2,0.9) and (2.6,-0.5) .. (3.6,0.4)
+ .. controls (4.0,1.2) and (2.5,1.9) .. (1.4,1.6) .. controls (0.3,1.35) and (-0.4,0.7) .. (0,0);
+\node at (1.9,0.85) {$A$};
+\node[pt] (x) at (1.0,3.1) {}; \node[left] at (1.0,3.1) {$x$};
+\node[pt] (y) at (2.6,2.7) {}; \node[right] at (2.6,2.7) {$y$};
+\node[pt] (a) at (2.2,1.55) {}; \node[below] at (2.25,1.5) {\scriptsize $a$};
+\draw[red!70!black,thick] (x)--(y) node[midway,above]{\scriptsize $d(x,y)$};
+\draw[blue!60!black,thick] (y)--(a) node[midway,right]{\scriptsize $d(y,a)$};
+\draw[gray,dashed] (x)--(a) node[midway,left]{\scriptsize $d(x,a)$};
+\end{tikzpicture}
+\figtit{Figura 3. Para \emph{cualquier} $a\in A$ el camino $x\to y\to a$ acota a $d(x,A)$. Como la cota vale para todo $a$, sobrevive al tomar ínfimo.}
+\end{figure}
+
+\begin{intuicion}
+La función $x\mapsto d(x,A)$ mide ``a qué distancia estoy del conjunto $A$''. La proposición dice que si me muevo $10$ metros, mi distancia a $A$ cambia a lo sumo $10$ metros: no puede haber saltos. Ese es el contenido geométrico de \emph{lipschitziana}, y la continuidad uniforme sale gratis porque el $\delta$ que sirve ($\delta=\varepsilon$) no depende del punto.
+\end{intuicion}
+
+
+
+\subsection{Bolas}\label{sec:bolas}
+
+\begin{definicion}[\fnt{GT 1.1.18, p.\,8}]
+$\Bola{x}{\varepsilon}=\{y\in X: d(x,y)<\varepsilon\}$ (bola abierta), $\Bolac{x}{\varepsilon}=\{y: d(x,y)\le\varepsilon\}$ (bola cerrada).
+\lgc{\Bola{x}{\varepsilon}=\{y\in X:\ d(x,y)<\varepsilon\};\qquad
+\Bolac{x}{\varepsilon}=\{y\in X:\ d(x,y)\le\varepsilon\}.}
+\end{definicion}
+
+\begin{proposicion}[Propiedades de las bolas \fnt{GT 1.1.25, p.\,10}]
+En $(X,d)$:
+\begin{lista}
+\item $x\in\Bola{x}{\varepsilon}$;
+\item si $y\in\Bola{x}{\varepsilon}$, existe $\delta>0$ con $\Bola{y}{\delta}\subseteq\Bola{x}{\varepsilon}$ (sirve $\delta=\varepsilon-d(x,y)$);
+\item $\Bola{x}{\varepsilon_1}\cap\Bola{x}{\varepsilon_2}=\Bola{x}{\min\{\varepsilon_1,\varepsilon_2\}}$.
+\end{lista}
+\lgc{x\in\Bola{x}{\varepsilon};\qquad
+\forall y\in\Bola{x}{\varepsilon}\ \exists\delta>0:\ \Bola{y}{\delta}\subseteq\Bola{x}{\varepsilon};\\
+\Bola{x}{\varepsilon_1}\cap\Bola{x}{\varepsilon_2}=\Bola{x}{\min\{\varepsilon_1,\varepsilon_2\}}.}
+\end{proposicion}
+
+\begin{teorema}[Separación de Hausdorff en métricos \fnt{GT 1.1.26, p.\,11; MS Teo.\ 2.13, p.\,32}]
+Si $(X,d)$ es métrico y $x\ne x'$, existe $\varepsilon>0$ con $\Bola{x}{\varepsilon}\cap\Bola{x'}{\varepsilon}=\emptyset$ (basta $\varepsilon=d(x,x')/2$).
+\lgc{\forall x\ne x'\ \exists\varepsilon>0:\ \Bola{x}{\varepsilon}\cap\Bola{x'}{\varepsilon}=\emptyset\qquad(\text{sirve } \varepsilon=\tfrac{d(x,x')}{2}).}
+\end{teorema}
+
+
+
+%======================================================================
+\section{La topología de un espacio métrico}\label{sec:topmet}
+
+\begin{definicion}[Interior, abierto, entorno \fnt{GT 1.2.1, p.\,12}]
+$x$ es \emph{punto interior} de $A$ si existe $\varepsilon>0$ con $\Bola{x}{\varepsilon}\subseteq A$; $\intr A$ es el conjunto de tales puntos. $A$ es \emph{abierto} si $A=\intr A$, y $N$ es \emph{entorno} de $x$ si $x\in\intr N$.
+\lgc{x\in\intr A\iff \exists\varepsilon>0:\ \Bola{x}{\varepsilon}\subseteq A;\\
+A\ \text{abierto}\iff A=\intr A;\qquad N\in\mathcal N_x\iff x\in\intr N.}
+\end{definicion}
+
+\begin{proposicion}[\fnt{GT 1.2.2 y 1.2.6, pp.\,12 y 15}]
+En $(X,d)$:
+\begin{lista}
+\item $\intr A\subseteq A$;
+\item toda bola abierta es un conjunto abierto;
+\item $A$ es abierto $\iff$ $A$ es entorno de todos sus puntos;
+\item $N$ es entorno de $x$ $\iff$ existe un abierto $G$ con $x\in G\subseteq N$;
+\item $x\in\intr A$ $\iff$ existe un abierto $G$ con $x\in G\subseteq A$.
+\end{lista}
+\lgc{\intr A\subseteq A;\qquad \Bola{x}{\varepsilon}\ \text{es abierta};\qquad
+A\ \text{abierto}\iff \forall x\in A:\ A\in\mathcal N_x;\\
+N\in\mathcal N_x\iff \exists G\ \text{abierto}:\ x\in G\subseteq N;\qquad
+x\in\intr A\iff \exists G\ \text{abierto}:\ x\in G\subseteq A.}
+\end{proposicion}
+
+\begin{proposicion}[Propiedades del interior \fnt{GT 1.2.7, p.\,15}]
+Sea $(X,d)$ y sean $A,B,A_1,\dots,A_n\subseteq X$:
+\begin{lista}
+\item $\intr A\subseteq A$;
+\item si $A\subseteq B$ entonces $\intr A\subseteq\intr B$;
+\item $\intr(A_1\cap\dots\cap A_n)=\intr A_1\cap\dots\cap\intr A_n$;
+\item $\intr(\intr A)=\intr A$.
+\end{lista}
+\lgc{\intr A\subseteq A;\qquad A\subseteq B\Rightarrow\intr A\subseteq\intr B;\\
+\intr\Big(\bigcap_{k=1}^{n}A_k\Big)=\bigcap_{k=1}^{n}\intr A_k;\qquad \intr(\intr A)=\intr A.}
+\end{proposicion}
+
+\begin{teorema}[Propiedades básicas de los abiertos \fnt{GT 1.2.8, p.\,16}]
+En $(X,d)$:
+\begin{lista}
+\item $\emptyset$ y $X$ son abiertos;
+\item la intersección \emph{finita} de abiertos es abierta;
+\item la unión \emph{arbitraria} de abiertos es abierta.
+\end{lista}
+Estas tres propiedades son exactamente las que se axiomatizan al definir topología.
+\lgc{\emptyset,X\in\tp_d;\qquad G_1,\dots,G_n\in\tp_d\Rightarrow\bigcap_{k=1}^{n}G_k\in\tp_d;\qquad
+\{G_i\}_{i\in I}\subseteq\tp_d\Rightarrow\bigcup_{i\in I}G_i\in\tp_d.}
+\end{teorema}
+
+\begin{proposicion}[Métricas equivalentes en $\R^n$ \fnt{GT 1.2.3--1.2.4, pp.\,13--14; GT Nota 2.1.3, p.\,19}]\label{pr:equiv}
+$d_e$, $d_{\text{taxi}}$ y $d_{\max}$ tienen exactamente los mismos abiertos; la clave son las inclusiones entre bolas del tipo
+$B_{d_{\max}}(x,\varepsilon/2)\subseteq B_{d_e}(x,\sqrt2\,\varepsilon/2)\subseteq B_{d_{\text{taxi}}}(x,\varepsilon)$. Por lo tanto $\tp_{d_e}=\tp_{d_{\text{taxi}}}=\tp_{d_{\max}}$: distancias distintas pueden dar la misma topología, y esa es la observación que motiva todo el capítulo siguiente.
+\lgc{\tp_{d_e}=\tp_{d_{\text{taxi}}}=\tp_{d_{\max}}.}
+\end{proposicion}
+
+\subsection{Adherencia, frontera y cerrados en un espacio métrico}
+
+\noindent Estas nociones se definen en general para espacios topológicos (\S\ref{sec:top}); en un espacio métrico todas se leen con bolas, y esa es la forma en que aparecen en los ejercicios y en los parciales. Cada enunciado de acá es el de \S\ref{sec:top} con ``todo abierto que contiene a $x$'' reemplazado por ``toda bola de centro $x$'', que es lo mismo porque las bolas son base local.
+
+\begin{definicion}[Punto adherente, clausura \fnt{GT 2.3.4 y 2.3.6, pp.\,22--23, leídos con bolas}]
+$x$ es \emph{adherente} a $A$ si toda bola de centro $x$ corta a $A$. La \emph{clausura} (o \emph{adherencia}) $\cl A$ es el conjunto de los puntos adherentes a $A$.
+\lgc{x\in\cl A\iff \forall\varepsilon>0:\ \Bola{x}{\varepsilon}\cap A\ne\emptyset.}
+\end{definicion}
+
+\begin{definicion}[Punto de acumulación, punto aislado \fnt{GT 2.2.7 y 2.3.1, pp.\,21--22, leídos con bolas}]
+$x$ es de \emph{acumulación} de $A$ si toda bola de centro $x$ corta a $A$ en algún punto distinto de $x$; el conjunto de todos ellos es el \emph{derivado} $A'$. Un punto $x\in A$ es \emph{aislado} si alguna bola de centro $x$ no contiene otros puntos de $A$.
+\lgc{x\in A'\iff \forall\varepsilon>0:\ \Bola{x}{\varepsilon}\cap\big(A-\{x\}\big)\ne\emptyset;\\
+x\ \text{aislado de } A\iff x\in A\ \wedge\ \exists\varepsilon>0:\ \Bola{x}{\varepsilon}\cap A=\{x\}.}
+\end{definicion}
+
+\begin{definicion}[Frontera y exterior \fnt{GT 2.6.1 y 2.6.4, p.\,29, leídos con bolas}]
+$x\in\fr A$ si toda bola de centro $x$ corta a la vez a $A$ y a $X-A$. $x\in\ext A$ si alguna bola de centro $x$ no toca $A$.
+\lgc{x\in\fr A\iff \forall\varepsilon>0:\ \Bola{x}{\varepsilon}\cap A\ne\emptyset\ \wedge\ \Bola{x}{\varepsilon}\cap(X-A)\ne\emptyset;\\
+x\in\ext A\iff \exists\varepsilon>0:\ \Bola{x}{\varepsilon}\cap A=\emptyset.}
+\end{definicion}
+
+\begin{definicion}[Conjunto cerrado, conjunto denso \fnt{GT 1.2.8 y 2.6.7, pp.\,16 y 31}]
+$C\subseteq X$ es \emph{cerrado} si $X-C$ es abierto. $D\subseteq X$ es \emph{denso} si toda bola de $X$ corta a $D$.
+\lgc{C\ \text{cerrado}\iff X-C\in\tp_d;\qquad
+D\ \text{denso}\iff \forall x\in X\ \forall\varepsilon>0:\ \Bola{x}{\varepsilon}\cap D\ne\emptyset\iff \cl D=X.}
+\end{definicion}
+
+\begin{proposicion}[La clausura, medida con la distancia \fnt{consecuencia de GT 1.1.18 y 2.3.4; parcial 2/10/2023, ej.\ 3}]
+En un espacio métrico $(X,d)$, para todo $\emptyset\ne A\subseteq X$:
+\[
+\cl A=\{x\in X:\ d(x,A)=0\}.
+\]
+Equivalentemente, $x\notin\cl A\iff d(x,A)>0$.
+\end{proposicion}
+
+\begin{proof}
+$\subseteq$: si $x\in\cl A$, toda bola $\Bola{x}{\varepsilon}$ corta a $A$, luego existe $a\in A$ con $d(x,a)<\varepsilon$; entonces $d(x,A)<\varepsilon$ para todo $\varepsilon>0$, o sea $d(x,A)=0$.
+$\supseteq$: si $d(x,A)=0$, dado $\varepsilon>0$ el ínfimo no es cota inferior estricta, así que existe $a\in A$ con $d(x,a)<\varepsilon$; luego toda bola de centro $x$ corta a $A$ y $x$ es adherente. La clave es que $d(x,A)$ es un \emph{ínfimo}: vale $0$ sin necesidad de que se alcance, y por eso $x$ puede estar en $\cl A$ sin estar en $A$.
+\end{proof}
+
+\begin{corolario}
+Sea $\emptyset\ne A\subseteq(X,d)$. Entonces $A$ es cerrado $\iff$ $\big(d(x,A)=0\Rightarrow x\in A\big)$ para todo $x\in X$. Y $\cl A=f^{-1}(0)$ para la función continua $f(x)=d(x,A)$, lo que da otra prueba de que la clausura es cerrada.
+\end{corolario}
+
+\begin{proposicion}[Caracterizaciones de ``cerrado'' en un métrico \fnt{GT 2.4.2, p.\,24; GT 2.5.6--2.5.7, p.\,28}]
+Para $A\subseteq(X,d)$ son equivalentes:
+\begin{lista}
+\item $A$ es cerrado (su complemento es abierto);
+\item $A=\cl A$, es decir $A$ contiene todos sus puntos adherentes;
+\item $A'\subseteq A$, es decir $A$ contiene todos sus puntos de acumulación;
+\item toda sucesión de puntos de $A$ que converge en $X$ tiene su límite en $A$;
+\item $d(x,A)=0\Rightarrow x\in A$.
+\end{lista}
+\lgc{A\ \text{cerrado}\iff X-A\in\tp_d\iff A=\cl A\iff A'\subseteq A\\
+\iff \forall\{a_n\}\subseteq A\ \big(a_n\to x\Rightarrow x\in A\big)
+\iff \forall x\ \big(d(x,A)=0\Rightarrow x\in A\big).}
+\end{proposicion}
+
+\begin{intuicion}
+Las cinco versiones dicen lo mismo desde ángulos distintos, y en un parcial conviene elegir la que menos cuentas pida: si el conjunto viene dado por una condición con $\le$ o $\ge$, sale por complemento abierto; si viene de un límite o de una sucesión, por (4); si aparece una distancia, por (5). En espacios topológicos generales sólo sobreviven (1), (2) y (3): la (4) y la (5) necesitan la métrica.
+\end{intuicion}
+
+%======================================================================
+\section{Espacios topológicos}\label{sec:top}
+
+\begin{definicion}[Topología \fnt{GT 2.1.1, p.\,18; MS Def.\ 2.1, p.\,23}]
+$\tp\subseteq\mathcal{P}(X)$ es una \emph{topología} si:
+\begin{lista}
+\item $\emptyset,X\in\tp$;
+\item $\tp$ es cerrada por intersecciones finitas;
+\item $\tp$ es cerrada por uniones arbitrarias.
+\end{lista}
+Los elementos de $\tp$ son los \emph{abiertos}; $C\subseteq X$ es \emph{cerrado} si $X-C\in\tp$.
+\lgc{\tp\ \text{topología}\iff \emptyset,X\in\tp\ \wedge\ \Big(\{G_i\}_{i\in I}\subseteq\tp\Rightarrow\bigcup_{i\in I}G_i\in\tp\Big)
+\ \wedge\ \Big(G_1,\dots,G_n\in\tp\Rightarrow\bigcap_{k=1}^{n}G_k\in\tp\Big);\\
+C\ \text{cerrado}\iff X-C\in\tp.}
+\end{definicion}
+
+\begin{lema}[Propiedades de los cerrados \fnt{MS Lema 2.1, p.\,25; GT 2.4.4, p.\,25}]
+Sea $(X,\tp)$, sea $\{C_i\}_{i\in I}$ una familia de cerrados y $C_1,\dots,C_n$ cerrados:
+\begin{lista}
+\item $\emptyset$ y $X$ son cerrados;
+\item la unión finita de cerrados es cerrada;
+\item la intersección arbitraria de cerrados es cerrada.
+\end{lista}
+\end{lema}
+
+\begin{proposicion}[La cofinita no es metrizable \fnt{GT 2.1.4--2.1.5, p.\,19}]
+Sea $\tp_{cof}=\{\emptyset\}\cup\{A\subseteq X:\ X-A\ \text{es finito}\}$ la \emph{topología cofinita} (o de Zariski) sobre $X$, cuyos cerrados son $X$ y los subconjuntos finitos. Si $X$ es infinito, no existe distancia $d$ sobre $X$ con $\tp_d=\tp_{cof}$.
+\end{proposicion}
+
+\begin{proof}
+Por el absurdo: si existiera, dados $x\ne x'$ la separación de Hausdorff da $\varepsilon>0$ con $\Bola{x}{\varepsilon}\cap\Bola{x'}{\varepsilon}=\emptyset$. Pasando a complementos,
+$X=(X-\Bola{x}{\varepsilon})\cup(X-\Bola{x'}{\varepsilon})$ sería unión de dos conjuntos finitos (finitos por ser complementos de abiertos no vacíos de $\tp_{cof}$), luego $X$ sería finito. Contradicción.
+\end{proof}
+
+\begin{observacion}
+Esta es la demostración modelo de \emph{no metrizabilidad}: se exhibe una propiedad que todo espacio métrico tiene (Hausdorff) y que el espacio dado no tiene.
+\end{observacion}
+
+\subsection{Interior, clausura, acumulación, frontera}\label{sec:intcl}
+
+\begin{definicion}[Interior y entorno \fnt{GT 2.2.1 y 2.2.5, pp.\,20--21}]
+$x\in\intr A$ si existe $G\in\tp$ con $x\in G\subseteq A$. $N$ es \emph{entorno} de $x$ si $x\in\intr N$; $\mathcal{N}_x$ denota el sistema de entornos de $x$.
+\end{definicion}
+
+\begin{lema}[\fnt{MS Lema 3.1, p.\,39; GT 2.2.3, p.\,20}]
+Sea $(X,\tp)$ y $A\subseteq X$. Entonces $\intr A$ es abierto y es el \emph{mayor} abierto contenido en $A$; es decir $\intr A=\bigcup\{G\in\tp: G\subseteq A\}$. En particular $A\in\tp\iff A=\intr A$.
+\end{lema}
+
+\begin{proposicion}[Propiedades del interior \fnt{GT 2.2.4, p.\,20; MS Teo.\ 3.3, p.\,40}]
+Sea $(X,\tp)$ y sean $A,B\subseteq X$:
+\begin{lista}
+\item $\intr A\subseteq A$;
+\item $A\subseteq B\Rightarrow\intr A\subseteq\intr B$;
+\item $\intr(A\cap B)=\intr A\cap\intr B$;
+\item $\intr(\intr A)=\intr A$;
+\item $\intr A\cup\intr B\subseteq\intr(A\cup B)$, con inclusión en general estricta.
+\end{lista}
+\end{proposicion}
+
+
+\begin{definicion}[Punto aislado, de acumulación, adherente \fnt{GT 2.2.7, 2.3.1, 2.3.4, pp.\,21--22}]
+\begin{lista}
+\item $x\in A$ es \emph{aislado} si existe $G\in\tp$ con $G\cap A=\{x\}$;
+\item $x$ es de \emph{acumulación} de $A$ si todo abierto que contiene a $x$ corta a $A-\{x\}$; el conjunto de todos ellos es el \emph{derivado} $A'$;
+\item $x$ es \emph{adherente} a $A$ si todo abierto que contiene a $x$ corta a $A$.
+\end{lista}
+\lgc{x\ \text{aislado de } A\iff x\in A\ \wedge\ \exists G\in\tp:\ G\cap A=\{x\};\\
+x\in A'\iff \forall G\in\tp\ \big(x\in G\Rightarrow G\cap(A-\{x\})\ne\emptyset\big);\\
+x\ \text{adherente a } A\iff \forall G\in\tp\ \big(x\in G\Rightarrow G\cap A\ne\emptyset\big).}
+\end{definicion}
+
+\begin{definicion}[Clausura \fnt{GT 2.3.6, p.\,23}]
+$\cl{A}=\{x\in X: x \text{ es adherente a } A\}$.
+\lgc{\cl A=\{x\in X:\ \forall G\in\tp\ (x\in G\Rightarrow G\cap A\ne\emptyset)\}.}
+\end{definicion}
+
+\begin{lema}[\fnt{MS Lema 3.6, p.\,41}]
+Sea $(X,\tp)$ y $A\subseteq X$. Entonces $\cl A$ es cerrado y es el \emph{menor} cerrado que contiene a $A$: $\cl A=\bigcap\{C \text{ cerrado}: A\subseteq C\}$. En particular $A$ es cerrado $\iff A=\cl A$. Además $\cl A=A\cup A'$ \fnt{GT 2.3.8, p.\,23}.
+\end{lema}
+
+\begin{teorema}[Dualidad interior/clausura \fnt{GT 2.4.1, p.\,24}]
+Para todo $A\subseteq X$:
+\[
+\cl{A}=X-\intr(X-A),\qquad \intr A = X-\cl{X-A}.
+\]
+\end{teorema}
+
+\begin{proof}
+$x\notin\intr(X-A)$ $\iff$ ningún abierto $G$ con $x\in G$ cumple $G\subseteq X-A$ $\iff$ todo abierto que contiene a $x$ corta a $A$ $\iff$ $x\in\cl A$. La segunda identidad es la primera aplicada a $X-A$.
+\end{proof}
+
+\begin{observacion}
+Toda propiedad del interior tiene su dual para la clausura y viceversa; en el examen conviene explotar esto en vez de repetir demostraciones. Por ejemplo, de $\intr(A\cap B)=\intr A\cap\intr B$ sale $\cl{A\cup B}=\cl A\cup\cl B$.
+\end{observacion}
+
+\begin{proposicion}[Propiedades de la clausura \fnt{GT 2.4.3, p.\,24; MS Teo.\ 3.8, p.\,41}]
+Sea $(X,\tp)$ y sean $A,B\subseteq X$:
+\begin{lista}
+\item $A\subseteq\cl A$;
+\item $A\subseteq B\Rightarrow\cl A\subseteq\cl B$;
+\item $\cl{A\cup B}=\cl A\cup\cl B$;
+\item $\cl{\cl A}=\cl A$;
+\item $\cl{A\cap B}\subseteq\cl A\cap\cl B$, en general estricta.
+\end{lista}
+\end{proposicion}
+
+\begin{proposicion}[Dualidad abierto/cerrado \fnt{GT 2.4.2, p.\,24}]
+Sea $(X,\tp)$ y $A\subseteq X$. Entonces $A$ es abierto $\iff$ $X-A$ es cerrado.
+\end{proposicion}
+
+\begin{definicion}[Frontera y exterior \fnt{GT 2.6.1 y 2.6.4, p.\,29}]
+$x\in\fr A$ si todo abierto que contiene a $x$ corta a $A$ y a $X-A$. $x\in\ext A$ si $x\in\intr(X-A)$.
+\lgc{x\in\fr A\iff \forall G\in\tp\ \big(x\in G\Rightarrow G\cap A\ne\emptyset\ \wedge\ G\cap(X-A)\ne\emptyset\big);\\
+x\in\ext A\iff x\in\intr(X-A).}
+\end{definicion}
+
+\begin{teorema}[Propiedades de la frontera \fnt{GT 2.6.2, 2.6.3, 2.6.5, pp.\,29--30; MS Teo.\ 3.14, p.\,44}]
+Sea $(X,\tp)$ y $A\subseteq X$:
+\begin{lista}
+\item $\fr A=\cl A\cap\cl{X-A}=\cl A-\intr A$;
+\item $\fr A$ es cerrado;
+\item $\fr A=\fr(X-A)$;
+\item $X=\intr A\ \dot\cup\ \fr A\ \dot\cup\ \ext A$ (unión disjunta);
+\item $\cl A=A\cup\fr A=\intr A\cup\fr A$.
+\end{lista}
+\end{teorema}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.15]
+\draw[thick,fill=gray!6] (-2.6,-1.9) rectangle (2.6,1.9);
+\node at (-2.25,1.6) {$X$};
+\draw[abierto,rounded corners=16pt] (-1.5,-1.0) .. controls (0,-1.8) and (1.6,-1.0) .. (1.5,0.1)
+ .. controls (1.4,1.2) and (-0.2,1.5) .. (-1.2,0.9) .. controls (-1.9,0.45) and (-1.9,-0.55) .. (-1.5,-1.0);
+\node at (0,0.05) {$\intr A$};
+\node at (1.9,1.25) {$\ext A$};
+\node[right] at (1.55,-0.55) {\scriptsize $\fr A$};
+\draw[->,>=Stealth,thin] (1.5,-0.55)--(1.15,-0.72);
+% punto frontera con entorno
+\node[pt] (b) at (0.62,-1.28) {};
+\draw[red!70!black,thick,dashed] (b) circle (0.42);
+\node[below] at (0.62,-1.78) {\scriptsize todo entorno corta a $A$ y a $X-A$};
+\end{tikzpicture}
+\figtit{Figura 5. $X$ queda partido en tres pedazos disjuntos: interior, frontera y exterior. La frontera es el conjunto de puntos ``indecisos'': por más chico que se tome el entorno, siempre se ve algo de adentro y algo de afuera.}
+\end{figure}
+
+\begin{intuicion}
+$\intr A$ = ``estoy adentro con margen''; $\ext A$ = ``estoy afuera con margen''; $\fr A$ = ``estoy justo en el borde''. Un conjunto es abierto cuando no contiene nada de su borde, cerrado cuando lo contiene todo, y abierto-cerrado a la vez cuando directamente \emph{no tiene} borde (Prop.~\ref{pr:clopen}). Ojo: la frontera no siempre es una curva fina; $\fr\Q=\R$ en la recta usual, porque ningún intervalo evita a los racionales ni a los irracionales.
+\end{intuicion}
+
+\begin{proposicion}[Caracterización de los abiertos-cerrados \fnt{EJ, Top--A.11, p.\,7}]\label{pr:clopen}
+Sea $(X,\tp)$ y $A\subseteq X$. Entonces $A$ es simultáneamente abierto y cerrado $\iff \fr A=\emptyset$.
+\end{proposicion}
+
+\begin{proof}
+Si $A$ es abierto y cerrado, $\intr A=A=\cl A$, luego $\fr A=\cl A-\intr A=\emptyset$. Recíprocamente, si $\fr A=\emptyset$ entonces $\cl A=\intr A$; como siempre $\intr A\subseteq A\subseteq \cl A$, resulta $A=\intr A=\cl A$, o sea $A$ abierto y cerrado.
+\end{proof}
+
+\begin{definicion}[Denso \fnt{GT 2.6.7, p.\,31}]
+$A$ es \emph{denso} en $(X,\tp)$ si $\cl A=X$.
+\end{definicion}
+
+\begin{proposicion}[Caracterización de la densidad \fnt{EJ, Top--A.13, p.\,7; MS Lema 3.11, p.\,42}]
+Sea $(X,\tp)$ y $A\subseteq X$. Entonces $A$ es denso en $X$ $\iff$ $A\cap G\ne\emptyset$ para todo abierto $G\ne\emptyset$ $\iff$ $\intr(X-A)=\emptyset$.
+\end{proposicion}
+
+\begin{proof}
+Si $A$ es denso y $G\ne\emptyset$ es abierto, tomando $x\in G$ se tiene $x\in\cl A$, luego $G\cap A\ne\emptyset$ por definición de punto adherente. Recíprocamente, si todo abierto no vacío corta a $A$, entonces todo $x\in X$ está en $\cl A$. La segunda equivalencia es la dualidad: $\cl A=X\iff X-\intr(X-A)=X$.
+\end{proof}
+
+\begin{proposicion}[La frontera de un abierto tiene interior vacío \fnt{parcial 2/10/2023, ej.\ 2b}]
+Si $A\in\tp$ (o si $A$ es cerrado), entonces $\intr(\fr A)=\emptyset$.
+\end{proposicion}
+
+\begin{proof}
+Sea $A$ abierto. Entonces $A\cap\fr A=\emptyset$, porque $\fr A=\cl A-\intr A=\cl A-A$. Si existiera $x\in\intr(\fr A)$, habría un abierto $G$ con $x\in G\subseteq\fr A\subseteq\cl A$; como $x\in\cl A$ y $G$ es un abierto que lo contiene, $G\cap A\ne\emptyset$, contra $\fr A\cap A=\emptyset$. Para $A$ cerrado se aplica lo anterior a $X-A$, usando $\fr A=\fr(X-A)$.
+\end{proof}
+
+\begin{observacion}[Hace falta la hipótesis]
+Sin suponer $A$ abierto o cerrado el enunciado es falso: en $(\R,\tp_u)$ con $A=\Q$ es $\fr\Q=\R$ y $\intr(\fr\Q)=\R\ne\emptyset$.
+\end{observacion}
+
+\begin{definicion}[Operadores de Kuratowski \fnt{EJ, Top--D.2, p.\,8}]
+$i(A)=\intr(\cl A)=(\cl A)^{\circ}$ y $c(A)=\cl{\intr A}=\cl{A^{\circ}}$.
+\end{definicion}
+
+\begin{observacion}[$i(A)$ y $c(A)$ no coinciden]
+La igualdad $(\cl A)^{\circ}=\cl{A^{\circ}}$ es \emph{falsa} en general, y tampoco hay inclusión en ninguno de los dos sentidos: en $(\R,\tp_u)$, con $A=(0,1)\cup(1,2)\cup\{3\}\cup([4,5]\cap\Q)$ resulta $i(A)=(0,2)\cup(4,5)$ y $c(A)=[0,2]$, de modo que $0\in c(A)-i(A)$ y $4{,}5\in i(A)-c(A)$. Sí valen $i\circ i=i$ y $c\circ c=c$, y las inclusiones $\intr A\subseteq c(A)$ e $i(A)\subseteq\cl A$.
+\end{observacion}
+
+\begin{proposicion}[Puntos y cerrados en métricos \fnt{EJ, Top--A.12, p.\,7; GT Cor.\ 2.3.3, p.\,22}]
+En $(X,d)$, todo conjunto unitario (y por ende todo conjunto finito) es cerrado; equivalentemente, $X-\{x\}$ es abierto. En particular, en un espacio métrico todos los puntos de un conjunto finito son aislados.
+\end{proposicion}
+
+\begin{proof}
+Si $y\ne x$, la bola $\Bola{y}{d(x,y)}$ está contenida en $X-\{x\}$; luego $X-\{x\}$ es entorno de todos sus puntos, o sea abierto.
+\end{proof}
+
+
+%======================================================================
+\section{Bases, subbases y comparación de topologías}\label{sec:bases}
+
+\begin{definicion}[Comparación \fnt{EJ, Ej.\ teórico N$^\circ$2, p.\,9; Munkres \S13}]
+Dadas $\tp,\tp'$ sobre $X$, se dice que $\tp'$ es \emph{más fina} que $\tp$ si $\tp\subseteq\tp'$. Es un orden \emph{parcial}: hay topologías no comparables.
+\end{definicion}
+
+\begin{definicion}[Base \emph{de} una topología dada \fnt{MS Def.\ 2.4, p.\,25}]
+Sea $(X,\tp)$ un espacio topológico. $\beta\subseteq\tp$ es \emph{base de} $\tp$ si
+\[
+\forall U\in\tp\ \forall x\in U\ \ \exists B\in\beta:\ x\in B\subseteq U .
+\]
+\end{definicion}
+
+\begin{definicion}[Base \emph{para} una topología, y topología generada \fnt{MS Def.\ 2.4, p.\,25; EJ p.\,9}]
+Sea $X$ un conjunto (sin topología dada todavía). $\beta\subseteq\mathcal P(X)$ es una \emph{base} si cumple:
+\begin{lista}
+\item[\textbf{(B1)}] todo $x\in X$ pertenece a algún $B\in\beta$;
+\item[\textbf{(B2)}] si $x\in B_1\cap B_2$ con $B_1,B_2\in\beta$, existe $B_3\in\beta$ con $x\in B_3\subseteq B_1\cap B_2$.
+\end{lista}
+En ese caso se define la \emph{topología generada por} $\beta$ como
+\[
+\tp_\beta=\{U\subseteq X:\ \forall x\in U\ \exists B\in\beta,\ x\in B\subseteq U\}.
+\]
+\end{definicion}
+
+\begin{teorema}[Criterio de base \fnt{MS Teo.\ 2.3, p.\,26; EJ Ej.\ teórico N$^\circ$2.1--2.2, p.\,9}]
+Sea $X$ un conjunto y $\beta\subseteq\mathcal P(X)$. Entonces $\beta$ es base de alguna topología sobre $X$ si y sólo si cumple \textbf{(B1)} y \textbf{(B2)}; en ese caso $\tp_\beta$ es efectivamente una topología, $\beta$ es base de $\tp_\beta$ en el sentido de la Definición anterior, y
+\[
+\tp_\beta=\Big\{\ \bigcup_{i\in I}B_i\ :\ \{B_i\}_{i\in I}\subseteq\beta\ \Big\},
+\]
+es decir, la topología generada coincide con la colección de todas las uniones de elementos de $\beta$ \fnt{MS Lema 2.2, p.\,25}.
+\end{teorema}
+
+\begin{proof}[Idea de la demostración]
+Que $\tp_\beta$ es topología: $\emptyset$ y $X$ salen de \textbf{(B1)}; la unión es inmediata de la definición puntual; para $U_1\cap U_2$, dado $x$ en la intersección hay $B_1,B_2$ con $x\in B_i\subseteq U_i$, y \textbf{(B2)} provee $B_3\subseteq B_1\cap B_2\subseteq U_1\cap U_2$. La igualdad con las uniones: todo $U\in\tp_\beta$ es $U=\bigcup_{x\in U}B_x$; recíprocamente toda unión de básicos está en $\tp_\beta$.
+\end{proof}
+
+\begin{teorema}[Reconocer una base dentro de una topología \fnt{EJ, Ej.\ teórico N$^\circ$2.3, p.\,10; MS Lema 2.11, p.\,30; Munkres Lema 13.2}]
+Sea $(X,\tp)$ y $\mathcal{C}\subseteq\tp$ una colección de abiertos tal que para todo $U\in\tp$ y todo $x\in U$ existe $C\in\mathcal{C}$ con $x\in C\subseteq U$. Entonces $\mathcal C$ es base de $\tp$.
+\end{teorema}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+% definicion de base
+\begin{scope}
+\draw[abierto,rounded corners=14pt] (-1.7,-1.1) .. controls (0,-1.9) and (1.8,-1.0) .. (1.6,0.2)
+ .. controls (1.45,1.3) and (-0.3,1.6) .. (-1.3,1.0) .. controls (-2.1,0.5) and (-2.1,-0.6) .. (-1.7,-1.1);
+\node at (-1.05,0.95) {$U$};
+\node[pt] (p) at (0.5,-0.1) {}; \node[below] at (0.5,-0.18) {\scriptsize $x$};
+\draw[red!70!black,thick,fill=red!12] (p) circle (0.55);
+\node[right] at (1.05,-0.1) {\scriptsize $B$};
+\node at (0,-2.3) {\small $\forall U$ abierto, $\forall x\in U$, $\exists B\in\beta:\ x\in B\subseteq U$};
+\end{scope}
+% bolas y cuadrados
+\begin{scope}[xshift=6.6cm]
+\draw[abierto] (0,0) circle (1.45);
+\node[pt] (q) at (0.45,0.25) {};
+\draw[red!70!black,thick] (-0.15,-0.35) rectangle (1.05,0.85);
+\draw[blue!60!black,thick,dashed] (q) circle (0.28);
+\node[above right] at (1.05,0.85) {\scriptsize cuadrado};
+\node[below left] at (-0.15,-0.35) {\scriptsize bolita};
+\node at (0,-2.3) {\small bola $\supseteq$ cuadrado $\supseteq$ bola};
+\end{scope}
+\end{tikzpicture}
+\figtit{Figura 6. Izquierda: qué pide ser base. Derecha: por qué bolas y cuadrados generan la \emph{misma} topología en $\R^2$ --- cada básico de un tipo contiene, alrededor de cada uno de sus puntos, un básico del otro tipo. Ese es literalmente el criterio de comparación (Teo.~\ref{th:compbase}) aplicado en las dos direcciones.}
+\end{figure}
+
+\begin{intuicion}
+Una base es una ``lista de piezas de repuesto'': en lugar de describir todos los abiertos, se describen unos pocos con los que se pueden armar todos los demás por unión. Como en el armado solo importa poder \emph{encajar} una pieza chica alrededor de cada punto, dos listas de piezas de formas totalmente distintas pueden armar exactamente los mismos objetos.
+\end{intuicion}
+
+\begin{ejemplo}
+Con este criterio se ve de inmediato que en $\R^2$ las bolas euclídeas, los cuadrados abiertos y los rombos abiertos son todos bases de la \emph{misma} topología usual: a diferencia del álgebra lineal, las bases no son únicas ni tienen ``dimensión'' \fnt{EJ p.\,10}.
+\end{ejemplo}
+
+\begin{teorema}[Comparación mediante bases \fnt{MS Teo.\ 2.4 y Cor.\ 2.5, p.\,27; EJ Ej.\ teórico N$^\circ$2.4, p.\,10}]\label{th:compbase}
+Sean $\beta$ y $\beta'$ bases de $\tp$ y $\tp'$. Entonces $\tp\subseteq\tp'$ ($\tp'$ más fina) si y sólo si
+\[
+\forall x\in X,\ \forall B\in\beta \text{ con } x\in B,\ \exists B'\in\beta' \text{ tal que } x\in B'\subseteq B .
+\]
+En consecuencia $\tp=\tp'$ si y sólo si vale la condición en ambas direcciones.
+\end{teorema}
+
+\begin{proof}
+($\Rightarrow$) Si $B\in\beta\subseteq\tp\subseteq\tp'$ y $x\in B$, como $\beta'$ es base de $\tp'$ existe $B'\in\beta'$ con $x\in B'\subseteq B$. ($\Leftarrow$) Sea $U\in\tp$ y $x\in U$; hay $B\in\beta$ con $x\in B\subseteq U$ y, por hipótesis, $B'\in\beta'$ con $x\in B'\subseteq B\subseteq U$; luego $U\in\tp'$.
+\end{proof}
+
+\begin{definicion}[Subbase \fnt{MS Lema 2.6, p.\,27}]
+$\sigma\subseteq\mathcal P(X)$ es una \emph{subbase} si $\bigcup_{S\in\sigma}S=X$. La \emph{topología generada por la subbase} $\sigma$ es la generada por la base del lema siguiente.
+\end{definicion}
+
+\begin{lema}[Una subbase genera una base \fnt{MS Lema 2.6, p.\,27; EJ Ej.\ teórico N$^\circ$2.6, p.\,10}]
+Si $\sigma$ es una subbase, la colección de \emph{intersecciones finitas} de elementos de $\sigma$ cumple \textbf{(B1)} y \textbf{(B2)}, luego es base de una topología, y esa topología es la menos fina que contiene a $\sigma$.
+\lgc{\sigma\ \text{subbase}\ \Rightarrow\ \Big\{\bigcap_{k=1}^{n}S_k:\ S_k\in\sigma,\ n\in\N\Big\}\ \text{es base};\\
+\tp_\sigma=\min\{\tp:\ \sigma\subseteq\tp\}.}
+\end{lema}
+
+
+\begin{ejemplo}[Sorgenfrey \fnt{MS Ejemplos 2.4(7), p.\,26}]
+$\beta_{sor}=\{[a,b): a<b\}$ genera la recta de Sorgenfrey, también estrictamente más fina que la usual, y en la que cada $[a,b)$ es a la vez abierto y cerrado.
+\end{ejemplo}
+
+\subsection{Entornos y bases de entornos}
+
+\begin{teorema}[Axiomas de entorno \fnt{MS Teo.\ 2.7, p.\,28}]
+Sea $(X,\tp)$ y $x\in X$. El sistema de entornos $\mathcal N_x=\{N\subseteq X:\ x\in\intr N\}$ verifica:
+\begin{lista}
+\item (N1) si $N\in\mathcal N_x$ entonces $x\in N$;
+\item (N2) si $N\in\mathcal N_x$ y $N\subseteq M$ entonces $M\in\mathcal N_x$;
+\item (N3) $\mathcal N_x$ es cerrado por intersecciones finitas;
+\item (N4) si $N\in\mathcal N_x$, existe $M\in\mathcal N_x$ con $M\subseteq N$ tal que $N\in\mathcal N_y$ para todo $y\in M$.
+\end{lista}
+\end{teorema}
+
+\begin{definicion}[Base local \fnt{MS Teo.\ 2.8, p.\,29}]
+$\mathcal B_x\subseteq\mathcal N_x$ es \emph{base de entornos} (o \emph{base local}) en $x$ si todo entorno de $x$ contiene algún elemento de $\mathcal B_x$.
+\lgc{\mathcal B_x\ \text{base local en } x\iff \forall N\in\mathcal N_x\ \exists B\in\mathcal B_x:\ B\subseteq N.}
+\end{definicion}
+
+\begin{proposicion}[Bases locales que siempre sirven \fnt{MS Lema 2.9, p.\,30}]
+Sea $(X,\tp)$ y $x\in X$:
+\begin{lista}
+\item la familia de los entornos \emph{abiertos} de $x$ es base local en $x$, en cualquier espacio topológico;
+\item en un espacio métrico, $\{\Bola{x}{1/n}: n\in\N\}$ es base local en $x$ (base local \emph{numerable}).
+\end{lista}
+\end{proposicion}
+
+
+\begin{teorema}[La familia de bolas es base \fnt{MS Teo.\ 2.14, p.\,32}]
+En $(X,d)$, $\{\Bola{x}{r}: x\in X, r>0\}$ es base de una topología sobre $X$, llamada \emph{topología métrica} $\tp_d$. Un espacio $(X,\tp)$ es \emph{metrizable} si existe $d$ con $\tp=\tp_d$.
+\end{teorema}
+
+%======================================================================
+\section{Axiomas de separación $T_0$, $T_1$, $T_2$}\label{sec:sep}
+
+\begin{definicion}[\fnt{EJ, Ejercicios teóricos $T_0,T_1$, Hausdorff, p.\,11; GT 2.5.3, p.\,27}]
+Sea $(X,\tp)$ y $x\ne y$ en $X$.
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt]
+\item $X$ es $T_0$ si existe un abierto que contiene a uno de los dos y no al otro.
+\item $X$ es $T_1$ si existe un abierto $U$ con $x\in U$, $y\notin U$ \emph{y} un abierto $V$ con $y\in V$, $x\notin V$.
+\item $X$ es $T_2$ (\emph{Hausdorff}) si existen abiertos disjuntos $U\ni x$, $V\ni y$.
+\end{itemize}
+\lgc{T_0:\ \forall x\ne y\ \exists U\in\tp:\ (x\in U\wedge y\notin U)\vee(y\in U\wedge x\notin U);\\
+T_1:\ \forall x\ne y\ \exists U,V\in\tp:\ (x\in U\wedge y\notin U)\wedge(y\in V\wedge x\notin V);\\
+T_2:\ \forall x\ne y\ \exists U,V\in\tp:\ x\in U\ \wedge\ y\in V\ \wedge\ U\cap V=\emptyset.}
+\end{definicion}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=0.95]
+% T0
+\begin{scope}
+\node[pt] (a) at (-0.5,0) {}; \node[below] at (-0.5,-0.1) {\scriptsize $x$};
+\node[pt] (b) at (0.9,0) {}; \node[below] at (0.9,-0.1) {\scriptsize $y$};
+\draw[blue!60!black,thick,fill=blue!10] (-0.5,0) ellipse (0.7 and 0.5);
+\node[blue!60!black] at (-1.35,0.62) {\scriptsize $U$};
+\node at (0.2,-1.25) {\small $T_0$};
+\node[align=center] at (0.2,-1.85) {\scriptsize un abierto separa\\[-2pt]\scriptsize a uno de los dos};
+\end{scope}
+% T1
+\begin{scope}[xshift=4.4cm]
+\node[pt] (a) at (-0.5,0) {}; \node[below] at (-0.55,-0.1) {\scriptsize $x$};
+\node[pt] (b) at (0.9,0) {}; \node[below] at (0.95,-0.1) {\scriptsize $y$};
+\draw[blue!60!black,thick,fill=blue!10,fill opacity=0.55] (-0.35,0) ellipse (0.85 and 0.5);
+\draw[red!70!black,thick,fill=red!10,fill opacity=0.55] (0.75,0) ellipse (0.85 and 0.5);
+\node[blue!60!black] at (-1.45,0.62) {\scriptsize $U$};
+\node[red!70!black] at (1.85,0.62) {\scriptsize $V$};
+\node at (0.2,-1.25) {\small $T_1$};
+\node[align=center] at (0.2,-1.85) {\scriptsize cada uno tiene el suyo,\\[-2pt]\scriptsize pero pueden solaparse};
+\end{scope}
+% T2
+\begin{scope}[xshift=8.8cm]
+\node[pt] (a) at (-0.7,0) {}; \node[below] at (-0.75,-0.1) {\scriptsize $x$};
+\node[pt] (b) at (1.1,0) {}; \node[below] at (1.15,-0.1) {\scriptsize $y$};
+\draw[blue!60!black,thick,fill=blue!10] (-0.7,0) ellipse (0.62 and 0.5);
+\draw[red!70!black,thick,fill=red!10] (1.1,0) ellipse (0.62 and 0.5);
+\node[blue!60!black] at (-1.55,0.62) {\scriptsize $U$};
+\node[red!70!black] at (1.95,0.62) {\scriptsize $V$};
+\node at (0.2,-1.25) {\small $T_2$ (Hausdorff)};
+\node[align=center] at (0.2,-1.85) {\scriptsize los suyos, \emph{y disjuntos}};
+\end{scope}
+\end{tikzpicture}
+\figtit{Figura 8. Los tres niveles de separación. Cada uno pide un poco más que el anterior: $T_2\Rightarrow T_1\Rightarrow T_0$.}
+\end{figure}
+
+\begin{intuicion}
+La pregunta de fondo es ``¿cuánto puede la topología distinguir dos puntos distintos?''. En la cofinita se pueden aislar puntos ($T_1$) pero los abiertos son tan enormes que dos cualesquiera se cortan, así que no hay $T_2$; ahí es donde se rompe la unicidad del límite de una sucesión. En un espacio métrico las bolas de radio $d(x,y)/2$ hacen el trabajo automáticamente, y por eso todo métrico es $T_2$.
+\end{intuicion}
+
+\begin{proposicion}[Jerarquía \fnt{EJ, Ej.\ teórico 3, p.\,11}]
+Para todo espacio topológico $(X,\tp)$: $T_2\Rightarrow T_1\Rightarrow T_0$, y ninguna recíproca vale.
+\end{proposicion}
+
+\begin{ejemplo}[Contraejemplos de las recíprocas]
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt]
+\item $T_1$ pero no $T_2$: $(X,\tp_{cof})$ con $X$ infinito. Los cerrados son los finitos, luego los puntos son cerrados y el espacio es $T_1$; pero dos abiertos no vacíos cualesquiera se cortan (sus complementos son finitos y $X$ es infinito), luego no es $T_2$.
+\item $T_0$ pero no $T_1$: el espacio de Sierpi\'nski $X=\{a,b\}$, $\tp=\{\emptyset,X,\{a\}\}$; o el espacio del ejercicio 2 de la guía, $X=\{a,b,c\}$ con $\tp=\{\emptyset,X,\{a,b\},\{a\}\}$, en el cual $\{a\}$ no es cerrado \fnt{EJ, Ej.\ teórico 2 y 3d, p.\,11}.
+\end{itemize}
+\end{ejemplo}
+
+\begin{teorema}[Caracterización de $T_1$ \fnt{EJ, Ej.\ teórico 4, p.\,11}]
+Sea $(X,\tp)$ un espacio topológico. Entonces $(X,\tp)$ es $T_1$ $\iff$ $\{x\}$ es cerrado para todo $x\in X$.
+\end{teorema}
+
+\begin{proof}
+$\{x\}$ es cerrado $\iff X-\{x\}$ es abierto $\iff$ $X-\{x\}$ es entorno de todos sus puntos $\iff$ para cada $y\ne x$ existe un abierto $V$ con $y\in V\subseteq X-\{x\}$, es decir $y\in V$ y $x\notin V$. Esto, para todo par $x\ne y$, es exactamente $T_1$.
+\end{proof}
+
+\begin{teorema}[Todo métrico es Hausdorff \fnt{GT 1.1.26, p.\,11; MS Teo.\ 2.13, p.\,32}]
+Todo espacio métrico es $T_2$ (y por lo tanto $T_1$ y $T_0$). En consecuencia, cualquier espacio no Hausdorff no es metrizable.
+\end{teorema}
+
+%======================================================================
+\section{Sucesiones y convergencia}\label{sec:suc}
+
+\begin{definicion}[\fnt{GT 2.5.1, p.\,26}]
+$\{x_n\}_{n\ge1}$ \emph{converge} a $x_0$ en $(X,\tp)$ si para todo abierto $G$ con $x_0\in G$ existe $n_0$ tal que $x_n\in G$ para todo $n\ge n_0$. En un espacio métrico esto equivale a $d(x_n,x_0)\to 0$.
+\lgc{x_n\to x_0\iff \forall G\in\tp\ \big(x_0\in G\Rightarrow \exists n_0\ \forall n\ge n_0:\ x_n\in G\big).}
+\end{definicion}
+
+\begin{teorema}[Unicidad del límite \fnt{GT 2.5.2, p.\,26; EJ Ej.\ teórico 5, p.\,11}]
+En un espacio de Hausdorff (en particular, en todo espacio métrico), toda sucesión convergente tiene un único límite.
+\lgc{X\ \text{es } T_2\ \Rightarrow\ \big(x_n\to x\ \wedge\ x_n\to y\ \Rightarrow\ x=y\big).}
+\end{teorema}
+
+\begin{proof}
+Si $x_n\to x$ y $x_n\to y$ con $x\ne y$, tomo abiertos disjuntos $U\ni x$, $V\ni y$. Existen $n_1,n_2$ con $x_n\in U$ para $n\ge n_1$ y $x_n\in V$ para $n\ge n_2$; para $n\ge\max\{n_1,n_2\}$ resulta $x_n\in U\cap V=\emptyset$, absurdo.
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+\node[pt] (x) at (-1.5,0) {}; \node[below] at (-1.5,-0.12) {\scriptsize $x$};
+\node[pt] (y) at (1.5,0) {}; \node[below] at (1.5,-0.12) {\scriptsize $y$};
+\draw[blue!60!black,thick,fill=blue!10] (-1.5,0) ellipse (1.0 and 0.75);
+\draw[red!70!black,thick,fill=red!10] (1.5,0) ellipse (1.0 and 0.75);
+\node[blue!60!black] at (-2.75,0.75) {\scriptsize $U$};
+\node[red!70!black] at (2.75,0.75) {\scriptsize $V$};
+\foreach \x/\y in {-0.35/1.35,0.25/-1.25,-1.0/0.9}{
+  \node[pt,fill=gray,inner sep=1.1pt] at (\x,\y) {};}
+\foreach \x/\y in {-1.9/0.35,-1.15/-0.3,-1.55/0.12,-1.35/-0.12}{
+  \node[pt,fill=blue!70!black,inner sep=1.1pt] at (\x,\y) {};}
+\node[align=center] at (0,-2.0) {\scriptsize a partir de cierto $n$ la sucesión debería estar \emph{a la vez}\\[-2pt]\scriptsize en $U$ y en $V$, que son disjuntos: imposible};
+\end{tikzpicture}
+\figtit{Figura 9. Por qué en un Hausdorff el límite es único. Si el espacio no separa (indiscreta, cofinita), esta contradicción desaparece y una misma sucesión puede converger a todos lados.}
+\end{figure}
+
+
+\begin{teorema}[Clausura por sucesiones (solo en métricos) \fnt{GT 2.5.6 y Cor.\ 2.5.7, p.\,28; MS Teo.\ 4.14, p.\,55}]\label{th:clsuc}
+Sea $(X,d)$ métrico y $A\subseteq X$. Entonces $x\in\cl A$ $\iff$ existe $\{a_n\}\subseteq A$ con $a_n\to x$. En consecuencia, $A$ es cerrado $\iff$ $A$ contiene el límite de toda sucesión de puntos de $A$ que converja en $X$.
+\lgc{(X,d):\quad x\in\cl A\iff \exists\{a_n\}_{n\ge1}\subseteq A:\ a_n\to x;\\
+A\ \text{cerrado}\iff \forall\{a_n\}\subseteq A\ \big(a_n\to x\Rightarrow x\in A\big).}
+\end{teorema}
+
+\begin{observacion}
+La equivalencia usa de manera esencial la base local numerable $\{\Bola{x}{1/n}\}$ y por eso \emph{no} se generaliza a espacios topológicos arbitrarios. Es la razón por la que en topología general se reemplazan las sucesiones por redes o filtros.
+\end{observacion}
+
+%======================================================================
+\section{Continuidad}\label{sec:cont}
+
+\subsection{Continuidad en un punto}\label{sec:contpt}
+
+\begin{definicion}[Continuidad en un punto \fnt{MS Def.\ 4.1, p.\,51}]
+$f:(X,\tp_X)\to(Y,\tp_Y)$ es \emph{continua en $a\in X$} si para todo entorno $M$ de $f(a)$ existe un entorno $N$ de $a$ con $f(N)\subseteq M$. Equivalentemente: $f^{-1}(M)\in\mathcal N_a$ para todo $M\in\mathcal N_{f(a)}$. $f$ es \emph{continua en $A$} si lo es en cada punto de $A$, y \emph{continua} (a secas) si lo es en todo $X$.
+\lgc{f\ \text{continua en } a\iff \forall M\in\mathcal N_{f(a)}\ \exists N\in\mathcal N_a:\ f(N)\subseteq M
+\iff \forall M\in\mathcal N_{f(a)}:\ f^{-1}(M)\in\mathcal N_a.}
+\end{definicion}
+
+\begin{proposicion}[Versión $\varepsilon$--$\delta$ local \fnt{MS Def.\ 4.1, p.\,51 (con la base local de bolas); GT 2.8.4, p.\,36}]
+Entre espacios métricos, $f:(X,d)\to(Y,\rho)$ es continua en $a$ $\iff$
+\[
+\forall \varepsilon>0\ \exists \delta>0:\quad d(x,a)<\delta \ \Longrightarrow\ \rho(f(x),f(a))<\varepsilon,
+\]
+es decir $f(\Bola{a}{\delta})\subseteq \Bola{f(a)}{\varepsilon}$. Y $f$ es continua en $a$ $\iff$ para toda sucesión $x_n\to a$ vale $f(x_n)\to f(a)$ (continuidad secuencial \emph{en $a$}).
+\end{proposicion}
+
+\begin{observacion}[Alcanza con entornos básicos]
+Si $\mathcal B_{f(a)}$ es una base local en $f(a)$, basta verificar la condición para los $M\in\mathcal B_{f(a)}$: cualquier otro entorno contiene uno de ellos, y la preimagen de un conjunto mayor sigue siendo entorno. Por eso en un métrico alcanza con las bolas, y hacia $\R$ alcanza con los intervalos.
+\end{observacion}
+
+\begin{observacion}[Cómo se prueba una discontinuidad]
+Negando la definición: $f$ \emph{no} es continua en $a$ si existe $\varepsilon_0>0$ tal que \emph{toda} bola $\Bola{a}{\delta}$ contiene algún $x$ con $\rho(f(x),f(a))\ge\varepsilon_0$. En la práctica lo más rápido es exhibir dos sucesiones $x_n\to a$ e $y_n\to a$ con $\lim f(x_n)\ne \lim f(y_n)$.
+\end{observacion}
+
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+% epsilon-delta
+\begin{scope}
+\draw[abierto,dashed] (0,0) circle (0.75);
+\node[pt] at (0,0) {}; \node[below left] at (0,0) {\scriptsize $a$};
+\node at (0,-1.15) {\scriptsize $B(a,\delta)$};
+\node at (0,1.35) {\small $X$};
+\end{scope}
+\draw[->,>=Stealth,thick] (1.3,0)--(2.9,0) node[midway,above]{\scriptsize $f$};
+\begin{scope}[xshift=4.4cm]
+\draw[cerrado,dashed] (0,0) circle (1.0);
+\draw[fill=blue!25,draw=blue!60!black,rounded corners=6pt]
+  (-0.5,-0.35) .. controls (0.1,-0.7) and (0.6,-0.1) .. (0.45,0.3)
+  .. controls (0.3,0.65) and (-0.4,0.55) .. (-0.5,-0.35);
+\node[pt] at (-0.05,0.02) {}; \node[below left] at (-0.05,0.0) {\scriptsize $f(a)$};
+\node at (0,-1.45) {\scriptsize $B(f(a),\varepsilon)$};
+\node at (1.35,0.75) {\scriptsize $f(B(a,\delta))$};
+\node at (0,1.35) {\small $Y$};
+\end{scope}
+\end{tikzpicture}
+\figtit{Figura 10. Continuidad en $a$: dado el objetivo $\varepsilon$ (la bola de llegada), hay una tolerancia $\delta$ (la bola de salida) cuya imagen entra completa. Primero se fija $\varepsilon$, después se busca $\delta$ --- nunca al revés.}
+\end{figure}
+
+\begin{intuicion}
+La versión topológica ``$f^{-1}(\text{abierto})$ es abierto'' es la misma idea sin números: un abierto es un conjunto que contiene un margen alrededor de cada punto suyo, y la continuidad dice que ese margen se puede \emph{tirar hacia atrás} por $f$. Por eso se trabaja con preimágenes y no con imágenes: la preimagen respeta uniones, intersecciones y complementos; la imagen, no.
+\end{intuicion}
+
+\subsection{Continuidad global}\label{sec:contglob}
+
+\begin{definicion}[Continuidad \fnt{GT 2.8.1, p.\,34}]
+$f:(X,\tp)\to(Y,\tp')$ es \emph{continua} si $f(\cl A)\subseteq \cl{f(A)}$ para todo $A\subseteq X$ (``la imagen de lo adherido queda adherida'').
+\end{definicion}
+
+\begin{teorema}[Caracterización por abiertos y cerrados \fnt{GT 2.8.2, p.\,34; MS Prop.\ 4.1, p.\,51}]\label{th:contab}
+Sea $f:(X,\tp)\to(Y,\tp')$ una función cualquiera y sea $\beta'$ una base (o una subbase) fijada de $\tp'$. Son equivalentes:
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em,itemsep=0pt]
+\item $f$ es continua, es decir $f(\cl A)\subseteq\cl{f(A)}$ para todo $A\subseteq X$;
+\item $f^{-1}(F)$ es cerrado en $X$, para todo cerrado $F$ de $Y$;
+\item $f^{-1}(G)$ es abierto en $X$, para todo abierto $G$ de $Y$;
+\item $f^{-1}(B)$ es abierto en $X$, para todo $B\in\beta'$ (alcanza con los \emph{básicos}, no hace falta recorrer todos los abiertos de $Y$);
+\item $f^{-1}(M)$ es entorno de $x$, para cada $x\in X$ y cada entorno $M\in\mathcal N_{f(x)}$;
+\item $f^{-1}(\cl B)\supseteq \cl{f^{-1}(B)}$ y $f^{-1}(\intr B)\subseteq \intr\big(f^{-1}(B)\big)$, para todo $B\subseteq Y$.
+\end{enumerate}
+\end{teorema}
+
+\begin{proof}[Demostración de $(1)\Rightarrow(2)\Rightarrow(3)\Rightarrow(1)$]
+$(1)\Rightarrow(2)$: sea $F$ cerrado y $A=f^{-1}(F)$. Por (1), $f(\cl{A})\subseteq\cl{f(A)}\subseteq \cl F=F$, luego $\cl A\subseteq f^{-1}(F)=A$; como siempre $A\subseteq\cl A$, resulta $A$ cerrado.
+$(2)\Rightarrow(3)$: $f^{-1}(Y-G)=X-f^{-1}(G)$.
+$(3)\Rightarrow(1)$: sea $y\in f(\cl A)$, digamos $y=f(x)$ con $x\in\cl A$, y sea $G$ abierto con $y\in G$. Entonces $f^{-1}(G)$ es abierto y contiene a $x\in \cl A$, luego $f^{-1}(G)\cap A\ne\emptyset$; tomando $a$ en esa intersección, $f(a)\in G\cap f(A)$. Por lo tanto $y\in\cl{f(A)}$.
+\end{proof}
+
+\begin{observacion}
+El punto (4) es el que más se usa en la práctica: para probar continuidad hacia $\R$ basta ver que las preimágenes de $(a,b)$ (o incluso de $(a,\infty)$ y $(-\infty,b)$, que forman subbase) son abiertas.
+\end{observacion}
+
+\begin{teorema}[Caracterización $\varepsilon$--$\delta$ \fnt{GT 2.8.4, p.\,36}]
+Sean $(X,d)$ e $(Y,d')$ espacios métricos y $f:X\to Y$. Entonces $f$ es continua $\iff$ para todo $x\in X$ y todo $\varepsilon>0$ existe $\delta>0$ con $f(\Bola{x}{\delta})\subseteq \Bola{f(x)}{\varepsilon}$.
+\end{teorema}
+
+\begin{teorema}[Caracterización por sucesiones \fnt{GT 2.8.5, p.\,36; MS Teo.\ 4.15, p.\,56}]\label{th:seq}
+Entre espacios métricos, $f$ es continua $\iff$ $x_n\to x_0$ implica $f(x_n)\to f(x_0)$ (continuidad secuencial).
+\end{teorema}
+
+\begin{observacion}[Dónde vale cada dirección \fnt{clase 8, balance de la Prop.\ 2.8.5}]
+La dirección $\Rightarrow$ vale en \emph{cualquier} espacio topológico: dado $G$ abierto con $f(x_0)\in G$, la preimagen $f^{-1}(G)$ es un abierto que contiene a $x_0$, la cola de $\{x_n\}$ entra ahí, y por definición de preimagen la cola de $\{f(x_n)\}$ entra en $G$. La dirección $\Leftarrow$ es la que necesita métrica, porque usa la caracterización de la clausura por sucesiones (Teo.~\ref{th:clsuc}) para \emph{fabricar} una sucesión $a_n\to x$ dentro de $A$; esa caracterización solo vale en (seudo)métricos. Moraleja: en un espacio topológico general, ser secuencialmente continua no implica ser continua.
+\end{observacion}
+
+\begin{definicion}[Inclusión, restricción y correstricción \fnt{GT 2.8.6d y 2.8.7, pp.\,37--38; TS Obs.\ 3.1.4}]
+Sea $f:X\to Y$ una función y $A\subseteq X$.
+\begin{lista}
+\item La \emph{inclusión} de $A$ en $X$ es la función $i:A\to X$ dada por $i(a)=a$ para todo $a\in A$. Es la identidad de $X$ mirada sólo sobre $A$: no mueve ningún punto, lo único que cambia es el conjunto de partida. Su preimagen es la traza: $i^{-1}(U)=U\cap A$ para todo $U\subseteq X$.
+\item La \emph{restricción} de $f$ a $A$ es $f|_A:A\to Y$, $f|_A(a)=f(a)$. Restringir es componer con la inclusión: $f|_A=f\circ i$.
+\item Si $f(X)\subseteq B\subseteq Y$, la \emph{correstricción} de $f$ a $B$ es $f|^{B}:X\to B$ con la misma fórmula, cambiando sólo el codominio. El caso $B=f(X)$ es la \emph{correstricción a la imagen}, que se nota $\widetilde f:X\to f(X)$ y es sobreyectiva por construcción.
+\end{lista}
+Cuando se habla de continuidad de $i$, de $f|_A$ o de $\widetilde f$, el subconjunto lleva siempre la topología relativa (\S\ref{sec:sub}).
+\lgc{i:A\to X,\ i(a)=a\ \ \forall a\in A;\qquad i^{-1}(U)=U\cap A;\qquad f|_A=f\circ i;\\
+f|^{B}:X\to B\ \text{con } f|^{B}(x)=f(x);\qquad \widetilde f=f|^{f(X)}.}
+\end{definicion}
+
+\begin{intuicion}
+Las tres operaciones no tocan la fórmula de la función: cambian el dominio, el codominio, o ambos. Eso es justo lo que las vuelve delicadas en topología, porque ``abierto'' depende del espacio en el que se mira: una función puede ser continua como $f:X\to Y$ y su correstricción serlo por razones distintas. La identidad $i^{-1}(U)=U\cap A$ es la que conecta todo esto con la topología de subespacio: pedir que $i$ sea continua es pedir que las trazas $U\cap A$ sean abiertas en $A$.
+\end{intuicion}
+
+\begin{proposicion}[Propiedades generales \fnt{GT 2.8.6, p.\,37; MS Prop.\ 4.2, p.\,52}]
+Entre espacios topológicos $(X,\tp)$, $(Y,\tp')$, $(Z,\tp'')$ y para $A\subseteq X$ con la topología relativa $\tp_A$:
+\begin{lista}
+\item las constantes son continuas;
+\item la identidad es continua;
+\item la composición de continuas es continua;
+\item la restricción de una continua a un subespacio es continua;
+\item en particular, la inclusión $i:(A,\tp_A)\to(X,\tp)$ es continua.
+\end{lista}
+\end{proposicion}
+
+\begin{proposicion}[Criterio de Hausdorff de comparación \fnt{MS Prop.\ 4.3, p.\,52; [AP] Ej.\ 2.8.8 (clase 8)}]\label{pr:idcont}
+Sean $\tp_1$ y $\tp_2$ dos topologías sobre el \emph{mismo} conjunto $X$, y sea $1_X$ la identidad. Entonces $\tp_2\subseteq\tp_1\iff 1_X:(X,\tp_1)\to(X,\tp_2)$ es continua. (Toda comparación de topologías puede leerse como una afirmación de continuidad.)
+\end{proposicion}
+
+\begin{proof}[Demostración, en una línea]
+La identidad no mueve los puntos, así que $1_X^{-1}(G)=G$ para todo $G\subseteq X$. Entonces ``$1_X$ continua'' significa ``todo $G\in\tp_2$ está en $\tp_1$'', que es $\tp_2\subseteq\tp_1$.
+\end{proof}
+
+\begin{ejemplo}[La identidad entre topologías concretas \fnt{[AP] Ejs.\ 2.8.8 y 2.8.10 (clase 8)}]\label{ej:iddisc}
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt]
+\item $1_\R:(\R,\tp_u)\to(\R,\tp_{dis})$ \emph{no} es continua: $\tp_{dis}\not\subseteq\tp_u$. Vía sucesiones (Teo.~\ref{th:seq}): $\tfrac1n\to0$ en la euclídea, pero $B_{d_D}(0,\varepsilon)=\{0\}$ es un abierto que contiene al límite y a ningún término, así que $1_\R(\tfrac1n)\not\to 0$ en la discreta.
+\item $1_\R:(\R,\tp_{dis})\to(\R,\tp_u)$ \emph{sí} es continua, porque $\tp_u\subseteq\tp_{dis}$. Conclusión: la identidad es biyectiva y continua en un sentido, pero no es homeomorfismo --- otro contraejemplo válido para Continuidad--B.3.
+\item $1_{\R^2}:(\R^2,d_e)\to(\R^2,d_{\text{taxi}})$ y su inversa son ambas continuas, porque las dos métricas dan la misma topología (Prop.~\ref{pr:equiv}). Acá la identidad \emph{sí} es homeomorfismo, con distancias distintas en salida y llegada.
+\end{itemize}
+\end{ejemplo}
+
+\subsection{Álgebra de funciones continuas a valores reales}\label{sec:alg}
+
+\begin{proposicion}[Continuidad hacia $\R^n$ \fnt{GT 2.8.11--2.8.12, pp.\,38--39} \fnt{demostrada en general en el Teo.~\ref{th:contprod}}]\label{pr:coord}
+Las proyecciones $p_i:(\R^n,\text{eucl.})\to(\R,\text{eucl.})$ son continuas, y $f:(X,\tp)\to(\R^n,\text{eucl.})$ es continua $\iff$ $p_i\circ f$ es continua para todo $i$. Esto reduce ejercicios como $f(x,y)=(x,x+y,x-y)$ o $f(x,y,z)=(x+y+z,xyz)$ a la continuidad de funciones a valores reales \fnt{EJ, Continuidad--A.4, p.\,12}.
+\lgc{p_i:(\R^n,\text{eucl.})\to(\R,\text{eucl.})\ \text{continua};\\
+f:(X,\tp)\to\R^n\ \text{continua}\iff \forall i\in\{1,\dots,n\}:\ p_i\circ f\ \text{continua}.}
+\end{proposicion}
+
+\begin{teorema}[Operaciones \fnt{consecuencia estándar de GT 2.8.6 y 2.8.12, pp.\,37--39; MS \S4.1, p.\,51}]
+Sean $f,g:(X,\tp)\to(\R,\tp_u)$ continuas y $\lambda\in\R$. Entonces son continuas:
+\[
+f+g,\qquad \lambda f,\qquad f\cdot g,\qquad |f|,\qquad \max\{f,g\},\qquad \min\{f,g\},
+\]
+y $f/g$ en el abierto $\{x: g(x)\ne0\}$.
+\end{teorema}
+
+\begin{proof}[Esquema]
+La ruta corta usa dos ingredientes ya disponibles: (i) $F=(f,g):X\to\R^2$ es continua porque sus dos coordenadas lo son (Prop.~\ref{pr:coord}); (ii) las operaciones $s(u,v)=u+v$ y $m(u,v)=uv$ son continuas de $\R^2$ en $\R$ --- para $s$ vale la estimación $|s(u,v)-s(u_0,v_0)|\le |u-u_0|+|v-v_0| \le 2\,d_{\max}$, o sea $s$ es lipschitziana; para $m$ se acota
+$|uv-u_0v_0|\le |u||v-v_0|+|v_0||u-u_0|$ y se usa que $|u|$ está acotado cerca de $u_0$. Entonces $f+g=s\circ F$ y $fg=m\circ F$ son composición de continuas. Para $|f|$: $\big||f(x)|-|f(a)|\big|\le |f(x)-f(a)|$. Finalmente
+\[
+\max\{f,g\}=\tfrac{f+g+|f-g|}{2},\qquad \min\{f,g\}=\tfrac{f+g-|f-g|}{2}.
+\]
+\end{proof}
+
+
+
+\subsection{Continuidad uniforme y métricas producto}\label{sec:unif}
+
+\begin{intuicion}
+\noentra{No figura en el apunte de cátedra.} La continuidad uniforme no aparece definida en \textbf{GT} ni con ese nombre en \textbf{MS}: es una noción analítica (que el mismo $\varepsilon$ sirva para todos los puntos a la vez), mientras que el enfoque del curso es topológico. Se incluye acá porque el enunciado del ejercicio Métricos--A.7 la nombra y hace falta la definición para leerlo. Las métricas producto, en cambio, son las que responden el ejercicio Continuidad--A.7.
+\end{intuicion}
+
+\begin{definicion}[Continuidad uniforme \fnt{GT \S3.5, p.\,51; usada en EJ, Métricos--A.7, p.\,2}]
+$f:(X,d)\to(Y,\rho)$ es \emph{uniformemente continua} si
+\[
+\forall\varepsilon>0\ \exists\delta>0:\quad \forall x,x'\in X,\ \ d(x,x')<\delta \Rightarrow \rho(f(x),f(x'))<\varepsilon .
+\]
+La diferencia con la continuidad es el orden de los cuantificadores: acá el $\delta$ sirve \emph{para todos los puntos a la vez}. $f$ es \emph{lipschitziana} si existe $K\ge0$ con $\rho(f(x),f(x'))\le K\,d(x,x')$ para todos $x,x'$.
+\lgc{f\ \text{lipschitziana}\iff \exists K\ge0\ \forall x,x'\in X:\ \rho\big(f(x),f(x')\big)\le K\,d(x,x').}
+\end{definicion}
+
+\begin{proposicion}[Jerarquía, y que es estricta]
+Entre espacios métricos:
+\begin{lista}
+\item lipschitziana $\Rightarrow$ uniformemente continua (sirve $\delta=\varepsilon/K$);
+\item uniformemente continua $\Rightarrow$ continua;
+\item ninguna de las dos recíprocas vale: $f(x)=x^2$ en $\R$ es continua y no uniformemente continua; $f(x)=\sqrt{x}$ en $[0,1]$ es uniformemente continua y no lipschitziana.
+\end{lista}
+\end{proposicion}
+
+\begin{ejemplo}
+$x\mapsto d(x,A)$ es lipschitziana con $K=1$ (Prop.~\ref{pr:lip}), luego uniformemente continua. Es el ejercicio Métricos--A.7.
+\end{ejemplo}
+
+\begin{proposicion}[Métricas sobre el producto \fnt{EJ, Continuidad--A.7, p.\,12}]
+Dado $(X,d)$, sobre $X\times X$ se definen
+\[
+d_{\max}\big((x_1,x_2),(x_1',x_2')\big)=\max\{d(x_1,x_1'),d(x_2,x_2')\},
+\]
+\[
+d_{sum}=d(x_1,x_1')+d(x_2,x_2'),\qquad
+d_{e}=\sqrt{d(x_1,x_1')^2+d(x_2,x_2')^2}.
+\]
+Las tres son distancias y verifican
+\[
+d_{\max}\ \le\ d_e\ \le\ d_{sum}\ \le\ 2\,d_{\max},
+\]
+de modo que \emph{inducen la misma topología} sobre $X\times X$ (mismo argumento de encaje de bolas que en la Prop.~\ref{pr:equiv}). En consecuencia, una función definida sobre $X\times X$ es continua para una de las tres si y sólo si lo es para las otras dos: en el ejercicio A.7 la respuesta es que \emph{no cambia nada}.
+\end{proposicion}
+
+\begin{proposicion}[Lema del pegado \fnt{EJ, Continuidad--B.7, p.\,13; MS \S5.2, p.\,65}]
+Sea $f:X\to Y$ y $\mathcal F\subseteq\mathcal P(X)$ con $X=\bigcup_{F\in\mathcal F}F$, tal que $f|_F$ es continua para todo $F\in\mathcal F$. Entonces:
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em,itemsep=0pt]
+\item si todos los $F$ son \emph{abiertos}, $f$ es continua;
+\item si todos los $F$ son \emph{cerrados} y $\mathcal F$ es \emph{finita}, $f$ es continua.
+\end{enumerate}
+\lgc{X=\bigcup_{F\in\mathcal F}F\ \wedge\ \forall F\in\mathcal F:\ f|_F\ \text{continua}\ \wedge\ \mathcal F\subseteq\tp\ \Rightarrow\ f\ \text{continua};\\
+X=\bigcup_{k=1}^{n}F_k\ \wedge\ \forall k:\ F_k\ \text{cerrado}\ \wedge\ f|_{F_k}\ \text{continua}\ \Rightarrow\ f\ \text{continua}.}
+\end{proposicion}
+
+\begin{proof}
+(a) Si $G$ es abierto en $Y$, $f^{-1}(G)=\bigcup_F (f|_F)^{-1}(G)$; cada $(f|_F)^{-1}(G)$ es abierto en $F$, y como $F$ es abierto en $X$, es abierto en $X$; unión arbitraria de abiertos es abierta. (b) Igual con cerrados, usando preimágenes de cerrados; ahora la unión debe ser \emph{finita} porque solo las uniones finitas de cerrados son cerradas. La finitud es esencial: cubriendo $\R$ por los cerrados $\{x\}$, toda función tiene restricciones continuas.
+\end{proof}
+
+
+
+
+
+
+
+
+\subsection{Homeomorfismos}\label{sec:homeo}
+
+\begin{definicion}[\fnt{GT 2.8.9, p.\,38; MS Def.\ 4.2, p.\,52}]
+$f:(X,\tp)\to(Y,\tp')$ es \emph{homeomorfismo} si es biyectiva, continua y con inversa continua. $f$ es \emph{abierta} (resp.\ \emph{cerrada}) si lleva abiertos en abiertos (resp.\ cerrados en cerrados) \fnt{GT 2.8.14, p.\,39}.
+\lgc{f\ \text{homeomorfismo}\iff f\ \text{biyectiva}\ \wedge\ f\ \text{continua}\ \wedge\ f^{-1}\ \text{continua};\\
+f\ \text{abierta}\iff \forall G\in\tp:\ f(G)\in\tp';\qquad
+f\ \text{cerrada}\iff \forall F\ \text{cerrado de } X:\ f(F)\ \text{cerrado de } Y.}
+\end{definicion}
+
+\begin{teorema}[Caracterizaciones \fnt{GT 2.8.15, p.\,39; MS Prop.\ 4.6, p.\,52}]
+Sea $f:(X,\tp)\to(Y,\tp')$ biyectiva y continua. Son equivalentes:
+\begin{lista}
+\item $f$ es homeomorfismo;
+\item $f$ es abierta;
+\item $f$ es cerrada;
+\item $U\in\tp\iff f(U)\in\tp'$;
+\item $f(\cl A)=\cl{f(A)}$ para todo $A\subseteq X$;
+\item $f(\intr A)=\intr(f(A))$ para todo $A\subseteq X$.
+\end{lista}
+\end{teorema}
+
+\begin{contraejemplo}[Biyectiva y continua pero no homeomorfismo \fnt{GT Ejemplo 2.8.16.2, pp.\,40--41}]
+$f:[0,2\pi)\to \R^2$, $f(t)=(\cos t,\sin t)$, es continua e inyectiva, y biyectiva sobre la circunferencia $S^1$; pero $f^{-1}$ no es continua en $(1,0)$: puntos de $S^1$ arbitrariamente cercanos a $(1,0)$ tienen preimágenes cercanas a $2\pi$. Otro ejemplo del mismo tipo: la identidad $(X,\tp_{dis})\to(X,\tp_u)$ con $X$ infinito, continua y biyectiva pero no homeomorfismo. La guía pide exhibir uno distinto \fnt{EJ, Continuidad--B.3, p.\,13}.
+\end{contraejemplo}
+
+
+\begin{definicion}[Propiedad topológica \fnt{MS Def.\ 4.3, p.\,52}]
+Una propiedad $P$ de espacios topológicos es \emph{topológica} si se conserva por homeomorfismos.
+\lgc{P\ \text{topológica}\iff \big(X\cong Y\ \wedge\ X\ \text{cumple } P\ \Rightarrow\ Y\ \text{cumple } P\big).}
+\end{definicion}
+
+\begin{proposicion}[Cuáles lo son \fnt{MS Prop.\ 4.7 y Contraejemplo 4.1, p.\,52}]
+Sean $(X,\tp)$ e $(Y,\tp')$ espacios topológicos. Son propiedades topológicas $T_1$, $T_2$, la separabilidad y la metrizabilidad. \emph{No} lo es la acotación: $(0,1)\cong\R$ y sólo uno de los dos es acotado.
+\end{proposicion}
+
+
+%======================================================================
+\section{Topología de subespacio}\label{sec:sub}
+
+\begin{definicion}[\fnt{GT 2.7.1, p.\,31; EJ p.\,14 (Cap.\ 3, p.\,17)}]
+Dado $(X,\tp)$ y $A\subseteq X$, la \emph{topología relativa} o \emph{de subespacio} es
+\[
+\tp_A=\{A\cap G: G\in\tp\}.
+\]
+$(A,\tp_A)$ es un \emph{subespacio topológico}.
+\end{definicion}
+
+\begin{proposicion}[Cerrados del subespacio \fnt{GT 2.7.1, p.\,31; TS Obs.\ 3.1.5}]
+Sea $A\subseteq(X,\tp)$ con la topología relativa $\tp_A$, y sea $C\subseteq A$. Entonces $C$ es cerrado en $(A,\tp_A)$ si y sólo si es la traza de un cerrado de $X$.
+\lgc{C\ \text{cerrado en } (A,\tp_A)\iff \exists F\ \text{cerrado de } (X,\tp):\ C=A\cap F.}
+\end{proposicion}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.05]
+\draw[thick] (-2.4,-1.7) rectangle (2.4,1.9);
+\node at (-2.1,1.6) {$\R^2$};
+\fill[gray!18] (-2.4,0) rectangle (2.4,1.9);
+\draw[very thick] (-2.4,0)--(2.4,0);
+\node at (1.85,0.9) {$A=\{y\ge0\}$};
+% bola centrada en el origen
+\draw[blue!60!black,thick,dashed] (0,0) circle (0.95);
+\fill[blue!18,draw=blue!60!black,thick] (0.95,0) arc (0:180:0.95) -- cycle;
+\node[pt] at (0,0) {};
+\node[below] at (0,-0.12) {\scriptsize $0$};
+\node[blue!60!black] at (-1.5,-0.75) {\scriptsize $G=B(0,\varepsilon)$};
+\node at (0,1.15) {\scriptsize $G\cap A$};
+\end{tikzpicture}
+\figtit{Figura 11. El semidisco $G\cap A$ \emph{es} abierto en el subespacio $A$ (es la traza de un abierto de $\R^2$), pero no es abierto en $\R^2$: los puntos del borde inferior no tienen ninguna bola de $\R^2$ contenida en él.}
+\end{figure}
+
+\begin{intuicion}
+``Abierto'' no es una propiedad del conjunto solo: es una propiedad \emph{relativa al espacio en el que se lo mira}. $[0,1)$ no es abierto en $\R$, pero sí lo es en el subespacio $[0,2]$. Por eso siempre hay que decir ``abierto \emph{en}''. La Prop.~\ref{pr:subesp}(iii) da la única situación en la que se puede olvidar la distinción: cuando $A$ mismo es abierto en $X$.
+\end{intuicion}
+
+\begin{teorema}[Caracterizaciones equivalentes \fnt{EJ, Cap.\ 3, Prop.\ 3.1.2--3.1.3, pp.\,14--15 (impresas 17--18)}]
+Sea $(X,\tp)$, $A\subseteq X$ e $i:A\to X$ la inclusión. Las tres descripciones siguientes definen la misma topología sobre $A$:
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em,itemsep=0pt]
+\item $\tp_A=\{U\cap A: U\in\tp\}$;
+\item $\tp_A$ es la topología \emph{menos fina} sobre $A$ que hace continua la inclusión $i:A\to X$;
+\item $\tp_A$ es la \emph{única} topología sobre $A$ que satisface la propiedad universal
+\[
+(\star)\quad \forall Z \text{ espacio topológico},\ \forall f:Z\to A:\qquad f \text{ es continua} \iff i\circ f:Z\to X \text{ es continua}.
+\]
+\end{enumerate}
+\end{teorema}
+
+\begin{proof}[Demostración de $(\star)$ y de la unicidad]
+$(\star)$: si $f$ es continua, $i\circ f$ lo es por composición. Recíprocamente, si $i\circ f$ es continua y $V\in\tp_A$, escribimos $V=U\cap A=i^{-1}(U)$ con $U\in\tp$; entonces $f^{-1}(V)=f^{-1}(i^{-1}(U))=(i\circ f)^{-1}(U)$ es abierto, luego $f$ es continua.
+
+Unicidad: sea $\tp^\ast$ otra topología en $A$ con $(\star)$. Aplicando $(\star)$ a $Z=(A,\tp^\ast)$ y $f=1_A$ (continua), se obtiene que $i:(A,\tp^\ast)\to X$ es continua. Ahora aplicando $(\star)$ para $\tp_A$ con $Z=(A,\tp^\ast)$ y $f=1_A$, la continuidad de $i:(A,\tp^\ast)\to X$ da que $1_A:(A,\tp^\ast)\to (A,\tp_A)$ es continua, es decir $\tp_A\subseteq\tp^\ast$. Intercambiando los roles se obtiene $\tp^\ast\subseteq\tp_A$.
+\end{proof}
+
+\begin{observacion}
+El esquema de esta demostración (``una construcción caracterizada por una propiedad universal es única salvo isomorfismo, y se prueba aplicando la propiedad a la identidad en ambas direcciones'') es el mismo que reaparece en topología producto y cociente.
+\end{observacion}
+
+\begin{proposicion}[Propiedades básicas \fnt{GT 2.7.2--2.7.5, pp.\,32--33; EJ Obs.\ 3.1.4, p.\,14}]\label{pr:subesp}
+Sea $A\subseteq X$ subespacio.
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em,itemsep=0pt]
+\item Si $g:X\to Y$ es continua, $g|_A=g\circ i$ es continua.
+\item Si $h:Z\to X$ es continua con $h(Z)\subseteq A$, la correstricción $h|^A:Z\to A$ es continua (consecuencia de $(\star)$).
+\item Si $A$ es abierto en $X$, todo abierto de $(A,\tp_A)$ es abierto de $X$; ídem con cerrados. En general esto es falso: $A=\{(x,y):y\ge0\}\subseteq\R^2$ y $G\cap A$ con $G$ una bola centrada en el origen.
+\item Si $B\subseteq A\subseteq X$: $\cl{B}^{A}=\cl{B}^{X}\cap A$.
+\item Si $(X,d)$ es métrico, la topología de la métrica restringida coincide con la topología relativa, pues $B_{d|_A}(a,\varepsilon)=\Bola{a}{\varepsilon}\cap A$.
+\end{enumerate}
+\lgc{g:X\to Y\ \text{continua}\Rightarrow g|_A=g\circ i\ \text{continua};\qquad
+h:Z\to X\ \text{continua}\wedge h(Z)\subseteq A\Rightarrow h|^{A}\ \text{continua};\\
+A\in\tp\Rightarrow\big(V\in\tp_A\Rightarrow V\in\tp\big);\qquad
+B\subseteq A:\ \cl B^{\,A}=\cl B^{\,X}\cap A;\qquad B_{d|_A}(a,\varepsilon)=\Bola{a}{\varepsilon}\cap A.}
+\end{proposicion}
+
+\begin{proposicion}[Intervalos: no hay abiertos-cerrados propios \fnt{GT 2.7.6, p.\,33} \noentra{va con conexidad (\S\ref{sec:bolzano}); todavía no dictado}]
+Si $J\subseteq\R$ es un intervalo de cualquier tipo (incluida la recta), los únicos subconjuntos de $(J,\text{eucl.})$ simultáneamente abiertos y cerrados son $\emptyset$ y $J$. (Es la conexión de los intervalos, anticipada.)
+\lgc{J\subseteq\R\ \text{intervalo}\ \wedge\ C\subseteq J\ \text{abierto y cerrado en } J\ \Rightarrow\ C=\emptyset\ \vee\ C=J.}
+\end{proposicion}
+
+\begin{teorema}[Bolzano topológico \fnt{GT 2.8.3, p.\,35} \noentra{va con conexidad (\S\ref{sec:bolzano}); todavía no dictado}]
+Para $(X,\tp)$ son equivalentes:
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em,itemsep=0pt]
+\item los únicos abiertos-cerrados de $X$ son $\emptyset$ y $X$;
+\item si $f:X\to\R$ es continua y $a,b\in f(X)$ con $a\le b$, entonces $[a,b]\subseteq f(X)$;
+\item si $f:X\to\R$ es continua y toma un valor negativo y otro positivo, entonces se anula.
+\end{enumerate}
+Combinado con la proposición anterior, se recupera el teorema de Bolzano clásico para intervalos.
+\lgc{\big[\forall C\subseteq X\ (C\ \text{abierto y cerrado}\Rightarrow C\in\{\emptyset,X\})\big]\\
+\iff \big[\forall f:X\to\R\ \text{continua}:\ a,b\in f(X)\ \wedge\ a\le b\ \Rightarrow\ [a,b]\subseteq f(X)\big]\\
+\iff \big[\forall f:X\to\R\ \text{continua}:\ \exists x_1,x_2\ f(x_1)<0<f(x_2)\ \Rightarrow\ \exists x_0\ f(x_0)=0\big].}
+\end{teorema}
+
+\begin{observacion}[Cómo se usa]
+La implicación (c)$\Rightarrow$(a) se prueba con $\chi$-tipo: si existiera $A\ne\emptyset,X$ abierto y cerrado, la función que vale $+1$ en $A$ y $-1$ fuera es continua (sus preimágenes son $\emptyset,A,X-A,X$) y no se anula. Es el mismo cálculo que en el ejercicio sobre $\chi_A$ (guía de continuidad, A.1).
+\end{observacion}
+
+%======================================================================
+\section{Topología producto}\label{sec:prod}
+
+\noindent Tema de la clase 9 (10/9/2026). No entró en el primer parcial: se evalúa en el segundo, junto con conexidad o compacidad. \textbf{GT} sólo trabaja productos de $\R^n$ con las distancias suma, euclídea y del máximo (\S\ref{sec:unif} y Prop.~\ref{pr:coord}); acá se hace el producto de dos espacios topológicos \emph{cualesquiera}, siguiendo el apunte \textbf{TP} de la cátedra y \textbf{MS} \S5.4. Todo lo que se dice para dos factores vale igual para una cantidad finita de factores.
+
+\begin{proposicion}[Continuidad chequeada en una base del codominio \fnt{TP p.\,4; clase 9, Prop.\ 2.1}]\label{pr:contbase}
+Sea $f:(X,\tp_X)\to(Y,\tp_Y)$ una función y sea $\beta$ una base de $\tp_Y$ fijada. Si la preimagen de cada elemento de $\beta$ es abierta en $X$, entonces $f$ es continua. (Es la caracterización (4) del Teorema~\ref{th:contab}; la recíproca es inmediata porque $\beta\subseteq\tp_Y$.)
+\lgc{\beta\ \text{base de }\tp_Y\ \wedge\ \forall B\in\beta:\ f^{-1}(B)\in\tp_X\ \Longrightarrow\ \forall G\in\tp_Y:\ f^{-1}(G)\in\tp_X.}
+\end{proposicion}
+
+\begin{proof}
+Sea $G\in\tp_Y$ y sea $x\in f^{-1}(G)$, es decir $f(x)\in G$. Como $\beta$ es base, existe $B\in\beta$ con $f(x)\in B\subseteq G$. Entonces $x\in f^{-1}(B)$ (definición de preimagen), $f^{-1}(B)\subseteq f^{-1}(G)$ (la preimagen respeta inclusiones) y $f^{-1}(B)$ es abierto (hipótesis). Luego $x\in\intr f^{-1}(G)$. Como $x$ era cualquiera, $f^{-1}(G)=\intr f^{-1}(G)$ es abierto.
+\end{proof}
+
+\begin{observacion}[Caso particular: bolas \fnt{TP p.\,4}]
+Si $Y$ es métrico, alcanza con que $f^{-1}(\Bola{y}{r})$ sea abierto para toda bola. No hace falta que la preimagen de una bola sea una bola: basta que sea \emph{abierta}.
+\end{observacion}
+
+\subsection{La base de rectángulos y la topología producto}
+
+\begin{definicion}[Rectángulos abiertos \fnt{TP p.\,1; MS \S5.4, p.\,66}]
+Sean $(X,\tp_X)$ e $(Y,\tp_Y)$ espacios topológicos. Sobre el conjunto $X\times Y=\{(x,y):\ x\in X,\ y\in Y\}$ se considera la familia de los \emph{rectángulos abiertos} (``abierto por abierto'')
+\[
+\beta_{X\times Y}=\{U\times V:\ U\in\tp_X,\ V\in\tp_Y\}.
+\]
+\lgc{W\in\beta_{X\times Y}\iff \exists U\in\tp_X\ \exists V\in\tp_Y:\ W=U\times V.}
+\end{definicion}
+
+\begin{proposicion}[Los rectángulos son base \fnt{TP p.\,1; MS \S5.4, p.\,66; clase 9, Prop.\ 3.2}]\label{pr:rectbase}
+$\beta_{X\times Y}$ cumple \textbf{(B1)} y \textbf{(B2)}; por lo tanto es base de una topología sobre $X\times Y$.
+\lgc{\textbf{(B1)}\ \ \forall (x,y)\in X\times Y:\ (x,y)\in X\times Y\in\beta_{X\times Y};\\
+\textbf{(B2)}\ \ (U_1\times V_1)\cap(U_2\times V_2)=(U_1\cap U_2)\times(V_1\cap V_2)\in\beta_{X\times Y}.}
+\end{proposicion}
+
+\begin{proof}
+(B1): el propio $X\times Y$ es un rectángulo abierto, porque $X\in\tp_X$ e $Y\in\tp_Y$ (el todo es abierto en cualquier topología). (B2): si $(x,y)\in(U_1\times V_1)\cap(U_2\times V_2)$, se propone $B_3=(U_1\cap U_2)\times(V_1\cap V_2)$. Es básico porque $U_1\cap U_2\in\tp_X$ y $V_1\cap V_2\in\tp_Y$ (intersección finita de abiertos); contiene a $(x,y)$ porque $x\in U_1\cap U_2$ e $y\in V_1\cap V_2$; y está contenido en $B_1\cap B_2$ (de hecho es igual).
+\end{proof}
+
+\begin{definicion}[Topología producto \fnt{TP pp.\,1--2; MS \S5.4, p.\,66, ``de Tychonov''}]
+La \emph{topología producto} $\tp_{X\times Y}$ (también $\tp_{prod}$; en \textbf{MS}, $\tp_X\times\tp_Y$ o $\tp_{Tyc}$) es la generada por la base $\beta_{X\times Y}$. Por el criterio de base (\S\ref{sec:bases}) tiene dos lecturas: $G$ es abierto si es \emph{unión} de rectángulos abiertos, o si \emph{cada punto} de $G$ tiene un rectángulo abierto alrededor metido en $G$.
+\lgc{G\in\tp_{X\times Y}\iff G=\bigcup_{\alpha\in\Lambda}U_\alpha\times V_\alpha\ \ \text{con } U_\alpha\in\tp_X,\ V_\alpha\in\tp_Y\\
+\iff \forall (x,y)\in G\ \ \exists U\in\tp_X\ \exists V\in\tp_Y:\ (x,y)\in U\times V\subseteq G.}
+Salvo aviso, todo producto de este apunte lleva la topología producto.
+\end{definicion}
+
+\begin{observacion}[El error frecuente \fnt{TP p.\,2; clase 9, Obs.\ 3.4 y 4.2}]\label{ob:errorprod}
+Es \emph{falso} que todo abierto de $X\times Y$ sea de la forma $U\times V$: en $\R^2$ un disco es abierto y no es un rectángulo. Tampoco vale $G=\pi_X(G)\times\pi_Y(G)$ (ver la definición de proyección abajo): el producto de las ``sombras'' de $G$ sobre los ejes es un rectángulo en general mucho más grande que $G$. Lo único que se puede asegurar es lo de la definición. Por eso el método de trabajo de toda la sección es: \emph{lo que haya que probar sobre un abierto cualquiera del producto, se prueba sobre los rectángulos y se arrastra por uniones} (o se usa la Prop.~\ref{pr:contbase}).
+\end{observacion}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+\draw[ejes] (-0.3,0)--(5.2,0) node[right]{\scriptsize $X$};
+\draw[ejes] (0,-0.3)--(0,3.6) node[above]{\scriptsize $Y$};
+% sombras
+\fill[gray!15] (0.8,0.6) rectangle (4.3,3.1);
+\draw[gray!60,dashed] (0.8,0.6) rectangle (4.3,3.1);
+\draw[very thick,gray!70!black] (0.8,0)--(4.3,0);
+\draw[very thick,gray!70!black] (0,0.6)--(0,3.1);
+\node[below] at (2.55,-0.05) {\scriptsize $\pi_X(G)$};
+\node[left] at (-0.05,1.85) {\scriptsize $\pi_Y(G)$};
+% blob G
+\draw[abierto] (0.8,1.2) .. controls (0.9,0.4) and (2.2,0.5) .. (2.6,1.3)
+  .. controls (3.0,2.0) and (4.4,1.6) .. (4.3,2.4)
+  .. controls (4.2,3.3) and (2.9,3.2) .. (2.4,2.6)
+  .. controls (1.9,2.0) and (0.7,2.3) .. (0.8,1.2);
+\node at (1.35,1.75) {$G$};
+% rectangulo basico
+\draw[red!70!black,thick,fill=red!12] (3.25,2.05) rectangle (3.95,2.7);
+\node[pt] at (3.6,2.38) {};
+\node[red!70!black,right] at (4.35,2.8) {\scriptsize $U\times V$};
+\draw[->,>=Stealth,thin,red!70!black] (4.35,2.8)--(3.97,2.6);
+% punto fuera
+\node[pt,fill=gray!70!black] at (1.3,2.85) {};
+\node[above] at (1.3,3.12) {\scriptsize no está en $G$};
+\end{tikzpicture}
+\figtit{Figura 12. Un abierto $G$ de $X\times Y$ no es un rectángulo, ni es el producto $\pi_X(G)\times\pi_Y(G)$ de sus sombras (el rectángulo gris, que agrega puntos que no están en $G$). Lo único seguro: cada punto de $G$ tiene un rectángulo básico $U\times V$ alrededor, dentro de $G$.}
+\end{figure}
+
+\begin{observacion}[Finitos factores, $\R^n$, y por qué no infinitos \fnt{TP p.\,2; MS Ejemplos 5.3, p.\,66; clase 9, Obs.\ 3.5--3.6} \noentra{se enuncia, no se demuestra}]\label{ob:prodfin}
+\begin{lista}
+\item La misma construcción da la topología producto de $X_1\times\dots\times X_n$, con base los $U_1\times\dots\times U_n$; y $(X\times Y)\times Z$ y $X\times(Y\times Z)$ resultan la misma.
+\item La topología usual de $\R^n$ es la producto de $n$ copias de $(\R,\tp_u)$. Más en general, si $(X,d)$ e $(Y,\rho)$ son métricos, las distancias del máximo, de la suma y euclídea sobre $X\times Y$ inducen \emph{la topología producto} (compárese con la Prop.\ de métricas sobre el producto en \S\ref{sec:unif}).
+\item $\tp_{dis}\times\tp_{dis}=\tp_{dis}$ (los $\{x\}\times\{y\}$ son abiertos) e $\tp_{ind}\times\tp_{ind}=\tp_{ind}$ (los únicos rectángulos son $\emptyset$ y $X\times Y$).
+\item En (B2) se usó que $U_1\cap U_2$ es abierto. Con infinitos factores habría que intersecar infinitos abiertos, y ahí se rompe: el producto infinito es otra teoría, fuera del curso.
+\end{lista}
+\end{observacion}
+
+\subsection{Proyecciones}
+
+\begin{definicion}[Proyecciones \fnt{TP p.\,1; MS Prop.\ 5.9, p.\,66}]
+Las \emph{proyecciones} de $X\times Y$ son $\pi_X:X\times Y\to X$, $\pi_X(x,y)=x$, y $\pi_Y:X\times Y\to Y$, $\pi_Y(x,y)=y$. (En \textbf{TP}: $\Pi_X,\Pi_Y$; en \textbf{MS}: $p_X,p_Y$; en \textbf{GT}, para $\R^n$: $p_i$.)
+\lgc{\pi_X(x,y)=x;\qquad \pi_Y(x,y)=y.}
+\end{definicion}
+
+\begin{proposicion}[Tubos \fnt{TP pp.\,1--2; clase 9, Teo.\ 4.3}]\label{pr:tubos}
+Para $U\subseteq X$ y $V\subseteq Y$, la preimagen de $U$ por $\pi_X$ es el tubo vertical $U\times Y$, la de $V$ por $\pi_Y$ es el tubo horizontal $X\times V$, y todo rectángulo es la intersección de sus dos tubos. Además, proyectar un rectángulo con lados no vacíos devuelve el lado.
+\lgc{\pi_X^{-1}(U)=U\times Y;\qquad \pi_Y^{-1}(V)=X\times V;\qquad U\times V=\pi_X^{-1}(U)\cap\pi_Y^{-1}(V);\\
+V\ne\emptyset\Rightarrow \pi_X(U\times V)=U;\qquad U\ne\emptyset\Rightarrow \pi_Y(U\times V)=V.}
+\end{proposicion}
+
+\begin{proof}
+$\pi_X^{-1}(U)=\{(x,y): \pi_X(x,y)\in U\}=\{(x,y): x\in U\}=U\times Y$, e igual con $\pi_Y$. Luego $(U\times Y)\cap(X\times V)=(U\cap X)\times(Y\cap V)=U\times V$. Si $V\ne\emptyset$, para cada $x\in U$ se elige $y\in V$ y resulta $x=\pi_X(x,y)$.
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=0.9]
+\begin{scope}
+\draw[ejes] (-0.2,0)--(3.6,0) node[right]{\scriptsize $X$};
+\draw[ejes] (0,-0.2)--(0,3.1) node[above]{\scriptsize $Y$};
+\fill[blue!12] (1.0,0) rectangle (2.0,2.8);
+\draw[blue!60!black,thick] (1.0,0)--(1.0,2.8) (2.0,0)--(2.0,2.8);
+\draw[very thick,blue!60!black] (1.0,0)--(2.0,0);
+\node[below] at (1.5,0) {\scriptsize $U$};
+\node at (1.5,1.4) {\scriptsize $U\times Y$};
+\node at (1.7,-0.9) {\small $\pi_X^{-1}(U)$};
+\end{scope}
+\begin{scope}[xshift=5cm]
+\draw[ejes] (-0.2,0)--(3.6,0) node[right]{\scriptsize $X$};
+\draw[ejes] (0,-0.2)--(0,3.1) node[above]{\scriptsize $Y$};
+\fill[red!12] (0,1.0) rectangle (3.4,1.9);
+\draw[red!60!black,thick] (0,1.0)--(3.4,1.0) (0,1.9)--(3.4,1.9);
+\draw[very thick,red!60!black] (0,1.0)--(0,1.9);
+\node[left] at (0,1.45) {\scriptsize $V$};
+\node at (2.4,1.45) {\scriptsize $X\times V$};
+\node at (1.7,-0.9) {\small $\pi_Y^{-1}(V)$};
+\end{scope}
+\begin{scope}[xshift=10cm]
+\draw[ejes] (-0.2,0)--(3.6,0) node[right]{\scriptsize $X$};
+\draw[ejes] (0,-0.2)--(0,3.1) node[above]{\scriptsize $Y$};
+\fill[blue!8] (1.0,0) rectangle (2.0,2.8);
+\fill[red!8] (0,1.0) rectangle (3.4,1.9);
+\fill[violet!30] (1.0,1.0) rectangle (2.0,1.9);
+\draw[violet!70!black,thick] (1.0,1.0) rectangle (2.0,1.9);
+\node at (1.5,1.45) {\scriptsize $U\times V$};
+\node at (1.7,-0.9) {\small intersección de tubos};
+\end{scope}
+\end{tikzpicture}
+\figtit{Figura 13. Los tubos del pizarrón. La preimagen por una proyección es un tubo; un rectángulo es la intersección de dos tubos. Esta cuenta es la que mueve todas las demostraciones de la sección.}
+\end{figure}
+
+\begin{teorema}[La menos fina con proyecciones continuas \fnt{TP p.\,2; clase 9, Teo.\ 4.3; GT 2.8.11, p.\,38}]\label{th:menosfina}
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em,itemsep=0pt]
+\item $\pi_X:(X\times Y,\tp_{X\times Y})\to(X,\tp_X)$ y $\pi_Y:(X\times Y,\tp_{X\times Y})\to(Y,\tp_Y)$ son continuas;
+\item si $\sigma$ es otra topología en $X\times Y$ que hace continuas a $\pi_X$ y $\pi_Y$, entonces $\tp_{X\times Y}\subseteq\sigma$.
+\end{enumerate}
+\lgc{\pi_X,\pi_Y\ \text{continuas en } \tp_{X\times Y};\qquad
+\big(\pi_X,\pi_Y\ \text{continuas en } \sigma\big)\ \Rightarrow\ \tp_{X\times Y}\subseteq\sigma;\\
+\tp_{X\times Y}=\min\big\{\sigma\ \text{topología en } X\times Y:\ \pi_X,\pi_Y\ \text{continuas}\big\}.}
+\end{teorema}
+
+\begin{proof}
+(i) Si $U\in\tp_X$, $\pi_X^{-1}(U)=U\times Y$ es un rectángulo abierto (Prop.~\ref{pr:tubos}), luego abierto. Igual para $\pi_Y$.
+(ii) Sea $G\in\tp_{X\times Y}$; se escribe $G=\bigcup_\alpha U_\alpha\times V_\alpha$ y, como $\sigma$ es cerrada por uniones, basta ver cada $U_\alpha\times V_\alpha\in\sigma$ (\emph{truco: bajar el problema a la base}). Pero $U_\alpha\times V_\alpha=\pi_X^{-1}(U_\alpha)\cap\pi_Y^{-1}(V_\alpha)$ es intersección de dos abiertos de $\sigma$, por ser las proyecciones continuas en $\sigma$.
+\end{proof}
+
+\begin{observacion}[Subbase de tubos, y la analogía con el subespacio \fnt{TP p.\,1; clase 9, Obs.\ 4.4}]
+Los tubos $\{\pi_X^{-1}(U)\}\cup\{\pi_Y^{-1}(V)\}$ forman una \emph{subbase} de $\tp_{X\times Y}$ cuyas intersecciones finitas son los rectángulos. Es el mismo esquema que la topología de subespacio (\S\ref{sec:sub}): allí, la menos fina que hace continua a la \emph{inclusión} $i:A\to X$; acá, la menos fina que hace continuas a las \emph{proyecciones}. La discreta sobre $X\times Y$ también las hace continuas, pero ``no conserva información'' de $X$ e $Y$.
+\end{observacion}
+
+\begin{teorema}[Continuidad hacia un producto \fnt{TP p.\,3; MS Prop.\ 5.10, p.\,66; GT 2.8.12, p.\,39}]\label{th:contprod}
+Sea $Z$ un espacio topológico y $f:Z\to X\times Y$. Entonces $f$ es continua si y sólo si sus dos coordenadas $\pi_X\circ f:Z\to X$ y $\pi_Y\circ f:Z\to Y$ son continuas.
+\lgc{f:Z\to X\times Y\ \text{continua}\iff \pi_X\circ f\ \text{continua}\ \wedge\ \pi_Y\circ f\ \text{continua}.}
+\end{teorema}
+
+\begin{proof}
+($\Rightarrow$) Composición de continuas: $f$ lo es por hipótesis y $\pi_X,\pi_Y$ por el Teo.~\ref{th:menosfina}(i).
+($\Leftarrow$) Por la Prop.~\ref{pr:contbase} basta ver que la preimagen de cada rectángulo $U\times V$ ($U\in\tp_X$, $V\in\tp_Y$) es abierta en $Z$:
+\[
+f^{-1}(U\times V)=f^{-1}\big(\pi_X^{-1}(U)\cap\pi_Y^{-1}(V)\big)=f^{-1}\big(\pi_X^{-1}(U)\big)\cap f^{-1}\big(\pi_Y^{-1}(V)\big)=(\pi_X\circ f)^{-1}(U)\cap(\pi_Y\circ f)^{-1}(V),
+\]
+usando los tubos, que la preimagen respeta intersecciones, y que $f^{-1}(\pi_X^{-1}(U))=(\pi_X\circ f)^{-1}(U)$ (ambos son $\{z: \pi_X(f(z))\in U\}$). Los dos últimos conjuntos son abiertos por hipótesis, y su intersección también.
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+\node (Z) at (0,0) {$Z$};
+\node (P) at (3.2,0) {$X\times Y$};
+\node (X) at (6.2,0.95) {$X$};
+\node (Y) at (6.2,-0.95) {$Y$};
+\draw[->,>=Stealth,thick] (Z)--(P) node[midway,above]{\scriptsize $f$};
+\draw[->,>=Stealth] (P)--(X) node[midway,above]{\scriptsize $\pi_X$};
+\draw[->,>=Stealth] (P)--(Y) node[midway,below]{\scriptsize $\pi_Y$};
+\draw[->,>=Stealth,dashed,blue!60!black] (Z) to[bend left=28] node[midway,above]{\scriptsize $\pi_X\circ f$} (X);
+\draw[->,>=Stealth,dashed,blue!60!black] (Z) to[bend right=28] node[midway,below]{\scriptsize $\pi_Y\circ f$} (Y);
+\end{tikzpicture}
+\figtit{Figura 14. Una función hacia un producto es continua exactamente cuando sus dos coordenadas lo son. Es la propiedad universal del subespacio (\S\ref{sec:sub}) ``para el otro lado'': allá la flecha auxiliar era la inclusión, que entra a $X$; acá son las proyecciones, que salen del producto.}
+\end{figure}
+
+\begin{intuicion}
+Para ver que algo cae adentro de un rectángulo alcanza con mirar por separado las dos coordenadas: $(a,b)\in U\times V$ sii $a\in U$ y $b\in V$. La continuidad hacia un producto es esa misma frase dicha para entornos: estar cerca de $(x,y)$ en el producto es estar cerca de $x$ \emph{y} cerca de $y$. Por eso la Prop.~\ref{pr:coord} de \textbf{GT} (continuidad hacia $\R^n$ coordenada a coordenada) es un caso particular.
+\end{intuicion}
+
+\begin{corolario}[Funciones armadas coordenada a coordenada \fnt{TP p.\,4, ejercicio 3}]\label{co:fxg}
+Sean $f:X\to Z$, $g:Y\to W$ y $h:X\to Y'$ funciones continuas. Entonces son continuas
+\begin{lista}
+\item $(f,h):X\to Z\times Y'$, $(f,h)(x)=\big(f(x),h(x)\big)$;
+\item $f\times g:X\times Y\to Z\times W$, $(f\times g)(x,y)=\big(f(x),g(y)\big)$;
+\item las ``inclusiones a la altura $y_0$'' $x\mapsto(x,y_0)$ de $X$ en $X\times Y$, y las $y\mapsto(x_0,y)$ de $Y$ en $X\times Y$.
+\end{lista}
+\lgc{f,h\ \text{continuas}\Rightarrow (f,h)\ \text{continua};\qquad f,g\ \text{continuas}\Rightarrow f\times g\ \text{continua};\\
+x\mapsto(x,y_0)\ \text{y}\ y\mapsto(x_0,y)\ \text{continuas}.}
+\end{corolario}
+
+\begin{proof}
+Por el Teo.~\ref{th:contprod}, basta mirar coordenadas: las de $(f,h)$ son $f$ y $h$; las de $f\times g$ son $f\circ\pi_X$ y $g\circ\pi_Y$ (composiciones de continuas); las de $x\mapsto(x,y_0)$ son la identidad de $X$ y la constante $y_0$.
+\end{proof}
+
+\begin{proposicion}[Las proyecciones son abiertas \fnt{TP p.\,3; MS Prop.\ 5.9, p.\,66; versión general de GT Ej.\ 2.8.16, p.\,40}]\label{pr:proyab}
+$\pi_X$ y $\pi_Y$ son aplicaciones abiertas: la imagen de un abierto del producto es abierta en el factor.
+\lgc{\forall G\in\tp_{X\times Y}:\ \pi_X(G)\in\tp_X\ \wedge\ \pi_Y(G)\in\tp_Y.}
+\end{proposicion}
+
+\begin{proof}
+Sea $G=\bigcup_\alpha U_\alpha\times V_\alpha$. La imagen de una unión es la unión de las imágenes (vale para cualquier función), así que $\pi_X(G)=\bigcup_\alpha\pi_X(U_\alpha\times V_\alpha)$. Cada $\pi_X(U_\alpha\times V_\alpha)$ es $U_\alpha$ si $V_\alpha\ne\emptyset$, y $\emptyset$ si no (Prop.~\ref{pr:tubos}): en ambos casos, abierto. Una unión de abiertos es abierta.
+\end{proof}
+
+\begin{contraejemplo}[Las proyecciones no son cerradas \fnt{GT Ej.\ 2.8.16(1), p.\,40; TP p.\,4; MS Obs.\ 5.4, p.\,66}]
+En $\R^2=\R\times\R$ (usual $=$ producto), la rama de hipérbola $F=\{(x,y): y=\tfrac1x,\ x>0\}$ es cerrada, pero $\pi_X(F)=(0,+\infty)$ no es cerrado en $\R$: el $0$ es adherente y no está. ``No cerrada'' no quiere decir que nunca dé cerrado (un rectángulo cerrado se proyecta en un cerrado), sino que \emph{no siempre}. En \textbf{MS} el mismo ejemplo con la hipérbola completa: $\pi_X(\{xy=1\})=\R-\{0\}$.
+\end{contraejemplo}
+
+\begin{observacion}[Dos formas de ver que $F$ es cerrado]
+Por complemento (\textbf{GT}: $\R^2-F$ es abierto) o por clausura (clase: $\cl F=F$, porque la curva se acerca al eje $y$ pero nunca llega a $x=0$); son la misma afirmación por la dualidad de \S\ref{sec:top}. En un métrico, la forma más cómoda de escribirlo es con sucesiones (Teo.~\ref{th:clsuc}): si $(x_n,1/x_n)\to(a,b)$, entonces $x_n\to a$ y $1/x_n\to b$; como $x_n\cdot\tfrac1{x_n}=1$, pasando al límite $ab=1$, luego $a\ne0$, y $a\ge0$ por ser límite de positivos: $a>0$ y $b=1/a$. El límite está en $F$.
+\end{observacion}
+
+\subsection{Propiedades del producto (guía de productos)}
+
+\noindent La docente pidió tenerlas demostradas o al menos conocidas (``guárdenselas'', clase 9): se usan en conexidad y compacidad.
+
+\begin{proposicion}[Clausura e interior de un producto \fnt{TP p.\,4, ejercicio 1; MS Prop.\ 5.11, p.\,66}]\label{pr:clprod}
+Sean $A\subseteq X$ y $B\subseteq Y$. Entonces la clausura del producto es el producto de las clausuras, y el interior del producto es el producto de los interiores.
+\lgc{\cl{A\times B}=\cl A\times\cl B;\qquad \intr(A\times B)=\intr A\times\intr B.}
+\end{proposicion}
+
+\begin{proof}
+\emph{Clausura}, $\subseteq$: $\cl A\times\cl B=\pi_X^{-1}(\cl A)\cap\pi_Y^{-1}(\cl B)$ es cerrado (preimágenes de cerrados por continuas) y contiene a $A\times B$; como $\cl{A\times B}$ es el menor cerrado que lo contiene, está incluido. $\supseteq$: sea $(x,y)$ con $x\in\cl A$, $y\in\cl B$. Alcanza con ver que todo rectángulo básico $U\times V\ni(x,y)$ corta a $A\times B$ (todo abierto que contiene al punto contiene un básico que lo contiene). Como $x\in\cl A$ y $U\ni x$ es abierto, hay $a\in U\cap A$; igual hay $b\in V\cap B$; y $(a,b)\in(U\times V)\cap(A\times B)$.
+
+\emph{Interior}, $\supseteq$: $\intr A\times\intr B$ es un rectángulo abierto contenido en $A\times B$. $\subseteq$: si $(x,y)\in\intr(A\times B)$, hay un básico con $(x,y)\in U\times V\subseteq A\times B$; como $V\ni y$ no es vacío, $U\subseteq A$, luego $x\in\intr A$; igual $y\in\intr B$.
+\end{proof}
+
+\begin{corolario}
+El producto de dos cerrados es cerrado, y el producto de dos abiertos es abierto. $A\times B$ es denso en $X\times Y$ si $A$ y $B$ son densos (por ejemplo, $\Q\times\Q$ en $\R^2$).
+\end{corolario}
+
+\begin{proposicion}[Hausdorff por Hausdorff es Hausdorff \fnt{TP p.\,4, ejercicio 2; MS Prop.\ 5.12, p.\,67}]\label{pr:t2prod}
+Si $X$ e $Y$ son $T_2$, entonces $X\times Y$ es $T_2$. (\textbf{MS}: lo mismo vale para $T_1$, y también la recíproca, si los factores son no vacíos.)
+\lgc{X,Y\ \text{son } T_2\ \Rightarrow\ X\times Y\ \text{es } T_2.}
+\end{proposicion}
+
+\begin{proof}
+Sean $(x_1,y_1)\ne(x_2,y_2)$; entonces difieren en alguna coordenada, digamos $x_1\ne x_2$. Por $T_2$ en $X$ hay $U_1\ni x_1$, $U_2\ni x_2$ abiertos disjuntos. Los tubos $U_1\times Y$ y $U_2\times Y$ son abiertos, contienen a cada punto respectivamente y son disjuntos, porque $(U_1\times Y)\cap(U_2\times Y)=(U_1\cap U_2)\times Y=\emptyset$. Si difieren en la segunda coordenada, se usan tubos horizontales.
+\end{proof}
+
+%======================================================================
+\section{Conexidad}\label{sec:conex}
+
+\noindent Tema de la clase 10 (24/9/2026), la primera de la segunda mitad. Sigue \textbf{GT} cap.~4, \S\S4.4--4.5 (conexión topológica), salteando por ahora la conexión por caminos (\S\S4.1--4.3), los intervalos de $\R$ y Bolzano (\S\ref{sec:bolzano}) y las componentes conexas (\S4.6). El producto de conexos se hace con la topología producto de \S\ref{sec:prod}, no con la versión métrica de \textbf{GT}.
+
+\begin{definicion}[Disconexo, conexo, subconjunto conexo \fnt{GT 4.4.1, p.\,78; MS Defs.\ 7.1--7.2, p.\,87}]
+$(X,\tp)$ es \emph{disconexo} (en clase: \emph{no conexo}) si existen dos abiertos $U$ y $V$ no vacíos, disjuntos, que entre los dos cubren $X$; el par $(U,V)$ es una \emph{desconexión} de $X$ (en \textbf{MS}: separación no trivial). $X$ es \emph{conexo} si no es disconexo. Un subconjunto $A\subseteq X$ es \emph{conexo} si el subespacio $(A,\tp_A)$ es conexo: se lo mira como espacio en sí mismo, olvidando lo que hay afuera.
+\lgc{X\ \text{disconexo}\iff \exists U,V\in\tp:\ U\ne\emptyset\ \wedge\ V\ne\emptyset\ \wedge\ U\cap V=\emptyset\ \wedge\ U\cup V=X;\\
+X\ \text{conexo}\iff \neg\big(X\ \text{disconexo}\big);\qquad A\subseteq X\ \text{conexo}\iff (A,\tp_A)\ \text{conexo}.}
+\end{definicion}
+
+\begin{intuicion}
+Conexo quiere decir ``de una sola pieza''. Pero la definición es \emph{negativa}: lo que se define es romperse en dos. Por eso probar que algo \emph{no} es conexo es fácil (se exhibe la desconexión), y probar que \emph{sí} lo es requiere herramientas: ``lo busqué un rato y no lo encontré'' no es argumento. Casi todas las demostraciones de esta sección son por el contrarrecíproco: se supone una desconexión y se fabrica otra donde no puede haberla.
+\end{intuicion}
+
+\begin{ejemplo}[Ejemplos de referencia \fnt{GT Ej.\ 4.4.3 y Prop.\ 4.5.4, pp.\,78 y 81; MS Ejemplos 7.1, p.\,88; clase 10, Ejs.\ 2.2 y 3.2}]\label{ej:conex}
+\begin{lista}
+\item $\emptyset$ y los unitarios son conexos en cualquier espacio: no admiten dos abiertos no vacíos y disjuntos.
+\item Un espacio discreto con más de un punto es disconexo: $(\{x\},\ X-\{x\})$ es una desconexión. Más aún, en un discreto los únicos subconjuntos conexos no vacíos son los unitarios.
+\item En la indiscreta todo subconjunto es conexo.
+\item Si dos abiertos no vacíos de $X$ siempre se cortan, $X$ es conexo: la cofinita sobre un $X$ infinito, la conumerable sobre $\R$, las de punto incluido y punto añadido.
+\item $\R-\{0\}$ (subespacio de $\R$) es disconexo: $(-\infty,0)$ y $(0,+\infty)$ son abiertos en él y lo desconectan. En $(\R,\tp_u)$ los conexos son exactamente los intervalos (\S\ref{sec:bolzano}).
+\end{lista}
+\end{ejemplo}
+
+\begin{proposicion}[Desconectar un subconjunto con abiertos del espacio grande \fnt{clase 10, Obs.\ 2.3; forma de trabajo de la cátedra, no figura en GT}]\label{pr:GH}
+Sea $A\subseteq(X,\tp)$. Entonces $A$ es no conexo si y sólo si existen $G,H$ abiertos \emph{de $X$} tales que: los dos cortan a $A$, no se cortan \emph{dentro de $A$}, y entre los dos cubren a $A$.
+\lgc{A\ \text{no conexo}\iff \exists G,H\in\tp:\ \underbrace{G\cap A\ne\emptyset\ \wedge\ H\cap A\ne\emptyset}_{\text{(1)}}\ \wedge\ \underbrace{G\cap H\cap A=\emptyset}_{\text{(2)}}\ \wedge\ \underbrace{A\subseteq G\cup H}_{\text{(3)}}.}
+\end{proposicion}
+
+\begin{proof}
+Por definición, $A$ es no conexo sii hay $U,V\in\tp_A$ no vacíos, disjuntos, con $U\cup V=A$; y los abiertos de $A$ son $U=G\cap A$, $V=H\cap A$ con $G,H\in\tp$. Se traduce cada condición: $U\ne\emptyset\iff G\cap A\ne\emptyset$ (ídem $V$); $U\cap V=(G\cap A)\cap(H\cap A)=G\cap H\cap A$; y $U\cup V=(G\cup H)\cap A$, que es igual a $A$ sii $A\subseteq G\cup H$.
+\end{proof}
+
+\begin{observacion}
+$G$ y $H$ \emph{pueden cortarse} entre sí, siempre que no lo hagan sobre $A$; y pueden salirse de $A$. Así, dos cuadrados separados en $\R^2$ se desconectan con dos discos que se superponen en el medio, fuera de los cuadrados (Figura 15). Esta proposición es la herramienta de todas las demostraciones de la sección: una vez que se tienen $G$ y $H$ uno se olvida del subespacio.
+\end{observacion}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+\draw[blue!60!black,thick,fill=blue!8,fill opacity=0.6] (-0.9,0) ellipse (1.65 and 1.05);
+\draw[red!60!black,thick,fill=red!8,fill opacity=0.6] (0.9,0) ellipse (1.65 and 1.05);
+\fill[gray!55] (-1.8,-0.45) rectangle (-0.9,0.45);
+\fill[gray!55] (0.9,-0.45) rectangle (1.8,0.45);
+\node at (-1.35,0) {\scriptsize $A$};
+\node at (1.35,0) {\scriptsize $A$};
+\node[blue!60!black] at (-2.45,0.95) {$G$};
+\node[red!60!black] at (2.45,0.95) {$H$};
+\node[align=center] at (0,-1.55) {\scriptsize $G\cap H\ne\emptyset$, pero $G\cap H\cap A=\emptyset$};
+\end{tikzpicture}
+\figtit{Figura 15. La desconexión con abiertos del espacio grande: $G$ y $H$ se superponen en el medio, pero no sobre $A$; cada uno se lleva un cuadrado y entre los dos cubren $A$.}
+\end{figure}
+
+\begin{proposicion}[Conexo $\iff$ no hay abiertos-cerrados propios \fnt{GT 4.4.2, p.\,78; MS Lema 7.1, p.\,87}]\label{pr:conexclopen}
+$(X,\tp)$ es conexo si y sólo si los únicos subconjuntos simultáneamente abiertos y cerrados son $\emptyset$ y $X$. Equivalentemente (contrarrecíproco, como se dictó): $X$ es no conexo sii existe un abierto y cerrado que no es ni vacío ni todo. Por la Prop.~\ref{pr:clopen}, también: $X$ es conexo sii ningún subconjunto propio no vacío tiene frontera vacía.
+\lgc{X\ \text{conexo}\iff \forall U\subseteq X\ \big(U\in\tp\ \wedge\ U\ \text{cerrado}\Rightarrow U=\emptyset\ \vee\ U=X\big);\\
+X\ \text{no conexo}\iff \exists U\in\tp:\ U\ \text{cerrado}\ \wedge\ U\ne\emptyset\ \wedge\ U\ne X.}
+\end{proposicion}
+
+\begin{proof}
+($\Rightarrow$ del contrarrecíproco) Si $(U,V)$ es una desconexión, $V=X-U$ (unión todo e intersección vacía). Entonces $U$ es abierto (hipótesis) y cerrado ($X-U=V$ es abierto), no vacío, y distinto de $X$ porque $X-U=V\ne\emptyset$.
+($\Leftarrow$) Si $U$ es abierto y cerrado con $U\ne\emptyset,X$, sea $V=X-U$: es abierto porque $U$ es cerrado, $U\cup V=X$, $U\cap V=\emptyset$, $U\ne\emptyset$ y $V\ne\emptyset$ porque $U\ne X$. Luego $(U,V)$ desconecta a $X$.
+\end{proof}
+
+\begin{observacion}[Erratas de GT \fnt{clase 10, Obs.\ 3.3}]
+La demostración impresa en \textbf{GT} p.\,78 escribe $X=(X-A)\cap A$ donde va $\cup$, y cierra la segunda parte con ``por tanto $(X,T)$ es conexo'' cuando lo que se probó es que existe un abierto-cerrado propio. El contenido es el de arriba.
+\end{observacion}
+
+\begin{proposicion}[Un conexo no puede partirse por un abierto-cerrado \fnt{MS Prop.\ 7.4, p.\,88}]\label{pr:conexlado}
+Si $C\subseteq X$ es conexo y $A\subseteq X$ es abierto y cerrado, entonces $C$ queda entero de un lado: $C\subseteq A$ o $C\subseteq X-A$.
+\lgc{C\ \text{conexo}\ \wedge\ A\in\tp\ \wedge\ A\ \text{cerrado}\ \Rightarrow\ C\subseteq A\ \vee\ C\subseteq X-A.}
+\end{proposicion}
+
+\begin{proof}
+Si $C$ cortara a $A$ y a $X-A$, los abiertos $G=A$ y $H=X-A$ cumplirían (1), (2) y (3) de la Prop.~\ref{pr:GH} y desconectarían a $C$.
+\end{proof}
+
+\subsection{Imagen continua y funciones a un discreto}
+
+\begin{proposicion}[La imagen continua de un conexo es conexa \fnt{GT 4.4.7, p.\,79; MS Teo.\ 7.5, p.\,88}]\label{pr:imconex}
+Sea $f:(X,\tp)\to(Y,\tp')$ continua y $A\subseteq X$ conexo. Entonces $f(A)$ es conexo. En particular, si $X$ es conexo y $f$ es sobreyectiva, $Y$ es conexo; y la conexidad es una propiedad topológica (\textbf{MS} Cor.\ 7.6).
+\lgc{f\ \text{continua}\ \wedge\ A\ \text{conexo}\ \Rightarrow\ f(A)\ \text{conexo};\qquad X\cong Y\Rightarrow\big(X\ \text{conexo}\iff Y\ \text{conexo}\big).}
+\end{proposicion}
+
+\begin{proof}
+Por el contrarrecíproco: si $f(A)$ no es conexo, $A$ tampoco. Por la Prop.~\ref{pr:GH} en $Y$ hay $G,H\in\tp'$ con $G\cap f(A)\ne\emptyset$, $H\cap f(A)\ne\emptyset$, $G\cap H\cap f(A)=\emptyset$ y $f(A)\subseteq G\cup H$. Por continuidad $f^{-1}(G),f^{-1}(H)\in\tp$; se verifica que desconectan a $A$:
+\begin{lista}
+\item[(1)] si $y\in G\cap f(A)$, es $y=f(a)$ con $a\in A$, y $a\in f^{-1}(G)\cap A$. Igual con $H$.
+\item[(2)] $f^{-1}(G)\cap f^{-1}(H)\cap A\subseteq f^{-1}(G)\cap f^{-1}(H)\cap f^{-1}(f(A))=f^{-1}\big(G\cap H\cap f(A)\big)=f^{-1}(\emptyset)=\emptyset$, usando $A\subseteq f^{-1}(f(A))$ y que la preimagen respeta intersecciones.
+\item[(3)] $A\subseteq f^{-1}(f(A))\subseteq f^{-1}(G\cup H)=f^{-1}(G)\cup f^{-1}(H)$.
+\end{lista}
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=0.95]
+\begin{scope}
+\draw[thick] (-1.9,-1.3) rectangle (1.9,1.3); \node at (-1.6,1.0) {$X$};
+\draw[abierto,fill opacity=0.5] (-0.55,0.1) ellipse (0.95 and 0.8);
+\draw[cerrado,fill opacity=0.5] (0.65,-0.05) ellipse (0.9 and 0.75);
+\draw[thick,fill=gray!40] (-0.9,-0.35) .. controls (-0.5,0.5) and (0.6,0.4) .. (0.95,-0.25) .. controls (0.5,-0.6) and (-0.5,-0.7) .. (-0.9,-0.35);
+\node at (0.05,-0.12) {\scriptsize $A$};
+\node[blue!60!black] at (-1.3,0.95) {\scriptsize $f^{-1}(G)$};
+\node[red!60!black] at (1.25,-0.95) {\scriptsize $f^{-1}(H)$};
+\end{scope}
+\draw[->,>=Stealth,thick] (2.2,0)--(3.4,0) node[midway,above]{\scriptsize $f$};
+\begin{scope}[xshift=5.6cm]
+\draw[thick] (-1.9,-1.3) rectangle (1.9,1.3); \node at (-1.6,1.0) {$Y$};
+\draw[abierto,fill opacity=0.5] (-0.75,0) ellipse (0.95 and 0.85);
+\draw[cerrado,fill opacity=0.5] (0.75,0) ellipse (0.95 and 0.85);
+\fill[gray!55] (-1.2,-0.3) rectangle (-0.55,0.3);
+\fill[gray!55] (0.55,-0.3) rectangle (1.2,0.3);
+\node at (0,-1.05) {\scriptsize $f(A)$ desconectado por $G,H$};
+\node[blue!60!black] at (-1.35,0.95) {\scriptsize $G$};
+\node[red!60!black] at (1.35,0.95) {\scriptsize $H$};
+\end{scope}
+\end{tikzpicture}
+\figtit{Figura 16. Si $G$ y $H$ desconectan a $f(A)$, sus preimágenes (abiertas por continuidad) desconectan a $A$. Las continuas tiran abiertos para atrás: una desconexión arriba produce una desconexión abajo.}
+\end{figure}
+
+\begin{corolario}[Topología menos fina \fnt{MS Lema 7.2, p.\,88}]
+Si $(X,\tp_1)$ es conexo y $\tp_2\subseteq\tp_1$, entonces $(X,\tp_2)$ es conexo: es la imagen de $1_X:(X,\tp_1)\to(X,\tp_2)$, continua por la Prop.~\ref{pr:idcont}. (Con menos abiertos, cuesta más desconectar.)
+\end{corolario}
+
+\begin{definicion}[Espacio discreto \fnt{GT 4.5.2 y Ej.\ 4.5.3, p.\,81}]
+$(X,\tp)$ es \emph{discreto} si todos los unitarios $\{x\}$ son abiertos; equivalentemente, $\tp=\mathcal P(X)$ y todo subconjunto es abierto y cerrado. Todo $(X,d_D)$ es discreto, pues $B_{d_D}(x,1)=\{x\}$.
+\lgc{(X,\tp)\ \text{discreto}\iff \forall x\in X:\ \{x\}\in\tp\iff \tp=\mathcal P(X).}
+\end{definicion}
+
+\begin{proposicion}[Conexo $\iff$ toda continua a un discreto es constante \fnt{GT 4.5.5, p.\,81; MS Lema 7.1(v), p.\,87}]\label{pr:conexdisc}
+Para $(X,\tp)$ son equivalentes: (a) $X$ es conexo; (b) toda función continua $f:X\to Y$ con $Y$ discreto es constante. Basta tomar $Y=\{0,1\}$ con la discreta.
+\lgc{X\ \text{conexo}\iff \forall (Y,\tp')\ \text{discreto}\ \forall f:X\to Y\ \text{continua}:\ f\ \text{es constante}.}
+\end{proposicion}
+
+\begin{proof}
+(a)$\Rightarrow$(b): $f(X)$ es conexo (Prop.~\ref{pr:imconex}) y está en un discreto, luego tiene un solo punto (Ej.~\ref{ej:conex}): si tuviera dos, $y\ne y'$, el par $(\{y\},f(X)-\{y\})$ lo desconectaría. O sea $f$ es constante.
+(b)$\Rightarrow$(a), por el absurdo: si $(U,V)$ desconecta a $X$, sea $Y=\{y_0,y_1\}$ discreto y $f=y_0$ en $U$, $f=y_1$ en $V$ (bien definida porque $U,V$ son disjuntos y cubren $X$). Es continua: las preimágenes de los cuatro abiertos de $Y$ son $\emptyset$, $X$, $U$, $V$, todos abiertos (o: lema del pegado con $U,V$ abiertos). Y no es constante porque $U,V\ne\emptyset$. Contradicción.
+\end{proof}
+
+\begin{observacion}
+Es la misma idea que la función característica: $\chi_A:X\to\R$ es continua sii $A$ es abierto y cerrado (guía de continuidad A.1), y en un conexo eso sólo pasa con $A=\emptyset$ o $A=X$.
+\end{observacion}
+
+\subsection{La herramienta principal: dos puntos en un conexo}
+
+\begin{proposicion}[Conexo $\iff$ dos puntos cualesquiera caben en un conexo \fnt{GT 4.5.6, pp.\,81--82; MS Cor.\ 7.10(ii), p.\,89}]\label{pr:dospuntos}
+Para $(X,\tp)$ son equivalentes: (a) $X$ es conexo; (b) para todos $a,b\in X$ existe un conexo $C\subseteq X$ con $a,b\in C$. Para un subconjunto: $B\subseteq X$ es conexo sii para todos $a,b\in B$ existe un conexo $C$ con $a,b\in C\subseteq B$ (es la misma proposición aplicada al espacio $(B,\tp_B)$).
+\lgc{X\ \text{conexo}\iff \forall a,b\in X\ \exists C\subseteq X:\ C\ \text{conexo}\ \wedge\ a,b\in C;\\
+B\ \text{conexo}\iff \forall a,b\in B\ \exists C:\ C\ \text{conexo}\ \wedge\ a,b\in C\subseteq B.}
+\end{proposicion}
+
+\begin{proof}
+(a)$\Rightarrow$(b): $C=X$.
+(b)$\Rightarrow$(a), por el contrarrecíproco: si $(U,V)$ desconecta a $X$, se eligen $a\in U$ y $b\in V$, uno en cada pata. Sea $C$ cualquiera con $a,b\in C$. Entonces $U\cap C\ni a$, $V\cap C\ni b$, $U\cap V\cap C=\emptyset$ y $C\subseteq U\cup V=X$: por la Prop.~\ref{pr:GH}, los mismos $U,V$ desconectan a $C$. Ningún conjunto que contenga a $a$ y $b$ es conexo.
+\end{proof}
+
+\begin{intuicion}
+Para la docente es ``la proposición más útil de toda esta parte'': para probar que algo es conexo, en lugar de pelear contra todas las desconexiones posibles, alcanza con conectar dos puntos cualesquiera \emph{con un conexo que ya se conoce} (una recta, una copia de un factor, una imagen continua\dots). Es el reemplazo topológico de ``unir dos puntos con un camino''.
+\end{intuicion}
+
+\subsection{Unión, intersección y clausura de conexos}
+
+\begin{proposicion}[Unión de dos conexos que se cortan \fnt{GT 4.5.7, p.\,82 (caso de dos); MS Teo.\ 7.9, p.\,89}]\label{pr:unionconex}
+Si $A,B\subseteq X$ son conexos y $A\cap B\ne\emptyset$, entonces $A\cup B$ es conexo.
+\lgc{A,B\ \text{conexos}\ \wedge\ A\cap B\ne\emptyset\ \Rightarrow\ A\cup B\ \text{conexo}.}
+\end{proposicion}
+
+\begin{proof}
+Por la Prop.~\ref{pr:conexdisc}, basta ver que toda $f:A\cup B\to Y$ continua con $Y$ discreto es constante. La restricción $f|_A$ es continua y $A$ es conexo, luego $f\equiv y_1$ en $A$; igual $f\equiv y_2$ en $B$. Tomando $z\in A\cap B$: $y_1=f(z)=y_2$. Luego $f$ es constante en $A\cup B$.
+\end{proof}
+
+\begin{proposicion}[Uniones de familias \fnt{GT 4.5.7--4.5.9, pp.\,82--83; MS Teo.\ 7.9 y Cor.\ 7.10, p.\,89; CX 5--7}]\label{pr:familias}
+Sea $\{C_\alpha\}_{\alpha\in\Lambda}$ una familia de conexos de $X$. Su unión es conexa en cualquiera de estos casos:
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em,itemsep=0pt]
+\item hay uno fijo $C_{\alpha_0}$ que corta a todos (el ``osito'': todas las orejas tocan la cabeza);
+\item se cortan dos a dos; en particular, si $\bigcap_\alpha C_\alpha\ne\emptyset$;
+\item la familia es una sucesión $C_1,C_2,\dots$ en la que cada uno corta al siguiente (el ``gusano'').
+\end{enumerate}
+\lgc{\text{(a)}\ \exists\alpha_0\ \forall\alpha:\ C_\alpha\cap C_{\alpha_0}\ne\emptyset;\quad
+\text{(b)}\ \forall\alpha,\beta:\ C_\alpha\cap C_\beta\ne\emptyset;\quad
+\text{(c)}\ \forall n:\ C_n\cap C_{n+1}\ne\emptyset\\
+\Longrightarrow\ \textstyle\bigcup C_\alpha\ \text{conexo}.}
+\end{proposicion}
+
+\begin{proof}[Idea (la indicada en clase)]
+Siempre con la Prop.~\ref{pr:dospuntos} para subconjuntos: dados $x,y$ en la unión, hay que meterlos en un conexo contenido en la unión, armado con la Prop.~\ref{pr:unionconex}. (a): $x\in C_\alpha$, $y\in C_\beta$; $C_\alpha\cup C_{\alpha_0}$ es conexo, y ese bloque corta a $C_\beta$ (porque $C_\beta$ corta a $C_{\alpha_0}$), luego $C_\alpha\cup C_{\alpha_0}\cup C_\beta$ es conexo y contiene a $x,y$. (b): directamente $C_\alpha\cup C_\beta$. (c): $x\in C_i$, $y\in C_j$ con $i\le j$; por inducción $C_i\cup\dots\cup C_k$ es conexo para cada $k\ge i$ (se agrega $C_{k+1}$, que corta a $C_k$), y con $k=j$ se tiene el conexo buscado. En (c) hace falta el orden: de $x$ a $y$ se llega en una cantidad \emph{finita} de pasos.
+\end{proof}
+
+\begin{observacion}[La intersección de conexos no es conexa en general \fnt{clase 10, Obs.\ 7.3}]
+En $\R^2$, la circunferencia $S^1$ y el eje $x$ son conexos, pero se cortan en $\{(-1,0),(1,0)\}$, que no es conexo (dos puntos en un métrico: es discreto). Lo mismo con dos arcos que se cruzan dos veces. No quiere decir que nunca sea conexa; quiere decir que no se puede afirmar.
+\end{observacion}
+
+\begin{proposicion}[Sándwich: lo que está entre un conexo y su clausura es conexo \fnt{GT 4.4.8, p.\,80; MS Teo.\ 7.11, p.\,89}]\label{pr:sandwich}
+Si $A\subseteq X$ es conexo y $A\subseteq B\subseteq\cl A$, entonces $B$ es conexo. En particular, la clausura de un conexo es conexa.
+\lgc{A\ \text{conexo}\ \wedge\ A\subseteq B\subseteq\cl A\ \Rightarrow\ B\ \text{conexo};\qquad A\ \text{conexo}\Rightarrow\cl A\ \text{conexo}.}
+\end{proposicion}
+
+\begin{proof}
+Por el contrarrecíproco: si $G,H$ desconectan a $B$ (Prop.~\ref{pr:GH}), desconectan también a $A$. (3) y (2) se heredan porque $A\subseteq B$: $A\subseteq B\subseteq G\cup H$ y $G\cap H\cap A\subseteq G\cap H\cap B=\emptyset$. Lo único que hay que ganar es (1): como $G\cap B\ne\emptyset$, hay $x\in G\cap B$; como $x\in B\subseteq\cl A$ y $G$ es un abierto que contiene a $x$, por definición de clausura $G\cap A\ne\emptyset$. Igual $H\cap A\ne\emptyset$.
+\end{proof}
+
+\begin{observacion}[Frontera e interior de un conexo \fnt{clase 10, Obs.\ 7.6}]
+Ninguno de los dos hereda la conexidad. La frontera de $[1,2]$ es $\{1,2\}$, no conexa. Para el interior (quedó de tarea en clase): en $\R^2$, dos discos cerrados tangentes $A=\Bolac{(-1,0)}{1}\cup\Bolac{(1,0)}{1}$ forman un conexo (se cortan en el origen), pero $\intr A=\Bola{(-1,0)}{1}\cup\Bola{(1,0)}{1}$ es disconexo: el origen no es interior. (En $\R$ no hay contraejemplo: el interior de un intervalo es un intervalo.) Las herencias (2) y (3) de la demostración anterior van en contra cuando el conjunto se \emph{achica}.
+\end{observacion}
+
+\begin{ejemplo}[Usos típicos \fnt{MS Ejemplo 7.1, p.\,89}]
+$\R^n$ es conexo: es la unión de las rectas por el origen, cada una homeomorfa a $\R$ y todas cortándose en $0$ (Prop.~\ref{pr:familias}(b)). Una bola abierta de $\R^n$ es conexa (homeomorfa a $\R^n$), luego la bola cerrada y todo lo que está entre ambas también (sándwich). Estos ejemplos usan que $\R$ es conexo, que se prueba con los intervalos (\S\ref{sec:bolzano}).
+\end{ejemplo}
+
+\subsection{Más consecuencias (guía de conexidad)}
+
+\noindent Resultados que la guía \textbf{CX} pide probar y que salen en pocas líneas de lo anterior. Las demostraciones completas están en los ejercicios resueltos.
+
+\begin{proposicion}[Basta que uno toque la clausura del otro \fnt{CX 2}]\label{pr:clunion}
+Si $A$ y $B$ son conexos y la clausura de $A$ corta a $B$, entonces $A\cup B$ es conexo.
+\lgc{A,B\ \text{conexos}\ \wedge\ \cl A\cap B\ne\emptyset\ \Rightarrow\ A\cup B\ \text{conexo}.}
+\end{proposicion}
+
+\begin{proof}
+$C=A\cup(\cl A\cap B)$ está entre $A$ y $\cl A$, luego es conexo (sándwich); $C$ corta a $B$, luego $C\cup B=A\cup B$ es conexo (Prop.~\ref{pr:unionconex}).
+\end{proof}
+
+\begin{observacion}
+No alcanza con $\cl A\cap\cl B\ne\emptyset$: $(0,1)$ y $(1,2)$.
+\end{observacion}
+
+\begin{proposicion}[Un conexo denso conecta todo lo que lo contiene \fnt{CX 1}]
+Si $A\subseteq B\subseteq X$ con $A$ conexo y denso en $X$, entonces $B$ es conexo (sándwich con $\cl A=X$).
+\lgc{A\ \text{conexo}\ \wedge\ \cl A=X\ \wedge\ A\subseteq B\ \Rightarrow\ B\ \text{conexo}.}
+\end{proposicion}
+
+\begin{proposicion}[Para salir de $B$ hay que cruzar su frontera \fnt{CX 14}]\label{pr:cruzafr}
+Si $A$ es conexo y tiene puntos dentro y fuera de $B$, entonces $A$ corta a la frontera de $B$.
+\lgc{A\ \text{conexo}\ \wedge\ A\cap B\ne\emptyset\ \wedge\ A\cap(X-B)\ne\emptyset\ \Rightarrow\ A\cap\fr B\ne\emptyset.}
+\end{proposicion}
+
+\begin{proof}
+Si $A\cap\fr B=\emptyset$, entonces $A\subseteq\intr B\cup\ext B$ (partición de $X$ en interior, frontera y exterior). Un punto de $A\cap B$ no está en $\ext B$, luego está en $\intr B$; un punto de $A-B$ no está en $\intr B$, luego está en $\ext B$. Así $G=\intr B$ y $H=\ext B$ desconectan a $A$ (Prop.~\ref{pr:GH}).
+\end{proof}
+
+\begin{proposicion}[El gráfico de una continua \fnt{CX 8}]
+Si $X$ es conexo y $f:X\to Y$ es continua, su gráfico $\{(x,f(x)): x\in X\}$ es conexo en $X\times Y$: es la imagen de $x\mapsto(x,f(x))$, continua por tener coordenadas $1_X$ y $f$ (Teo.~\ref{th:contprod}).
+\lgc{X\ \text{conexo}\ \wedge\ f\ \text{continua}\ \Rightarrow\ \{(x,f(x)):\ x\in X\}\ \text{conexo}.}
+\end{proposicion}
+
+\begin{definicion}[Totalmente disconexo \fnt{CX, p.\,2; MS Def.\ 7.3, p.\,88}]
+$X$ es \emph{totalmente disconexo} si dos puntos distintos cualesquiera se pueden separar con una desconexión del espacio: abiertos disjuntos que cubren $X$, uno con cada punto. (\textbf{MS} lo define como ``sus únicos conexos son $\emptyset$ y los puntos''; con la definición de \textbf{CX}, esa es la Prop.\ siguiente.)
+\lgc{X\ \text{totalmente disconexo}\iff \forall x\ne y\ \exists U,V\in\tp:\ x\in U\ \wedge\ y\in V\ \wedge\ U\cap V=\emptyset\ \wedge\ U\cup V=X.}
+\end{definicion}
+
+\begin{proposicion}[\fnt{CX 12 y 13}]
+Si $X$ es totalmente disconexo, entonces es Hausdorff, y sus únicos conexos no vacíos son los unitarios.
+\lgc{X\ \text{totalmente disconexo}\ \Rightarrow\ X\ \text{es } T_2\ \wedge\ \big(C\ne\emptyset\ \text{conexo}\Rightarrow |C|=1\big).}
+\end{proposicion}
+
+\begin{proof}
+$T_2$ es parte de la definición. Si $C$ tuviera dos puntos, la desconexión $(U,V)$ que los separa también desconectaría a $C$ (Prop.~\ref{pr:GH}).
+\end{proof}
+
+\begin{ejemplo}[Totalmente disconexos no discretos \fnt{CX 11; MS Ejemplos 7.2, p.\,88}]
+$\Q$ usual: entre $x<y$ hay un irracional $r$, y $(-\infty,r)\cap\Q$, $(r,\infty)\cap\Q$ los separan. Sorgenfrey: $(-\infty,y)$ y $[y,\infty)$ son abiertos. También el conjunto de Cantor.
+\end{ejemplo}
+
+\begin{ejemplo}[Peine del topólogo \fnt{\texttt{Peine-del-Topologo.pdf}} \noentra{usa que $[0,1]$ es conexo}]\label{ej:peine}
+Sea $K=\{1/n: n\in\N\}$ y $E=(K\times[0,1])\cup([0,1]\times\{0\})$: dientes verticales sobre una base. $E$ es conexo (cada diente corta a la base, Prop.~\ref{pr:familias}(a)), y su clausura es el \emph{peine} $P=E\cup(\{0\}\times[0,1])$. Por el sándwich son conexos $P$ y el \emph{peine reducido} $R=E\cup\{(0,1)\}$. $R$ es el ejemplo estándar de conexo que \emph{no} es arcoconexo: ningún camino llega a $(0,1)$ (se verá con arcoconexidad, GT \S4.1; GT Ej.\ 4.2.8(4) da otro espacio con la misma propiedad).
+\lgc{E\subseteq R\subseteq P=\cl E\ \wedge\ E\ \text{conexo}\ \Rightarrow\ R,P\ \text{conexos}.}
+\end{ejemplo}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=2.4]
+\draw[ejes] (-0.1,0)--(1.2,0); \draw[ejes] (0,-0.1)--(0,1.2);
+\draw[very thick,blue!60!black] (0,0)--(1,0);
+\foreach \n in {1,...,12}{\draw[blue!60!black,thick] ({1/\n},0)--({1/\n},1);}
+\draw[red!60!black,thick,dashed] (0,0)--(0,1);
+\node[pt,fill=red!70!black] at (0,1) {};
+\node[left] at (0,1) {\scriptsize $(0,1)$};
+\node[below] at (1,0) {\scriptsize $1$}; \node[below] at (0.5,0) {\scriptsize $\tfrac12$};
+\end{tikzpicture}
+\figtit{Figura 18. El peine: dientes en $x=1/n$ sobre la base $[0,1]\times\{0\}$ (azul). La clausura agrega el segmento $\{0\}\times[0,1]$ (rayado); el peine reducido agrega sólo el punto $(0,1)$. Todo lo que está entre $E$ y $\cl E$ es conexo.}
+\end{figure}
+
+\subsection{Producto de conexos}
+
+\begin{proposicion}[Producto de conexos \fnt{clase 10, Prop.\ 8.1; MS Teo.\ 7.12, pp.\,89--90; reemplaza a GT 4.5.10, p.\,83}]\label{pr:prodconex}
+Si $X$ e $Y$ son conexos, $X\times Y$ (con la topología producto) es conexo. Recíprocamente, si $X\times Y\ne\emptyset$ es conexo, $X$ e $Y$ lo son.
+\lgc{X,Y\ \text{conexos}\ \Rightarrow\ X\times Y\ \text{conexo};\qquad X\times Y\ne\emptyset\ \text{conexo}\ \Rightarrow\ X,Y\ \text{conexos}.}
+\end{proposicion}
+
+\begin{proof}
+Por la Prop.~\ref{pr:dospuntos}, dados $(x_1,y_1),(x_2,y_2)$ hay que meterlos en un conexo. La función $y\mapsto(x_2,y)$ de $Y$ en $X\times Y$ es continua (coordenadas: constante e identidad, Cor.~\ref{co:fxg}), así que su imagen $\{x_2\}\times Y$ es conexa (Prop.~\ref{pr:imconex}); igual $X\times\{y_1\}$, imagen de $x\mapsto(x,y_1)$. Las dos se cortan en $(x_2,y_1)$, luego la ``cruz'' $C=(X\times\{y_1\})\cup(\{x_2\}\times Y)$ es conexa (Prop.~\ref{pr:unionconex}), y contiene a $(x_1,y_1)$ y a $(x_2,y_2)$.
+Recíproca: si $X\times Y\ne\emptyset$, $\pi_X$ es continua y sobreyectiva, así que $X=\pi_X(X\times Y)$ es conexo.
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+\draw[ejes] (-0.2,0)--(4.6,0) node[right]{\scriptsize $X$};
+\draw[ejes] (0,-0.2)--(0,3.4) node[above]{\scriptsize $Y$};
+\draw[blue!60!black,very thick] (0,0.9)--(4.4,0.9);
+\draw[red!60!black,very thick] (3.0,0)--(3.0,3.2);
+\node[pt] at (1.0,0.9) {}; \node[below] at (1.0,0.85) {\scriptsize $(x_1,y_1)$};
+\node[pt] at (3.0,2.5) {}; \node[right] at (3.05,2.5) {\scriptsize $(x_2,y_2)$};
+\node[pt,fill=violet] at (3.0,0.9) {}; \node[below right] at (3.0,0.88) {\scriptsize $(x_2,y_1)$};
+\node[blue!60!black] at (1.9,1.2) {\scriptsize $X\times\{y_1\}$};
+\node[red!60!black,left] at (2.95,3.0) {\scriptsize $\{x_2\}\times Y$};
+\end{tikzpicture}
+\figtit{Figura 17. La cruz del pizarrón: una copia de $X$ (horizontal) y una de $Y$ (vertical), conexas por ser imágenes continuas, que se cruzan en $(x_2,y_1)$. Hay que tomar una coordenada de cada punto para que las dos rayas se crucen.}
+\end{figure}
+
+\begin{observacion}
+\textbf{GT} 4.5.10 prueba lo mismo sólo para métricos con $\delta^{\max}_2$, usando que $x_2\mapsto(x^0_1,x_2)$ es una isometría. La versión de clase no necesita métricas: sólo el Teorema~\ref{th:contprod}.
+\end{observacion}
+
+\begin{proposicion}[El producto menos un rectángulo propio \fnt{\texttt{Producto-de-Conexos.pdf}, p.\,2}]
+Si $X,Y$ son conexos, $A\subsetneq X$ y $B\subsetneq Y$, entonces $(X\times Y)-(A\times B)$ es conexo.
+\lgc{X,Y\ \text{conexos}\ \wedge\ A\ne X\ \wedge\ B\ne Y\ \Rightarrow\ (X\times Y)-(A\times B)\ \text{conexo}.}
+\end{proposicion}
+
+\begin{proof}
+Con $a_0\notin A$ y $b_0\notin B$, la cruz $(\{a_0\}\times Y)\cup(X\times\{b_0\})$ queda dentro del conjunto y es conexa. Todo punto $(x,y)$ del conjunto tiene $x\notin A$ o $y\notin B$, así que su vertical $\{x\}\times Y$ o su horizontal $X\times\{y\}$ queda dentro y corta a la cruz. Se concluye con la Prop.~\ref{pr:familias}(a).
+\end{proof}
+
+\begin{observacion}[Arcoconexos \fnt{\texttt{Producto-de-Conexos.pdf}, p.\,2} \noentra{arcoconexidad todavía no dictada}]
+El mismo apunte prueba que el producto de arcoconexos es arcoconexo: si $\alpha$ une $x_0$ con $x_1$ en $X$ y $\beta$ une $y_0$ con $y_1$ en $Y$, el camino $t\mapsto(\alpha(t),\beta(t))$ es continuo por el Cor.~\ref{co:fxg}.
+\end{observacion}
+
+\subsection{Lo que falta: intervalos de $\R$ y Bolzano}\label{sec:bolzano}
+
+\noindent La docente lo dejó para más adelante (\textbf{GT} 4.4.4 y 4.5.1, junto con los postergados 2.7.6 y 2.8.3 de \S\ref{sec:sub}). Se enuncia para tener el mapa completo.
+
+\begin{proposicion}[Los conexos de la recta \fnt{GT 4.4.4, p.\,79; MS Ejemplos 7.1(11), p.\,88} \noentra{todavía no dictado}]
+En $(\R,\tp_u)$, para $A\subseteq\R$ son equivalentes: $A$ es conexo por caminos; $A$ es conexo; si $a\le b$ están en $A$ entonces $[a,b]\subseteq A$; $A$ es un intervalo.
+\lgc{A\subseteq(\R,\tp_u)\ \text{conexo}\iff \forall a,b\in A\ \big(a\le b\Rightarrow[a,b]\subseteq A\big)\iff A\ \text{intervalo}.}
+\end{proposicion}
+
+\begin{teorema}[Bolzano \fnt{GT 4.5.1, p.\,80 $=$ GT 2.8.3, p.\,35} \noentra{todavía no dictado}]
+$(X,\tp)$ es conexo si y sólo si toda $f:X\to\R$ continua cumple el teorema del valor intermedio: si toma un valor negativo y uno positivo, se anula. Es el Teorema de Bolzano topológico de \S\ref{sec:sub}, ahora leído con la Prop.~\ref{pr:conexclopen}.
+\end{teorema}
+
+
+%======================================================================
+\clearpage
+\section*{Apéndice A: mapa rápido de los ejercicios de la guía}
+\addcontentsline{toc}{section}{Apéndice A: mapa rápido de los ejercicios}
+
+\begin{center}
+\begin{tabular}{@{}p{4.5cm}p{10.5cm}@{}}
+\hline
+\textbf{Guía} & \textbf{Herramienta principal}\\
+\hline
+Métricos A.1--A.5 & Lema de deformación por $f$ creciente y subaditiva; métrica inducida por inyección; contraejemplo de seudométrica.\\
+Métricos A.6--A.9 & Axiomática mínima; $d(\cdot,A)$ es 1-lipschitziana; norma asociada a una métrica invariante y homogénea.\\
+Ej.\ teórico N$^\circ$1 & Cauchy--Schwarz, norma asociada, polarización, ley del paralelogramo.\\
+Métricos C.1--C.8 & Bolas en $d_{taxi}$, $d_{\max}$, $d_D$; truncamiento; diámetro y acotación.\\
+Métricos C.9--C.12 & $\intr A$ como unión de abiertos; convexidad de bolas; $\cl{\Bola{x}{r}}=\Bolac{x}{r}$ en normados.\\
+Topológicos A.1--A.6 & Verificación de axiomas de topología; familias totalmente ordenadas; cerrados asociados.\\
+Topológicos A.7--A.13 & Entornos; clausura/interior/frontera en $\tp_u$; $\fr A=\emptyset$; unitarios cerrados; densidad.\\
+Topológicos D.1--D.5 & Álgebra fina de $\intr(\cdot)$ y $\cl{(\cdot)}$; problema de Kuratowski; frontera de uniones e intersecciones.\\
+Ej.\ teórico N$^\circ$2 & Bases, topología generada, criterio de base, comparación por bases, subbases, $K$-topología.\\
+Ej.\ teóricos $T_0,T_1,T_2$ & Jerarquía de separación; $T_1\iff$ puntos cerrados; unicidad de límites.\\
+Continuidad A.1--A.3 & Continuidad \emph{en un punto}; $\chi_A$ y $\chi_\Q$; $d(\cdot,A)$ uniformemente continua.\\
+Continuidad A.4--A.10 & Continuidad coordenada a coordenada; álgebra de continuas; métricas producto; cofinita y conumerable; preimagen de cerrados.\\
+Continuidad B & Preimágenes vs.\ imágenes; homeomorfismos; isometrías; $\{f<g\}$ y $\{f\ne g\}$; lema del pegado; $\max\{f,g\}$ por subbase.\\
+\hline
+\multicolumn{2}{@{}l}{\emph{Segundo parcial}}\\
+Productos 1--3 (\textbf{TP} p.\,4) & $\cl{A\times B}=\cl A\times\cl B$ e $\intr(A\times B)=\intr A\times\intr B$; $T_2\times T_2$ es $T_2$; continuidad de $f\times g$ y de $(f,g)$. Trabajar en la base de rectángulos y pensarlos como tubos (\S\ref{sec:prod}).\\
+Conexidad 1--10 (salvo 4) & Desconexiones con $G,H$ del espacio grande; imagen continua; funciones a un discreto; dos puntos en un conexo; uniones (5--7: uno que corta a todos, dos a dos, en cadena); sándwich. El 4 usa Bolzano: se deja para después (\S\ref{sec:conex}).\\
+\hline
+\end{tabular}
+\end{center}
+
+\clearpage
+\section*{Apéndice B: lo que entra en el primer parcial}
+\addcontentsline{toc}{section}{Apéndice B: lista para el primer parcial}
+
+\noindent\emph{Cada ítem va enunciado dos veces: en lenguaje natural y en lenguaje lógico. Salvo aclaración, $(X,\tp)$, $(Y,\tp')$ son espacios topológicos y $(X,d)$, $(Y,\rho)$ métricos.}
+
+\newcommand{\ficha}[1]{\item \textbf{#1.}\ }
+
+\subsection*{B.1 Espacios métricos y normados}
+
+\begin{itemize}[leftmargin=1.3em,itemsep=3pt]
+
+\ficha{Distancia} $d$ mide separación: nunca negativa, simétrica, nula sólo entre un punto y sí mismo, y nunca conviene desviarse. \fnt{GT 1.1.1}
+\[ \forall x,y,z\in X:\quad d(x,y)\ge0\ \wedge\ d(x,y)=d(y,x)\ \wedge\ \big(d(x,y)=0\Leftrightarrow x=y\big)\ \wedge\ d(x,y)\le d(x,z)+d(z,y). \]
+Seudodistancia: se reemplaza la tercera por $\forall x:\ d(x,x)=0$.
+
+\ficha{Axiomática mínima} Alcanza con la anulación y una triangular con el punto auxiliar al final: simetría y positividad se deducen. \fnt{EJ Métricos--A.6}
+\[ d \text{ es distancia}\iff \Big[\forall x,y\ \big(d(x,y)=0\Leftrightarrow x=y\big)\ \wedge\ \forall x,y,z\ d(x,y)\le d(x,z)+d(y,z)\Big]. \]
+
+\ficha{Norma} Longitud de un vector: no negativa, homogénea, nula sólo en $0$, subaditiva. \fnt{GT 1.1.4}
+\[ \forall v,w\in V\ \forall\lambda\in\R:\quad \norm{v}\ge0\ \wedge\ \norm{\lambda v}=|\lambda|\norm{v}\ \wedge\ \big(\norm{v}=0\Leftrightarrow v=0\big)\ \wedge\ \norm{v+w}\le\norm{v}+\norm{w}. \]
+
+\ficha{Distancia asociada a una norma} Toda norma induce una distancia. \fnt{GT 1.1.5}
+\[ \big(V,\norm{\cdot}\big)\ \text{normado}\ \Rightarrow\ d(v,w):=\norm{v-w}\ \text{es distancia en } V. \]
+
+\ficha{Cuándo una métrica proviene de una norma} Sólo si es insensible a trasladar y escala con el factor. \fnt{EJ Métricos--A.8}
+\[ \exists\,\norm{\cdot}:\ d(x,y)=\norm{x-y}\ \iff\ \forall x,y,z\ d(x+z,y+z)=d(x,y)\ \wedge\ \forall\lambda\ d(\lambda x,\lambda y)=|\lambda|d(x,y), \]
+y en ese caso $\norm{x}=d(x,0)$.
+
+\ficha{La discreta no proviene de una norma} En $\R^n$ ninguna norma da la métrica discreta. \fnt{GT 1.1.17}
+\[ \neg\,\exists\,\norm{\cdot}\ \text{norma en }\R^n:\ \forall x,y\ \ \norm{x-y}=d_D(x,y). \]
+
+\ficha{Producto interno y Cauchy--Schwarz} El producto interno nunca supera al producto de las longitudes. \fnt{EJ Ej.\ teórico N$^\circ$1}
+\[ \forall u,v\in V:\quad |(u,v)|\le\norm{u}\,\norm{v},\qquad \norm{u}:=\sqrt{(u,u)}. \]
+
+\ficha{Polarización y ley del paralelogramo} Una norma viene de un producto interno exactamente cuando cumple la identidad del paralelogramo.
+\[ (u,v)=\tfrac14\norm{u+v}^2-\tfrac14\norm{u-v}^2;\qquad
+\norm{\cdot}\ \text{proviene de p.i.}\iff \forall u,v\ \norm{u+v}^2+\norm{u-v}^2=2\norm{u}^2+2\norm{v}^2. \]
+
+\ficha{Deformación de una métrica} Componer con una función creciente y subaditiva que sólo se anula en $0$ vuelve a dar una distancia. \fnt{EJ Métricos--A.1, A.2, C.3}
+\[ \big[\,f\ \text{creciente}\ \wedge\ \forall a,b\ f(a+b)\le f(a)+f(b)\ \wedge\ (f(t)=0\Leftrightarrow t=0)\,\big]\ \Rightarrow\ f\circ d\ \text{es distancia}. \]
+Casos: $f(t)=\min\{1,t\}$, $f(t)=\frac{t}{1+t}$, $f(t)=\min\{t,r\}$.
+
+\ficha{Métrica inducida por una función} Copiar la distancia del codominio da distancia exactamente cuando la función no pega puntos. \fnt{EJ Métricos--A.3}
+\[ d(x,x'):=\rho\big(f(x),f(x')\big)\ \text{es seudodistancia};\qquad d\ \text{es distancia}\iff f\ \text{es inyectiva}. \]
+
+\ficha{Distancia a un conjunto, entre conjuntos, diámetro} \fnt{EJ Métricos--A.7, A.9, C.5--C.8}
+\[ d(x,A)=\inf_{a\in A}d(x,a),\quad d(A,B)=\inf_{a\in A,\,b\in B}d(a,b),\quad \delta(A)=\sup_{a,b\in A}d(a,b),\quad A\ \text{acotado}\iff \delta(A)<\infty. \]
+
+\ficha{$d(\cdot,A)$ es $1$-lipschitziana} Moverse una cierta distancia cambia la distancia al conjunto a lo sumo en esa cantidad. \fnt{EJ Métricos--A.7}
+\[ \forall x,y\in X:\quad \big|d(x,A)-d(y,A)\big|\le d(x,y). \]
+
+\ficha{Bolas} \fnt{GT 1.1.18}
+\[ \Bola{x}{\varepsilon}=\{y\in X: d(x,y)<\varepsilon\},\qquad \Bolac{x}{\varepsilon}=\{y\in X: d(x,y)\le\varepsilon\}. \]
+
+\ficha{Propiedad de reencaje} Alrededor de cada punto de una bola hay otra bola contenida en ella. \fnt{GT 1.1.25}
+\[ \forall y\in \Bola{x}{\varepsilon}\ \ \exists\delta>0:\ \Bola{y}{\delta}\subseteq \Bola{x}{\varepsilon}\qquad(\text{sirve } \delta=\varepsilon-d(x,y)). \]
+
+\ficha{Separación en métricos} Dos puntos distintos tienen bolas disjuntas. \fnt{GT 1.1.26}
+\[ \forall x\ne y\ \ \exists\varepsilon>0:\ \Bola{x}{\varepsilon}\cap\Bola{y}{\varepsilon}=\emptyset\qquad(\text{sirve }\varepsilon=\tfrac{d(x,y)}2). \]
+
+\ficha{Convexidad de las bolas en normados} El segmento entre dos puntos de una bola no se sale de ella. \fnt{EJ Métricos--C.11}
+\[ \forall y,z\in \Bola{x}{r}\ \forall t\in(0,1):\quad ty+(1-t)z\in \Bola{x}{r}. \]
+
+\ficha{Clausura de la bola abierta en normados} En un normado la clausura de la bola abierta es la cerrada; en un métrico general no. \fnt{EJ Métricos--C.12}
+\[ \big(\R^n,\norm{\cdot}\big):\ \cl{\Bola{x}{r}}=\Bolac{x}{r};\qquad
+\big(X,d_D\big):\ \cl{\Bola{x}{1}}=\{x\}\subsetneq \Bolac{x}{1}=X. \]
+
+\end{itemize}
+
+\subsection*{B.2 Topología de un espacio métrico}
+
+\begin{itemize}[leftmargin=1.3em,itemsep=3pt]
+
+\ficha{Interior, abierto, entorno (versión métrica)} Un punto es interior si tiene margen dentro del conjunto. \fnt{GT 1.2.1, 1.2.6}
+\[ x\in\intr A\iff \exists\varepsilon>0:\ \Bola{x}{\varepsilon}\subseteq A;\qquad A\ \text{abierto}\iff A=\intr A;\qquad N\in\mathcal N_x\iff x\in\intr N. \]
+
+\ficha{Propiedades de los abiertos} Las tres que después se toman como axiomas. \fnt{GT 1.2.8}
+\[ \emptyset,X\ \text{abiertos};\qquad \bigcup_{i\in I}G_i\ \text{abierto};\qquad \bigcap_{k=1}^{n}G_k\ \text{abierto}. \]
+
+\ficha{Equivalencia de las métricas usuales de $\R^n$} Distancias distintas pueden dar la misma topología. \fnt{GT 1.2.3--1.2.4}
+\[ \tp_{d_e}=\tp_{d_{\text{taxi}}}=\tp_{d_{\max}}. \]
+
+\end{itemize}
+
+\subsection*{B.3 Espacios topológicos}
+
+\begin{itemize}[leftmargin=1.3em,itemsep=3pt]
+
+\ficha{Topología} \fnt{GT 2.1.1}
+\[ \emptyset,X\in\tp;\qquad \forall\{G_i\}_{i\in I}\subseteq\tp:\ \bigcup_{i\in I}G_i\in\tp;\qquad \forall G_1,\dots,G_n\in\tp:\ \bigcap_{k=1}^n G_k\in\tp. \]
+
+\ficha{Cerrados} Complemento de abierto, con las propiedades duales. \fnt{GT 2.4.2, 2.4.4}
+\[ C\ \text{cerrado}\iff X-C\in\tp;\qquad \bigcap_{i\in I}C_i\ \text{cerrado};\qquad \bigcup_{k=1}^{n}C_k\ \text{cerrado}. \]
+
+\ficha{Topologías de referencia} \fnt{GT 2.1.4; EJ Top--A; catálogo completo en el Apéndice E}
+\[ \tp_{dis}=\mathcal P(X),\quad \tp_{ind}=\{\emptyset,X\},\quad
+\tp_{cof}=\{\emptyset\}\cup\{A: X-A\ \text{finito}\},\quad
+\tp_{conum}=\{A: X-A\ \text{numerable}\}\cup\{\emptyset\}, \]
+\[ \tp_{x_0}=\{X\}\cup\{A\subseteq X: x_0\notin A\}. \]
+
+\ficha{La cofinita no es metrizable} Si el conjunto es infinito, ninguna distancia produce la cofinita. \fnt{GT 2.1.5}
+\[ X\ \text{infinito}\ \Rightarrow\ \neg\,\exists\,d\ \text{distancia en } X:\ \tp_d=\tp_{cof}. \]
+
+\ficha{Interior topológico} El mayor abierto contenido en el conjunto. \fnt{GT 2.2.1, 2.2.3}
+\[ x\in\intr A\iff \exists G\in\tp:\ x\in G\subseteq A;\qquad \intr A=\bigcup\{G\in\tp: G\subseteq A\};\qquad A\in\tp\iff A=\intr A. \]
+
+\ficha{Entorno, punto aislado, de acumulación, adherente} \fnt{GT 2.2.5, 2.2.7, 2.3.1, 2.3.4}
+\[ N\in\mathcal N_x\iff \exists G\in\tp:\ x\in G\subseteq N;\qquad
+x\ \text{aislado de } A\iff \exists G\in\tp:\ G\cap A=\{x\}; \]
+\[ x\in A'\iff \forall G\in\tp\ \big(x\in G\Rightarrow G\cap(A-\{x\})\ne\emptyset\big);\qquad
+x\in\cl A\iff \forall G\in\tp\ \big(x\in G\Rightarrow G\cap A\ne\emptyset\big). \]
+
+\ficha{Clausura} El menor cerrado que contiene al conjunto. \fnt{GT 2.3.6, 2.3.8}
+\[ \cl A=\bigcap\{C\ \text{cerrado}: A\subseteq C\}=A\cup A';\qquad A\ \text{cerrado}\iff A=\cl A. \]
+
+\ficha{Dualidad interior/clausura} Una operación es la otra vista desde el complemento. \fnt{GT 2.4.1}
+\[ \cl A=X-\intr(X-A);\qquad \intr A=X-\cl{X-A}. \]
+
+\ficha{Álgebra de interior y clausura} \fnt{GT 2.2.4, 2.4.3}
+\[ \intr(A\cap B)=\intr A\cap\intr B,\qquad \intr A\cup\intr B\subseteq\intr(A\cup B), \]
+\[ \cl{A\cup B}=\cl A\cup\cl B,\qquad \cl{A\cap B}\subseteq\cl A\cap\cl B,\qquad \intr(\intr A)=\intr A,\quad \cl{\cl A}=\cl A. \]
+
+\ficha{Frontera y exterior} Los indecisos, y la partición del espacio en tres. \fnt{GT 2.6.1--2.6.5}
+\[ x\in\fr A\iff \forall G\in\tp\ \big(x\in G\Rightarrow G\cap A\ne\emptyset\ \wedge\ G\cap(X-A)\ne\emptyset\big); \]
+\[ \fr A=\cl A\cap\cl{X-A}=\cl A-\intr A;\qquad X=\intr A\,\dot\cup\,\fr A\,\dot\cup\,\ext A. \]
+
+\ficha{Abierto y cerrado a la vez} Equivale a no tener borde. \fnt{EJ Top--A.11}
+\[ A\in\tp\ \wedge\ A\ \text{cerrado}\iff \fr A=\emptyset. \]
+
+\ficha{Unitarios cerrados en métricos} \fnt{EJ Top--A.12}
+\[ (X,d)\ \Rightarrow\ \forall x\in X:\ X-\{x\}\in\tp_d, \ \text{es decir } \{x\}\ \text{es cerrado}. \]
+
+\ficha{Denso} Toca a todos los abiertos no vacíos. \fnt{EJ Top--A.13}
+\[ \cl D=X\iff \forall G\in\tp\ \big(G\ne\emptyset\Rightarrow G\cap D\ne\emptyset\big)\iff \intr(X-D)=\emptyset. \]
+
+\ficha{Clausura y abiertos} Un abierto se puede meter adentro de la clausura. \fnt{EJ Top--D.1}
+\[ A\in\tp\ \Rightarrow\ A\cap\cl B\subseteq\cl{A\cap B}. \]
+
+\ficha{Frontera de una unión} \fnt{EJ Top--D.4}
+\[ \fr(A\cup B)\subseteq\fr A\cup\fr B;\qquad \cl A\cap\cl B=\emptyset\ \Rightarrow\ \fr(A\cup B)=\fr A\cup\fr B. \]
+
+\ficha{Operadores de Kuratowski} Alternar interior y clausura se estabiliza, pero los dos órdenes no dan lo mismo. \fnt{EJ Top--D.2}
+\[ i(A):=\intr(\cl A)=(\cl A)^{\circ},\quad c(A):=\cl{\intr A}=\cl{A^{\circ}};\qquad i\circ i=i,\quad c\circ c=c; \]
+\[ A\in\tp\Rightarrow A\subseteq i(A);\qquad A\ \text{cerrado}\Rightarrow c(A)\subseteq A;\qquad i(A)\ \text{y}\ c(A)\ \text{son incomparables en general}. \]
+
+\ficha{La clausura medida con la distancia} En un métrico, estar pegado a $A$ es estar a distancia cero de $A$.
+\[ (X,d):\quad \cl A=\{x\in X:\ d(x,A)=0\};\qquad A\ \text{cerrado}\iff \big(d(x,A)=0\Rightarrow x\in A\big). \]
+
+\ficha{Frontera de un abierto} Un abierto (o un cerrado) tiene borde sin interior.
+\[ A\in\tp\ \vee\ A\ \text{cerrado}\ \Rightarrow\ \intr(\fr A)=\emptyset;\qquad \text{falso en general: } \intr(\fr\Q)=\R. \]
+
+\end{itemize}
+
+\subsection*{B.4 Bases y subbases \normalfont\small (sólo conceptual: hay que saber qué es una base)}
+
+\begin{itemize}[leftmargin=1.3em,itemsep=3pt]
+
+\ficha{Base para una topología} Piezas con las que se arman todos los abiertos: la condición \textbf{(B1)} de cubrir y la \textbf{(B2)} de poder encajar en las intersecciones. \fnt{MS Def.\ 2.4}
+\[ \underbrace{\big(\forall x\in X\ \exists B\in\beta:\ x\in B\big)}_{\textbf{(B1)}}\ \wedge\ \underbrace{\big(\forall B_1,B_2\in\beta\ \forall x\in B_1\cap B_2\ \exists B_3\in\beta:\ x\in B_3\subseteq B_1\cap B_2\big)}_{\textbf{(B2)}}, \]
+\[ \tp_\beta=\{U\subseteq X:\ \forall x\in U\ \exists B\in\beta,\ x\in B\subseteq U\}=\Big\{\textstyle\bigcup_{i\in I}B_i\ :\ B_i\in\beta\Big\}. \]
+
+\ficha{Base de una topología dada} \fnt{MS Teo.\ 2.3}
+\[ \beta\subseteq\tp\ \text{es base de }\tp\iff \forall U\in\tp\ \forall x\in U\ \exists B\in\beta:\ x\in B\subseteq U. \]
+
+\ficha{Comparación de topologías} Más fina $=$ tiene más abiertos, y se chequea con básicos. \fnt{MS Teo.\ 2.4}
+\[ \tp'\ \text{más fina que}\ \tp\iff \tp\subseteq\tp'\iff \forall x\in X\ \forall B\in\beta\ \big(x\in B\Rightarrow \exists B'\in\beta':\ x\in B'\subseteq B\big). \]
+
+\ficha{Subbase} \fnt{MS Lema 2.6}
+\[ \textstyle\bigcup_{S\in\sigma}S=X\ \Rightarrow\ \big\{\bigcap_{k=1}^{n}S_k:\ S_k\in\sigma,\ n\in\N\big\}\ \text{es base de una topología}. \]
+
+\end{itemize}
+
+\subsection*{B.5 Axiomas de separación}
+
+\begin{itemize}[leftmargin=1.3em,itemsep=3pt]
+
+\ficha{$T_0$, $T_1$, $T_2$} Cuánto puede la topología distinguir dos puntos distintos. \fnt{EJ Ej.\ teóricos; GT 2.5.3}
+\[ T_0:\ \forall x\ne y\ \ \exists U\in\tp:\ (x\in U\wedge y\notin U)\ \vee\ (y\in U\wedge x\notin U); \]
+\[ T_1:\ \forall x\ne y\ \ \exists U,V\in\tp:\ (x\in U\wedge y\notin U)\ \wedge\ (y\in V\wedge x\notin V); \]
+\[ T_2:\ \forall x\ne y\ \ \exists U,V\in\tp:\ x\in U\ \wedge\ y\in V\ \wedge\ U\cap V=\emptyset. \]
+
+\ficha{Jerarquía} Cada nivel implica el anterior y ninguna recíproca vale.
+\[ T_2\Rightarrow T_1\Rightarrow T_0;\qquad \tp_{cof}\ (X\ \text{infinito}):\ T_1\wedge\neg T_2;\qquad \text{Sierpi\'nski}:\ T_0\wedge\neg T_1. \]
+
+\ficha{Caracterización de $T_1$} \fnt{EJ Ej.\ teórico 4}
+\[ X\ \text{es } T_1\iff \forall x\in X:\ \{x\}\ \text{es cerrado}. \]
+
+\ficha{Métrico $\Rightarrow$ Hausdorff} \fnt{GT 1.1.26}
+\[ (X,d)\ \text{métrico}\ \Rightarrow\ (X,\tp_d)\ \text{es } T_2. \]
+
+\end{itemize}
+
+\subsection*{B.6 Sucesiones y convergencia}
+
+\begin{itemize}[leftmargin=1.3em,itemsep=3pt]
+
+\ficha{Convergencia} Toda cola termina metida en cualquier abierto que contenga al límite. \fnt{GT 2.5.1}
+\[ x_n\to x_0\iff \forall G\in\tp\ \big(x_0\in G\Rightarrow \exists n_0\ \forall n\ge n_0:\ x_n\in G\big). \]
+
+\ficha{Unicidad del límite} \fnt{GT 2.5.2}
+\[ X\ \text{es } T_2\ \Rightarrow\ \big(x_n\to x\ \wedge\ x_n\to y\ \Rightarrow\ x=y\big). \]
+
+\ficha{Clausura por sucesiones \normalfont(sólo métricos)} \fnt{GT 2.5.6--2.5.7}
+\[ (X,d):\quad x\in\cl A\iff \exists\{a_n\}_{n\ge1}\subseteq A:\ a_n\to x;\qquad
+A\ \text{cerrado}\iff \big(\{a_n\}\subseteq A\ \wedge\ a_n\to x\ \Rightarrow\ x\in A\big). \]
+
+\end{itemize}
+
+\subsection*{B.7 Continuidad}
+
+\begin{itemize}[leftmargin=1.3em,itemsep=3pt]
+
+\ficha{Continuidad en un punto} Todo objetivo alrededor de la imagen se alcanza desde algún entorno del punto. \fnt{MS Def.\ 4.1}
+\[ f\ \text{continua en } a\iff \forall M\in\mathcal N_{f(a)}\ \exists N\in\mathcal N_a:\ f(N)\subseteq M
+\iff \forall M\in\mathcal N_{f(a)}:\ f^{-1}(M)\in\mathcal N_a. \]
+
+\ficha{Versión $\varepsilon$--$\delta$} \fnt{GT 2.8.4}
+\[ f\ \text{continua en } a\iff \forall\varepsilon>0\ \exists\delta>0:\ f\big(\Bola{a}{\delta}\big)\subseteq \Bola{f(a)}{\varepsilon}. \]
+
+\ficha{Las caracterizaciones de la continuidad global} Todas equivalentes; en el parcial se usan sobre todo (2) y (3). \fnt{GT 2.8.1--2.8.2}
+\[ (1)\ \forall A\subseteq X:\ f(\cl A)\subseteq\cl{f(A)}
+\iff (2)\ \forall F\ \text{cerrado de } Y:\ f^{-1}(F)\ \text{cerrado} \]
+\[ \iff (3)\ \forall G\in\tp':\ f^{-1}(G)\in\tp
+\iff (4)\ \forall B\subseteq Y:\ \cl{f^{-1}(B)}\subseteq f^{-1}(\cl B). \]
+Basta verificar (3) sobre los elementos de una base o subbase de $\tp'$.
+
+\ficha{Caracterización por convergencia \normalfont(sólo métricos como $\iff$)} \fnt{GT 2.8.5}
+\[ (X,d)\to(Y,\rho):\quad f\ \text{continua}\iff \forall\{x_n\}\ \big(x_n\to x_0\Rightarrow f(x_n)\to f(x_0)\big). \]
+La implicación $\Rightarrow$ vale en cualquier espacio topológico; la $\Leftarrow$ usa la clausura por sucesiones y necesita métrica.
+
+\ficha{Propiedades generales} \fnt{GT 2.8.6}
+\[ f\ \text{constante}\ \Rightarrow\ f\ \text{continua};\quad
+1_X:(X,\tp)\to(X,\tp)\ \text{continua};\quad
+f,g\ \text{continuas}\Rightarrow g\circ f\ \text{continua}; \]
+\[ f\ \text{continua}\ \Rightarrow\ f|_A:(A,\tp_A)\to Y\ \text{continua};\qquad
+\text{en particular } i:(A,\tp_A)\to(X,\tp)\ \text{es continua}. \]
+
+\ficha{Inclusión, restricción, correstricción} Las tres cambian el dominio o el codominio, no la fórmula. \fnt{GT 2.8.6d y 2.8.7; TS Obs.\ 3.1.4}
+\[ i:A\to X,\ i(a)=a;\qquad i^{-1}(U)=U\cap A;\qquad f|_A=f\circ i;\qquad \widetilde f=f|^{f(X)}:X\to f(X). \]
+
+\ficha{Correstricción a la imagen} \fnt{GT 2.8.7}
+\[ f\ \text{continua}\ \Rightarrow\ \widetilde f:(X,\tp)\to\big(f(X),\tp'|_{f(X)}\big),\ \widetilde f(x)=f(x),\ \text{es continua}. \]
+
+\ficha{La identidad entre dos topologías} La identidad es continua exactamente cuando la topología de salida es la más fina. \fnt{GT Ej.\ 2.8.8}
+\[ 1_X:(X,\tp_1)\to(X,\tp_2)\ \text{continua}\iff \tp_2\subseteq\tp_1;\qquad
+\big(1_X\ \text{continua en ambos sentidos}\big)\iff \tp_1=\tp_2. \]
+
+\ficha{Homeomorfismo} Dos espacios que son el mismo salvo el nombre de los puntos. \fnt{GT 2.8.9}
+\[ f\ \text{homeomorfismo}\iff f\ \text{biyectiva}\ \wedge\ f\ \text{continua}\ \wedge\ f^{-1}\ \text{continua}. \]
+
+\ficha{Aplicación abierta y cerrada} Hablan de \emph{imágenes}, no de preimágenes. \fnt{GT 2.8.14}
+\[ f\ \text{abierta}\iff \forall G\in\tp:\ f(G)\in\tp';\qquad
+f\ \text{cerrada}\iff \forall F\ \text{cerrado de } X:\ f(F)\ \text{cerrado de } Y. \]
+
+\ficha{Los homeomorfismos son abiertos y cerrados} El truco es leer la imagen como preimagen de la inversa. \fnt{GT 2.8.13}
+\[ f\ \text{homeomorfismo}\ \wedge\ G\in\tp\ \Rightarrow\ f(G)=\big(f^{-1}\big)^{-1}(G)\in\tp'. \]
+
+\ficha{Caracterización de homeomorfismo} \fnt{GT 2.8.15}
+\[ f\ \text{homeo}\iff \big(f\ \text{biyectiva}\wedge\text{continua}\wedge\text{abierta}\big)\iff\big(f\ \text{biyectiva}\wedge\text{continua}\wedge\text{cerrada}\big). \]
+\[ \text{También: } f\ \text{homeo}\iff f\ \text{biyectiva}\ \wedge\ \forall A\subseteq X:\ f(\cl A)=\cl{f(A)}. \]
+
+\ficha{Isometría biyectiva} \fnt{EJ Continuidad--B.4}
+\[ \big[f\ \text{biyectiva}\ \wedge\ \forall x,x'\ \rho\big(f(x),f(x')\big)=d(x,x')\big]\ \Rightarrow\ f\ \text{es homeomorfismo}. \]
+
+\ficha{Propiedad topológica} Lo que se conserva por homeomorfismos; la acotación no lo es.
+\[ P\ \text{topológica}\iff \big(X\cong Y\ \wedge\ X\ \text{cumple } P\ \Rightarrow\ Y\ \text{cumple } P\big);\qquad (0,1)\cong\R\ \text{con sólo uno acotado}. \]
+
+\ficha{Función característica} Es continua exactamente cuando el conjunto no tiene borde. \fnt{EJ Continuidad--A.1--A.2}
+\[ \chi_A:(X,\tp)\to(\R,\tp_u)\ \text{continua}\iff A\in\tp\ \wedge\ A\ \text{cerrado}\iff \fr A=\emptyset. \]
+
+\ficha{Conjuntos definidos por desigualdades} \fnt{EJ Continuidad--B.5}
+\[ f,g:(X,\tp)\to(\R,\tp_u)\ \text{continuas}\ \Rightarrow\ \{x\in X: f(x)<g(x)\}\in\tp. \]
+
+\ficha{Coincidencia y Hausdorff} Donde dos funciones continuas difieren es abierto; donde coinciden, cerrado. \fnt{EJ Continuidad--B.6}
+\[ f,g:X\to Y\ \text{continuas}\ \wedge\ Y\ \text{es } T_2\ \Rightarrow\ \{x: f(x)\ne g(x)\}\in\tp\ \wedge\ \{x: f(x)=g(x)\}\ \text{cerrado}. \]
+\[ \text{Corolario: } D\ \text{denso}\ \wedge\ f|_D=g|_D\ \Rightarrow\ f=g. \]
+
+\ficha{Continuidad y densidad} La imagen de un denso por una continua sobreyectiva es densa. \fnt{EJ Continuidad--A.10}
+\[ \cl D=X\ \wedge\ f\ \text{continua y sobreyectiva}\ \Rightarrow\ \cl{f(D)}=Y. \]
+
+\ficha{Lema del pegado} Si las restricciones son continuas, la función lo es --- con abiertos siempre, con cerrados sólo en cantidad finita. \fnt{EJ Continuidad--B.7}
+\[ X=\bigcup_{F\in\mathcal F}F\ \wedge\ \forall F\in\mathcal F:\ f|_F\ \text{continua}\ \wedge\ \mathcal F\subseteq\tp\ \Rightarrow\ f\ \text{continua}; \]
+\[ X=\bigcup_{k=1}^{n}F_k\ \wedge\ \forall k:\ F_k\ \text{cerrado}\ \wedge\ f|_{F_k}\ \text{continua}\ \Rightarrow\ f\ \text{continua}. \]
+
+\ficha{Conjuntos de nivel} \fnt{EJ Continuidad--A.9}
+\[ f:(X,\tp)\to(\R,\tp_u)\ \text{continua}\ \Rightarrow\ \forall a\in\R:\ f^{-1}(a)\ \text{es cerrado}. \]
+
+\end{itemize}
+
+\subsection*{B.8 Topología de subespacio}
+
+\begin{itemize}[leftmargin=1.3em,itemsep=3pt]
+
+\ficha{Topología relativa} Los abiertos de $A$ son las trazas de los abiertos de $X$. \fnt{GT 2.7.1; TS 3.1}
+\[ \tp_A=\{U\cap A:\ U\in\tp\};\qquad F\subseteq A\ \text{cerrado en } A\iff \exists\,C\ \text{cerrado de } X:\ F=C\cap A. \]
+
+\ficha{$\tp_A$ como la menos fina que hace continua la inclusión} \fnt{TS Def.\ 3.1.1}
+\[ i^{-1}(U)=U\cap A;\qquad \tp_A=\min\big\{\,\tp^\ast\ \text{topología en } A:\ i:(A,\tp^\ast)\to X\ \text{continua}\,\big\}, \]
+donde el mínimo es respecto de $\subseteq$. Las más finas (por ejemplo la discreta) también hacen continua a $i$, pero no son mínimas.
+
+\ficha{Propiedad universal} Una función hacia $A$ es continua exactamente cuando lo es vista dentro de $X$. \fnt{TS Prop.\ 3.1.2}
+\[ (\ast)\quad \forall Z\ \text{espacio topológico}\ \forall f:Z\to A:\qquad f\ \text{continua}\iff i\circ f:Z\to X\ \text{continua}. \]
+
+\ficha{Unicidad} $\tp_A$ es la única topología con esa propiedad. \fnt{TS Prop.\ 3.1.3}
+\[ \tp^\ast\ \text{cumple } (\ast)\ \Rightarrow\ \tp^\ast=\tp_A, \]
+y se prueba con $1_A$ en los dos sentidos, usando que $1_A:(A,\tp_1)\to(A,\tp_2)$ continua $\iff \tp_2\subseteq\tp_1$.
+
+\ficha{Restricción y correstricción} \fnt{TS Obs.\ 3.1.4}
+\[ g:X\to Y\ \text{continua}\ \Rightarrow\ g|_A=g\circ i\ \text{continua}; \]
+\[ h:Z\to X\ \text{continua}\ \wedge\ h(Z)\subseteq A\ \Rightarrow\ h|^{A}:Z\to A\ \text{continua}. \]
+
+\ficha{Clausura relativa y métrica restringida} \fnt{GT 2.7.4--2.7.5}
+\[ B\subseteq A\subseteq X:\quad \cl B^{\,A}=\cl B^{\,X}\cap A;\qquad
+(X,d):\ B_{d|_A}(a,\varepsilon)=\Bola{a}{\varepsilon}\cap A,\ \text{luego}\ \tp_{d|_A}=\big(\tp_d\big)_A. \]
+
+\ficha{Subespacio abierto y cerrado} \fnt{TS Def.\ 3.1.6, Ej.\ 3.1.7}
+\[ A\ \text{subespacio abierto}\iff A\in\tp\iff i:A\to X\ \text{es abierta}; \]
+\[ A\ \text{subespacio cerrado}\iff A\ \text{cerrado en } X\iff i:A\to X\ \text{es cerrada}. \]
+\[ A\in\tp\ \Rightarrow\ \big(V\in\tp_A\Rightarrow V\in\tp\big). \]
+
+\end{itemize}
+
+\clearpage
+\section*{Apéndice C: lo que entra en el segundo parcial}
+\addcontentsline{toc}{section}{Apéndice C: lista para el segundo parcial}
+
+\noindent\emph{Mismo formato que el Apéndice B: cada ítem en lenguaje natural y en lenguaje lógico. Arranca con las clases 9 (producto, 10/9/2026) y 10 (conexidad, 24/9/2026); la docente anticipó que producto se evalúa ``con conexidad o con compacidad''. La lista se completa a medida que avance la cursada (C.3 marca lo anunciado y todavía no dictado). $X\times Y$ lleva siempre la topología producto.}
+
+\subsection*{C.1 Topología producto}
+
+\begin{itemize}[leftmargin=1.3em,itemsep=3pt]
+
+\ficha{Continuidad en una base del codominio} Para ver que $f$ es continua alcanza con que la preimagen de cada básico sea abierta (no hace falta que sea básica). \fnt{TP p.\,4}
+\[ \beta\ \text{base de }\tp_Y\ \wedge\ \forall B\in\beta:\ f^{-1}(B)\in\tp_X\ \Rightarrow\ f\ \text{continua}. \]
+
+\ficha{Base de rectángulos} Abierto por abierto: cubre, y la intersección de dos rectángulos es un rectángulo. \fnt{TP p.\,1; MS \S5.4}
+\[ \beta_{X\times Y}=\{U\times V:\ U\in\tp_X,\ V\in\tp_Y\};\qquad (U_1\times V_1)\cap(U_2\times V_2)=(U_1\cap U_2)\times(V_1\cap V_2). \]
+
+\ficha{Topología producto} Los abiertos son uniones de rectángulos: cada punto tiene un rectángulo alrededor. \fnt{TP pp.\,1--2}
+\[ G\in\tp_{X\times Y}\iff G=\bigcup_{\alpha}U_\alpha\times V_\alpha\iff \forall (x,y)\in G\ \exists U\in\tp_X\ \exists V\in\tp_Y:\ (x,y)\in U\times V\subseteq G. \]
+
+\ficha{El error frecuente} Un abierto del producto no es un rectángulo, ni el producto de sus proyecciones. \fnt{TP p.\,2}
+\[ G\in\tp_{X\times Y}\ \not\Rightarrow\ G=U\times V;\qquad G\ne\pi_X(G)\times\pi_Y(G)\ \text{en general}. \]
+
+\ficha{Tubos} La preimagen por una proyección es un tubo, y un rectángulo es la intersección de dos tubos.
+\[ \pi_X^{-1}(U)=U\times Y;\qquad \pi_Y^{-1}(V)=X\times V;\qquad U\times V=\pi_X^{-1}(U)\cap\pi_Y^{-1}(V). \]
+
+\ficha{La menos fina que hace continuas a las proyecciones} Las proyecciones son continuas, y cualquier otra topología que lo logre tiene más abiertos. \fnt{TP p.\,2; GT 2.8.11}
+\[ \pi_X,\pi_Y\ \text{continuas};\qquad \big(\pi_X,\pi_Y:(X\times Y,\sigma)\to X,Y\ \text{continuas}\big)\Rightarrow \tp_{X\times Y}\subseteq\sigma. \]
+
+\ficha{Continuidad hacia un producto} Una función al producto es continua exactamente cuando sus dos coordenadas lo son. \fnt{TP p.\,3; MS Prop.\ 5.10; GT 2.8.12}
+\[ f:Z\to X\times Y\ \text{continua}\iff \pi_X\circ f\ \text{y}\ \pi_Y\circ f\ \text{continuas}. \]
+
+\ficha{Funciones armadas coordenada a coordenada} \fnt{TP ej.\ 3}
+\[ f,g\ \text{continuas}\ \Rightarrow\ (f,g):x\mapsto\big(f(x),g(x)\big)\ \text{y}\ f\times g:(x,y)\mapsto\big(f(x),g(y)\big)\ \text{continuas}; \]
+\[ x\mapsto(x,y_0)\ \text{y}\ y\mapsto(x_0,y)\ \text{continuas (copias de los factores dentro del producto)}. \]
+
+\ficha{Proyecciones abiertas, no cerradas} La sombra de un abierto es abierta; la de un cerrado puede no ser cerrada. \fnt{TP pp.\,3--4; GT Ej.\ 2.8.16; MS Prop.\ 5.9, Obs.\ 5.4}
+\[ G\in\tp_{X\times Y}\Rightarrow \pi_X(G)\in\tp_X;\qquad F=\{y=\tfrac1x,\ x>0\}\ \text{cerrado},\ \ \pi_X(F)=(0,+\infty)\ \text{no cerrado}. \]
+
+\ficha{Clausura e interior de un producto} Se calculan coordenada a coordenada. \fnt{TP ej.\ 1; MS Prop.\ 5.11}
+\[ \cl{A\times B}=\cl A\times\cl B;\qquad \intr(A\times B)=\intr A\times\intr B. \]
+
+\ficha{Hausdorff por Hausdorff} \fnt{TP ej.\ 2; MS Prop.\ 5.12}
+\[ X,Y\ \text{son } T_2\ \Rightarrow\ X\times Y\ \text{es } T_2\qquad(\text{separar con tubos } U_1\times Y,\ U_2\times Y). \]
+
+\ficha{$\R^n$ y los productos métricos} \fnt{TP p.\,2; MS Ejemplos 5.3} (se enuncia, no se demuestra)
+\[ (\R^n,\tp_u)=(\R,\tp_u)\times\dots\times(\R,\tp_u);\qquad \tp_{d_{\max}}=\tp_{d_{sum}}=\tp_{d_e}=\tp_{X\times Y}\ \text{sobre } (X,d)\times(Y,\rho). \]
+
+\end{itemize}
+
+\subsection*{C.2 Conexidad}
+
+\begin{itemize}[leftmargin=1.3em,itemsep=3pt]
+
+\ficha{Disconexo, conexo} Disconexo es partirse en dos abiertos no vacíos disjuntos; conexo es no poder hacerlo. Un subconjunto es conexo si lo es como subespacio. \fnt{GT 4.4.1}
+\[ X\ \text{disconexo}\iff \exists U,V\in\tp:\ U,V\ne\emptyset\ \wedge\ U\cap V=\emptyset\ \wedge\ U\cup V=X;\qquad A\ \text{conexo}\iff(A,\tp_A)\ \text{conexo}. \]
+
+\ficha{Desconexión con abiertos del espacio grande} $G$ y $H$ pueden cortarse, pero no sobre $A$. \fnt{clase 10, Obs.\ 2.3}
+\[ A\ \text{no conexo}\iff \exists G,H\in\tp:\ G\cap A\ne\emptyset\ \wedge\ H\cap A\ne\emptyset\ \wedge\ G\cap H\cap A=\emptyset\ \wedge\ A\subseteq G\cup H. \]
+
+\ficha{Ejemplos} Discreto con dos puntos o más: disconexo; indiscreto: todo conexo; $\R-\{0\}$: disconexo. \fnt{GT Ej.\ 4.4.3, Prop.\ 4.5.4}
+\[ (X,\tp_{dis}):\ A\ \text{conexo}\iff |A|\le1;\qquad (X,\tp_{ind}):\ \text{todo } A\ \text{conexo};\qquad \R-\{0\}=(-\infty,0)\ \dot\cup\ (0,+\infty). \]
+
+\ficha{Conexo $\iff$ sin abiertos-cerrados propios} Equivalentemente, sin subconjuntos propios de frontera vacía. \fnt{GT 4.4.2}
+\[ X\ \text{conexo}\iff \big(U\in\tp\ \wedge\ U\ \text{cerrado}\Rightarrow U\in\{\emptyset,X\}\big)\iff \big(\fr U=\emptyset\Rightarrow U\in\{\emptyset,X\}\big). \]
+
+\ficha{Un conexo queda de un lado de un abierto-cerrado} \fnt{MS Prop.\ 7.4}
+\[ C\ \text{conexo}\ \wedge\ A\ \text{abierto y cerrado}\ \Rightarrow\ C\subseteq A\ \vee\ C\subseteq X-A. \]
+
+\ficha{Imagen continua de un conexo} La continuidad tira desconexiones para atrás, así que conserva la conexidad hacia adelante. \fnt{GT 4.4.7}
+\[ f\ \text{continua}\ \wedge\ A\ \text{conexo}\ \Rightarrow\ f(A)\ \text{conexo};\qquad X\cong Y\Rightarrow(X\ \text{conexo}\iff Y\ \text{conexo}). \]
+
+\ficha{Menos abiertos, más conexo} \fnt{MS Lema 7.2}
+\[ (X,\tp_1)\ \text{conexo}\ \wedge\ \tp_2\subseteq\tp_1\ \Rightarrow\ (X,\tp_2)\ \text{conexo}. \]
+
+\ficha{Espacio discreto} \fnt{GT 4.5.2}
+\[ (X,\tp)\ \text{discreto}\iff \forall x:\ \{x\}\in\tp\iff\tp=\mathcal P(X). \]
+
+\ficha{Conexo $\iff$ toda continua a un discreto es constante} \fnt{GT 4.5.5}
+\[ X\ \text{conexo}\iff \forall f:X\to(Y,\tp_{dis})\ \text{continua}:\ f\ \text{constante}\iff \forall f:X\to(\{0,1\},\tp_{dis})\ \text{continua}:\ f\ \text{constante}. \]
+
+\ficha{Dos puntos en un conexo} La herramienta principal para probar que algo \emph{es} conexo. \fnt{GT 4.5.6}
+\[ X\ \text{conexo}\iff \forall a,b\in X\ \exists C\ \text{conexo}:\ a,b\in C;\qquad B\ \text{conexo}\iff\forall a,b\in B\ \exists C\ \text{conexo}:\ a,b\in C\subseteq B. \]
+
+\ficha{Unión de dos conexos que se cortan} \fnt{GT 4.5.7}
+\[ A,B\ \text{conexos}\ \wedge\ A\cap B\ne\emptyset\ \Rightarrow\ A\cup B\ \text{conexo}. \]
+
+\ficha{Uniones de familias} Uno que corta a todos, dos a dos, o en cadena. \fnt{GT 4.5.7--4.5.9; guía de conexidad, ejs.\ 5--7}
+\[ \Big(\exists\alpha_0\,\forall\alpha:\ C_\alpha\cap C_{\alpha_0}\ne\emptyset\Big)\ \vee\ \Big(\forall\alpha,\beta:\ C_\alpha\cap C_\beta\ne\emptyset\Big)\ \vee\ \Big(\forall n:\ C_n\cap C_{n+1}\ne\emptyset\Big)\ \Rightarrow\ \textstyle\bigcup C_\alpha\ \text{conexo}. \]
+
+\ficha{Intersección, frontera e interior: no} \fnt{clase 10, Obs.\ 7.3 y 7.6}
+\[ S^1\cap\{y=0\}=\{(\pm1,0)\}\ \text{no conexo};\qquad \fr[1,2]=\{1,2\};\qquad \intr\big(\Bolac{(-1,0)}{1}\cup\Bolac{(1,0)}{1}\big)\ \text{no conexo}. \]
+
+\ficha{Sándwich} Lo que está entre un conexo y su clausura es conexo. \fnt{GT 4.4.8}
+\[ A\ \text{conexo}\ \wedge\ A\subseteq B\subseteq\cl A\ \Rightarrow\ B\ \text{conexo};\qquad A\ \text{conexo}\Rightarrow\cl A\ \text{conexo}. \]
+
+\ficha{Basta tocar la clausura} \fnt{CX 1 y 2}
+\[ A,B\ \text{conexos}\ \wedge\ \cl A\cap B\ne\emptyset\Rightarrow A\cup B\ \text{conexo};\qquad A\ \text{conexo y denso}\ \wedge\ A\subseteq B\Rightarrow B\ \text{conexo}. \]
+
+\ficha{Cruzar la frontera} Un conexo que tiene puntos adentro y afuera de $B$ toca el borde de $B$. \fnt{CX 14}
+\[ A\ \text{conexo}\ \wedge\ A\cap B\ne\emptyset\ \wedge\ A\cap(X-B)\ne\emptyset\ \Rightarrow\ A\cap\fr B\ne\emptyset. \]
+
+\ficha{Gráfico de una continua} \fnt{CX 8}
+\[ X\ \text{conexo}\ \wedge\ f:X\to Y\ \text{continua}\ \Rightarrow\ \{(x,f(x))\}\ \text{conexo en } X\times Y. \]
+
+\ficha{Totalmente disconexo} Cualquier par de puntos se separa con una desconexión. \fnt{CX 11--13}
+\[ \forall x\ne y\ \exists U,V\in\tp:\ x\in U,\ y\in V,\ U\cap V=\emptyset,\ U\cup V=X\ \Rightarrow\ T_2\ \wedge\ \text{conexos}=\text{puntos};\quad \text{ej.: } \Q,\ \text{Sorgenfrey}. \]
+
+\ficha{Peine del topólogo} Conexo por sándwich. \fnt{\texttt{Peine-del-Topologo.pdf}}
+\[ E=(K\times[0,1])\cup([0,1]\times\{0\})\ \text{conexo};\qquad E\subseteq R\subseteq P=\cl E\ \Rightarrow\ R,P\ \text{conexos}. \]
+
+\ficha{Producto de conexos} Se unen dos puntos con una ``cruz'' formada por una copia de cada factor. \fnt{clase 10, Prop.\ 8.1; MS Teo.\ 7.12}
+\[ X,Y\ \text{conexos}\iff X\times Y\ \text{conexo}\quad(X\times Y\ne\emptyset);\qquad C=(X\times\{y_1\})\cup(\{x_2\}\times Y). \]
+
+\ficha{Producto menos un rectángulo propio} \fnt{\texttt{Producto-de-Conexos.pdf}}
+\[ X,Y\ \text{conexos}\ \wedge\ A\subsetneq X\ \wedge\ B\subsetneq Y\ \Rightarrow\ (X\times Y)-(A\times B)\ \text{conexo}. \]
+
+\end{itemize}
+
+\subsection*{C.3 Anunciado y todavía no dictado}
+
+\begin{itemize}[leftmargin=1.3em,itemsep=3pt]
+
+\ficha{Conexos de la recta} \fnt{GT 4.4.4 y 2.7.6}
+\[ A\subseteq(\R,\tp_u)\ \text{conexo}\iff \forall a,b\in A\ \big(a\le b\Rightarrow[a,b]\subseteq A\big)\iff A\ \text{es un intervalo}. \]
+
+\ficha{Bolzano} \fnt{GT 4.5.1 $=$ 2.8.3}
+\[ X\ \text{conexo}\iff \forall f:X\to\R\ \text{continua}:\ \big(\exists x_1,x_2:\ f(x_1)<0<f(x_2)\big)\Rightarrow\exists x_0:\ f(x_0)=0. \]
+
+\ficha{Componentes conexas, conexión por caminos, compacidad} \fnt{GT 4.1--4.3, 4.6; cronograma; CX 15--23}
+Pendientes; se agregan a esta lista cuando se dicten. Ya anticipados en el material: el peine reducido es conexo y no arcoconexo; el producto de arcoconexos es arcoconexo (camino $t\mapsto(\alpha(t),\beta(t))$).
+
+\end{itemize}
+
+\clearpage
+\section*{Apéndice D: glosario de notación}
+\addcontentsline{toc}{section}{Apéndice D: glosario de notación}
+
+\noindent\emph{Símbolos usados en este apunte, con su lectura y el lugar donde aparecen definidos. Cuando dos textos usan notaciones distintas se indican las dos.}
+
+\newcommand{\gl}[2]{#1 & #2 \\[1.5pt]}
+\newcommand{\gltit}[1]{\multicolumn{2}{@{}l@{}}{\vspace{2pt}\textbf{#1}}\\[2pt]}
+
+\begin{longtable}{@{}p{4.3cm}p{11.0cm}@{}}
+\hline
+\textbf{Símbolo} & \textbf{Lectura y significado}\\
+\hline
+\endfirsthead
+\hline
+\textbf{Símbolo} & \textbf{Lectura y significado}\\
+\hline
+\endhead
+\gltit{Conjuntos y lógica}
+\gl{$\N,\Z,\Q,\R$}{Naturales, enteros, racionales, reales. $\R-\Q$: irracionales.}
+\gl{$\R^n$}{Espacio real $n$-dimensional. $\R^*=\R\cup\{-\infty,+\infty\}$: recta real extendida.}
+\gl{$\mathcal P(X)$}{Partes de $X$: la familia de \emph{todos} los subconjuntos de $X$.}
+\gl{$X-A$}{Complemento de $A$ en $X$. Otros textos escriben $X\setminus A$ o $A^{c}$.}
+\gl{$A\subseteq B$, $A\subsetneq B$}{Contenido; contenido y distinto (inclusión estricta).}
+\gl{$A\,\dot\cup\,B$}{Unión disjunta: la unión, con el dato adicional de que $A\cap B=\emptyset$.}
+\gl{$\forall,\ \exists,\ \neg$}{Para todo; existe; negación.}
+\gl{$\wedge,\ \vee$}{Conjunción (``y''); disyunción (``o'', inclusivo).}
+\gl{$\Rightarrow,\ \iff$}{Implica; si y sólo si. En el texto también ``sii''.}
+\gl{$:=$}{Igualdad por definición (se define el lado izquierdo).}
+\gl{$\inf S$}{Ínfimo de $S\subseteq\R$: la mayor de sus cotas inferiores. Dos propiedades, que son las que se usan: (i) $\inf S\le s$ para todo $s\in S$; (ii) para todo $\varepsilon>0$ existe $s\in S$ con $s<\inf S+\varepsilon$. \emph{Puede no pertenecer a $S$}: si pertenece se llama mínimo.}
+\gl{$\sup S$}{Supremo: la menor de las cotas superiores, con las propiedades simétricas. Si pertenece a $S$ es el máximo.}
+\hline
+\gltit{Espacios métricos y normados}
+\gl{$(X,d)$}{Espacio métrico: conjunto $X$ con distancia $d$. Otras letras usadas: $\rho$, $d'$.}
+\gl{$d_e,\ d_{\text{taxi}},\ d_{\max}$}{Distancias euclídea, del taxi (o de la suma) y del máximo en $\R^n$.}
+\gl{$d_D$}{Distancia discreta: vale $1$ entre puntos distintos y $0$ en la diagonal.}
+\gl{$d_{sum},\ d^2_{\max}$}{Distancias sobre el producto $X\times X$ (suma y máximo de las coordenadas).}
+\gl{$d|_A$}{Restricción de $d$ a $A\times A$: la métrica heredada por un subconjunto.}
+\gl{$\norm{v}$}{Norma de $v$. $\norm{\cdot}_{\text{taxi}}$, $\norm{\cdot}_{\max}$: normas asociadas a esas distancias.}
+\gl{$(u,v)$}{Producto interno de $u$ y $v$. Otros textos: $\langle u,v\rangle$ o $u\cdot v$.}
+\gl{$\Bola{x}{r}$}{Bola \emph{abierta} de centro $x$ y radio $r$: $\{y: d(x,y)<r\}$.}
+\gl{$\Bolac{x}{r}$}{Bola \emph{cerrada}: $\{y: d(x,y)\le r\}$. Notar corchetes vs.\ paréntesis.}
+\gl{$d(x,A)$}{Distancia de un punto a un conjunto: $\inf\{d(x,a):a\in A\}$.}
+\gl{$d(A,B)$}{Distancia entre conjuntos: $\inf\{d(a,b): a\in A,\ b\in B\}$.}
+\gl{$\delta(A)$}{Diámetro de $A$: $\sup\{d(a,b): a,b\in A\}$. $A$ acotado $\iff \delta(A)<\infty$.}
+\hline
+\gltit{Espacios topológicos}
+\gl{$(X,\tp)$}{Espacio topológico. Otras letras para topologías: $\tp'$, $\tp^\ast$, $\mathcal T$.}
+\gl{$\tp_u$, $\tp_e$}{Topología usual o euclídea de $\R$ o $\R^n$ (en \textbf{GT} aparece como ``euclídea'').}
+\gl{$\tp_d$}{Topología inducida por la distancia $d$ (la que tiene por base a las bolas).}
+\gl{$\tp_{dis},\ \tp_{ind}$}{Discreta ($=\mathcal P(X)$) e indiscreta ($=\{\emptyset,X\}$).}
+\gl{$\tp_{cof},\ \tp_{conum}$}{Cofinita (o de Zariski) y conumerable.}
+\gl{$\tp_{x_0}$}{Topología del punto excluido $x_0$.}
+\gl{$\tp_K$}{$K$-topología de $\R$, generada por los $(a,b)$ y los $(a,b)-K$ con $K=\{1/n\}$.}
+\gl{$\tp_A$}{Topología de subespacio (o relativa) sobre $A\subseteq X$: $\{U\cap A: U\in\tp\}$.}
+\gl{$\tp_\beta$}{Topología generada por la base $\beta$.}
+\gl{$\beta,\ \sigma$}{Base y subbase de una topología.}
+\gl{$\tp\subseteq\tp'$}{$\tp'$ es \emph{más fina} que $\tp$ (tiene al menos los mismos abiertos).}
+\gl{$\mathcal N_x$, $\mathcal B_x$}{Sistema de entornos de $x$; base local (base de entornos) en $x$.}
+\hline
+\gltit{Operadores sobre conjuntos}
+\gl{$\intr A$}{Interior de $A$: el mayor abierto contenido en $A$.}
+\gl{$A^{\circ}$}{Lo mismo que $\intr A$. Es la notación de \textbf{GT}, de \textbf{MS} y la que usan los enunciados de parcial; en este apunte se escribe $\intr A$.}
+\gl{$\cl{A}$}{Clausura o adherencia de $A$: el menor cerrado que contiene a $A$.}
+\gl{$A'$}{Conjunto derivado: los puntos de acumulación de $A$.}
+\gl{$\fr A$}{Frontera de $A$: $\cl{A}\cap\cl{X-A}=\cl{A}-\intr A$.}
+\gl{$\partial A$}{Lo mismo que $\fr A$. Notación habitual en los enunciados de parcial.}
+\gl{$\ext A$}{Exterior de $A$: $\intr(X-A)$.}
+\gl{$i(A),\ c(A)$}{Operadores de Kuratowski: $i(A)=\intr(\cl{A})=(\cl A)^{\circ}$ y $c(A)=\cl{\intr A}=\cl{A^{\circ}}$. En general son distintos e incomparables.}
+\gl{$\cl{B}^{\,A}$}{Clausura de $B$ \emph{relativa} al subespacio $A$ (frente a $\cl{B}^{\,X}$, en todo $X$).}
+\hline
+\gltit{Funciones}
+\gl{$f:(X,\tp)\to(Y,\tp')$}{Función entre espacios, con las topologías explicitadas.}
+\gl{$f^{-1}(B)$}{\emph{Preimagen} de $B$: $\{x\in X: f(x)\in B\}$. Siempre significa preimagen, incluso si $f$ no es biyectiva.}
+\gl{$f^{-1}$}{Función \emph{inversa}, sólo cuando se dijo que $f$ es biyectiva (homeomorfismos).}
+\gl{$f(A)$}{Imagen directa: $\{f(a): a\in A\}$.}
+\gl{$g\circ f$}{Composición: primero $f$, después $g$.}
+\gl{$f|_A$}{Restricción de $f$ al subespacio $A$ del dominio.}
+\gl{$f|^{A}$}{Correstricción: la misma función vista con codominio $A$ (requiere $f(X)\subseteq A$).}
+\gl{$\widetilde f$}{Correstricción a la imagen: $\widetilde f:X\to f(X)$.}
+\gl{$1_X$, $\mathrm{id}$}{Identidad de $X$. En \textbf{GT} aparece como $\mathrm{id}$.}
+\gl{$i:A\to X$}{Inclusión de un subconjunto: $i(a)=a$.}
+\gl{$p_i$}{Proyección $i$-ésima $\R^n\to\R$.}
+\gl{$\chi_A$}{Función característica de $A$: vale $1$ en $A$ y $0$ fuera.}
+\gl{$X\cong Y$}{$X$ e $Y$ son homeomorfos (existe una equivalencia topológica entre ellos).}
+\hline
+\gltit{Sucesiones y separación}
+\gl{$\{x_n\}_{n\ge1}$}{Sucesión de puntos de $X$.}
+\gl{$x_n\to x_0$}{Converge a $x_0$: toda cola entra en cualquier abierto que contenga a $x_0$.}
+\gl{$T_0,\ T_1,\ T_2$}{Axiomas de separación; $T_2$ es lo mismo que Hausdorff.}
+\hline
+\gltit{Productos y conexidad}
+\gl{$X\times Y$}{Producto cartesiano: pares $(x,y)$. Como espacio, lleva la topología producto.}
+\gl{$\tp_{X\times Y}$, $\tp_{prod}$}{Topología producto. En \textbf{MS}: $\tp_X\times\tp_Y$ o $\tp_{Tyc}$ (de Tychonov).}
+\gl{$\beta_{X\times Y}$}{Base de rectángulos abiertos $U\times V$, con $U\in\tp_X$, $V\in\tp_Y$.}
+\gl{$\pi_X,\ \pi_Y$}{Proyecciones $\pi_X(x,y)=x$, $\pi_Y(x,y)=y$. En \textbf{TP}: $\Pi_X,\Pi_Y$; en \textbf{MS}: $p_X,p_Y$; en \textbf{GT} ($\R^n$): $p_i$.}
+\gl{$U\times Y$, $X\times V$}{Tubos: $\pi_X^{-1}(U)$ y $\pi_Y^{-1}(V)$.}
+\gl{$(f,g)$}{Función a un producto armada por coordenadas: $x\mapsto(f(x),g(x))$.}
+\gl{$f\times g$}{Producto de funciones: $(x,y)\mapsto(f(x),g(y))$.}
+\gl{$\{x_0\}\times Y$, $X\times\{y_0\}$}{Copias de $Y$ y de $X$ dentro del producto (``rectas'' vertical y horizontal).}
+\gl{$(U,V)$ desconexión}{Par de abiertos no vacíos, disjuntos, que cubren el espacio. \textbf{MS}: separación.}
+\gl{$\delta^{\max}_2$}{En \textbf{GT}: distancia del máximo sobre un producto de dos métricos ($=d_{\max}$ de este apunte).}
+\gl{$S^1$}{Circunferencia unidad $\{(x,y)\in\R^2: x^2+y^2=1\}$.}
+\hline
+\gltit{Espacios de funciones que aparecen en los ejercicios}
+\gl{$C[a,b]$}{Funciones continuas de $[a,b]$ en $\R$.}
+\gl{$\mathcal R[0,1]$}{Funciones Riemann-integrables en $[0,1]$.}
+\gl{$\mathcal M_{n\times n}(\R)$}{Matrices reales $n\times n$; $A^{t}$ es la traspuesta.}
+\hline
+\end{longtable}
+
+\begin{intuicion}
+Los dos choques de notación que más se pagan en un parcial: (1) $f^{-1}$ delante de un conjunto es \emph{preimagen} y existe siempre, mientras que $f^{-1}$ como función sólo existe si $f$ es biyectiva --- en la demostración de que un homeomorfismo es abierto conviven los dos sentidos, escritos $(f^{-1})^{-1}(G)$; (2) los paréntesis y corchetes de $\Bola{x}{r}$ y $\Bolac{x}{r}$, que se distinguen sólo por el tipo de delimitador.
+\end{intuicion}
+
+\clearpage
+\section*{Apéndice E: catálogo de topologías de referencia}
+\addcontentsline{toc}{section}{Apéndice E: catálogo de topologías}
+
+\noindent Todas las topologías que aparecen en el apunte y en las guías, con su definición, sus cerrados y dónde se usan. Varias figuran en los ejercicios sólo por su nombre: acá está la definición que el ejercicio da por sabida.
+
+\subsection*{E.1 Las cuatro básicas}
+
+\begin{itemize}[leftmargin=1.4em,itemsep=3pt]
+\item \textbf{Discreta} $\tp_{dis}=\mathcal P(X)$ \fnt{MS Ejemplos 2.1, p.\,23}. Todo subconjunto es abierto, y también cerrado. Es la más fina de todas. Proviene de la métrica discreta $d_D$. Todo punto es aislado; las únicas sucesiones convergentes son las finalmente constantes.
+\item \textbf{Indiscreta} (o grosera) $\tp_{ind}=\{\emptyset,X\}$ \fnt{MS Ejemplos 2.1, p.\,23}. La menos fina de todas. Cerrados: $\emptyset$ y $X$. No es $T_0$ si $X$ tiene más de un punto, luego no es metrizable, y toda sucesión converge a todos los puntos.
+\item \textbf{Usual o euclídea} $\tp_u$ (también $\tp_e$) sobre $\R$ o $\R^n$: la inducida por la distancia euclídea, con base los intervalos abiertos (resp.\ las bolas abiertas). Es la topología por defecto cada vez que un ejercicio no aclara cuál usa.
+\item \textbf{Métrica} $\tp_d$ \fnt{MS Teo.\ 2.14, p.\,32}: la generada por la base de bolas $\{\Bola{x}{r}\}$ de una distancia $d$. Un espacio es \emph{metrizable} si su topología es de esta forma para alguna $d$.
+\end{itemize}
+
+\subsection*{E.2 Definidas por el tamaño del complemento}
+
+\begin{itemize}[leftmargin=1.4em,itemsep=3pt]
+\item \textbf{Cofinita} o \textbf{de Zariski} $\tp_{cof}=\{\emptyset\}\cup\{A: X-A\ \text{finito}\}$ \fnt{GT 2.1.4, p.\,19; EJ Continuidad--A.5}. Cerrados: $X$ y los conjuntos finitos. Si $X$ es infinito es $T_1$ pero no $T_2$ (dos abiertos no vacíos siempre se cortan) y no es metrizable. Sobre un $X$ finito coincide con la discreta.
+\item \textbf{Conumerable} $\tp_{conum}=\{\emptyset\}\cup\{A: X-A\ \text{numerable}\}$ \fnt{EJ Continuidad--A.6, p.\,12; MS p.\,23}. Cerrados: $X$ y los conjuntos numerables. Mismo mecanismo que la cofinita cambiando ``finito'' por ``numerable''; sobre $\R$, dos abiertos no vacíos siempre se cortan, y por eso toda función continua a $(\R,\tp_u)$ es constante.
+\end{itemize}
+
+\subsection*{E.3 Definidas por un punto distinguido}
+
+\noindent Las tres aparecen en la guía de espacios topológicos con la definición dada dentro del propio ejercicio; conviene tenerlas juntas porque se confunden entre sí.
+
+\begin{itemize}[leftmargin=1.4em,itemsep=3pt]
+\item \textbf{Punto excluido} $\tp_{x_0}=\{X\}\cup\{A\subseteq X: x_0\notin A\}$ \fnt{EJ Top--A.2, p.\,6; MS $\tp^{A}$, p.\,23}. Abiertos: todos los que \emph{evitan} $x_0$, más $X$. Cerrados: $\emptyset$ y todos los que \emph{contienen} $x_0$.
+\item \textbf{Punto incluido} $\tp^{x_0}=\{\emptyset\}\cup\{A\subseteq X: x_0\in A\}$. Es la dual de la anterior: abiertos son los que contienen a $x_0$, más $\emptyset$. El caso $X=\{a,b\}$ da el \textbf{espacio de Sierpi\'nski} $\tp=\{\emptyset,\{a\},X\}$, ejemplo canónico de $T_0$ que no es $T_1$.
+\item \textbf{Punto añadido} $\tp'=\{\emptyset\}\cup\{\{x_0\}\cup G:\ G\in\tp\}$ sobre $Y=X\cup\{x_0\}$ con $x_0\notin X$ \fnt{EJ Top--A.6, p.\,6}. Se agrega un punto que está en \emph{todos} los abiertos no vacíos. Cerrados: $Y$ y los $C\subseteq X$ con $X-C\in\tp$. El punto $x_0$ es adherente a todo conjunto no vacío, así que el espacio no es $T_0$ respecto de $x_0$.
+\end{itemize}
+
+\subsection*{E.4 Familias totalmente ordenadas sobre $\R$ y $\R^2$}
+
+\noindent El truco común: si la familia de candidatos a abiertos está \emph{totalmente ordenada} por inclusión, uniones e intersecciones arbitrarias vuelven a caer en la familia --- salvo por los casos límite, que hay que chequear a mano.
+
+\begin{itemize}[leftmargin=1.4em,itemsep=3pt]
+\item \textbf{Colas a derecha} $\tp=\{\R,\emptyset\}\cup\{(a,+\infty): a\in\R\}$ \fnt{EJ Top--A.3, p.\,6; comparar MS $\tp_{kol}$, p.\,23}. Cerrados: $\R$, $\emptyset$ y los $(-\infty,a]$. Es $T_0$ y no $T_1$. Ojo con la unión: $\bigcup_i (a_i,\infty)=(\inf a_i,\infty)$, y da $\R$ si el ínfimo es $-\infty$.
+\item \textbf{Semiplanos encajados} $U_c=\{(x,y)\in\R^2: y<x-c\}$, con $c\in\R$, más $\R^2$ y $\emptyset$ \fnt{EJ Top--A.4, p.\,6}. Cerrados: los $\{y\ge x-c\}$, más $\R^2$ y $\emptyset$. Mismo mecanismo que las colas, un piso más arriba.
+\item \textbf{Bolas cerradas concéntricas} $\{\R^2,\emptyset\}\cup\{\Bolac{(0,0)}{r}: r>0\}$ \fnt{EJ Top--A.5, p.\,6}. \emph{No} es una topología: $\bigcup_{r<1}\Bolac{0}{r}=\Bola{0}{1}$ no pertenece a la familia. Está en el catálogo justamente como el caso donde el truco del orden total falla.
+\end{itemize}
+
+\subsection*{E.5 Refinamientos de la usual en $\R$}
+
+\begin{itemize}[leftmargin=1.4em,itemsep=3pt]
+\item \textbf{$K$-topología} $\tp_K$, generada por la base $\{(a,b)\}\cup\{(a,b)-K\}$ con $K=\{1/n: n\in\N\}$ \fnt{EJ Ej.\ teórico N$^\circ$2.5, p.\,10; Munkres \S13}. Estrictamente más fina que $\tp_u$: el conjunto $\R-K$ es $\tp_K$-abierto y no $\tp_u$-abierto.
+\item \textbf{Sorgenfrey} (límite inferior) $\tp_{sor}$, generada por $\{[a,b): a<b\}$ \fnt{MS Ejemplos 2.4(7), p.\,26}. También estrictamente más fina que $\tp_u$; cada $[a,b)$ es a la vez abierto y cerrado.
+\end{itemize}
+
+\subsection*{E.6 Construidas a partir de otra}
+
+\begin{itemize}[leftmargin=1.4em,itemsep=3pt]
+\item \textbf{Subespacio} (o relativa) $\tp_A=\{U\cap A: U\in\tp\}$ sobre $A\subseteq X$. Cerrados relativos: las trazas $C\cap A$ de los cerrados de $X$.
+\item \textbf{Producto} $\tp_{X\times Y}$ sobre $X\times Y$, generada por los rectángulos $U\times V$ (\S\ref{sec:prod}). Cerrados: entre otros, los $F_1\times F_2$ con $F_i$ cerrados. $\tp_{dis}\times\tp_{dis}=\tp_{dis}$, $\tp_{ind}\times\tp_{ind}=\tp_{ind}$, $\tp_u\times\tp_u=\tp_u$ en $\R^2$.
+\item \textbf{Generada por una base} $\tp_\beta$ y \textbf{generada por una subbase} $\tp_\sigma$: las del \S4. Todas las anteriores pueden describirse así eligiendo la base adecuada.
+\end{itemize}
+
+\subsection*{E.7 Tabla de separación, metrizabilidad y conexidad}
+
+\begin{center}
+\begin{tabular}{@{}p{4.6cm}p{1.2cm}p{1.2cm}p{1.9cm}p{5.2cm}@{}}
+\hline
+\textbf{Topología} & \textbf{$T_1$} & \textbf{$T_2$} & \textbf{Conexa} & \textbf{Comentario}\\
+\hline
+Discreta ($|X|\ge2$) & sí & sí & no & métrica ($d_D$); conexos: los puntos\\
+Indiscreta ($|X|\ge2$) & no & no & sí & ni siquiera $T_0$; todo es conexo\\
+Usual en $\R$, $\R^n$ & sí & sí & sí & conexos de $\R$: los intervalos\\
+Cofinita ($X$ infinito) & sí & no & sí & no metrizable\\
+Conumerable ($X=\R$) & sí & no & sí & no metrizable\\
+Punto excluido & no & no & sí & $T_0$; el único abierto con $x_0$ es $X$\\
+Punto incluido / Sierpi\'nski & no & no & sí & $T_0$; todo abierto no vacío tiene a $x_0$\\
+Colas a derecha & no & no & sí & $T_0$; dos abiertos no vacíos se cortan\\
+$K$-topología & sí & sí & sí & más fina que la usual\\
+Sorgenfrey & sí & sí & no & $[a,b)$ es abierto y cerrado\\
+\hline
+\end{tabular}
+\end{center}
+
+\end{document}
