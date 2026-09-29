@@ -1140,6 +1140,33 @@ d_{\max}\ \le\ d_e\ \le\ d_{sum}\ \le\ 2\,d_{\max},
 de modo que \emph{inducen la misma topología} sobre $X\times X$ (mismo argumento de encaje de bolas que en la Prop.~\ref{pr:equiv}). En consecuencia, una función definida sobre $X\times X$ es continua para una de las tres si y sólo si lo es para las otras dos: en el ejercicio A.7 la respuesta es que \emph{no cambia nada}.
 \end{proposicion}
 
+\begin{lema}[Desigualdad del cuadrilátero \fnt{curso; video de cátedra \emph{La distancia es continua}; resuelto en Macho Stadler, \emph{Topología de espacios métricos}}]\label{le:cuadri}
+En $(X,d)$, para todos $x,y,z,w\in X$, la diferencia entre $d(x,y)$ y $d(z,w)$ está acotada por lo que se mueven los extremos: $x$ hasta $z$ e $y$ hasta $w$.
+\lgc{\forall x,y,z,w\in X:\quad \big|d(x,y)-d(z,w)\big|\le d(x,z)+d(y,w).}
+\end{lema}
+
+\begin{proof}
+Por la triangular dos veces, $d(x,y)\le d(x,z)+d(z,w)+d(w,y)$, es decir $d(x,y)-d(z,w)\le d(x,z)+d(y,w)$. Intercambiando los papeles de $(x,y)$ y $(z,w)$ sale la otra desigualdad.
+\end{proof}
+
+\begin{proposicion}[La distancia es una función continua \fnt{EJ, Continuidad--A.7, p.\,12; video de cátedra \emph{La distancia es continua}}]\label{pr:dcont}
+Sea $(X,d)$ métrico. Entonces $d:X\times X\to\R$ es continua, con cualquiera de las tres métricas producto (y por lo tanto con la topología producto, Obs.~\ref{ob:prodfin}). Más aún, es lipschitziana: con $d_{sum}$ sirve $\delta=\varepsilon$, con $d_{\max}$ sirve $\delta=\varepsilon/2$, y con $d_e$ sirve $\delta=\varepsilon/\sqrt2$.
+\lgc{\big|d(x,y)-d(x_0,y_0)\big|\le d_{sum}\big((x,y),(x_0,y_0)\big)\le 2\,d_{\max}\big((x,y),(x_0,y_0)\big);\\
+\forall\varepsilon>0\ \exists\delta>0:\ d_{\max}\big((x,y),(x_0,y_0)\big)<\delta\ \Rightarrow\ \big|d(x,y)-d(x_0,y_0)\big|<\varepsilon\qquad(\delta=\tfrac\varepsilon2).}
+\end{proposicion}
+
+\begin{proof}
+Con la del máximo, como en el video: dado $\varepsilon>0$, si $d_{\max}\big((x,y),(x_0,y_0)\big)<\delta$, por el Lema~\ref{le:cuadri}
+\[
+\big|d(x,y)-d(x_0,y_0)\big|\le d(x,x_0)+d(y,y_0)\le 2\,d_{\max}\big((x,y),(x_0,y_0)\big)<2\delta,
+\]
+porque cada sumando es uno de los dos ``cachitos'' cuyo máximo es $d_{\max}$. Basta $\delta=\varepsilon/2$. Con $d_{sum}$ la cuenta termina un renglón antes ($\delta=\varepsilon$); con $d_e$, se usa $d(x,x_0)+d(y,y_0)\le\sqrt2\,d_e$ (Cauchy--Schwarz en $\R^2$). Como las tres métricas producto dan los mismos abiertos, probarlo con una alcanza.
+\end{proof}
+
+\begin{observacion}[Cuándo volver al $\varepsilon$--$\delta$ \fnt{video de cátedra}]
+Aunque la continuidad se caracteriza por preimágenes de abiertos, cuando la función está definida \emph{con una distancia} (como $d$ o $d(\cdot,A)$) conviene el ``viejo método'' $\varepsilon$--$\delta$: la herramienta natural para acotar es la triangular. Es el mismo mecanismo que en la Prop.~\ref{pr:lip} ($d(\cdot,A)$ es $1$-lipschitziana, Métricos--A.7 y Continuidad--A.3): la profesora dejó los dos ejercicios duplicados a propósito para que uno recuerde al otro.
+\end{observacion}
+
 \begin{proposicion}[Lema del pegado \fnt{EJ, Continuidad--B.7, p.\,13; MS \S5.2, p.\,65}]
 Sea $f:X\to Y$ y $\mathcal F\subseteq\mathcal P(X)$ con $X=\bigcup_{F\in\mathcal F}F$, tal que $f|_F$ es continua para todo $F\in\mathcal F$. Entonces:
 \begin{enumerate}[label=(\alph*),leftmargin=2.2em,itemsep=0pt]
@@ -2203,6 +2230,9 @@ f\ \text{cerrada}\iff \forall F\ \text{cerrado de } X:\ f(F)\ \text{cerrado de }
 
 \ficha{Continuidad y densidad} La imagen de un denso por una continua sobreyectiva es densa. \fnt{EJ Continuidad--A.10}
 \[ \cl D=X\ \wedge\ f\ \text{continua y sobreyectiva}\ \Rightarrow\ \cl{f(D)}=Y. \]
+
+\ficha{La distancia es continua} Moviendo los extremos, la distancia cambia a lo sumo lo que se movieron. \fnt{EJ Continuidad--A.7; video de cátedra}
+\[ |d(x,y)-d(z,w)|\le d(x,z)+d(y,w);\qquad d:(X\times X,d_{\max})\to\R\ \text{continua con } \delta=\tfrac\varepsilon2\ (\text{con } d_{sum}:\ \delta=\varepsilon). \]
 
 \ficha{Lema del pegado} Si las restricciones son continuas, la función lo es --- con abiertos siempre, con cerrados sólo en cantidad finita. \fnt{EJ Continuidad--B.7}
 \[ X=\bigcup_{F\in\mathcal F}F\ \wedge\ \forall F\in\mathcal F:\ f|_F\ \text{continua}\ \wedge\ \mathcal F\subseteq\tp\ \Rightarrow\ f\ \text{continua}; \]

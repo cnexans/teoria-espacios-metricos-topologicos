@@ -13,7 +13,7 @@ hay que saber enunciar y demostrar.
 
 ## Contenido
 
-El apunte (`03-apunte/Topologia-apunte-compilado.pdf`, 53 páginas) tiene 10 secciones.
+El apunte (`03-apunte/Topologia-apunte-compilado.pdf`, 54 páginas) tiene 10 secciones.
 Cada enunciado indica la **ubicación exacta en la fuente** (numeración y página), y se
 distingue qué es definición (se admite), qué es proposición o teorema (hay que saber
 demostrarlo) y qué es ejemplo o contraejemplo.
