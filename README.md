@@ -13,30 +13,32 @@ hay que saber enunciar y demostrar.
 
 ## Contenido
 
-El apunte (`03-apunte/Topologia-apunte-compilado.pdf`, 54 páginas) tiene 10 secciones.
-Cada enunciado indica la **ubicación exacta en la fuente** (numeración y página), y se
+El apunte (`03-apunte/Topologia-apunte-compilado.pdf`, 94 páginas) tiene 11 secciones y
+cubre **toda la guía teórica** (caps. 1–4), no sólo lo dictado en clase: lo que todavía
+no se dio está marcado como *todavía no dictado*. Cada enunciado indica la **ubicación exacta en la fuente** (numeración y página), y se
 distingue qué es definición (se admite), qué es proposición o teorema (hay que saber
 demostrarlo) y qué es ejemplo o contraejemplo.
 
 **Primer parcial**
-1. Espacios métricos y normados: normas, producto interno, Cauchy–Schwarz, fabricación de métricas, distancia a un conjunto, bolas
+1. Espacios métricos y normados: normas, producto interno, Cauchy–Schwarz, distancias entre funciones, fabricación de métricas, distancia a un conjunto, bolas
 2. La topología de un espacio métrico: interior, adherencia, frontera y cerrados leídos con bolas
 3. Espacios topológicos: interior, clausura, acumulación, frontera, densidad, operadores de Kuratowski
 4. Bases, subbases y comparación de topologías; entornos y bases locales
 5. Axiomas de separación T₀, T₁, T₂
 6. Sucesiones y convergencia; unicidad del límite; clausura por sucesiones
-7. Continuidad: en un punto, global, álgebra de continuas, continuidad uniforme, homeomorfismos
+7. Continuidad: en un punto, global, álgebra de continuas, continuidad uniforme, la distancia es continua, homeomorfismos, inmersiones
 8. Topología de subespacio y su propiedad universal
 
 **Segundo parcial**
 
 9. Topología producto: base de rectángulos, proyecciones (continuas, abiertas, no cerradas), continuidad hacia un producto, clausura e interior de un producto
-10. Conexidad: abiertos-cerrados, imagen continua, funciones a un discreto, dos puntos en un conexo, uniones y clausura de conexos, frontera, totalmente disconexos, peine del topólogo, producto de conexos
+10. Conexidad: abiertos-cerrados, imagen continua, funciones a un discreto, dos puntos en un conexo, uniones y clausura de conexos, frontera, totalmente disconexos, peine del topólogo, producto de conexos; intervalos de ℝ y Bolzano; conexión por caminos, componentes conexas y por caminos, puntos de corte, conexión local
+11. Compacidad: recubrimientos, cerrados y Hausdorff, imagen continua y Weierstrass, lema del tubo y Tychonoff finito, compacidad en métricos (Heine–Borel, Bolzano–Weierstrass, número de Lebesgue, Heine), completitud, compacidad local
 
 **Apéndices**
 - A. Mapa de los ejercicios de las guías y la herramienta que usa cada uno
 - B. Lista para el primer parcial
-- C. Lista para el segundo parcial (se completa a medida que avanza la cursada)
+- C. Lista para el segundo parcial: producto y conexidad (dictados), más intervalos y Bolzano, caminos y componentes, y compacidad
 - D. Glosario de notación
 - E. Catálogo de topologías de referencia, con una tabla de separación, metrizabilidad y conexidad
 
