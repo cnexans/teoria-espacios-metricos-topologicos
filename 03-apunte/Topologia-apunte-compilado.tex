@@ -1526,12 +1526,12 @@ A\in\tp\Rightarrow\big(V\in\tp_A\Rightarrow V\in\tp\big);\qquad
 B\subseteq A:\ \cl B^{\,A}=\cl B^{\,X}\cap A;\qquad B_{d|_A}(a,\varepsilon)=\Bola{a}{\varepsilon}\cap A.}
 \end{proposicion}
 
-\begin{proposicion}[Intervalos: no hay abiertos-cerrados propios \fnt{GT 2.7.6, p.\,33} \noentra{va con conexidad (\S\ref{sec:bolzano}); todavía no dictado}]
+\begin{proposicion}[Intervalos: no hay abiertos-cerrados propios \fnt{GT 2.7.6, p.\,33} \fnt{demostrada en \S\ref{sec:bolzano}, clase 11}]
 Si $J\subseteq\R$ es un intervalo de cualquier tipo (incluida la recta), los únicos subconjuntos de $(J,\text{eucl.})$ simultáneamente abiertos y cerrados son $\emptyset$ y $J$. (Es la conexión de los intervalos, anticipada.)
 \lgc{J\subseteq\R\ \text{intervalo}\ \wedge\ C\subseteq J\ \text{abierto y cerrado en } J\ \Rightarrow\ C=\emptyset\ \vee\ C=J.}
 \end{proposicion}
 
-\begin{teorema}[Bolzano topológico \fnt{GT 2.8.3, p.\,35} \noentra{va con conexidad (\S\ref{sec:bolzano}); todavía no dictado}]
+\begin{teorema}[Bolzano topológico \fnt{GT 2.8.3, p.\,35} \fnt{demostrada en \S\ref{sec:bolzano}, clase 11}]
 Para $(X,\tp)$ son equivalentes:
 \begin{enumerate}[label=(\alph*),leftmargin=2.2em,itemsep=0pt]
 \item los únicos abiertos-cerrados de $X$ son $\emptyset$ y $X$;
@@ -2068,7 +2068,7 @@ $\Q$ usual: entre $x<y$ hay un irracional $r$, y $(-\infty,r)\cap\Q$, $(r,\infty
 \end{ejemplo}
 
 \begin{ejemplo}[Peine del topólogo \fnt{\texttt{Peine-del-Topologo.pdf}} \noentra{usa que $[0,1]$ es conexo}]\label{ej:peine}
-Sea $K=\{1/n: n\in\N\}$ y $E=(K\times[0,1])\cup([0,1]\times\{0\})$: dientes verticales sobre una base. $E$ es conexo (cada diente corta a la base, Prop.~\ref{pr:familias}(a)), y su clausura es el \emph{peine} $P=E\cup(\{0\}\times[0,1])$. Por el sándwich son conexos $P$ y el \emph{peine reducido} $R=E\cup\{(0,1)\}$. $R$ es el ejemplo estándar de conexo que \emph{no} es arcoconexo: ningún camino llega a $(0,1)$ (se verá con arcoconexidad, GT \S4.1; GT Ej.\ 4.2.8(4) da otro espacio con la misma propiedad).
+Sea $K=\{1/n: n\in\N\}$ y $E=(K\times[0,1])\cup([0,1]\times\{0\})$: dientes verticales sobre una base. $E$ es conexo (cada diente corta a la base, Prop.~\ref{pr:familias}(a)), y su clausura es el \emph{peine} $P=E\cup(\{0\}\times[0,1])$. Por el sándwich son conexos $P$ y el \emph{peine reducido} $R=E\cup\{(0,1)\}$. En la clase 11 se agregó: $P$ es ``alevosamente'' arcoconexo (se baja por un diente, se recorre la base y se sube) pero \emph{no es localmente arcoconexo} (``guárdenlo''). $R$ es el ejemplo estándar de conexo que \emph{no} es arcoconexo: ningún camino llega a $(0,1)$ (se verá con arcoconexidad, GT \S4.1; GT Ej.\ 4.2.8(4) da otro espacio con la misma propiedad).
 \lgc{E\subseteq R\subseteq P=\cl E\ \wedge\ E\ \text{conexo}\ \Rightarrow\ R,P\ \text{conexos}.}
 \end{ejemplo}
 
@@ -2127,9 +2127,194 @@ Si $X,Y$ son conexos, $A\subsetneq X$ y $B\subsetneq Y$, entonces $(X\times Y)-(
 Con $a_0\notin A$ y $b_0\notin B$, la cruz $(\{a_0\}\times Y)\cup(X\times\{b_0\})$ queda dentro del conjunto y es conexa. Todo punto $(x,y)$ del conjunto tiene $x\notin A$ o $y\notin B$, así que su vertical $\{x\}\times Y$ o su horizontal $X\times\{y\}$ queda dentro y corta a la cruz. Se concluye con la Prop.~\ref{pr:familias}(a).
 \end{proof}
 
-\begin{observacion}[Arcoconexos \fnt{\texttt{Producto-de-Conexos.pdf}, p.\,2} \noentra{arcoconexidad todavía no dictada}]
-El mismo apunte prueba que el producto de arcoconexos es arcoconexo: si $\alpha$ une $x_0$ con $x_1$ en $X$ y $\beta$ une $y_0$ con $y_1$ en $Y$, el camino $t\mapsto(\alpha(t),\beta(t))$ es continuo por el Cor.~\ref{co:fxg}.
+\begin{observacion}[Arcoconexos \fnt{\texttt{Producto-de-Conexos.pdf}, p.\,2}]
+El mismo apunte prueba que el producto de arcoconexos es arcoconexo (Teorema~\ref{cc:prodarco}, dictado en la clase 11).
 \end{observacion}
+
+\subsection{Intervalos de $\R$ y Bolzano}\label{sec:bolzano}
+
+\noindent Dictado en la clase 11 (28/9/2026), que retoma los postergados \textbf{GT} 2.7.6 y 2.8.3 de \S\ref{sec:sub} ``con el bagaje nuevo''. En clase: la definición de intervalo por la propiedad del segmento, el teorema \emph{intervalo $\iff$ conexo} con una prueba propia por supremo, Bolzano como caracterización de los conexos (con $f(X)$ intervalo) y la versión completa de los conexos de la recta (\textbf{GT} 4.4.4). Después de esas pruebas se conserva la demostración tipo \textbf{GT} de que $[a,b]$ es conexo, como alternativa.
+
+\begin{definicion}[Intervalo \fnt{clase 11, Def.\ 2.1; GT 2.7.6 y 4.4.4, pp.\,33 y 79, la dan por extensión}]\label{def:intervalo}
+$I\subseteq\R$ es un \emph{intervalo} si cada vez que contiene a dos puntos contiene a todos los reales que están entre ellos. Esto engloba todos los tipos: $(a,b)$, $[a,b]$, $(a,b]$, $[a,b)$, las semirrectas abiertas y cerradas y la recta entera (también $\emptyset$ y los unitarios). \textbf{GT} los define por extensión (``un intervalo de cualquier tipo''); con esta definición es inmediato probar que algo \emph{no} es un intervalo: se exhiben $a<c<b$ con $a,b\in I$ y $c\notin I$.
+\lgc{I\ \text{intervalo}\iff \forall a,b\in I\ \forall c\in\R\ \big(a<c<b\Rightarrow c\in I\big);\qquad I\ \text{no intervalo}\iff \exists a,b\in I\ \exists c\notin I:\ a<c<b.}
+\end{definicion}
+
+\begin{teorema}[En $\R$, intervalo $\iff$ conexo \fnt{clase 11, Teo.\ 2.2; versión de la docente de GT 2.7.6, p.\,33}]\label{th:intconex}
+Un subconjunto $I\subseteq\R$, con la topología usual, es conexo si y sólo si es un intervalo. En consecuencia, los únicos conexos de la recta son los intervalos.
+\lgc{I\subseteq(\R,\tp_u):\quad I\ \text{intervalo}\iff I\ \text{conexo}.}
+\end{teorema}
+
+\begin{proof}[Demostración de clase, por los dos contrarrecíprocos]
+(Conexo $\Rightarrow$ intervalo.) Si $I$ no es un intervalo, hay $a<c<b$ con $a,b\in I$ y $c\notin I$. Los rayos $U=(-\infty,c)$ y $V=(c,+\infty)$ son abiertos, $I\subseteq U\cup V=\R-\{c\}$, $U\cap V=\emptyset$, $a\in U\cap I$ y $b\in V\cap I$: por la Prop.~\ref{pr:GH}, $I$ no es conexo.
+
+(Intervalo $\Rightarrow$ conexo.) Si $I$ no es conexo, hay $U,V$ abiertos de $\R$ con $U\cap I\ne\emptyset$, $V\cap I\ne\emptyset$, $U\cap V\cap I=\emptyset$ e $I\subseteq U\cup V$. Se eligen $x_1\in U\cap I$, $x_2\in V\cap I$; son distintos, y sin pérdida de generalidad $x_1<x_2$ (si no, se intercambian $U$ y $V$). Sea
+\[
+H=\{x\in U\cap I:\ x_1\le x\le x_2\},
+\]
+no vacío ($x_1\in H$) y acotado por $x_2$; sea $s=\sup H$, con $x_1\le s\le x_2$. Se ve que $s$ ``vive en el agujero'':
+\begin{lista}
+\item \emph{$s\notin V\cap I$.} Si $s\in V$, como $V$ es abierto hay $\delta>0$ con $(s-\delta,s+\delta)\subseteq V$. Por ser $s$ el supremo, hay $h\in H$ con $s-\delta<h\le s$; entonces $h\in U\cap I$ y $h\in V$: absurdo con $U\cap V\cap I=\emptyset$. (En particular $s\ne x_2$, y $s<x_2$.)
+\item \emph{Si $s\in I$, entonces $I$ no es intervalo.} Como $s\in I\subseteq U\cup V$ y $s\notin V$, es $s\in U$; hay $\delta>0$ con $(s-\delta,s+\delta)\subseteq U$, y sea $\delta'=\min\{\delta,x_2-s\}$. Si algún $t\in(s,s+\delta')$ estuviera en $I$, sería $t\in U\cap I$ con $x_1\le t\le x_2$, o sea $t\in H$ y $t>s$: absurdo. Luego ningún punto de $(s,s+\delta')$ está en $I$, y cualquiera de ellos es un $c$ con $s<c<x_2$, $s,x_2\in I$, $c\notin I$.
+\item \emph{Si $s\notin I$}: como $s\ne x_1$ (está en $I$) y $s\ne x_2$, es $x_1<s<x_2$ con $s\notin I$.
+\end{lista}
+En todos los casos $I$ falla la definición de intervalo.
+\end{proof}
+
+\begin{observacion}[La letra chica de la prueba dictada \fnt{clase 11, Obs.\ 2.3}]
+En clase se tomó $H=\{x\in U: x_1\le x\le x_2\}$, sin pedir $x\in I$. Como $U$ y $V$ pueden cortarse \emph{fuera} de $I$, con esa $H$ el paso ``$s\in V$ es absurdo'' no cierra: el $h$ que aparece está en $U\cap V$, pero no necesariamente en $I$. Con $H\subseteq U\cap I$ (como arriba) la prueba es completa. La idea es la de la docente: ``si algo no es conexo es porque tiene un agujero, y el elemento que falla es el del medio''; las cuentas con el supremo sólo lo hacen formal.
+\end{observacion}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+\draw[->,>=Stealth,gray] (-0.3,0)--(10.3,0) node[right]{\scriptsize $\R$};
+\draw[green!50!black,line width=3pt] (0.5,0)--(4.2,0);
+\draw[green!50!black,line width=3pt] (5.6,0)--(9.5,0);
+\draw[blue!60!black,thick] (0.2,0.35)--(4.9,0.35); \node[blue!60!black,above] at (2.5,0.35) {\scriptsize $U$};
+\draw[red!60!black,thick] (4.9,-0.35)--(9.8,-0.35); \node[red!60!black,below] at (7.5,-0.35) {\scriptsize $V$};
+\node[pt] at (1.2,0) {}; \node[above] at (1.2,0.05) {\scriptsize $x_1$};
+\node[pt] at (8.6,0) {}; \node[above] at (8.6,0.05) {\scriptsize $x_2$};
+\node[pt,fill=orange!80!black] at (4.2,0) {}; \node[below] at (4.2,-0.08) {\scriptsize $s=\sup H$};
+\node[green!50!black] at (7.2,0.35) {\scriptsize $I$};
+\end{tikzpicture}
+\figtit{Figura 18. Intervalo $\Rightarrow$ conexo, por el contrarrecíproco (dibujo de la pizarra de la clase 11): $U$ y $V$ desconectan a $I$ (verde); $H$ son los puntos de $U\cap I$ entre $x_1$ y $x_2$, y su supremo $s$ marca dónde se termina $U$: a su derecha, antes de llegar a $x_2$, hay un agujero de $I$.}
+\end{figure}
+
+\begin{corolario}[Otra forma de decirlo]
+Si $I\subseteq\R$ es conexo y $a\le b$ están en $I$, entonces $[a,b]\subseteq I$. Si $A\subseteq\R$ tiene un ``agujero'' (un real que falta entre dos de sus puntos), no es conexo: $\Q$, $\R-\{0\}$, $[0,1]\cup[2,3]$.
+\lgc{I\subseteq\R\ \text{conexo}\ \wedge\ a,b\in I\ \wedge\ a\le b\ \Rightarrow\ [a,b]\subseteq I.}
+\end{corolario}
+
+\begin{teorema}[{$[a,b]$ es conexo: la prueba tipo GT \fnt{GT 2.7.6, p.\,33, para $J=[a,b]$; MS Ejemplos 7.1(11), p.\,88}}]\label{hu:abconex}
+Si $a\le b$, el intervalo cerrado $[a,b]$ con la topología usual es conexo: sus únicos subconjuntos abiertos y cerrados a la vez son $\emptyset$ y $[a,b]$.
+\lgc{a\le b\ \wedge\ C\subseteq[a,b]\ \text{abierto y cerrado en } [a,b]\ \Rightarrow\ C=\emptyset\ \vee\ C=[a,b].}
+\end{teorema}
+
+\begin{proof}
+Si $a=b$ es un punto. Sea $a<b$ y sea $C$ abierto y cerrado en $[a,b]$. Alcanza con probar:
+\[
+(\ast)\qquad a\in C\ \Longrightarrow\ C=[a,b].
+\]
+En efecto, si $a\in C$, $(\ast)$ da $C=[a,b]$; si $a\notin C$, entonces $[a,b]-C$ también es abierto y cerrado en $[a,b]$ y contiene a $a$, así que $(\ast)$ da $[a,b]-C=[a,b]$, o sea $C=\emptyset$. Por la Prop.~\ref{pr:conexclopen}, $[a,b]$ es conexo.
+
+\emph{Prueba de $(\ast)$.} Se considera el conjunto de los $t$ hasta los cuales $C$ llega ``sin cortes'':
+\[
+S=\{t\in[a,b]:\ [a,t]\subseteq C\}.
+\]
+$S\ne\emptyset$ porque $a\in S$ (es $[a,a]=\{a\}\subseteq C$), y $S$ está acotado por $b$. Por el axioma del supremo existe $s=\sup S$, y $a\le s\le b$.
+
+\emph{Paso 1: $[a,s)\subseteq C$.} Si $a\le u<s$, como $u$ no es cota superior de $S$ hay $t\in S$ con $u<t$; entonces $u\in[a,t]\subseteq C$.
+
+\emph{Paso 2: $s\in C$, luego $s\in S$ (uso de ``cerrado'').} Cada $t\in S$ está en $C$ (porque $t\in[a,t]\subseteq C$), o sea $S\subseteq C$. Por la Prop.~\ref{hu:supadh}, el supremo es adherente: $s\in\cl S\subseteq\cl C$ (clausuras en $\R$). Como $s\in[a,b]$, resulta $s\in\cl C\cap[a,b]=\cl C^{\,[a,b]}$ (Prop.~\ref{pr:subesp}(iv)), que es $C$ porque $C$ es cerrado en $[a,b]$. Con el paso 1, $[a,s]\subseteq C$, es decir $s\in S$.
+
+\emph{Paso 3: $s=b$ (uso de ``abierto'').} Supongamos $s<b$. Como $C$ es abierto en $[a,b]$, es $C=G\cap[a,b]$ con $G$ abierto de $\R$; como $s\in G$, hay $\delta>0$ con $(s-\delta,s+\delta)\subseteq G$, luego $(s-\delta,s+\delta)\cap[a,b]\subseteq C$. Sea $s'=\min\{s+\delta/2,\,b\}$; es $s<s'\le b$ y $(s,s']\subseteq(s-\delta,s+\delta)\cap[a,b]\subseteq C$. Junto con el paso 2, $[a,s']=[a,s]\cup(s,s']\subseteq C$, o sea $s'\in S$ con $s'>s=\sup S$. Absurdo.
+
+Por los pasos 2 y 3, $b=s\in S$, es decir $[a,b]\subseteq C$, y $C=[a,b]$.
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.1]
+\draw[thick] (0,0)--(10,0);
+\node[pt] at (0,0) {}; \node[below] at (0,-0.1) {\scriptsize $a$};
+\node[pt] at (10,0) {}; \node[below] at (10,-0.1) {\scriptsize $b$};
+\draw[blue!60!black,line width=3pt] (0,0)--(5.2,0);
+\node[pt,fill=red!70!black] at (5.2,0) {}; \node[below] at (5.2,-0.12) {\scriptsize $s=\sup S$};
+\draw[red!70!black,thick] (4.5,0.28)--(4.5,0.4)--(5.9,0.4)--(5.9,0.28);
+\node[red!70!black,above] at (5.2,0.4) {\scriptsize $(s-\delta,s+\delta)\cap[a,b]\subseteq C$};
+\node[blue!60!black,above] at (2.4,0.1) {\scriptsize $[a,s]\subseteq C$};
+\draw[->,>=Stealth,red!70!black] (5.25,-0.55)--(5.8,-0.55) node[right]{\scriptsize se puede avanzar: $s$ no era el supremo};
+\end{tikzpicture}
+\figtit{Figura 19. La prueba por supremo. ``Cerrado'' asegura que $C$ contiene al punto $s$ al que llega; ``abierto'' asegura que, si $s<b$, desde $s$ se puede seguir un poco más. Las dos cosas juntas sólo son compatibles con $s=b$.}
+\end{figure}
+
+\begin{intuicion}
+Es la versión rigurosa de ``para salir de $C$ habría que saltar'': se avanza desde $a$ tanto como se pueda sin salir de $C$; el punto al que se llega no puede ser un borde de $C$ ni por la izquierda (porque $C$ es cerrado) ni por la derecha (porque $C$ es abierto). Lo único de $\R$ que se usa es que todo conjunto no vacío y acotado tiene supremo: en $\Q$ la misma prueba falla, y de hecho $\Q$ es totalmente disconexo.
+\end{intuicion}
+
+\begin{corolario}[Todo intervalo es conexo; en particular $\R$ \fnt{GT 2.7.6, p.\,33}]\label{hu:intconex}
+Todo intervalo $J\subseteq\R$ (de cualquier tipo, incluida la recta) es conexo: sus únicos abiertos y cerrados relativos son $\emptyset$ y $J$. En particular $(\R,\tp_u)$ es conexo, y quedan justificados los usos de ``$\R$ es conexo'' de \S\ref{sec:conex}.
+\lgc{J\subseteq\R\ \text{intervalo}\ \Rightarrow\ J\ \text{conexo};\qquad (\R,\tp_u)\ \text{conexo}.}
+\end{corolario}
+
+\begin{proof}
+Dados $x\le y$ en $J$, el segmento $[x,y]$ está contenido en $J$ y es conexo (Teo.~\ref{hu:abconex}). Por la Prop.~\ref{pr:dospuntos} (versión para subconjuntos), $J$ es conexo.
+\end{proof}
+
+\begin{observacion}[La demostración de GT 2.7.6 y sus erratas]
+\textbf{GT} prueba el corolario directamente para $J$, con la misma idea: elige $t_0\in J-A$, toma $A_0=A\cap(-\infty,t_0)$ y su supremo $a$, y usa el Ej.\ 2.3.7 (acá Prop.~\ref{hu:supadh}) y la Nota 2.7.4 para ver que $a\in A_0$. Hay tres descuidos: escribe $(\infty,t_0)$ por $(-\infty,t_0)$; el entorno que usa al final es $\{t\in J: |t-t_0|<\delta\}$, cuando debe ser alrededor de $a$, $\{t\in J:|t-a|<\delta\}\subseteq A_0$ (con $\delta\le t_0-a$); y sólo trata el caso $A_0\ne\emptyset$ (si $A_0=\emptyset$ se hace lo mismo con $A_1=A\cap(t_0,\infty)$ y su ínfimo). La prueba de arriba evita esos casos pasando por $[a,b]$.
+\end{observacion}
+
+\begin{proposicion}[Los conexos de la recta \fnt{GT 4.4.4, p.\,79 y 4.1.5, pp.\,62--63; MS Ejemplos 7.1(11), p.\,88}]\label{hu:conexR}
+Para $A\subseteq(\R,\tp_u)$ son equivalentes:
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em,itemsep=0pt]
+\item $A$ es conexo por caminos: para todos $x,y\in A$ hay un \emph{camino} en $A$ de $x$ a $y$, es decir, una $\gamma:[0,1]\to A$ continua con $\gamma(0)=x$, $\gamma(1)=y$ \fnt{GT Defs.\ 4.1.1--4.1.2, p.\,61};
+\item $A$ es conexo;
+\item si $a\le b$ están en $A$, entonces $[a,b]\subseteq A$;
+\item $A$ es un intervalo.
+\end{enumerate}
+\lgc{A\subseteq\R:\quad A\ \text{conexo por caminos}\iff A\ \text{conexo}\\ \iff \forall a,b\in A\ \big(a\le b\Rightarrow[a,b]\subseteq A\big)\iff A\ \text{intervalo}.}
+\end{proposicion}
+
+\begin{proof}
+En clase (\textbf{clase 11}, Prop.\ 7.1) la prueba fue ``tirar números'': (1)$\Rightarrow$(2) es arcoconexo $\Rightarrow$ conexo (Prop.~\ref{cc:arcoconexo}); (2)$\Rightarrow$(4) es el Teorema~\ref{th:intconex}; (3)$\iff$(4) es la definición de intervalo; y (4)$\Rightarrow$(1) es el Ejemplo~\ref{cc:segmentos}. Con detalle:
+
+(1)$\Rightarrow$(2): dados $x,y\in A$, la imagen $\gamma([0,1])$ de un camino entre ellos es conexa (imagen continua del conexo $[0,1]$, Prop.~\ref{pr:imconex} y Teo.~\ref{hu:abconex}), está contenida en $A$ y contiene a $x$ e $y$. Por la Prop.~\ref{pr:dospuntos}, $A$ es conexo.
+
+(2)$\Rightarrow$(3), por el contrarrecíproco: si $a<t<b$ con $a,b\in A$ y $t\notin A$, los abiertos $G=(-\infty,t)$ y $H=(t,+\infty)$ de $\R$ cumplen $a\in G\cap A$, $b\in H\cap A$, $G\cap H=\emptyset$ y $A\subseteq G\cup H$ (porque $t\notin A$). Por la Prop.~\ref{pr:GH}, $A$ no es conexo.
+
+(3)$\Rightarrow$(4): si $A=\emptyset$ es un intervalo. Si no, sean $\alpha=\inf A\in[-\infty,+\infty)$ y $\beta=\sup A\in(-\infty,+\infty]$ (valen $\mp\infty$ si $A$ no está acotado de ese lado). Si $\alpha<t<\beta$, como $t$ no es cota inferior ni superior de $A$, hay $a,b\in A$ con $a<t<b$, y por (3) $t\in[a,b]\subseteq A$. Así $(\alpha,\beta)\subseteq A\subseteq[\alpha,\beta]\cap\R$, y $A$ es $(\alpha,\beta)$ con o sin cada extremo finito: un intervalo.
+
+(4)$\Rightarrow$(1): dados $x\le y$ en el intervalo $A$, $\gamma(t)=(1-t)x+ty$ es continua, $\gamma(0)=x$, $\gamma(1)=y$, y toma valores en $[x,y]\subseteq A$ \fnt{GT Ej.\ 4.1.3(1), p.\,61}. (Para $x>y$ se usa el camino recorrido al revés.)
+\end{proof}
+
+\begin{observacion}
+La implicación (2)$\Rightarrow$(3) es la que más se usa en los ejercicios, casi siempre en su forma contrarrecíproca: \emph{si a un subconjunto de $\R$ le falta un punto entre dos de los suyos, se desconecta cortando en ese punto}. Por ejemplo, $\Q$, $\R-\{0\}$ y $[0,1]\cup[2,3]$ no son conexos.
+\end{observacion}
+
+\begin{teorema}[Bolzano \fnt{GT 2.8.3, p.\,35 $=$ GT 4.5.1, p.\,80}]\label{hu:bolzano}
+Para un espacio topológico $(X,\tp)$ son equivalentes:
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em,itemsep=0pt]
+\item $X$ es conexo, es decir (Prop.~\ref{pr:conexclopen}), sus únicos abiertos y cerrados son $\emptyset$ y $X$;
+\item (valor intermedio) si $f:X\to\R$ es continua y $a\le b$ son valores de $f$, entonces $f$ toma todos los valores entre $a$ y $b$;
+\item (Bolzano) si $f:X\to\R$ es continua y toma un valor negativo y uno positivo, entonces se anula en algún punto.
+\end{enumerate}
+\lgc{X\ \text{conexo}\iff \big[\forall f:X\to\R\ \text{continua}:\ a,b\in f(X)\ \wedge\ a\le b\ \Rightarrow\ [a,b]\subseteq f(X)\big]\\
+\iff \big[\forall f:X\to\R\ \text{continua}:\ \exists x_1,x_2\ f(x_1)<0<f(x_2)\ \Rightarrow\ \exists x_0\ f(x_0)=0\big].}
+\end{teorema}
+
+\begin{proof}
+(a)$\Rightarrow$(b), por el absurdo. Sean $a=f(x_1)<b=f(x_2)$ (si $a=b$ no hay nada que probar) y supongamos que hay $t\in(a,b)$ con $t\notin f(X)$. Sea $A=f^{-1}\big((t,+\infty)\big)$. Es abierto porque $f$ es continua. Como $f$ no toma el valor $t$, también $A=f^{-1}\big([t,+\infty)\big)$, que es cerrado (preimagen de un cerrado). Además $x_2\in A$ porque $f(x_2)=b>t$, y $x_1\notin A$ porque $f(x_1)=a<t$. Entonces $A$ es abierto y cerrado, con $A\ne\emptyset$ y $A\ne X$: contradice (a).
+
+(b)$\Rightarrow$(c): si $f(x_1)<0<f(x_2)$, por (b) con $a=f(x_1)$ y $b=f(x_2)$ es $0\in[a,b]\subseteq f(X)$, o sea $f(x_0)=0$ para algún $x_0$.
+
+(c)$\Rightarrow$(a), por el contrarrecíproco. Si $A\ne\emptyset,X$ es abierto y cerrado, sea $f=1$ en $A$ y $f=-1$ en $X-A$. Es continua: la preimagen de cualquier $G\subseteq\R$ es $\emptyset$, $A$, $X-A$ o $X$ según cuáles de $\pm1$ estén en $G$, y los cuatro son abiertos. Toma el valor $-1<0$ (en $X-A\ne\emptyset$) y el valor $1>0$ (en $A\ne\emptyset$), pero no se anula: falla (c).
+\end{proof}
+
+\begin{observacion}[Errata de GT 4.5.1 \fnt{clase 11}]
+En la p.\,80, el ítem (b) de \textbf{GT} 4.5.1 está impreso sin la hipótesis ``$f$ continua''; sin ella es falso (una función cualquiera de un conexo puede tener imagen $\{0,1\}$). En la versión de la p.\,35 (\textbf{GT} 2.8.3) la palabra sí está; la docente la agregó a mano en clase.
+\end{observacion}
+
+\begin{observacion}[La prueba de (a)$\Rightarrow$(b) que se dictó \fnt{clase 11, Prop.\ 3.1}]
+En clase la docente no siguió a \textbf{GT}: ``Bolzano visto de esta manera sale en un renglón''. $f(X)$ es conexo (imagen continua de un conexo, Prop.~\ref{pr:imconex}), luego es un intervalo (Prop.~\ref{hu:conexR}), luego contiene a $[a,b]$ si contiene a $a$ y a $b$. La prueba de \textbf{GT} de arriba tiene la ventaja de no usar la caracterización de los conexos de $\R$, que en \textbf{GT} viene recién en el cap.~4. Para (c)$\Rightarrow$(a) se usó la misma $f=\pm1$, con la continuidad por el lema del pegado ($U$ y $V$ abiertos, $f$ constante en cada uno).
+\end{observacion}
+
+\begin{corolario}[Bolzano y valor intermedio clásicos \fnt{GT 2.8.3, ``Consecuencia'', p.\,36}]\label{hu:tvi}
+Sea $J\subseteq\R$ un intervalo y $f:J\to\R$ continua. Entonces $f(J)$ es un intervalo. En particular, si $f:[a,b]\to\R$ es continua y $f(a)<0<f(b)$ (o $f(a)>0>f(b)$), existe $c\in(a,b)$ con $f(c)=0$; y $f$ toma todos los valores entre $f(a)$ y $f(b)$.
+\lgc{J\ \text{intervalo}\ \wedge\ f:J\to\R\ \text{continua}\ \Rightarrow\ f(J)\ \text{intervalo};\\
+f:[a,b]\to\R\ \text{continua}\ \wedge\ f(a)\,f(b)<0\ \Rightarrow\ \exists c\in(a,b):\ f(c)=0.}
+\end{corolario}
+
+\begin{proof}
+$J$ es conexo (Cor.~\ref{hu:intconex}), luego $f(J)$ es conexo (Prop.~\ref{pr:imconex}) y, por la Prop.~\ref{hu:conexR}, un intervalo. Para la segunda parte se aplica el Teorema~\ref{hu:bolzano}(c) a $X=[a,b]$ (a $-f$ si $f(a)>0>f(b)$); el cero no está en $a$ ni en $b$ porque ahí $f\ne0$.
+\end{proof}
+
+\begin{observacion}[Cómo se usa]
+Para probar que una ecuación $g(x)=h(x)$ tiene solución en un intervalo, se aplica el corolario a $f=g-h$ y se buscan dos puntos con signos opuestos. Para probar que \emph{un espacio no es conexo}, alcanza con exhibir una continua a $\R$ que cambie de signo sin anularse; y para probar que \emph{dos espacios no son homeomorfos}, sirve comparar qué pasa al sacar un punto: $\R-\{0\}$ no es conexo (le falta el $0$ entre $-1$ y $1$), mientras que $\R^2-\{0\}$ sí lo es (unión de los rayos abiertos que salen del origen, todos cortando a la circunferencia unidad, Prop.~\ref{pr:familias}(a)). Como un homeomorfismo $f:\R\to\R^2$ se restringiría a un homeomorfismo entre $\R-\{0\}$ y $\R^2-\{f(0)\}$, resulta $\R\not\cong\R^2$.
+\end{observacion}
+
+
 
 %======================================================================
 % Fragmento conexion2: se inserta al final de la sección de Conexidad,
@@ -2139,14 +2324,14 @@ El mismo apunte prueba que el producto de arcoconexos es arcoconexo: si $\alpha$
 
 \subsection{Conexión por caminos (arcoconexión)}\label{cc:caminos}
 
-\noindent\noentra{todavía no dictado en clase} Sigue \textbf{GT} \S4.1 y \textbf{MS} \S7.3. En la guía \textbf{CX} se dice \emph{arcoconexo} para lo que \textbf{GT} llama \emph{conexo por caminos}; acá se usan las dos palabras como sinónimos (no se pide que el camino sea inyectivo). A diferencia de la conexión, es una propiedad \emph{positiva}: para probarla se exhibe algo (un camino), en lugar de descartar todas las desconexiones.
+\noindent Dictado en la clase 11 hasta el producto de arcoconexos: definiciones, ejemplos, arcoconexo $\Rightarrow$ conexo, seno y peine del topólogo, imagen continua y producto. Desde la yuxtaposición en adelante, \noentra{todavía no dictado en clase} (la docente lo anunció para el 1/10). Sigue \textbf{GT} \S4.1 y \textbf{MS} \S7.3; la docente dice \emph{arcoconexo}. En la guía \textbf{CX} se dice \emph{arcoconexo} para lo que \textbf{GT} llama \emph{conexo por caminos}; acá se usan las dos palabras como sinónimos (no se pide que el camino sea inyectivo). A diferencia de la conexión, es una propiedad \emph{positiva}: para probarla se exhibe algo (un camino), en lugar de descartar todas las desconexiones.
 
-\begin{definicion}[Camino \fnt{GT 4.1.1, p.\,61; MS Def.\ 7.6, p.\,90} \noentra{todavía no dictado en clase}]\label{cc:defcamino}
+\begin{definicion}[Camino \fnt{GT 4.1.1, p.\,61; MS Def.\ 7.6, p.\,90}]\label{cc:defcamino}
 Sea $(X,\tp)$ un espacio topológico y $x,y\in X$. Un \emph{camino de $x$ a $y$} en $X$ es una función continua $\alpha:[0,1]\to X$ (con $[0,1]$ con la topología usual) que empieza en $x$ y termina en $y$. Los puntos $x$ e $y$ son el \emph{origen} y el \emph{extremo} del camino.
 \lgc{\alpha\ \text{camino de } x \text{ a } y \text{ en } X\iff \alpha:([0,1],\tp_u)\to(X,\tp)\ \text{continua}\ \wedge\ \alpha(0)=x\ \wedge\ \alpha(1)=y.}
 \end{definicion}
 
-\begin{definicion}[Conexo por caminos, arcoconexo \fnt{GT 4.1.2, p.\,61; MS Def.\ 7.7, p.\,91} \noentra{todavía no dictado en clase}]\label{cc:defarco}
+\begin{definicion}[Conexo por caminos, arcoconexo \fnt{GT 4.1.2, p.\,61; MS Def.\ 7.7, p.\,91}]\label{cc:defarco}
 $(X,\tp)$ es \emph{conexo por caminos} (o \emph{arcoconexo}) si para cualquier par de puntos $x,y\in X$ existe un camino en $X$ de $x$ a $y$. Un subconjunto $A\subseteq X$ es conexo por caminos si lo es el subespacio $(A,\tp_A)$, es decir, si dos puntos cualesquiera de $A$ se unen con un camino \emph{que no sale de $A$}.
 \lgc{X\ \text{arcoconexo}\iff \forall x,y\in X\ \exists\alpha:[0,1]\to X\ \text{continua}:\ \alpha(0)=x\ \wedge\ \alpha(1)=y;\\
 A\subseteq X\ \text{arcoconexo}\iff \forall x,y\in A\ \exists\alpha:[0,1]\to X\ \text{continua}:\ \alpha([0,1])\subseteq A\ \wedge\ \alpha(0)=x\ \wedge\ \alpha(1)=y.}
@@ -2156,12 +2341,12 @@ A\subseteq X\ \text{arcoconexo}\iff \forall x,y\in A\ \exists\alpha:[0,1]\to X\ 
 En la versión para subconjuntos se usa que una $\alpha:[0,1]\to A$ es continua hacia $(A,\tp_A)$ si y sólo si es continua hacia $X$ (la topología de subespacio es la que hace continua a la inclusión y a las correstricciones, \S\ref{sec:sub}). Por eso se puede pensar el camino ``dentro de $X$'' y sólo pedir que su imagen quede en $A$.
 \end{observacion}
 
-\begin{ejemplo}[Intervalos y espacios normados \fnt{GT Ej.\ 4.1.3, p.\,61; MS Ejemplos 7.3(1), (4), p.\,91} \noentra{todavía no dictado en clase}]\label{cc:segmentos}
+\begin{ejemplo}[Intervalos y espacios normados \fnt{GT Ej.\ 4.1.3, p.\,61; MS Ejemplos 7.3(1), (4), p.\,91}]\label{cc:segmentos}
 \begin{lista}
 \item Todo intervalo $J\subseteq\R$ (de cualquier tipo, incluida la recta) es arcoconexo: si $x\le y$ están en $J$, entonces $[x,y]\subseteq J$, y el camino $\alpha(t)=(1-t)x+ty$ recorre $[x,y]$ de $x$ a $y$.
 \item Todo espacio normado $(V,\norm{\cdot})$ con su distancia $d(u,v)=\norm{u-v}$ es arcoconexo: el \emph{segmento} $\alpha(t)=(1-t)x+ty$ es continuo, porque
 $\norm{\alpha(t)-\alpha(s)}=\norm{(t-s)(y-x)}=|t-s|\,\norm{y-x}$, es decir, $\alpha$ es lipschitziana. En particular $(\R^n,d_2)$ es arcoconexo.
-\item Más en general, todo subconjunto \emph{convexo} de un normado (bolas abiertas o cerradas, cubos, semiespacios\dots) es arcoconexo: el segmento entre dos de sus puntos no sale del conjunto.
+\item Más en general, todo subconjunto \emph{convexo} de un normado (bolas abiertas o cerradas, cubos, semiespacios\dots) es arcoconexo: el segmento entre dos de sus puntos no sale del conjunto. La recíproca es falsa \fnt{clase 11}: una ``L'' gruesa o un anillo son arcoconexos y no convexos; para algunos pares de puntos el segmento se sale y hay que ``dar la vuelta''.
 \item Todo espacio indiscreto es arcoconexo: toda función hacia un indiscreto es continua, así que cualquier $\alpha$ con $\alpha(0)=x$ y $\alpha(1)=y$ sirve.
 \end{lista}
 \end{ejemplo}
@@ -2170,27 +2355,48 @@ $\norm{\alpha(t)-\alpha(s)}=\norm{(t-s)(y-x)}=|t-s|\,\norm{y-x}$, es decir, $\al
 En \textbf{GT} 4.1.3(2) se propone $\delta\le\varepsilon/(\norm x+\norm y)$, que no está definido si $x=y=0$. La cuenta de arriba, con $\norm{y-x}$, evita el problema (y si $x=y$ el camino es constante).
 \end{observacion}
 
-\begin{proposicion}[Arcoconexo $\Rightarrow$ conexo \fnt{GT 4.1.4, p.\,62; MS Prop.\ 7.17, p.\,91} \noentra{todavía no dictado en clase}]\label{cc:arcoconexo}
+\begin{proposicion}[Arcoconexo $\Rightarrow$ conexo \fnt{GT 4.1.4, p.\,62; MS Prop.\ 7.17, p.\,91}]\label{cc:arcoconexo}
 Si $(X,\tp)$ es conexo por caminos, entonces es conexo; equivalentemente (Prop.~\ref{pr:conexclopen}), sus únicos abiertos-cerrados son $\emptyset$ y $X$. Lo mismo para subconjuntos: un $A\subseteq X$ arcoconexo es conexo.
 \lgc{X\ \text{arcoconexo}\ \Rightarrow\ X\ \text{conexo};\qquad A\subseteq X\ \text{arcoconexo}\ \Rightarrow\ A\ \text{conexo}.}
 \end{proposicion}
 
 \begin{proof}
-Por el absurdo: sea $(U,V)$ una desconexión de $X$, y $x\in U$, $y\in V$. Sea $\alpha$ un camino de $x$ a $y$. Por continuidad $\alpha^{-1}(U)$ y $\alpha^{-1}(V)$ son abiertos de $[0,1]$; son disjuntos y cubren $[0,1]$ (porque $U,V$ lo hacen con $X$), y no son vacíos: $0\in\alpha^{-1}(U)$, $1\in\alpha^{-1}(V)$. Entonces $[0,1]$ tendría un abierto-cerrado propio, lo que contradice la proposición de \textbf{GT} 2.7.6 (``Intervalos: no hay abiertos-cerrados propios'', \S\ref{sec:sub}).
+Por el absurdo: sea $(U,V)$ una desconexión de $X$, y $x\in U$, $y\in V$. Sea $\alpha$ un camino de $x$ a $y$. Por continuidad $\alpha^{-1}(U)$ y $\alpha^{-1}(V)$ son abiertos de $[0,1]$; son disjuntos y cubren $[0,1]$ (porque $U,V$ lo hacen con $X$), y no son vacíos: $0\in\alpha^{-1}(U)$, $1\in\alpha^{-1}(V)$. Entonces $\alpha^{-1}(U)$ sería un abierto-cerrado propio de $[0,1]$, que es conexo por ser un intervalo (Teorema~\ref{th:intconex}). Es la prueba dictada en clase: ``un camino de $U$ a $V$ arrastraría la desconexión del espacio a una desconexión del $[0,1]$''.
 Otra forma, con las herramientas de la sección: $\alpha([0,1])$ es conexo (imagen continua del conexo $[0,1]$, Prop.~\ref{pr:imconex}) y contiene a $x$ e $y$; se concluye con la Prop.~\ref{pr:dospuntos}.
 \end{proof}
+
+\begin{observacion}[Errata de GT 4.1.4 \fnt{clase 11}]
+En la demostración impresa (p.\,62) se eligen $x_0\in A$, $x_1\notin A$ y a continuación el camino cumple ``$\alpha(0)=x_1$, $\alpha(1)=x_2$''; debe ser $\alpha(0)=x_0$, $\alpha(1)=x_1$.
+\end{observacion}
 
 \begin{observacion}
 La recíproca es falsa: el peine reducido del Ejemplo~\ref{ej:peine} es conexo y no es arcoconexo (se prueba en el Ejemplo~\ref{cc:peinered}); también la curva seno del topólogo $\{(x,\sin\frac1x):x>0\}\cup\big((-\infty,0]\times\{0\}\big)$ \fnt{MS Ej.\ 7.2, p.\,91} y el espacio de \textbf{GT} Ej.\ 4.2.8(4) (Ejemplo~\ref{cc:escalera}). En $\R$ las dos nociones coinciden: es la proposición ``Los conexos de la recta'' de \S\ref{sec:bolzano}, que en \textbf{GT} aparece primero en versión por caminos (\textbf{GT} 4.1.5, p.\,62) y después con conexión (\textbf{GT} 4.4.4).
 \end{observacion}
 
-\begin{proposicion}[La imagen continua de un arcoconexo es arcoconexa \fnt{GT 4.1.6, p.\,64; MS Teo.\ 7.19 y Cor.\ 7.20, pp.\,91--92} \noentra{todavía no dictado en clase}]\label{cc:imarco}
+\begin{ejemplo}[Seno del topólogo \fnt{clase 11, Ej.\ 6.1 (sólo mencionado); MS Ej.\ 7.2, p.\,91}]\label{cc:seno}
+$S=\{(x,\sin\tfrac1x): x>0\}\cup\big(\{0\}\times[-1,1]\big)\subseteq\R^2$ es conexo y no es arcoconexo. Conexo: la curva $C=\{(x,\sin\frac1x):x>0\}$ es imagen continua del intervalo $(0,\infty)$, y $C\subseteq S\subseteq\cl C$ (cada punto $(0,y)$ con $|y|\le1$ es límite de puntos de la curva, porque $\sin\frac1x$ oscila entre $-1$ y $1$ infinitas veces cerca de $0$); por el sándwich, $S$ es conexo. No arcoconexo: ningún camino va de la curva al segmento vertical (la idea es la misma que en el peine reducido, Ejemplo~\ref{cc:peinered}). En clase se mostró el dibujo y la idea, sin demostración; la docente prefiere el peine. (\textbf{MS} usa la variante con $(-\infty,0]\times\{0\}$ en lugar del segmento vertical.)
+\lgc{C=\{(x,\sin\tfrac1x):\ x>0\}\ \text{conexo}\ \wedge\ C\subseteq S\subseteq\cl C\ \Rightarrow\ S\ \text{conexo};\qquad S\ \text{no arcoconexo}.}
+\end{ejemplo}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.6]
+\draw[ejes] (-0.2,0)--(2.2,0); \draw[ejes] (0,-1.2)--(0,1.25);
+\draw[blue!60!black,thick,domain=0.035:2,samples=600,smooth] plot (\x,{sin(deg(1/\x))});
+\draw[red!70!black,very thick] (0,-1)--(0,1);
+\node[red!70!black,left] at (0,0.5) {\scriptsize $\{0\}\times[-1,1]$};
+\node[blue!60!black] at (1.5,-0.85) {\scriptsize $y=\sin\frac1x$};
+\end{tikzpicture}
+\figtit{Figura 20. El seno del topólogo: la curva oscila infinitas veces al acercarse al eje $y$. El segmento rojo está en su clausura (por eso el conjunto es conexo), pero ningún camino llega a él desde la curva.}
+\end{figure}
+
+\begin{proposicion}[La imagen continua de un arcoconexo es arcoconexa \fnt{GT 4.1.6, p.\,64; MS Teo.\ 7.19 y Cor.\ 7.20, pp.\,91--92}]\label{cc:imarco}
 Sea $f:(X,\tp)\to(Y,\tp')$ continua y $A\subseteq X$ conexo por caminos. Entonces $f(A)$ es conexo por caminos. En particular, si $X$ es arcoconexo y $f$ es sobreyectiva, $Y$ es arcoconexo; y la arcoconexión es una propiedad topológica.
 \lgc{f\ \text{continua}\ \wedge\ A\ \text{arcoconexo}\ \Rightarrow\ f(A)\ \text{arcoconexo};\qquad X\cong Y\Rightarrow\big(X\ \text{arcoconexo}\iff Y\ \text{arcoconexo}\big).}
 \end{proposicion}
 
 \begin{proof}
-Dados $p,q\in f(A)$, se eligen $x,y\in A$ con $f(x)=p$, $f(y)=q$, y un camino $\alpha$ de $x$ a $y$ dentro de $A$. Entonces $f\circ\alpha:[0,1]\to Y$ es continua (composición de continuas), $(f\circ\alpha)(0)=p$, $(f\circ\alpha)(1)=q$, y su imagen $f(\alpha([0,1]))$ está en $f(A)$.
+Como se dictó: se trabaja con la correstricción $\tilde f:A\to f(A)$, continua. Dados $p,q\in f(A)$, se eligen $x,y\in A$ con $f(x)=p$, $f(y)=q$, y un camino $\alpha$ de $x$ a $y$ dentro de $A$. Entonces $f\circ\alpha:[0,1]\to Y$ es continua (composición de continuas), $(f\circ\alpha)(0)=p$, $(f\circ\alpha)(1)=q$, y su imagen $f(\alpha([0,1]))$ está en $f(A)$.
 \end{proof}
 
 \begin{definicion}[Camino inverso y yuxtaposición \fnt{GT 4.1.9, pp.\,65--66} \noentra{todavía no dictado en clase}]\label{cc:yuxta}
@@ -2221,7 +2427,7 @@ Transitiva: $\alpha*\beta$ está bien definida porque en $t=\frac12$ las dos fó
 \draw[blue!60!black,very thick] (6.2,-0.3) .. controls (6.8,0.9) and (7.4,-0.2) .. (8.2,0.9) node[pos=0.5,below right]{\scriptsize $\alpha$};
 \draw[red!60!black,very thick] (8.2,0.9) .. controls (9.0,1.6) and (9.6,-0.9) .. (10.2,0.0) node[pos=0.55,below left]{\scriptsize $\beta$};
 \end{tikzpicture}
-\figtit{Figura 18. Yuxtaposición: en la primera mitad del tiempo se recorre $\alpha$ (azul) a doble velocidad, en la segunda $\beta$ (rojo). Pega bien porque las dos fórmulas coinciden en $t=\frac12$; la continuidad sale del lema del pegado con dos cerrados.}
+\figtit{Figura 21. Yuxtaposición: en la primera mitad del tiempo se recorre $\alpha$ (azul) a doble velocidad, en la segunda $\beta$ (rojo). Pega bien porque las dos fórmulas coinciden en $t=\frac12$; la continuidad sale del lema del pegado con dos cerrados.}
 \end{figure}
 
 \begin{observacion}
@@ -2248,8 +2454,17 @@ En particular, la unión de dos arcoconexos que se cortan es arcoconexa.
 (c) Por inducción $D_n=C_1\cup\dots\cup C_n$ es arcoconexo: $D_{n}=D_{n-1}\cup C_n$ y $D_{n-1}\cap C_n\supseteq C_{n-1}\cap C_n\ne\emptyset$ (caso de dos, que es (b)). Los $D_n$ son arcoconexos y todos contienen a $D_1=C_1\ne\emptyset$, así que por (b) su unión, que es $\bigcup_n C_n$, es arcoconexa.
 \end{proof}
 
-\begin{observacion}[Productos \fnt{GT Nota 4.1.8, p.\,65 y Prop.\ 4.1.7, p.\,64; MS Teo.\ 7.21, p.\,92} \noentra{todavía no dictado en clase}]
-\textbf{GT} 4.1.7 prueba que el producto de dos (seudo)métricos arcoconexos es arcoconexo con $\delta^{\max}_2$, y la Nota 4.1.8 aclara que vale igual con $\delta_2^{\mathrm{taxi}}$, con $\delta_2^{\mathrm{eucl}}$, con la topología producto general y con finitos factores. La versión con topología producto ya está en este apunte: es la observación ``Arcoconexos'' al final de la subsección \emph{Producto de conexos} (camino $t\mapsto(\alpha(t),\beta(t))$, continuo por el Cor.~\ref{co:fxg}). La recíproca también vale, como para conexos (\textbf{MS} Teo.\ 7.21): si $X\times Y\ne\emptyset$ es arcoconexo, $X=\pi_X(X\times Y)$ e $Y=\pi_Y(X\times Y)$ lo son por la Prop.~\ref{cc:imarco}.
+\begin{teorema}[Producto de arcoconexos \fnt{clase 11, Teo.\ 9.2; \texttt{Producto-de-Conexos.pdf}, p.\,2; versión topológica de GT 4.1.7, p.\,64}]\label{cc:prodarco}
+Si $X$ e $Y$ son arcoconexos, $X\times Y$ (con la topología producto) es arcoconexo: el camino de $(x_0,y_0)$ a $(x_1,y_1)$ se arma coordenada a coordenada.
+\lgc{X,Y\ \text{arcoconexos}\ \Rightarrow\ X\times Y\ \text{arcoconexo};\qquad \gamma(t)=\big(\alpha(t),\beta(t)\big).}
+\end{teorema}
+
+\begin{proof}
+Sean $\alpha$ un camino de $x_0$ a $x_1$ en $X$ y $\beta$ uno de $y_0$ a $y_1$ en $Y$. El camino $\gamma(t)=(\alpha(t),\beta(t))$ es continuo porque sus dos coordenadas lo son (Cor.~\ref{co:fxg}: es la función $(\alpha,\beta)$, que \texttt{Producto-de-Conexos.pdf} escribe $\alpha\times\beta$), y $\gamma(0)=(x_0,y_0)$, $\gamma(1)=(x_1,y_1)$. ``Es un camino según la velocidad que haya avanzado cada uno; no piensen en linealidad'' (la docente).
+\end{proof}
+
+\begin{observacion}[Productos \fnt{GT Nota 4.1.8, p.\,65 y Prop.\ 4.1.7, p.\,64; MS Teo.\ 7.21, p.\,92}]
+\textbf{GT} 4.1.7 prueba que el producto de dos (seudo)métricos arcoconexos es arcoconexo con $\delta^{\max}_2$, y la Nota 4.1.8 aclara que vale igual con $\delta_2^{\mathrm{taxi}}$, con $\delta_2^{\mathrm{eucl}}$, con la topología producto general y con finitos factores. La versión con topología producto es el Teorema~\ref{cc:prodarco}. La recíproca también vale, como para conexos (\textbf{MS} Teo.\ 7.21): si $X\times Y\ne\emptyset$ es arcoconexo, $X=\pi_X(X\times Y)$ e $Y=\pi_Y(X\times Y)$ lo son por la Prop.~\ref{cc:imarco}.
 \end{observacion}
 
 \begin{ejemplo}[Espacios arcoconexos conocidos \fnt{GT Ej.\ 4.1.13, pp.\,68--69; MS Ejemplos 7.3, p.\,91} \noentra{todavía no dictado en clase}]\label{cc:ejarco}
@@ -2342,7 +2557,7 @@ Sea $X\subseteq\R^2$ la unión del eje $OX$, del eje $OY$ y de las rectas vertic
 La guía pide lo mismo con el eje $Y$ y las rectas $y=nx$ \fnt{CX 15}: arcoconexo porque todas las rectas pasan por el origen, y no localmente arcoconexo en los puntos del eje $Y$ distintos del origen, con el mismo tipo de argumento.
 \end{ejemplo}
 
-\begin{ejemplo}[El peine reducido no es arcoconexo \fnt{\texttt{Peine-del-Topologo.pdf}; comparar GT Ej.\ 4.2.8(4)} \noentra{todavía no dictado en clase}]\label{cc:peinered}
+\begin{ejemplo}[El peine reducido no es arcoconexo \fnt{\texttt{Peine-del-Topologo.pdf}; comparar GT Ej.\ 4.2.8(4)} \noentra{enunciado en clase; la demostración quedó como lectura}]\label{cc:peinered}
 Con la notación del Ejemplo~\ref{ej:peine}: $E=(K\times[0,1])\cup([0,1]\times\{0\})$ es arcoconexo (dientes y base son segmentos, y cada diente corta a la base: Prop.~\ref{cc:uniones}(a)); el peine $P=\cl E$ también (se agrega el segmento $\{0\}\times[0,1]$, que corta a la base). Pero el peine reducido $R=E\cup\{p\}$, $p=(0,1)$, que es conexo, \emph{no} es arcoconexo: sus componentes arcoconexas son $E$ y $\{p\}$.
 \end{ejemplo}
 
@@ -2387,7 +2602,7 @@ En la demostración impresa, $V$ debe ser $\{(x,y): x>\lambda\}$ (dice $y>\lambd
 \node[below] at (1,-1){\scriptsize $A_1$}; \node[below] at (0.5,-1){\scriptsize $A_2$}; \node[below] at (0.333,-1){\scriptsize $A_3$};
 \node[above] at (0.75,1){\scriptsize $B_1$}; \node[above] at (0.4167,2){\scriptsize $B_2$};
 \end{tikzpicture}
-\figtit{Figura 19. La escalera de GT 4.2.8(4): rectas verticales $A_n$ en $x=1/n$ unidas por peldaños $B_n$ a altura $n$ (azul), más el eje $A_0$ (rojo). Para ir de $H$ (azul) a $A_0$ habría que subir infinitos peldaños: ningún camino, que es acotado, lo logra.}
+\figtit{Figura 22. La escalera de GT 4.2.8(4): rectas verticales $A_n$ en $x=1/n$ unidas por peldaños $B_n$ a altura $n$ (azul), más el eje $A_0$ (rojo). Para ir de $H$ (azul) a $A_0$ habría que subir infinitos peldaños: ningún camino, que es acotado, lo logra.}
 \end{figure}
 
 \subsection{Puntos de corte}\label{cc:corte}
@@ -2453,7 +2668,7 @@ El enunciado de \textbf{GT} 4.3.3 dice ``existe otro $N'\subseteq N$'' sin pedir
 \end{observacion}
 
 \begin{ejemplo}[\fnt{GT Ej.\ 4.3.4, p.\,77} \noentra{todavía no dictado en clase}]
-En el rombo con sus dos diagonales (Figura 20), ningún punto es de corte (el grafo sigue arcoconexo al sacar cualquier punto), pero: un punto interior de una arista, como $x$, es de corte local de orden $2$; un vértice del rombo, como $y$ (donde llegan dos lados y una diagonal), es de corte local de orden $3$; y el centro $z$ (cruce de las diagonales) es de corte local de orden $4$.
+En el rombo con sus dos diagonales (Figura 23), ningún punto es de corte (el grafo sigue arcoconexo al sacar cualquier punto), pero: un punto interior de una arista, como $x$, es de corte local de orden $2$; un vértice del rombo, como $y$ (donde llegan dos lados y una diagonal), es de corte local de orden $3$; y el centro $z$ (cruce de las diagonales) es de corte local de orden $4$.
 \end{ejemplo}
 
 \begin{figure}[ht]
@@ -2466,7 +2681,7 @@ En el rombo con sus dos diagonales (Figura 20), ningún punto es de corte (el gr
 \node[pt] at (1.1,0){}; \node[below] at (1.1,0){\scriptsize $x$};
 \draw[blue!60!black,dashed] (0,0) circle (0.35);
 \end{tikzpicture}
-\figtit{Figura 20. GT Ej.\ 4.3.4. Órdenes de corte locales: $x$ tiene $2$, $y$ tiene $3$, $z$ tiene $4$. Un entorno chico de $z$ (círculo rayado) menos $z$ se parte en $4$ trocitos de segmento; ninguno de los tres puntos es de corte global.}
+\figtit{Figura 23. GT Ej.\ 4.3.4. Órdenes de corte locales: $x$ tiene $2$, $y$ tiene $3$, $z$ tiene $4$. Un entorno chico de $z$ (círculo rayado) menos $z$ se parte en $4$ trocitos de segmento; ninguno de los tres puntos es de corte global.}
 \end{figure}
 
 \begin{proposicion}[Invarianza de los puntos de corte locales \fnt{GT 4.3.5(b), pp.\,77--78} \noentra{todavía no dictado en clase}]
@@ -2482,8 +2697,8 @@ Un homeomorfismo lleva entornos de $x$ en entornos de $f(x)$ y viceversa (es abi
 
 \noindent\noentra{todavía no dictado en clase} \textbf{GT} 4.4.5--4.4.6 y \textbf{MS} Prop.\ 7.18: la conexión es más débil que la arcoconexión, pero con una hipótesis local se recupera la equivalencia.
 
-\begin{ejemplo}[Conexo que no es arcoconexo \fnt{GT Ej.\ 4.4.5, p.\,79; MS Ej.\ 7.2, p.\,91} \noentra{todavía no dictado en clase}]
-La escalera (Ejemplo~\ref{cc:escalera}), el peine reducido (Ejemplos~\ref{ej:peine} y~\ref{cc:peinered}) y la curva seno del topólogo son conexos y no arcoconexos. Así, la Prop.~\ref{cc:arcoconexo} no tiene recíproca.
+\begin{ejemplo}[Conexo que no es arcoconexo \fnt{GT Ej.\ 4.4.5, p.\,79; MS Ej.\ 7.2, p.\,91; clase 11}]
+La escalera (Ejemplo~\ref{cc:escalera}), el peine reducido (Ejemplos~\ref{ej:peine} y~\ref{cc:peinered}) y el seno del topólogo (Ejemplo~\ref{cc:seno}) son conexos y no arcoconexos. Así, la Prop.~\ref{cc:arcoconexo} no tiene recíproca.
 \end{ejemplo}
 
 \begin{teorema}[Conexo y localmente arcoconexo $\Rightarrow$ arcoconexo \fnt{GT 4.4.6, p.\,79; MS Prop.\ 7.18, p.\,91} \noentra{todavía no dictado en clase}]\label{cc:conexlocarco}
@@ -2649,138 +2864,6 @@ Falta en la tabla ``conexo, localmente conexo y no arcoconexo'': por el Teorema~
 \end{observacion}
 
 
-\subsection{Intervalos de $\R$ y Bolzano}\label{sec:bolzano}
-
-\noindent La docente lo dejó para más adelante (\textbf{GT} 4.4.4 y 4.5.1, junto con los postergados 2.7.6 y 2.8.3 de \S\ref{sec:sub}). Van acá con las demostraciones completas, para tenerlas listas cuando se dicten. El orden es: primero $[a,b]$ es conexo (el único lugar donde se usa algo de $\R$: el axioma del supremo), después todos los intervalos, después la caracterización de los conexos de la recta y, por último, Bolzano.
-
-\begin{definicion}[Intervalo \fnt{curso; GT 2.7.6 y 4.4.4, pp.\,33 y 79 (``intervalo de cualquier tipo'')} \noentra{todavía no dictado en clase}]
-$J\subseteq\R$ es un \emph{intervalo} si es de alguna de las formas $(\alpha,\beta)$, $[\alpha,\beta)$, $(\alpha,\beta]$, $[\alpha,\beta]$ con $-\infty\le\alpha\le\beta\le+\infty$, sin corchete en un extremo infinito. Incluye a $\emptyset$, a los unitarios $[a,a]$, a las semirrectas y a $\R=(-\infty,+\infty)$. Todos cumplen que si contienen a dos puntos contienen a todo el segmento entre ellos.
-\lgc{J\ \text{intervalo}\ \Rightarrow\ \forall a,b\in J\ \big(a\le b\Rightarrow[a,b]\subseteq J\big).}
-\end{definicion}
-
-\begin{teorema}[{$[a,b]$ es conexo \fnt{GT 2.7.6, p.\,33, para $J=[a,b]$; MS Ejemplos 7.1(11), p.\,88} \noentra{todavía no dictado en clase}}]\label{hu:abconex}
-Si $a\le b$, el intervalo cerrado $[a,b]$ con la topología usual es conexo: sus únicos subconjuntos abiertos y cerrados a la vez son $\emptyset$ y $[a,b]$.
-\lgc{a\le b\ \wedge\ C\subseteq[a,b]\ \text{abierto y cerrado en } [a,b]\ \Rightarrow\ C=\emptyset\ \vee\ C=[a,b].}
-\end{teorema}
-
-\begin{proof}
-Si $a=b$ es un punto. Sea $a<b$ y sea $C$ abierto y cerrado en $[a,b]$. Alcanza con probar:
-\[
-(\ast)\qquad a\in C\ \Longrightarrow\ C=[a,b].
-\]
-En efecto, si $a\in C$, $(\ast)$ da $C=[a,b]$; si $a\notin C$, entonces $[a,b]-C$ también es abierto y cerrado en $[a,b]$ y contiene a $a$, así que $(\ast)$ da $[a,b]-C=[a,b]$, o sea $C=\emptyset$. Por la Prop.~\ref{pr:conexclopen}, $[a,b]$ es conexo.
-
-\emph{Prueba de $(\ast)$.} Se considera el conjunto de los $t$ hasta los cuales $C$ llega ``sin cortes'':
-\[
-S=\{t\in[a,b]:\ [a,t]\subseteq C\}.
-\]
-$S\ne\emptyset$ porque $a\in S$ (es $[a,a]=\{a\}\subseteq C$), y $S$ está acotado por $b$. Por el axioma del supremo existe $s=\sup S$, y $a\le s\le b$.
-
-\emph{Paso 1: $[a,s)\subseteq C$.} Si $a\le u<s$, como $u$ no es cota superior de $S$ hay $t\in S$ con $u<t$; entonces $u\in[a,t]\subseteq C$.
-
-\emph{Paso 2: $s\in C$, luego $s\in S$ (uso de ``cerrado'').} Cada $t\in S$ está en $C$ (porque $t\in[a,t]\subseteq C$), o sea $S\subseteq C$. Por la Prop.~\ref{hu:supadh}, el supremo es adherente: $s\in\cl S\subseteq\cl C$ (clausuras en $\R$). Como $s\in[a,b]$, resulta $s\in\cl C\cap[a,b]=\cl C^{\,[a,b]}$ (Prop.~\ref{pr:subesp}(iv)), que es $C$ porque $C$ es cerrado en $[a,b]$. Con el paso 1, $[a,s]\subseteq C$, es decir $s\in S$.
-
-\emph{Paso 3: $s=b$ (uso de ``abierto'').} Supongamos $s<b$. Como $C$ es abierto en $[a,b]$, es $C=G\cap[a,b]$ con $G$ abierto de $\R$; como $s\in G$, hay $\delta>0$ con $(s-\delta,s+\delta)\subseteq G$, luego $(s-\delta,s+\delta)\cap[a,b]\subseteq C$. Sea $s'=\min\{s+\delta/2,\,b\}$; es $s<s'\le b$ y $(s,s']\subseteq(s-\delta,s+\delta)\cap[a,b]\subseteq C$. Junto con el paso 2, $[a,s']=[a,s]\cup(s,s']\subseteq C$, o sea $s'\in S$ con $s'>s=\sup S$. Absurdo.
-
-Por los pasos 2 y 3, $b=s\in S$, es decir $[a,b]\subseteq C$, y $C=[a,b]$.
-\end{proof}
-
-\begin{figure}[ht]
-\centering
-\begin{tikzpicture}[scale=1.1]
-\draw[thick] (0,0)--(10,0);
-\node[pt] at (0,0) {}; \node[below] at (0,-0.1) {\scriptsize $a$};
-\node[pt] at (10,0) {}; \node[below] at (10,-0.1) {\scriptsize $b$};
-\draw[blue!60!black,line width=3pt] (0,0)--(5.2,0);
-\node[pt,fill=red!70!black] at (5.2,0) {}; \node[below] at (5.2,-0.12) {\scriptsize $s=\sup S$};
-\draw[red!70!black,thick] (4.5,0.28)--(4.5,0.4)--(5.9,0.4)--(5.9,0.28);
-\node[red!70!black,above] at (5.2,0.4) {\scriptsize $(s-\delta,s+\delta)\cap[a,b]\subseteq C$};
-\node[blue!60!black,above] at (2.4,0.1) {\scriptsize $[a,s]\subseteq C$};
-\draw[->,>=Stealth,red!70!black] (5.25,-0.55)--(5.8,-0.55) node[right]{\scriptsize se puede avanzar: $s$ no era el supremo};
-\end{tikzpicture}
-\figtit{Figura 21. La prueba por supremo. ``Cerrado'' asegura que $C$ contiene al punto $s$ al que llega; ``abierto'' asegura que, si $s<b$, desde $s$ se puede seguir un poco más. Las dos cosas juntas sólo son compatibles con $s=b$.}
-\end{figure}
-
-\begin{intuicion}
-Es la versión rigurosa de ``para salir de $C$ habría que saltar'': se avanza desde $a$ tanto como se pueda sin salir de $C$; el punto al que se llega no puede ser un borde de $C$ ni por la izquierda (porque $C$ es cerrado) ni por la derecha (porque $C$ es abierto). Lo único de $\R$ que se usa es que todo conjunto no vacío y acotado tiene supremo: en $\Q$ la misma prueba falla, y de hecho $\Q$ es totalmente disconexo.
-\end{intuicion}
-
-\begin{corolario}[Todo intervalo es conexo; en particular $\R$ \fnt{GT 2.7.6, p.\,33} \noentra{todavía no dictado en clase}]\label{hu:intconex}
-Todo intervalo $J\subseteq\R$ (de cualquier tipo, incluida la recta) es conexo: sus únicos abiertos y cerrados relativos son $\emptyset$ y $J$. En particular $(\R,\tp_u)$ es conexo, y quedan justificados los usos de ``$\R$ es conexo'' de \S\ref{sec:conex}.
-\lgc{J\subseteq\R\ \text{intervalo}\ \Rightarrow\ J\ \text{conexo};\qquad (\R,\tp_u)\ \text{conexo}.}
-\end{corolario}
-
-\begin{proof}
-Dados $x\le y$ en $J$, el segmento $[x,y]$ está contenido en $J$ y es conexo (Teo.~\ref{hu:abconex}). Por la Prop.~\ref{pr:dospuntos} (versión para subconjuntos), $J$ es conexo.
-\end{proof}
-
-\begin{observacion}[La demostración de GT 2.7.6 y sus erratas]
-\textbf{GT} prueba el corolario directamente para $J$, con la misma idea: elige $t_0\in J-A$, toma $A_0=A\cap(-\infty,t_0)$ y su supremo $a$, y usa el Ej.\ 2.3.7 (acá Prop.~\ref{hu:supadh}) y la Nota 2.7.4 para ver que $a\in A_0$. Hay tres descuidos: escribe $(\infty,t_0)$ por $(-\infty,t_0)$; el entorno que usa al final es $\{t\in J: |t-t_0|<\delta\}$, cuando debe ser alrededor de $a$, $\{t\in J:|t-a|<\delta\}\subseteq A_0$ (con $\delta\le t_0-a$); y sólo trata el caso $A_0\ne\emptyset$ (si $A_0=\emptyset$ se hace lo mismo con $A_1=A\cap(t_0,\infty)$ y su ínfimo). La prueba de arriba evita esos casos pasando por $[a,b]$.
-\end{observacion}
-
-\begin{proposicion}[Los conexos de la recta \fnt{GT 4.4.4, p.\,79 y 4.1.5, pp.\,62--63; MS Ejemplos 7.1(11), p.\,88} \noentra{todavía no dictado en clase}]\label{hu:conexR}
-Para $A\subseteq(\R,\tp_u)$ son equivalentes:
-\begin{enumerate}[label=(\arabic*),leftmargin=2.2em,itemsep=0pt]
-\item $A$ es conexo por caminos: para todos $x,y\in A$ hay un \emph{camino} en $A$ de $x$ a $y$, es decir, una $\gamma:[0,1]\to A$ continua con $\gamma(0)=x$, $\gamma(1)=y$ \fnt{GT Defs.\ 4.1.1--4.1.2, p.\,61};
-\item $A$ es conexo;
-\item si $a\le b$ están en $A$, entonces $[a,b]\subseteq A$;
-\item $A$ es un intervalo.
-\end{enumerate}
-\lgc{A\subseteq\R:\quad A\ \text{conexo por caminos}\iff A\ \text{conexo}\\ \iff \forall a,b\in A\ \big(a\le b\Rightarrow[a,b]\subseteq A\big)\iff A\ \text{intervalo}.}
-\end{proposicion}
-
-\begin{proof}
-(1)$\Rightarrow$(2): dados $x,y\in A$, la imagen $\gamma([0,1])$ de un camino entre ellos es conexa (imagen continua del conexo $[0,1]$, Prop.~\ref{pr:imconex} y Teo.~\ref{hu:abconex}), está contenida en $A$ y contiene a $x$ e $y$. Por la Prop.~\ref{pr:dospuntos}, $A$ es conexo.
-
-(2)$\Rightarrow$(3), por el contrarrecíproco: si $a<t<b$ con $a,b\in A$ y $t\notin A$, los abiertos $G=(-\infty,t)$ y $H=(t,+\infty)$ de $\R$ cumplen $a\in G\cap A$, $b\in H\cap A$, $G\cap H=\emptyset$ y $A\subseteq G\cup H$ (porque $t\notin A$). Por la Prop.~\ref{pr:GH}, $A$ no es conexo.
-
-(3)$\Rightarrow$(4): si $A=\emptyset$ es un intervalo. Si no, sean $\alpha=\inf A\in[-\infty,+\infty)$ y $\beta=\sup A\in(-\infty,+\infty]$ (valen $\mp\infty$ si $A$ no está acotado de ese lado). Si $\alpha<t<\beta$, como $t$ no es cota inferior ni superior de $A$, hay $a,b\in A$ con $a<t<b$, y por (3) $t\in[a,b]\subseteq A$. Así $(\alpha,\beta)\subseteq A\subseteq[\alpha,\beta]\cap\R$, y $A$ es $(\alpha,\beta)$ con o sin cada extremo finito: un intervalo.
-
-(4)$\Rightarrow$(1): dados $x\le y$ en el intervalo $A$, $\gamma(t)=(1-t)x+ty$ es continua, $\gamma(0)=x$, $\gamma(1)=y$, y toma valores en $[x,y]\subseteq A$ \fnt{GT Ej.\ 4.1.3(1), p.\,61}. (Para $x>y$ se usa el camino recorrido al revés.)
-\end{proof}
-
-\begin{observacion}
-La implicación (2)$\Rightarrow$(3) es la que más se usa en los ejercicios, casi siempre en su forma contrarrecíproca: \emph{si a un subconjunto de $\R$ le falta un punto entre dos de los suyos, se desconecta cortando en ese punto}. Por ejemplo, $\Q$, $\R-\{0\}$ y $[0,1]\cup[2,3]$ no son conexos.
-\end{observacion}
-
-\begin{teorema}[Bolzano \fnt{GT 2.8.3, p.\,35 $=$ GT 4.5.1, p.\,80} \noentra{todavía no dictado en clase}]\label{hu:bolzano}
-Para un espacio topológico $(X,\tp)$ son equivalentes:
-\begin{enumerate}[label=(\alph*),leftmargin=2.2em,itemsep=0pt]
-\item $X$ es conexo, es decir (Prop.~\ref{pr:conexclopen}), sus únicos abiertos y cerrados son $\emptyset$ y $X$;
-\item (valor intermedio) si $f:X\to\R$ es continua y $a\le b$ son valores de $f$, entonces $f$ toma todos los valores entre $a$ y $b$;
-\item (Bolzano) si $f:X\to\R$ es continua y toma un valor negativo y uno positivo, entonces se anula en algún punto.
-\end{enumerate}
-\lgc{X\ \text{conexo}\iff \big[\forall f:X\to\R\ \text{continua}:\ a,b\in f(X)\ \wedge\ a\le b\ \Rightarrow\ [a,b]\subseteq f(X)\big]\\
-\iff \big[\forall f:X\to\R\ \text{continua}:\ \exists x_1,x_2\ f(x_1)<0<f(x_2)\ \Rightarrow\ \exists x_0\ f(x_0)=0\big].}
-\end{teorema}
-
-\begin{proof}
-(a)$\Rightarrow$(b), por el absurdo. Sean $a=f(x_1)<b=f(x_2)$ (si $a=b$ no hay nada que probar) y supongamos que hay $t\in(a,b)$ con $t\notin f(X)$. Sea $A=f^{-1}\big((t,+\infty)\big)$. Es abierto porque $f$ es continua. Como $f$ no toma el valor $t$, también $A=f^{-1}\big([t,+\infty)\big)$, que es cerrado (preimagen de un cerrado). Además $x_2\in A$ porque $f(x_2)=b>t$, y $x_1\notin A$ porque $f(x_1)=a<t$. Entonces $A$ es abierto y cerrado, con $A\ne\emptyset$ y $A\ne X$: contradice (a).
-
-(b)$\Rightarrow$(c): si $f(x_1)<0<f(x_2)$, por (b) con $a=f(x_1)$ y $b=f(x_2)$ es $0\in[a,b]\subseteq f(X)$, o sea $f(x_0)=0$ para algún $x_0$.
-
-(c)$\Rightarrow$(a), por el contrarrecíproco. Si $A\ne\emptyset,X$ es abierto y cerrado, sea $f=1$ en $A$ y $f=-1$ en $X-A$. Es continua: la preimagen de cualquier $G\subseteq\R$ es $\emptyset$, $A$, $X-A$ o $X$ según cuáles de $\pm1$ estén en $G$, y los cuatro son abiertos. Toma el valor $-1<0$ (en $X-A\ne\emptyset$) y el valor $1>0$ (en $A\ne\emptyset$), pero no se anula: falla (c).
-\end{proof}
-
-\begin{observacion}[Otra prueba de (a)$\Rightarrow$(b)]
-Con lo de esta sección sale en una línea: $f(X)$ es conexo (imagen continua de un conexo, Prop.~\ref{pr:imconex}), luego es un intervalo (Prop.~\ref{hu:conexR}), luego contiene a $[a,b]$ si contiene a $a$ y a $b$. La prueba de \textbf{GT} tiene la ventaja de no usar la caracterización de los conexos de $\R$, que en \textbf{GT} viene recién en el cap.~4.
-\end{observacion}
-
-\begin{corolario}[Bolzano y valor intermedio clásicos \fnt{GT 2.8.3, ``Consecuencia'', p.\,36} \noentra{todavía no dictado en clase}]\label{hu:tvi}
-Sea $J\subseteq\R$ un intervalo y $f:J\to\R$ continua. Entonces $f(J)$ es un intervalo. En particular, si $f:[a,b]\to\R$ es continua y $f(a)<0<f(b)$ (o $f(a)>0>f(b)$), existe $c\in(a,b)$ con $f(c)=0$; y $f$ toma todos los valores entre $f(a)$ y $f(b)$.
-\lgc{J\ \text{intervalo}\ \wedge\ f:J\to\R\ \text{continua}\ \Rightarrow\ f(J)\ \text{intervalo};\\
-f:[a,b]\to\R\ \text{continua}\ \wedge\ f(a)\,f(b)<0\ \Rightarrow\ \exists c\in(a,b):\ f(c)=0.}
-\end{corolario}
-
-\begin{proof}
-$J$ es conexo (Cor.~\ref{hu:intconex}), luego $f(J)$ es conexo (Prop.~\ref{pr:imconex}) y, por la Prop.~\ref{hu:conexR}, un intervalo. Para la segunda parte se aplica el Teorema~\ref{hu:bolzano}(c) a $X=[a,b]$ (a $-f$ si $f(a)>0>f(b)$); el cero no está en $a$ ni en $b$ porque ahí $f\ne0$.
-\end{proof}
-
-\begin{observacion}[Cómo se usa]
-Para probar que una ecuación $g(x)=h(x)$ tiene solución en un intervalo, se aplica el corolario a $f=g-h$ y se buscan dos puntos con signos opuestos. Para probar que \emph{un espacio no es conexo}, alcanza con exhibir una continua a $\R$ que cambie de signo sin anularse; y para probar que \emph{dos espacios no son homeomorfos}, sirve comparar qué pasa al sacar un punto: $\R-\{0\}$ no es conexo (le falta el $0$ entre $-1$ y $1$), mientras que $\R^2-\{0\}$ sí lo es (unión de los rayos abiertos que salen del origen, todos cortando a la circunferencia unidad, Prop.~\ref{pr:familias}(a)). Como un homeomorfismo $f:\R\to\R^2$ se restringiría a un homeomorfismo entre $\R-\{0\}$ y $\R^2-\{f(0)\}$, resulta $\R\not\cong\R^2$.
-\end{observacion}
-
-
 %======================================================================
 \section[Compacidad]{Compacidad \noentra{todavía no dictado en clase}}\label{sec:compac}
 
@@ -2934,7 +3017,7 @@ Para cada $y\in F$ es $y\ne x$, y por $T_2$ hay abiertos disjuntos $U_y\ni x$, $
 \node[violet!70!black] at (-0.8,0.8) {\scriptsize $U=\bigcap_i U_{y_i}$};
 \node[blue!60!black] at (3.0,1.55) {\scriptsize $V=\bigcup_i V_{y_i}$};
 \end{tikzpicture}
-\figtit{Figura 22. Separar un punto de un compacto: se separa $x$ de cada $y\in F$, la compacidad deja finitos $V_{y_i}$ (punteados) y del lado de $x$ se intersecan los finitos $U_{y_i}$. Sin compacidad habría que intersecar infinitos abiertos, y eso puede no ser abierto.}
+\figtit{Figura 24. Separar un punto de un compacto: se separa $x$ de cada $y\in F$, la compacidad deja finitos $V_{y_i}$ (punteados) y del lado de $x$ se intersecan los finitos $U_{y_i}$. Sin compacidad habría que intersecar infinitos abiertos, y eso puede no ser abierto.}
 \end{figure}
 
 \begin{corolario}[En un Hausdorff, compacto implica cerrado \fnt{GT 3.3.3, p.\,48; MS Prop.\ 6.9, p.\,82}]\label{cp:compcerr}
@@ -3090,7 +3173,7 @@ Para cada $y\in Y$, $(x_0,y)\in W$ y $W$ es abierto del producto, así que hay u
 \node at (1.2,0.55) {\scriptsize $\{x_0\}\times Y$};
 \draw[->,>=Stealth,thin] (1.75,0.55)--(3.05,0.75);
 \end{tikzpicture}
-\figtit{Figura 23. El lema del tubo. La fibra compacta $\{x_0\}\times Y$ (negro) se cubre con finitos rectángulos $U_{y_i}\times V_{y_i}\subseteq W$ (rojo); la intersección de sus bases, $U$, da un tubo $U\times Y$ (violeta) todavía dentro de $W$. Es el tubo de la Figura 12, ahora ``engordando'' una fibra.}
+\figtit{Figura 25. El lema del tubo. La fibra compacta $\{x_0\}\times Y$ (negro) se cubre con finitos rectángulos $U_{y_i}\times V_{y_i}\subseteq W$ (rojo); la intersección de sus bases, $U$, da un tubo $U\times Y$ (violeta) todavía dentro de $W$. Es el tubo de la Figura 12, ahora ``engordando'' una fibra.}
 \end{figure}
 
 \begin{observacion}[Sin compacidad no hay tubo]
@@ -3251,7 +3334,7 @@ Sea $X=\{f:[0,1]\to[0,1]\ \text{continua}\}$ con $d_\infty(f,g)=\max_{x\in[0,1]}
 \node[below] at (1,0) {\scriptsize $1$};
 \node[blue!70!black] at (0.36,0.42) {\scriptsize $f_1$};
 \end{tikzpicture}
-\figtit{Figura 24. Las rampas de GT Ej.\ 3.6.9: todas a distancia $\varepsilon$ de $\theta$, con soporte cada vez más angosto. Punto a punto tienden a una función discontinua ($\varepsilon$ en $0$, $0$ en el resto), así que ninguna subsucesión converge uniformemente.}
+\figtit{Figura 26. Las rampas de GT Ej.\ 3.6.9: todas a distancia $\varepsilon$ de $\theta$, con soporte cada vez más angosto. Punto a punto tienden a una función discontinua ($\varepsilon$ en $0$, $0$ en el resto), así que ninguna subsucesión converge uniformemente.}
 \end{figure}
 
 \begin{observacion}[Errata menor de \textbf{GT} 3.6.9]
@@ -3750,7 +3833,7 @@ y se prueba con $1_A$ en los dos sentidos, usando que $1_A:(A,\tp_1)\to(A,\tp_2)
 \section*{Apéndice C: lo que entra en el segundo parcial}
 \addcontentsline{toc}{section}{Apéndice C: lista para el segundo parcial}
 
-\noindent\emph{Mismo formato que el Apéndice B: cada ítem en lenguaje natural y en lenguaje lógico. Arranca con las clases 9 (producto, 10/9/2026) y 10 (conexidad, 24/9/2026); la docente anticipó que producto se evalúa ``con conexidad o con compacidad''. La lista se completa a medida que avance la cursada (C.3--C.5 cubren lo que está en la guía teórica y todavía no se dictó en clase). $X\times Y$ lleva siempre la topología producto.}
+\noindent\emph{Mismo formato que el Apéndice B: cada ítem en lenguaje natural y en lenguaje lógico. Arranca con las clases 9 (producto, 10/9/2026), 10 (conexidad, 24/9/2026) y 11 (intervalos, Bolzano y arcoconexidad, 28/9/2026); la docente anticipó que producto se evalúa ``con conexidad o con compacidad''. La lista se completa a medida que avance la cursada (C.3--C.5 cubren lo que está en la guía teórica y todavía no se dictó en clase). $X\times Y$ lleva siempre la topología producto.}
 
 \subsection*{C.1 Topología producto}
 
@@ -3864,9 +3947,15 @@ y se prueba con $1_A$ en los dos sentidos, usando que $1_A:(A,\tp_1)\to(A,\tp_2)
 
 \end{itemize}
 
-\subsection*{C.3 Intervalos de $\R$ y Bolzano \normalfont\small (todavía no dictado)}
+\subsection*{C.3 Intervalos de $\R$ y Bolzano \normalfont\small (clase 11)}
 
 \begin{itemize}[leftmargin=1.3em,itemsep=3pt]
+
+\ficha{Intervalo} Contiene a todo lo que está entre dos de sus puntos. \fnt{clase 11}
+\[ I\ \text{intervalo}\iff \forall a,b\in I\ \forall c\ \big(a<c<b\Rightarrow c\in I\big). \]
+
+\ficha{Intervalo $\iff$ conexo} Si falta un punto $c$, los rayos $(-\infty,c)$ y $(c,\infty)$ desconectan; si hay una desconexión, el supremo de $\{x\in U\cap I: x_1\le x\le x_2\}$ marca un agujero. \fnt{clase 11; GT 2.7.6}
+\[ I\subseteq(\R,\tp_u):\ I\ \text{conexo}\iff I\ \text{intervalo};\qquad s=\sup\{x\in U\cap I:\ x_1\le x\le x_2\}. \]
 
 \ficha{$[a,b]$ es conexo} Se avanza desde $a$ hasta el supremo de lo que queda dentro del abierto-cerrado $C$: cerrado da que el supremo está en $C$, abierto que se puede seguir; sólo cierra si se llega a $b$. \fnt{GT 2.7.6}
 \[ C\subseteq[a,b]\ \text{abierto y cerrado},\ a\in C,\ s=\sup\{t:\ [a,t]\subseteq C\}\ \Rightarrow\ s\in C\ \wedge\ s=b\ \Rightarrow\ C=[a,b]. \]
@@ -3883,7 +3972,7 @@ y se prueba con $1_A$ en los dos sentidos, usando que $1_A:(A,\tp_1)\to(A,\tp_2)
 
 \end{itemize}
 
-\subsection*{C.4 Conexión por caminos, componentes y puntos de corte \normalfont\small (todavía no dictado)}
+\subsection*{C.4 Conexión por caminos, componentes y puntos de corte \normalfont\small (clase 11 hasta ``Imagen continua''; el resto, todavía no dictado)}
 
 \begin{itemize}[leftmargin=1.3em,itemsep=3pt]
 
@@ -3898,6 +3987,15 @@ y se prueba con $1_A$ en los dos sentidos, usando que $1_A:(A,\tp_1)\to(A,\tp_2)
 
 \ficha{Imagen continua de un arcoconexo} Se compone el camino con la función. \fnt{GT 4.1.6; MS Teo.\ 7.19}
 \[ f\ \text{continua}\ \wedge\ A\ \text{arcoconexo}\ \Rightarrow\ f(A)\ \text{arcoconexo}\quad(\text{camino } f\circ\alpha). \]
+
+\ficha{Convexo $\Rightarrow$ arcoconexo, no al revés} El segmento sirve en un convexo; en una ``L'' hay que dar la vuelta. \fnt{clase 11}
+\[ A\ \text{convexo}\Rightarrow A\ \text{arcoconexo};\qquad \text{anillo, ``L'': arcoconexos no convexos}. \]
+
+\ficha{Seno y peine del topólogo} Conexos (sándwich) y no arcoconexos; el peine completo es arcoconexo pero no localmente arcoconexo. \fnt{clase 11}
+\[ S=\{(x,\sin\tfrac1x):x>0\}\cup(\{0\}\times[-1,1]);\qquad C\subseteq S\subseteq\cl C\Rightarrow S\ \text{conexo};\qquad S\ \text{no arcoconexo}. \]
+
+\ficha{Producto de arcoconexos} Se avanza a la vez por las dos coordenadas. \fnt{clase 11; \texttt{Producto-de-Conexos.pdf}}
+\[ X,Y\ \text{arcoconexos}\Rightarrow X\times Y\ \text{arcoconexo};\qquad \gamma(t)=(\alpha(t),\beta(t))\ \text{continua por coordenadas}. \]
 
 \ficha{Yuxtaposición} Estar unidos por un camino es de equivalencia; la transitiva pega dos caminos con el lema del pegado (dos cerrados). \fnt{GT 4.1.9}
 \[ \alpha^-(t)=\alpha(1-t);\qquad (\alpha*\beta)(t)=\alpha(2t)\ \ (t\le\tfrac12),\quad \beta(2t-1)\ \ (t\ge\tfrac12). \]
