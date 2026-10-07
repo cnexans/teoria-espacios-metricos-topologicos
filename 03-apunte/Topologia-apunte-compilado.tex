@@ -88,7 +88,7 @@ Cada enunciado lleva entre corchetes la fuente y la página, para poder remitirs
 \item \textbf{EJ} $=$ guía de ejercicios (\texttt{EMyT.pdf}), citada por página del PDF. Sus páginas 14--15 contienen el capítulo ``Topologías iniciales y finales'' (numerado allí como Cap.~3, páginas impresas 17--18).
 \item \textbf{TS} $=$ apunte complementario \emph{Topologías iniciales y finales}, \S3.1 (``Topología del subespacio''), citado por su numeración interna (Def.\ 3.1.1, Props.\ 3.1.2--3.1.3, Obs.\ 3.1.4--3.1.7). Es el mismo texto que aparece en las páginas 14--15 de \textbf{EJ}.
 \item \textbf{TP} $=$ apunte de cátedra \emph{Topología Producto} (4 pp., \texttt{01-fuentes/TP-Topologia-Producto.pdf}). Se cita por página.
-\item \textbf{clase 8}, \textbf{clase 9}, \textbf{clase 10} $=$ notas de clase (\texttt{01-fuentes/Notas-clase-*.pdf}), citadas por la numeración interna de cada nota (``clase 10, Obs.\ 2.3''). Se usan para lo que la docente dictó con una demostración o un enfoque propio que no está en \textbf{GT}.
+\item \textbf{clase 8}, \textbf{clase 9}, \dots, \textbf{clase 13} $=$ notas de clase (\texttt{01-fuentes/Notas-clase-*.pdf}), citadas por la numeración interna de cada nota (``clase 10, Obs.\ 2.3''). Se usan para lo que la docente dictó con una demostración o un enfoque propio que no está en \textbf{GT}.
 \item \textbf{CX} $=$ guía \emph{Ejercicios de Conexidad y Arco-conexidad} (\texttt{01-fuentes/Ejercicios-Conexidad-2020.pdf}), citada por número de ejercicio.
 \item \textbf{[curso]} $=$ definición o resultado que se usa en los ejercicios pero que no aparece enunciado con ese nombre en ninguno de los dos textos (típicamente: diámetro, acotación, distancia entre conjuntos). Conviene fijar la convención de clase.
 \end{itemize}
@@ -1806,7 +1806,7 @@ Sean $(x_1,y_1)\ne(x_2,y_2)$; entonces difieren en alguna coordenada, digamos $x
 %======================================================================
 \section{Conexidad}\label{sec:conex}
 
-\noindent Tema de la clase 10 (24/9/2026), la primera de la segunda mitad. Sigue \textbf{GT} cap.~4, \S\S4.4--4.5 (conexión topológica), salteando por ahora la conexión por caminos (\S\S4.1--4.3), los intervalos de $\R$ y Bolzano (\S\ref{sec:bolzano}) y las componentes conexas (\S4.6). El producto de conexos se hace con la topología producto de \S\ref{sec:prod}, no con la versión métrica de \textbf{GT}.
+\noindent Tema de la clase 10 (24/9/2026), la primera de la segunda mitad. Sigue \textbf{GT} cap.~4, \S\S4.4--4.5 (conexión topológica), salteando por ahora la conexión por caminos (\S\S4.1--4.3), los intervalos de $\R$ y Bolzano (\S\ref{sec:bolzano}) y las componentes conexas (\S4.6). Esos temas se dieron en las clases 11 (28/9: intervalos, Bolzano, caminos), 12 (1/10: relación ``estar conectados'', componentes arcoconexas, conexión local por caminos) y 13 (5/10: puntos de corte, componentes conexas, conexión local); con la clase 13 el capítulo~4 de \textbf{GT} queda completo. ``Esta unidad no la doy en el orden del apunte, pero antes o después termino dando todo'' (la docente). El producto de conexos se hace con la topología producto de \S\ref{sec:prod}, no con la versión métrica de \textbf{GT}.
 
 \begin{definicion}[Disconexo, conexo, subconjunto conexo \fnt{GT 4.4.1, p.\,78; MS Defs.\ 7.1--7.2, p.\,87}]
 $(X,\tp)$ es \emph{disconexo} (en clase: \emph{no conexo}) si existen dos abiertos $U$ y $V$ no vacíos, disjuntos, que entre los dos cubren $X$; el par $(U,V)$ es una \emph{desconexión} de $X$ (en \textbf{MS}: separación no trivial). $X$ es \emph{conexo} si no es disconexo. Un subconjunto $A\subseteq X$ es \emph{conexo} si el subespacio $(A,\tp_A)$ es conexo: se lo mira como espacio en sí mismo, olvidando lo que hay afuera.
@@ -2324,7 +2324,7 @@ Para probar que una ecuación $g(x)=h(x)$ tiene solución en un intervalo, se ap
 
 \subsection{Conexión por caminos (arcoconexión)}\label{cc:caminos}
 
-\noindent Dictado en la clase 11 hasta el producto de arcoconexos: definiciones, ejemplos, arcoconexo $\Rightarrow$ conexo, seno y peine del topólogo, imagen continua y producto. Desde la yuxtaposición en adelante, \noentra{todavía no dictado en clase} (la docente lo anunció para el 1/10). Sigue \textbf{GT} \S4.1 y \textbf{MS} \S7.3; la docente dice \emph{arcoconexo}. En la guía \textbf{CX} se dice \emph{arcoconexo} para lo que \textbf{GT} llama \emph{conexo por caminos}; acá se usan las dos palabras como sinónimos (no se pide que el camino sea inyectivo). A diferencia de la conexión, es una propiedad \emph{positiva}: para probarla se exhibe algo (un camino), en lugar de descartar todas las desconexiones.
+\noindent Dictado en la clase 11 hasta el producto de arcoconexos: definiciones, ejemplos, arcoconexo $\Rightarrow$ conexo, seno y peine del topólogo, imagen continua y producto. Desde la yuxtaposición en adelante, en la clase 12 (1/10/2026): la relación ``estar conectados por un camino'' y las uniones de arcoconexos; los ejemplos de \textbf{GT} 4.1.13 quedaron como lectura. Sigue \textbf{GT} \S4.1 y \textbf{MS} \S7.3; la docente dice \emph{arcoconexo}. En la guía \textbf{CX} se dice \emph{arcoconexo} para lo que \textbf{GT} llama \emph{conexo por caminos}; acá se usan las dos palabras como sinónimos (no se pide que el camino sea inyectivo). A diferencia de la conexión, es una propiedad \emph{positiva}: para probarla se exhibe algo (un camino), en lugar de descartar todas las desconexiones.
 
 \begin{definicion}[Camino \fnt{GT 4.1.1, p.\,61; MS Def.\ 7.6, p.\,90}]\label{cc:defcamino}
 Sea $(X,\tp)$ un espacio topológico y $x,y\in X$. Un \emph{camino de $x$ a $y$} en $X$ es una función continua $\alpha:[0,1]\to X$ (con $[0,1]$ con la topología usual) que empieza en $x$ y termina en $y$. Los puntos $x$ e $y$ son el \emph{origen} y el \emph{extremo} del camino.
@@ -2373,8 +2373,8 @@ En la demostración impresa (p.\,62) se eligen $x_0\in A$, $x_1\notin A$ y a con
 La recíproca es falsa: el peine reducido del Ejemplo~\ref{ej:peine} es conexo y no es arcoconexo (se prueba en el Ejemplo~\ref{cc:peinered}); también la curva seno del topólogo $\{(x,\sin\frac1x):x>0\}\cup\big((-\infty,0]\times\{0\}\big)$ \fnt{MS Ej.\ 7.2, p.\,91} y el espacio de \textbf{GT} Ej.\ 4.2.8(4) (Ejemplo~\ref{cc:escalera}). En $\R$ las dos nociones coinciden: es la proposición ``Los conexos de la recta'' de \S\ref{sec:bolzano}, que en \textbf{GT} aparece primero en versión por caminos (\textbf{GT} 4.1.5, p.\,62) y después con conexión (\textbf{GT} 4.4.4).
 \end{observacion}
 
-\begin{ejemplo}[Seno del topólogo \fnt{clase 11, Ej.\ 6.1 (sólo mencionado); MS Ej.\ 7.2, p.\,91}]\label{cc:seno}
-$S=\{(x,\sin\tfrac1x): x>0\}\cup\big(\{0\}\times[-1,1]\big)\subseteq\R^2$ es conexo y no es arcoconexo. Conexo: la curva $C=\{(x,\sin\frac1x):x>0\}$ es imagen continua del intervalo $(0,\infty)$, y $C\subseteq S\subseteq\cl C$ (cada punto $(0,y)$ con $|y|\le1$ es límite de puntos de la curva, porque $\sin\frac1x$ oscila entre $-1$ y $1$ infinitas veces cerca de $0$); por el sándwich, $S$ es conexo. No arcoconexo: ningún camino va de la curva al segmento vertical (la idea es la misma que en el peine reducido, Ejemplo~\ref{cc:peinered}). En clase se mostró el dibujo y la idea, sin demostración; la docente prefiere el peine. (\textbf{MS} usa la variante con $(-\infty,0]\times\{0\}$ en lugar del segmento vertical.)
+\begin{ejemplo}[Seno del topólogo \fnt{clase 11, Ej.\ 6.1; MS Ej.\ 7.2, p.\,91}]\label{cc:seno}
+$S=\{(x,\sin\tfrac1x): x>0\}\cup\big(\{0\}\times[-1,1]\big)\subseteq\R^2$ es conexo y no es arcoconexo. Conexo: la curva $C=\{(x,\sin\frac1x):x>0\}$ es imagen continua del intervalo $(0,\infty)$, y $C\subseteq S\subseteq\cl C$ (cada punto $(0,y)$ con $|y|\le1$ es límite de puntos de la curva, porque $\sin\frac1x$ oscila entre $-1$ y $1$ infinitas veces cerca de $0$); por el sándwich, $S$ es conexo. No arcoconexo: ningún camino va de la curva al segmento vertical (la idea es la misma que en el peine reducido, Ejemplo~\ref{cc:peinered}). La docente prefiere el peine. (\textbf{MS} usa la variante con $(-\infty,0]\times\{0\}$ en lugar del segmento vertical.)
 \lgc{C=\{(x,\sin\tfrac1x):\ x>0\}\ \text{conexo}\ \wedge\ C\subseteq S\subseteq\cl C\ \Rightarrow\ S\ \text{conexo};\qquad S\ \text{no arcoconexo}.}
 \end{ejemplo}
 
@@ -2399,12 +2399,12 @@ Sea $f:(X,\tp)\to(Y,\tp')$ continua y $A\subseteq X$ conexo por caminos. Entonce
 Como se dictó: se trabaja con la correstricción $\tilde f:A\to f(A)$, continua. Dados $p,q\in f(A)$, se eligen $x,y\in A$ con $f(x)=p$, $f(y)=q$, y un camino $\alpha$ de $x$ a $y$ dentro de $A$. Entonces $f\circ\alpha:[0,1]\to Y$ es continua (composición de continuas), $(f\circ\alpha)(0)=p$, $(f\circ\alpha)(1)=q$, y su imagen $f(\alpha([0,1]))$ está en $f(A)$.
 \end{proof}
 
-\begin{definicion}[Camino inverso y yuxtaposición \fnt{GT 4.1.9, pp.\,65--66} \noentra{todavía no dictado en clase}]\label{cc:yuxta}
-Sean $\alpha$ un camino de $x$ a $y$ y $\beta$ un camino de $y$ a $z$ en $X$ (el extremo de $\alpha$ es el origen de $\beta$). El \emph{camino inverso} de $\alpha$ es $\alpha^-$, que recorre $\alpha$ al revés; la \emph{yuxtaposición} (o concatenación) $\alpha*\beta$ recorre $\alpha$ a doble velocidad en la primera mitad del tiempo y $\beta$ en la segunda:
+\begin{definicion}[Camino inverso y yuxtaposición \fnt{GT 4.1.9, pp.\,65--66; clase 12, Prop.\ 2.1}]\label{cc:yuxta}
+Sean $\alpha$ un camino de $x$ a $y$ y $\beta$ un camino de $y$ a $z$ en $X$ (el extremo de $\alpha$ es el origen de $\beta$). El \emph{camino inverso} de $\alpha$ es $\alpha^-$ (la docente escribe $\bar\alpha$: ``$\alpha^{-1}$ no me gusta, no es una inversa''), que recorre $\alpha$ al revés; la \emph{yuxtaposición} (o \emph{concatenación}: ``empalmo una con la otra'') $\alpha*\beta$ recorre $\alpha$ a doble velocidad en la primera mitad del tiempo y $\beta$ en la segunda:
 \lgc{\alpha^-(t)=\alpha(1-t);\qquad (\alpha*\beta)(t)=\begin{cases}\alpha(2t) & \text{si } 0\le t\le\frac12,\\ \beta(2t-1) & \text{si } \frac12\le t\le 1.\end{cases}}
 \end{definicion}
 
-\begin{proposicion}[``Estar unidos por un camino'' es de equivalencia \fnt{GT 4.1.9, pp.\,65--66; MS Def.\ 7.9, p.\,92} \noentra{todavía no dictado en clase}]\label{cc:equiv}
+\begin{proposicion}[``Estar unidos por un camino'' es de equivalencia \fnt{GT 4.1.9, pp.\,65--66; MS Def.\ 7.9, p.\,92; clase 12, Prop.\ 2.1}]\label{cc:equiv}
 En $(X,\tp)$, la relación $x\sim y$ si existe un camino en $X$ de $x$ a $y$ es reflexiva, simétrica y transitiva. Más precisamente: los caminos constantes son caminos; si $\alpha$ es un camino de $x$ a $y$, $\alpha^-$ es un camino de $y$ a $x$; y si además $\beta$ es un camino de $y$ a $z$, $\alpha*\beta$ es un camino de $x$ a $z$.
 \lgc{x\sim y\iff \exists\alpha:[0,1]\to X\ \text{continua}:\ \alpha(0)=x\ \wedge\ \alpha(1)=y;\\
 x\sim x;\qquad x\sim y\Rightarrow y\sim x;\qquad x\sim y\ \wedge\ y\sim z\Rightarrow x\sim z.}
@@ -2430,11 +2430,15 @@ Transitiva: $\alpha*\beta$ está bien definida porque en $t=\frac12$ las dos fó
 \figtit{Figura 21. Yuxtaposición: en la primera mitad del tiempo se recorre $\alpha$ (azul) a doble velocidad, en la segunda $\beta$ (rojo). Pega bien porque las dos fórmulas coinciden en $t=\frac12$; la continuidad sale del lema del pegado con dos cerrados.}
 \end{figure}
 
+\begin{observacion}[Cómo se dictó \fnt{clase 12, \S2}]
+``Es un trámite'', pero con dos detalles. \emph{Simétrica}: dibujado parece obvio, pero en grafos no es cierto que si hay un camino de $x$ a $y$ haya uno de $y$ a $x$; acá vale porque el mismo camino se recorre ``otra vez, el que vuelve''. \emph{Transitiva}: no se puede hacer un camino ``del doble de largo'', porque por definición todo camino va de $0$ a $1$; por eso se recorre cada tramo a doble velocidad, restando $1$ en el segundo para volver a caer en $[0,1]$ ($2\cdot\frac34$ se pasa, $2\cdot\frac34-1$ no). La docente no compone con funciones auxiliares $\eta(t)=2t$, $\xi(t)=2t-1$ como \textbf{GT}, sino que escribe la función partida y usa directamente el lema del pegado en cerrados. Eso obliga a tomar \emph{los dos intervalos cerrados} y repetir el punto $t=\frac12$: ``la obligación de repetir el punto es como la obligación de que el límite por derecha sea igual al límite por izquierda''; el chequeo de que la función partida esté bien definida es justamente $\alpha(1)=y=\beta(0)$. \textbf{GT} prueba la continuidad ``del modo analógico'': para $F$ cerrado, $\gamma^{-1}(F)=\tilde\alpha^{-1}(F)\cup\tilde\beta^{-1}(F)$ es unión de dos cerrados, que es exactamente la prueba del lema del pegado.
+\end{observacion}
+
 \begin{observacion}
 Gracias a la transitividad, para probar que $X$ es arcoconexo alcanza con fijar un punto $x_0$ y unir \emph{cada} $x$ con $x_0$: si $\alpha_x$ va de $x_0$ a $x$, entonces $\alpha_x^-*\alpha_y$ va de $x$ a $y$. Es el análogo por caminos de la Prop.~\ref{pr:dospuntos}.
 \end{observacion}
 
-\begin{proposicion}[Uniones de arcoconexos \fnt{GT 4.1.10--4.1.12, pp.\,67--68} \noentra{todavía no dictado en clase}]\label{cc:uniones}
+\begin{proposicion}[Uniones de arcoconexos \fnt{GT 4.1.10--4.1.12, pp.\,67--68; clase 12, Props.\ 3.1--3.6}]\label{cc:uniones}
 Sea $\{C_\alpha\}_{\alpha\in\Lambda}$ una familia de subconjuntos arcoconexos de $X$. Su unión es arcoconexa en cualquiera de estos casos (los mismos tres de la Prop.~\ref{pr:familias}, ahora con caminos):
 \begin{enumerate}[label=(\alph*),leftmargin=2.2em,itemsep=0pt]
 \item hay un $C_{\alpha_0}$ que corta a todos (\textbf{GT} 4.1.10);
@@ -2454,6 +2458,36 @@ En particular, la unión de dos arcoconexos que se cortan es arcoconexa.
 (c) Por inducción $D_n=C_1\cup\dots\cup C_n$ es arcoconexo: $D_{n}=D_{n-1}\cup C_n$ y $D_{n-1}\cap C_n\supseteq C_{n-1}\cap C_n\ne\emptyset$ (caso de dos, que es (b)). Los $D_n$ son arcoconexos y todos contienen a $D_1=C_1\ne\emptyset$, así que por (b) su unión, que es $\bigcup_n C_n$, es arcoconexa.
 \end{proof}
 
+\begin{observacion}[El orden de la clase \fnt{clase 12, \S3}]
+La docente empezó por el caso de \emph{dos}: si $A,B$ son arcoconexos y $A\cap B\ne\emptyset$, se toma $y\in A\cap B$, un camino de $x\in A$ a $y$ dentro de $A$ y uno de $y$ a $z\in B$ dentro de $B$, y la transitividad (la concatenación) da uno de $x$ a $z$ dentro de $A\cup B$. Si $A\cap B=\emptyset$ no hay forma de ``saltar'' de uno al otro. Para familias, la hipótesis de (a) es ``un poquitito más débil'' que pedir $\bigcap_\alpha C_\alpha\ne\emptyset$: no se pide que se crucen todos con todos, sino que haya uno, $C_{\alpha_0}$, con el que se crucen todos. La prueba de (a) son tres caminos concatenados, ``plim, plim, plim'': de $x$ a $z_x\in C_{\alpha_x}\cap C_{\alpha_0}$, de $z_x$ a $z_y$ dentro de $C_{\alpha_0}$, y de $z_y$ a $y$ (Figura~22); un alumno observó que es aplicar dos veces el caso de dos, ``lo que todo buen matemático hace: escribir menos''. Para (c) la docente eligió la prueba ``del gusano'' de arriba (los $D_n$ encajados ``todos tienen a $C_1$, el buzón que empieza''), en lugar de concatenar $h$ caminitos de $C_n$ a $C_{n+h}$: ``otras veces se usa esto de crear conjuntos más grandes''.
+\end{observacion}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+\draw[blue!60!black,thick,fill=blue!6] (0,0) ellipse (1.5 and 0.85); \node[blue!60!black] at (-1.0,0.95){\scriptsize $C_{\alpha_x}$};
+\draw[red!60!black,thick,fill=red!6,fill opacity=0.6] (2.6,-0.2) ellipse (1.6 and 0.9); \node[red!60!black] at (2.6,-1.3){\scriptsize $C_{\alpha_0}$};
+\draw[green!45!black,thick,fill=green!6,fill opacity=0.6] (5.1,0.3) ellipse (1.5 and 0.85); \node[green!45!black] at (5.9,1.3){\scriptsize $C_{\alpha_y}$};
+\node[pt] (x) at (-0.7,0.1){}; \node[left] at (x){\scriptsize $x$};
+\node[pt] (zx) at (1.2,0.0){}; \node[below] at (zx){\scriptsize $z_x$};
+\node[pt] (zy) at (3.9,0.15){}; \node[below] at (zy){\scriptsize $z_y$};
+\node[pt] (y) at (5.6,0.5){}; \node[right] at (y){\scriptsize $y$};
+\draw[thick,->,>=Stealth] (x) .. controls (-0.1,0.6) and (0.6,-0.5) .. (zx);
+\draw[thick,->,>=Stealth] (zx) .. controls (2.0,0.7) and (3.0,-0.6) .. (zy);
+\draw[thick,->,>=Stealth] (zy) .. controls (4.5,0.8) and (5.0,-0.2) .. (y);
+\end{tikzpicture}
+\figtit{Figura 22. Uniones de arcoconexos, caso (a), como en el pizarrón de la clase 12 (coincide con GT Fig.\ 4.3): para ir de $x$ a $y$ se pasa por $C_{\alpha_0}$, con el que todos se cruzan, concatenando tres caminos.}
+\end{figure}
+
+\begin{ejemplo}[Rectas por el origen \fnt{clase 12, Ej.\ 3.5; CX 15}]\label{cc:rectasorigen}
+Cada recta $\{(x,mx):x\in\R\}\subseteq\R^2$ es arcoconexa (imagen continua de $\R$ por $x\mapsto(x,mx)$). Cualquier unión de ellas (con $m$ en $\N$, en $\R$, en el conjunto de índices que se quiera) es arcoconexa por la Prop.~\ref{cc:uniones}(b): todas pasan por el origen. Para ir de $p$ a $q$ se baja por una recta hasta el origen y se sube por la otra; ``el punto de intersección es el que hace la diferencia''.
+\lgc{\textstyle\bigcup_{m\in\Lambda}\{(x,mx):\ x\in\R\}\ \text{arcoconexo, para cualquier } \Lambda\subseteq\R.}
+\end{ejemplo}
+
+\begin{observacion}[Tarea: ¿la intersección de dos arcoconexos que se cortan es arcoconexa? \fnt{clase 12, Obs.\ 3.2}]
+Pregunta dejada en clase (``cuando me pregunto por la unión, la primera pregunta que me hago es por la intersección''), con el aviso de que la respuesta es la misma que para conexos y de no fiarse de ejemplos inocentes como $(0,2)\cap(1,3)=(1,2)$. \emph{Respuesta:} no. Las dos semicircunferencias cerradas $A=S^1\cap\{y\ge0\}$ y $B=S^1\cap\{y\le0\}$ son arcoconexas (imágenes de $[0,\pi]$ y $[\pi,2\pi]$ por $t\mapsto(\cos t,\sin t)$) y $A\cap B=\{(-1,0),(1,0)\}$ no es conexo, luego tampoco arcoconexo. Es el mismo contraejemplo de la clase 10 para conexos ($S^1\cap\{y=0\}$).
+\end{observacion}
+
 \begin{teorema}[Producto de arcoconexos \fnt{clase 11, Teo.\ 9.2; \texttt{Producto-de-Conexos.pdf}, p.\,2; versión topológica de GT 4.1.7, p.\,64}]\label{cc:prodarco}
 Si $X$ e $Y$ son arcoconexos, $X\times Y$ (con la topología producto) es arcoconexo: el camino de $(x_0,y_0)$ a $(x_1,y_1)$ se arma coordenada a coordenada.
 \lgc{X,Y\ \text{arcoconexos}\ \Rightarrow\ X\times Y\ \text{arcoconexo};\qquad \gamma(t)=\big(\alpha(t),\beta(t)\big).}
@@ -2467,7 +2501,8 @@ Sean $\alpha$ un camino de $x_0$ a $x_1$ en $X$ y $\beta$ uno de $y_0$ a $y_1$ e
 \textbf{GT} 4.1.7 prueba que el producto de dos (seudo)métricos arcoconexos es arcoconexo con $\delta^{\max}_2$, y la Nota 4.1.8 aclara que vale igual con $\delta_2^{\mathrm{taxi}}$, con $\delta_2^{\mathrm{eucl}}$, con la topología producto general y con finitos factores. La versión con topología producto es el Teorema~\ref{cc:prodarco}. La recíproca también vale, como para conexos (\textbf{MS} Teo.\ 7.21): si $X\times Y\ne\emptyset$ es arcoconexo, $X=\pi_X(X\times Y)$ e $Y=\pi_Y(X\times Y)$ lo son por la Prop.~\ref{cc:imarco}.
 \end{observacion}
 
-\begin{ejemplo}[Espacios arcoconexos conocidos \fnt{GT Ej.\ 4.1.13, pp.\,68--69; MS Ejemplos 7.3, p.\,91} \noentra{todavía no dictado en clase}]\label{cc:ejarco}
+\begin{ejemplo}[Espacios arcoconexos conocidos \fnt{GT Ej.\ 4.1.13, pp.\,68--69; MS Ejemplos 7.3, p.\,91}]\label{cc:ejarco}
+La única idea que la docente resaltó: ``$f$ de arcoconexo es arcoconexo y los intervalos son arcoconexos, entonces cualquier parametrización (la hélice, la circunferencia) es un arcoconexo''.
 \begin{lista}
 \item Un ``paralelepípedo'' $J_1\times\dots\times J_n\subseteq\R^n$ con los $J_i$ intervalos (en particular $\R^n$) es arcoconexo: producto de arcoconexos (observación anterior), o directamente porque es convexo.
 \item El disco $\{(x,y): x^2+y^2\le1\}$ es arcoconexo: es convexo.
@@ -2481,14 +2516,14 @@ Sean $\alpha$ un camino de $x_0$ a $x_1$ en $X$ y $\beta$ uno de $y_0$ a $y_1$ e
 
 \subsection{Componentes conexas por caminos y conexión local por caminos}\label{cc:compcam}
 
-\noindent\noentra{todavía no dictado en clase} Sigue \textbf{GT} \S4.2 y \textbf{MS} \S7.4. \textbf{GT} escribe $C_x$ tanto para la componente conexa por caminos como para la componente conexa (\S4.6); acá, como en \textbf{MS}, se distinguen: $c(x)$ para la de caminos y $C(x)$ para la conexa.
+\noindent Clase 12 (1/10/2026), más \textbf{GT} 4.4.6 (\S\ref{cc:conexarco}). Sigue \textbf{GT} \S4.2 y \textbf{MS} \S7.4. \textbf{GT} escribe $C_x$ tanto para la componente conexa por caminos como para la componente conexa (\S4.6); acá, como en \textbf{MS}, se distinguen: $c(x)$ para la de caminos y $C(x)$ para la conexa.
 
-\begin{definicion}[Componente conexa por caminos \fnt{GT 4.2.1, p.\,70; MS Def.\ 7.9, p.\,92} \noentra{todavía no dictado en clase}]\label{cc:defcompcam}
+\begin{definicion}[Componente conexa por caminos \fnt{GT 4.2.1, p.\,70; MS Def.\ 7.9, p.\,92; clase 12, Def.\ 4.1}]\label{cc:defcompcam}
 Sea $(X,\tp)$ y $x\in X$. La \emph{componente conexa por caminos} (o \emph{componente arcoconexa}) de $x$, $c(x)$, es el mayor subconjunto arcoconexo de $X$ que contiene a $x$: es arcoconexo, contiene a $x$, y contiene a todo arcoconexo que contenga a $x$.
 \lgc{c(x)\ \text{arcoconexo}\ \wedge\ x\in c(x)\ \wedge\ \forall A\subseteq X\ \big(A\ \text{arcoconexo}\ \wedge\ x\in A\Rightarrow A\subseteq c(x)\big).}
 \end{definicion}
 
-\begin{proposicion}[Existe y es la clase de equivalencia de $x$ \fnt{GT Lema 4.2.2 y Prop.\ 4.2.3, p.\,70} \noentra{todavía no dictado en clase}]\label{cc:existecam}
+\begin{proposicion}[Existe y es la clase de equivalencia de $x$ \fnt{GT Lema 4.2.2 y Prop.\ 4.2.3, p.\,70}]\label{cc:existecam}
 Para todo $x\in X$ la componente $c(x)$ existe: es la unión de todos los arcoconexos que contienen a $x$. Y coincide con la clase de $x$ para la relación $\sim$ de la Prop.~\ref{cc:equiv}, es decir, con el conjunto de puntos que se pueden unir con $x$ por un camino en $X$.
 \lgc{c(x)=\bigcup\{A\subseteq X:\ A\ \text{arcoconexo},\ x\in A\}=\{y\in X:\ \exists\ \text{camino en } X \text{ de } x \text{ a } y\}.}
 \end{proposicion}
@@ -2498,11 +2533,25 @@ La familia de arcoconexos que contienen a $x$ no es vacía ($\{x\}$ está) y tod
 Sea $Z=\{y:\ x\sim y\}$. Si $y\in c(x)$, hay un camino de $x$ a $y$ dentro de $c(x)$, que es en particular un camino en $X$: $y\in Z$. Si $z\in Z$ y $\alpha$ es un camino en $X$ de $x$ a $z$, su imagen $\alpha([0,1])$ es arcoconexa (Prop.~\ref{cc:imarco}, porque $[0,1]$ lo es) y contiene a $x$ y $z$; luego $\alpha([0,1])\subseteq c(x)$ y $z\in c(x)$.
 \end{proof}
 
+\begin{observacion}[La definición de la docente: al revés que \textbf{GT} \fnt{clase 12, Def.\ 4.1, Prop.\ 4.4 y Obs.\ 4.5}]
+En clase la componente arcoconexa se \emph{define} como la clase de equivalencia de $x$, $c(x)=\{y\in X:\ \text{existe un camino de } x \text{ a } y\}$: ``para mí no tiene discusión si existe o no: es una clase de equivalencia de una relación de equivalencia, y alguien, cuando estudié relaciones, me dijo que existía''. Lo que se demuestra después es que \emph{es el mayor arcoconexo que contiene a $x$}:
+\begin{lista}
+\item \emph{$c(x)$ es arcoconexo.} Si $y,z\in c(x)$, entonces $x\sim y$ y $x\sim z$; por simetría y transitividad $y\sim z$: hay un camino $\gamma$ de $y$ a $z$. Ese camino no sale de $c(x)$: si $w=\gamma(t)$, el tramo $\gamma|_{[0,t]}$ reparametrizado une $y$ con $w$, así que $x\sim w$ y $w\in c(x)$. (``Cada componente arcoconexa es un arcoconexo en su vida privada.'')
+\item \emph{Es el más grande.} Si $D$ es arcoconexo y $x\in D$, para cada $y\in D$ hay un camino de $x$ a $y$ (en $D\subseteq X$): $x\sim y$, $y\in c(x)$. Luego $D\subseteq c(x)$.
+\end{lista}
+Las propiedades de la Prop.~\ref{cc:propcam} (no vacías, $x\in c(x)$, si se cortan coinciden, $X=\bigcup_x c(x)$) salen gratis de ser clases de equivalencia. Las dos definiciones son equivalentes justamente por la Prop.~\ref{cc:existecam}.
+\end{observacion}
+
+\begin{ejemplo}[Rectas verticales $x=n$ \fnt{clase 12, Ej.\ 4.3}]\label{cc:verticalesn}
+En $\R^2$ sea $X=\{(x,y):\ x=n \text{ para algún } n\in\N\}$, la unión de las rectas verticales $x=n$. La componente arcoconexa de $(2,1)$ es la recta $\{2\}\times\R$ entera: $c(2,1)=c(2,2)=c(2,\pi)$; la de $(3,1)$ es $\{3\}\times\R$, y así una componente por cada $n$. Cualquier representante nombra la misma clase; ``esto se porta como $\N$: que sea una raya entera no me hace la diferencia''. (Es el ejemplo del espacio cociente, que no se trabaja en el curso.)
+\lgc{X=\N\times\R\subseteq\R^2:\qquad c(n,y)=\{n\}\times\R\quad\forall n\in\N,\ \forall y\in\R.}
+\end{ejemplo}
+
 \begin{observacion}
 Atención con la segunda descripción: el camino de $x$ a $y$ se busca en todo $X$, pero entonces automáticamente se queda dentro de $c(x)$ (toda su imagen está en $c(x)$).
 \end{observacion}
 
-\begin{proposicion}[Propiedades de las componentes arcoconexas \fnt{GT 4.2.4, p.\,71; MS Def.\ 7.9, p.\,92} \noentra{todavía no dictado en clase}]\label{cc:propcam}
+\begin{proposicion}[Propiedades de las componentes arcoconexas \fnt{GT 4.2.4, p.\,71; MS Def.\ 7.9, p.\,92; clase 12, Prop.\ 4.2}]\label{cc:propcam}
 En $(X,\tp)$: $x\in c(x)$; $c(x)$ es arcoconexo; $c(x)$ es la clase de $x$ por $\sim$; y dos componentes arcoconexas o son iguales o son disjuntas. Es decir, las componentes arcoconexas forman una partición de $X$ (\textbf{MS} llama $\pi_0(X)$ al conjunto de esas clases).
 \lgc{x\in c(x);\qquad c(x)\cap c(y)\ne\emptyset\ \Rightarrow\ c(x)=c(y);\qquad X=\bigcup_{x\in X}c(x).}
 \end{proposicion}
@@ -2511,7 +2560,7 @@ En $(X,\tp)$: $x\in c(x)$; $c(x)$ es arcoconexo; $c(x)$ es la clase de $x$ por $
 Todo sale de que son las clases de equivalencia de $\sim$ (Prop.~\ref{cc:existecam}), y las clases de una relación de equivalencia forman una partición.
 \end{proof}
 
-\begin{proposicion}[Una imagen continua cae en una componente \fnt{GT 4.2.7, pp.\,71--72} \noentra{todavía no dictado en clase}]\label{cc:invcam}
+\begin{proposicion}[Una imagen continua cae en una componente \fnt{GT 4.2.7, pp.\,71--72; clase 12, Prop.\ 7.1}]\label{cc:invcam}
 Si $f:X\to Y$ es continua, $f(c(x))\subseteq c(f(x))$. Si $f$ es un homeomorfismo, $f(c(x))=c(f(x))$, y $f$ induce una biyección $c(x)\mapsto f(c(x))$ entre las componentes arcoconexas de $X$ y las de $Y$. En particular, el número de componentes arcoconexas es un invariante topológico.
 \lgc{f\ \text{continua}\Rightarrow f(c(x))\subseteq c(f(x));\qquad f\ \text{homeomorfismo}\Rightarrow f(c(x))=c(f(x)).}
 \end{proposicion}
@@ -2520,7 +2569,24 @@ Si $f:X\to Y$ es continua, $f(c(x))\subseteq c(f(x))$. Si $f$ es un homeomorfism
 $f(c(x))$ es arcoconexo (Prop.~\ref{cc:imarco}) y contiene a $f(x)$, luego está en $c(f(x))$. Si $f$ es homeomorfismo, lo mismo con $f^{-1}$ da $f^{-1}(c(f(x)))\subseteq c(x)$, o sea $c(f(x))\subseteq f(c(x))$. La correspondencia $c(x)\mapsto c(f(x))$ tiene inversa $c(y)\mapsto c(f^{-1}(y))$.
 \end{proof}
 
-\begin{definicion}[Localmente conexo por caminos \fnt{GT 4.2.5, p.\,71; MS Def.\ 7.8, p.\,91} \noentra{todavía no dictado en clase}]\label{cc:deflocarco}
+\begin{observacion}[Cómo se dictó y para qué se usa \fnt{clase 12, \S7}]
+La ida sólo necesita $f$ continua. La vuelta ``es medio trampa, usa que es homeomorfismo'': $f^{-1}:Y\to X$ es una \emph{función} continua (``estoy usando fuertemente el biyectivo: no estoy haciendo preimagen''), así que $f^{-1}(c(f(x)))$ es un arcoconexo que contiene a $x$ y cae en $c(x)$; aplicando $f$, otra vez por la biyección, $c(f(x))\subseteq f(c(x))$. ``Si fuese una función continua sólo de ida, no alcanza: necesito ida y vuelta.''
+La consecuencia es la herramienta para probar que dos espacios \emph{no} son homeomorfos, ``sin hacer muchas cuentas'': $\R-\{0\}$ tiene dos componentes arcoconexas y $\R$ una, así que $\R-\{0\}\not\cong\R$; y $\R$ menos dos puntos, con tres, no es homeomorfo a ninguno de los dos (Figura~23). ``Es la idea intuitiva que uno tiene de topología: contar agujeros.'' Contar agujeros de verdad en espacios más elaborados excede el curso: el toro tiene una sola componente, como el plano, y los distingue ser \emph{simplemente conexo} (en $\R^2$ todo lacito se contrae a un punto; en el toro, uno que da la vuelta no).
+\end{observacion}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+\draw[blue!60!black,very thick] (0,1.6)--(6,1.6); \node[right] at (6.1,1.6){\scriptsize $\R$: una componente};
+\draw[blue!60!black,very thick] (0,0.8)--(2.9,0.8); \draw[red!60!black,very thick] (3.1,0.8)--(6,0.8);
+\draw[fill=white] (3,0.8) circle (0.07); \node[right] at (6.1,0.8){\scriptsize $\R-\{0\}$: dos};
+\draw[blue!60!black,very thick] (0,0)--(1.9,0); \draw[red!60!black,very thick] (2.1,0)--(3.9,0); \draw[green!45!black,very thick] (4.1,0)--(6,0);
+\draw[fill=white] (2,0) circle (0.07); \draw[fill=white] (4,0) circle (0.07); \node[right] at (6.1,0){\scriptsize $\R-\{a,b\}$: tres};
+\end{tikzpicture}
+\figtit{Figura 23. Contar agujeros (clase 12): $\R$, $\R-\{0\}$ y $\R-\{a,b\}$ tienen $1$, $2$ y $3$ componentes arcoconexas; por la Prop.~\ref{cc:invcam} no son homeomorfos dos a dos.}
+\end{figure}
+
+\begin{definicion}[Localmente conexo por caminos \fnt{GT 4.2.5, p.\,71; MS Def.\ 7.8, p.\,91; clase 12, Def.\ 5.1}]\label{cc:deflocarco}
 $(X,\tp)$ es \emph{localmente conexo por caminos} (localmente arcoconexo) si todo entorno de cualquier punto contiene un entorno arcoconexo de ese punto; es decir, si cada punto tiene una base de entornos formada por arcoconexos (así lo define \textbf{MS}).
 \lgc{X\ \text{loc.\ arcoconexo}\iff \forall x\in X\ \forall N\in\mathcal N_x\ \exists N'\in\mathcal N_x:\ N'\subseteq N\ \wedge\ N'\ \text{arcoconexo}.}
 \end{definicion}
@@ -2529,7 +2595,16 @@ $(X,\tp)$ es \emph{localmente conexo por caminos} (localmente arcoconexo) si tod
 ``Localmente'' no es ``un poco'': no alcanza con que cada punto tenga \emph{algún} entorno arcoconexo (el propio $X$ lo sería si es arcoconexo), sino que tiene que haberlos \emph{tan chicos como se quiera}. Por eso ser arcoconexo y ser localmente arcoconexo son independientes: $[-1,0)\cup(0,1]$ es localmente arcoconexo y no es arcoconexo; los espacios tipo peine son arcoconexos y no localmente arcoconexos.
 \end{intuicion}
 
-\begin{proposicion}[En un localmente arcoconexo las componentes arcoconexas son abiertas y cerradas \fnt{GT 4.2.6, p.\,71} \noentra{todavía no dictado en clase}]\label{cc:compabcam}
+\begin{observacion}[Lo que \emph{no} es la definición \fnt{clase 12, Obs.\ 5.3--5.4}]
+Si $X$ es localmente arcoconexo, cada punto tiene \emph{algún} entorno arcoconexo (se aplica la definición con $N=X$). Pero eso es un corolario, no la definición, y no es equivalente: ``que sea localmente arcoconexo quiere decir: yo te doy un entorno, vos me conseguís uno más chiquito. Ojo, no caigan''. Un arcoconexo tiene a $X$ como entorno arcoconexo de cada punto y puede no ser localmente arcoconexo (el peine). Las dos propiedades son independientes: puede tener una, la otra, ninguna o las dos. (El \textbf{GT} impreso dice ``cualquier entorno de $N$ de $x$'': errata por ``cualquier entorno $N$ de $x$''.)
+\end{observacion}
+
+\begin{ejemplo}[$\R-\{0\}$: localmente arcoconexo, no arcoconexo \fnt{clase 12, Ej.\ 5.2}]\label{cc:Rmenos0}
+$X=\R-\{0\}$ (usual) no es arcoconexo: no es un intervalo ($-1,1\in X$ y $0\notin X$), luego no es conexo (\S\ref{sec:bolzano}) y menos arcoconexo. Pero es localmente arcoconexo: dados $x\in X$ y un entorno $N$ de $x$ (que puede tener el mismo agujero), hay $G$ abierto con $x\in G\subseteq N$ y un $\varepsilon>0$ con $(x-\varepsilon,x+\varepsilon)\subseteq G$; achicándolo a $\varepsilon<|x|$, $N'=(x-\varepsilon,x+\varepsilon)$ no llega al $0$, es entorno de $x$, está en $N$ y es un intervalo, luego arcoconexo. ``Siempre existe un intervalo en torno a algo que no llegue al cero.''
+\lgc{x\in\R-\{0\},\ N\in\mathcal N_x\ \Rightarrow\ \exists\,0<\varepsilon<|x|:\ N'=(x-\varepsilon,x+\varepsilon)\subseteq N,\ N'\ \text{arcoconexo}.}
+\end{ejemplo}
+
+\begin{proposicion}[En un localmente arcoconexo las componentes arcoconexas son abiertas y cerradas \fnt{GT 4.2.6, p.\,71; clase 12, Prop.\ 6.1}]\label{cc:compabcam}
 Si $(X,\tp)$ es localmente conexo por caminos, cada componente arcoconexa $c(x)$ es abierta y cerrada en $X$.
 \lgc{X\ \text{loc.\ arcoconexo}\ \Rightarrow\ \forall x\in X:\ c(x)\in\tp\ \wedge\ c(x)\ \text{cerrado}.}
 \end{proposicion}
@@ -2540,10 +2615,30 @@ Cerrada: su complemento es la unión de las demás componentes (son una partici�
 \end{proof}
 
 \begin{observacion}
-La demostración de \textbf{GT} para ``cerrada'' pasa por la clausura; la de arriba, por el complemento, es más corta y es la misma idea que se usa con las componentes conexas.
+La demostración de \textbf{GT} para ``cerrada'' pasa por la clausura; la de arriba, por el complemento, es más corta y es la misma idea que se usa con las componentes conexas. En $\R-\{0\}$, por ejemplo, $(-\infty,0)$ y $(0,+\infty)$ son abiertas y cerradas: ``el cero no juega, ponerle el corchete no gana nada''.
 \end{observacion}
 
-\begin{ejemplo}[Localmente arcoconexos \fnt{GT Ej.\ 4.2.8(1)--(2), p.\,72; CX 18} \noentra{todavía no dictado en clase}]\label{cc:ejlocarco}
+\begin{proof}[Demostración dictada en clase (como \textbf{GT}: interior y clausura)]
+Sólo se usa la forma débil de la hipótesis: todo $y$ tiene un entorno arcoconexo $N$, y entonces hay $G\in\tp$ con $y\in G\subseteq N$, así que $y\in N^\circ$.
+
+\emph{Abierta: $c(x)\subseteq c(x)^\circ$.} Sea $y\in c(x)$; como $y\in c(y)$, es $c(x)=c(y)$. $N$ es un arcoconexo que contiene a $y$, luego $N\subseteq c(y)$ (es el mayor), y por monotonía del interior $y\in G=G^\circ\subseteq N^\circ\subseteq c(y)^\circ=c(x)^\circ$.
+
+\emph{Cerrada: $\cl{c(x)}\subseteq c(x)$.} Sea $y\in\cl{c(x)}$ y $N$ un entorno arcoconexo de $y$. $N^\circ$ es un abierto que contiene a $y$, adherente a $c(x)$, así que $N^\circ\cap c(x)\ne\emptyset$, y con más razón $N\cap c(x)\ne\emptyset$. (``¿Por qué el interior? Porque necesitaba un abierto para la definición de clausura; pero el arcoconexo es $N$, zapallos.'') Entonces $N\cup c(x)$ es unión de dos arcoconexos que se cortan, arcoconexa, y contiene a $x$; por ser $c(x)$ el mayor, $N\cup c(x)\subseteq c(x)$, y como la otra inclusión es obvia, $N\cup c(x)=c(x)$: ``absorbe''. Luego $y\in N\subseteq c(x)$. (Para ``cerrada'' no se sabe de antemano que $y\in c(x)$, por eso se pasa por $N\cup c(x)$ y no por $c(y)$.)
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+\draw[blue!60!black,thick,fill=blue!6] (0,0) ellipse (2.2 and 1.1); \node[blue!60!black] at (-1.7,1.05){\scriptsize $c(x)$};
+\node[pt] at (-0.8,-0.1){}; \node[below] at (-0.8,-0.1){\scriptsize $x$};
+\draw[red!60!black,thick,fill=red!8,fill opacity=0.7] (2.25,0.2) circle (0.7); \node[red!60!black] at (2.5,-0.75){\scriptsize $N$ arcoconexo};
+\node[pt] at (2.2,0.2){}; \node[above] at (2.25,0.95){\scriptsize $y\in\cl{c(x)}$}; \draw[gray,thin] (2.2,0.2)--(2.25,0.95);
+\node[right,align=left] at (3.6,0.3){\scriptsize $N\cap c(x)\ne\emptyset$\\ \scriptsize $\Rightarrow N\cup c(x)$ arcoconexo $\ni x$\\ \scriptsize $\Rightarrow N\cup c(x)\subseteq c(x)\Rightarrow y\in c(x)$};
+\end{tikzpicture}
+\figtit{Figura 24. Por qué $c(x)$ es cerrada en un localmente arcoconexo (dibujo de la clase 12): un punto adherente $y$ tiene un entorno arcoconexo $N$ que pisa a $c(x)$; la unión es un arcoconexo que contiene a $x$, cabe en $c(x)$, y arrastra a $y$ con ella.}
+\end{figure}
+
+\begin{ejemplo}[Localmente arcoconexos \fnt{GT Ej.\ 4.2.8(1)--(2), p.\,72; CX 18; clase 12, Obs.\ 5.6}]\label{cc:ejlocarco}
 \begin{lista}
 \item $\R^n$ es arcoconexo y localmente arcoconexo: las bolas $\Bola{x}{r}$ son convexas, luego arcoconexas, y forman una base de entornos de $x$. Lo mismo vale para cualquier \emph{abierto} de $\R^n$ (las bolas chicas quedan adentro), y para cualquier normado.
 \item $S^1$ y el disco cerrado son arcoconexos y localmente arcoconexos (alrededor de un punto de $S^1$, los arcos chicos son imágenes continuas de intervalos).
@@ -2552,12 +2647,12 @@ La demostración de \textbf{GT} para ``cerrada'' pasa por la clausura; la de arr
 \end{lista}
 \end{ejemplo}
 
-\begin{ejemplo}[Arcoconexo pero no localmente arcoconexo \fnt{GT Ej.\ 4.2.8(3), pp.\,72--73 y Ej.\ 4.6.9(4), pp.\,86--87; CX 15} \noentra{todavía no dictado en clase}]\label{cc:peinecompleto}
-Sea $X\subseteq\R^2$ la unión del eje $OX$, del eje $OY$ y de las rectas verticales $A_n=\{1/n\}\times\R$, $n\ge1$. Es arcoconexo: $OX$, $OY$ y los $A_n$ son rectas y todas cortan a $OX$ (Prop.~\ref{cc:uniones}(a)). No es localmente conexo (y menos aún localmente arcoconexo) en $p=(0,y_0)$ con $y_0\ne0$. En efecto, sea $0<r<|y_0|$, de modo que $\Bola{p}{r}$ no toca a $OX$, y sea $N\subseteq\Bola{p}{r}\cap X$ un entorno de $p$ en $X$. Contiene alguna $\Bola{p}{\delta}\cap X$, que contiene a $p_n=(1/n,y_0)$ para $n$ grande. Fijado un tal $n$, se toma $\lambda$ con $\frac1{n+1}<\lambda<\frac1n$: ningún punto de $X\cap\Bola{p}{r}$ tiene primera coordenada $\lambda$ (esos puntos están en $OY$ o en algún $A_k$). Entonces $G=\{(x,y): x<\lambda\}$ y $H=\{(x,y): x>\lambda\}$ son abiertos de $\R^2$ que cubren $N$, no se cortan, y $p\in G$, $p_n\in H$: desconectan a $N$ (Prop.~\ref{pr:GH}). Ningún entorno de $p$ dentro de $\Bola{p}{r}$ es conexo.
+\begin{ejemplo}[Arcoconexo pero no localmente arcoconexo \fnt{GT Ej.\ 4.2.8(3), pp.\,72--73 y Ej.\ 4.6.9(4), pp.\,86--87; CX 15}]\label{cc:peinecompleto}
+Sea $X\subseteq\R^2$ la unión del eje $OX$, del eje $OY$ y de las rectas verticales $A_n=\{1/n\}\times\R$, $n\ge1$. Es arcoconexo: $OX$, $OY$ y los $A_n$ son rectas y todas cortan a $OX$ (Prop.~\ref{cc:uniones}(a)). No es localmente conexo (y menos aún localmente arcoconexo) en $p=(0,y_0)$ con $y_0\ne0$. En efecto, sea $0<r<|y_0|$, de modo que $\Bola{p}{r}$ no toca a $OX$, y sea $N\subseteq\Bola{p}{r}\cap X$ un entorno de $p$ en $X$. Contiene alguna $\Bola{p}{\delta}\cap X$, que contiene a $p_n=(1/n,y_0)$ para $n$ grande. Fijado un tal $n$, se toma $\lambda$ con $\frac1{n+1}<\lambda<\frac1n$: ningún punto de $X\cap\Bola{p}{r}$ tiene primera coordenada $\lambda$ (esos puntos están en $OY$ o en algún $A_k$). Entonces $G=\{(x,y): x<\lambda\}$ y $H=\{(x,y): x>\lambda\}$ son abiertos de $\R^2$ que cubren $N$, no se cortan, y $p\in G$, $p_n\in H$: desconectan a $N$ (Prop.~\ref{pr:GH}). Ningún entorno de $p$ dentro de $\Bola{p}{r}$ es conexo. En la clase 12 (Ej.\ 5.5) se dio la idea con el peine $P$, que es el mismo ejemplo: alrededor de un punto $p$ del diente $x=0$, una bolita que no llega a la base, ``cuando uno le hace una foto localmente'', es un manojo de rayitas verticales separadas, y eso no es arcoconexo: ``en cuanto tirás un entornito se te metió una patita a la cual no podés viajar''.
 La guía pide lo mismo con el eje $Y$ y las rectas $y=nx$ \fnt{CX 15}: arcoconexo porque todas las rectas pasan por el origen, y no localmente arcoconexo en los puntos del eje $Y$ distintos del origen, con el mismo tipo de argumento.
 \end{ejemplo}
 
-\begin{ejemplo}[El peine reducido no es arcoconexo \fnt{\texttt{Peine-del-Topologo.pdf}; comparar GT Ej.\ 4.2.8(4)} \noentra{enunciado en clase; la demostración quedó como lectura}]\label{cc:peinered}
+\begin{ejemplo}[El peine reducido no es arcoconexo \fnt{\texttt{Peine-del-Topologo.pdf}; comparar GT Ej.\ 4.2.8(4)}]\label{cc:peinered}
 Con la notación del Ejemplo~\ref{ej:peine}: $E=(K\times[0,1])\cup([0,1]\times\{0\})$ es arcoconexo (dientes y base son segmentos, y cada diente corta a la base: Prop.~\ref{cc:uniones}(a)); el peine $P=\cl E$ también (se agrega el segmento $\{0\}\times[0,1]$, que corta a la base). Pero el peine reducido $R=E\cup\{p\}$, $p=(0,1)$, que es conexo, \emph{no} es arcoconexo: sus componentes arcoconexas son $E$ y $\{p\}$.
 \end{ejemplo}
 
@@ -2572,7 +2667,7 @@ Como $[0,1]$ es conexo (\S\ref{sec:bolzano}) y $S$ es abierto, cerrado y no vac�
 $E\subseteq R\subseteq\cl E$ con $E$ arcoconexo y $R$ no arcoconexo: la Prop.~\ref{pr:sandwich} no tiene versión por caminos. Además, la componente arcoconexa $\{p\}$ de $R$ es cerrada pero no abierta, y $E$ es abierta en $R$ pero no cerrada (su clausura en $R$ es $R$): a diferencia de las componentes conexas (Prop.~\ref{cc:propcomp}), las arcoconexas \emph{no tienen por qué ser cerradas}. La pregunta de \textbf{CX} 16 (``¿es arcoconexa la clausura de un arcoconexo?'') tiene respuesta negativa con el ejemplo siguiente de \textbf{GT} (con el peine la clausura $P$ sí resulta arcoconexa; lo que falla es el conjunto intermedio $R$).
 \end{observacion}
 
-\begin{ejemplo}[La escalera: conexo, no arcoconexo, y clausura de un arcoconexo \fnt{GT Ej.\ 4.2.8(4), pp.\,73--75, Ej.\ 4.4.5, p.\,79 y Nota 4.2.9, pp.\,75--76} \noentra{todavía no dictado en clase}]\label{cc:escalera}
+\begin{ejemplo}[La escalera: conexo, no arcoconexo, y clausura de un arcoconexo \fnt{GT Ej.\ 4.2.8(4), pp.\,73--75, Ej.\ 4.4.5, p.\,79 y Nota 4.2.9, pp.\,75--76}]\label{cc:escalera}
 En $\R^2$ sean $A_0=OY$ (el eje vertical), $A_n=\{1/n\}\times\R$ para $n\ge1$, y los peldaños horizontales $B_n=[\frac1{n+1},\frac1n]\times\{n\}$, que unen $A_{n+1}$ con $A_n$ a altura $n$. Sea $X=\bigcup_{n\ge0}A_n\cup\bigcup_{n\ge1}B_n$ y $H=X-A_0$. Entonces:
 \begin{lista}
 \item $H$ es arcoconexo: la sucesión $A_1,B_1,A_2,B_2,A_3,\dots$ es de arcoconexos y cada uno corta al siguiente (Prop.~\ref{cc:uniones}(c)).
@@ -2602,15 +2697,15 @@ En la demostración impresa, $V$ debe ser $\{(x,y): x>\lambda\}$ (dice $y>\lambd
 \node[below] at (1,-1){\scriptsize $A_1$}; \node[below] at (0.5,-1){\scriptsize $A_2$}; \node[below] at (0.333,-1){\scriptsize $A_3$};
 \node[above] at (0.75,1){\scriptsize $B_1$}; \node[above] at (0.4167,2){\scriptsize $B_2$};
 \end{tikzpicture}
-\figtit{Figura 22. La escalera de GT 4.2.8(4): rectas verticales $A_n$ en $x=1/n$ unidas por peldaños $B_n$ a altura $n$ (azul), más el eje $A_0$ (rojo). Para ir de $H$ (azul) a $A_0$ habría que subir infinitos peldaños: ningún camino, que es acotado, lo logra.}
+\figtit{Figura 25. La escalera de GT 4.2.8(4): rectas verticales $A_n$ en $x=1/n$ unidas por peldaños $B_n$ a altura $n$ (azul), más el eje $A_0$ (rojo). Para ir de $H$ (azul) a $A_0$ habría que subir infinitos peldaños: ningún camino, que es acotado, lo logra.}
 \end{figure}
 
 \subsection{Puntos de corte}\label{cc:corte}
 
-\noindent\noentra{todavía no dictado en clase} Sigue \textbf{GT} \S4.3 (\textbf{MS} lo deja como problema 13 de \S7.5). Es la herramienta estándar para probar que dos espacios \emph{no} son homeomorfos: se saca un punto y se cuentan los pedazos.
+\noindent Clase 13 (5/10/2026). Sigue \textbf{GT} \S4.3 (\textbf{MS} lo deja como problema 13 de \S7.5). ``Para los que vieron matemática discreta: es la idea del vértice de un grafo que, si lo saco, desconecta.'' Es la herramienta estándar para probar que dos espacios \emph{no} son homeomorfos: se saca un punto y se cuentan los pedazos.
 
-\begin{definicion}[Punto de corte y orden \fnt{GT 4.3.1, p.\,76; MS \S7.5, problema 13, p.\,93} \noentra{todavía no dictado en clase}]\label{cc:defcorte}
-Sea $(X,\tp)$ y $x\in X$. $x$ es un \emph{punto de corte} de $X$ si $X-\{x\}$ (con la topología de subespacio) no es arcoconexo. El \emph{orden de corte} de $x$ es la cantidad de componentes arcoconexas de $X-\{x\}$ (un punto que no es de corte, en un $X$ arcoconexo, tiene orden $1$).
+\begin{definicion}[Punto de corte y orden \fnt{GT 4.3.1, p.\,76; MS \S7.5, problema 13, p.\,93; clase 13, Def.\ 2.1}]\label{cc:defcorte}
+Sea $(X,\tp)$ \emph{arcoconexo} y $x\in X$ (la hipótesis no está en \textbf{GT}: la agregó la docente, ``la gracia es que haya sido arcoconexo antes''). $x$ es un \emph{punto de corte} de $X$ si $X-\{x\}$ (con la topología de subespacio) no es arcoconexo. El \emph{orden de corte} de $x$ es la cantidad de componentes arcoconexas de $X-\{x\}$ (un punto que no es de corte, en un $X$ arcoconexo, tiene orden $1$).
 \lgc{x\ \text{punto de corte de } X\iff X-\{x\}\ \text{no es arcoconexo};\\
 \operatorname{ord}(x)=\#\,\{\text{componentes arcoconexas de } X-\{x\}\}.}
 \end{definicion}
@@ -2619,12 +2714,12 @@ Sea $(X,\tp)$ y $x\in X$. $x$ es un \emph{punto de corte} de $X$ si $X-\{x\}$ (c
 \textbf{MS} usa la misma idea pero cuenta componentes \emph{conexas} de $X-\{x\}$. En todos los ejemplos del curso (subconjuntos de $\R$, abiertos de $\R^n$, circunferencias, grafos finitos) las dos cuentas coinciden, porque esos espacios son localmente arcoconexos (Cor.~\ref{cc:igualcomp}).
 \end{observacion}
 
-\begin{ejemplo}[Puntos de corte de espacios conocidos \fnt{GT Ej.\ 4.3.2, p.\,76; MS \S7.5, problema 13(ii)--(iii), pp.\,93--94} \noentra{todavía no dictado en clase}]\label{cc:ejcorte}
+\begin{ejemplo}[Puntos de corte de espacios conocidos \fnt{GT Ej.\ 4.3.2, p.\,76; MS \S7.5, problema 13(ii)--(iii), pp.\,93--94; clase 13, Ej.\ 2.2}]\label{cc:ejcorte}
 \begin{lista}
 \item En $\R$ todo punto es de corte de orden $2$: $\R-\{x\}=(-\infty,x)\cup(x,\infty)$, cada pedazo es un intervalo (arcoconexo), y no hay camino de un lado al otro, porque la imagen de un camino es un arcoconexo de $\R$, o sea un intervalo (\S\ref{sec:bolzano}), y contendría a $x$.
 \item En $[a,b]$ (con $a<b$), cada $x\in(a,b)$ es de corte de orden $2$, y los extremos $a,b$ no son de corte: $[a,b]-\{a\}=(a,b]$ es un intervalo. Así, $[0,1]$ tiene exactamente \emph{dos} puntos que no son de corte, $(0,1]$ tiene \emph{uno} y $(0,1)$ \emph{ninguno}.
 \item En $\R^n$ con $n\ge2$ ningún punto es de corte: $\R^n-\{p\}$ es arcoconexo. Dados $q,r\ne p$: si $p$ no está en el segmento $[q,r]$, ese segmento sirve; si está, se toma $s$ fuera de la recta $L$ que pasa por $q$ y $r$, y la poligonal $[q,s]*[s,r]$ sirve, porque $[q,s]$ sólo toca $L$ en $q$ y $[s,r]$ sólo en $r$, ambos $\ne p$.
-\item En $S^1$ ningún punto es de corte: si $p=(\cos\theta,\sin\theta)$, entonces $S^1-\{p\}$ es la imagen del intervalo $(\theta,\theta+2\pi)$ por $t\mapsto(\cos t,\sin t)$, arcoconexa por la Prop.~\ref{cc:imarco}.
+\item En $S^1$ ningún punto es de corte (``por ahí tengo que hacer un camino más largo en vez de uno cortito, pero sigue siendo igual de conexo''): si $p=(\cos\theta,\sin\theta)$, entonces $S^1-\{p\}$ es la imagen del intervalo $(\theta,\theta+2\pi)$ por $t\mapsto(\cos t,\sin t)$, arcoconexa por la Prop.~\ref{cc:imarco}.
 \end{lista}
 \end{ejemplo}
 
@@ -2632,20 +2727,34 @@ Sea $(X,\tp)$ y $x\in X$. $x$ es un \emph{punto de corte} de $X$ si $X-\{x\}$ (c
 \textbf{GT} 4.3.2(2) anuncia el ejemplo para $[0,1]$ y lo escribe para $[a,b]$; es lo mismo con $a=0$, $b=1$.
 \end{observacion}
 
-\begin{proposicion}[Invarianza de los puntos de corte \fnt{GT 4.3.5(a), pp.\,77--78; MS \S7.5, problema 13(i), p.\,93} \noentra{todavía no dictado en clase}]\label{cc:invcorte}
+\begin{proposicion}[Invarianza de los puntos de corte \fnt{GT 4.3.5(a), pp.\,77--78; MS \S7.5, problema 13(i), p.\,93; clase 13, Prop.\ 2.4}]\label{cc:invcorte}
 Sea $f:X\to Y$ un homeomorfismo. Entonces $x$ es punto de corte de orden $n$ de $X$ si y sólo si $f(x)$ es punto de corte de orden $n$ de $Y$. En consecuencia $f$ lleva biyectivamente los puntos de corte de $X$ (de cada orden) sobre los de $Y$, y los que no son de corte sobre los que no son de corte: la cantidad de puntos de cada tipo es un invariante topológico.
 \lgc{f:X\to Y\ \text{homeomorfismo}\ \Rightarrow\ \forall x\in X:\ \operatorname{ord}_X(x)=\operatorname{ord}_Y(f(x)).}
 \end{proposicion}
 
 \begin{proof}
-Como $f$ es biyectiva, $f(X-\{x\})=Y-\{f(x)\}$, y la restricción $f|:X-\{x\}\to Y-\{f(x)\}$ es un homeomorfismo entre subespacios (es continua, biyectiva, y su inversa es la restricción de $f^{-1}$, también continua; \S\ref{sec:sub}). Por la Prop.~\ref{cc:invcam}, un homeomorfismo da una biyección entre componentes arcoconexas, así que $X-\{x\}$ e $Y-\{f(x)\}$ tienen la misma cantidad de ellas.
+Como $f$ es biyectiva, $f(X-\{x\})=Y-\{f(x)\}$, y la restricción $f|:X-\{x\}\to Y-\{f(x)\}$ es un homeomorfismo entre subespacios (es continua, biyectiva, y su inversa es la restricción de $f^{-1}$, también continua; \S\ref{sec:sub}). Por la Prop.~\ref{cc:invcam}, un homeomorfismo da una biyección entre componentes arcoconexas, así que $X-\{x\}$ e $Y-\{f(x)\}$ tienen la misma cantidad de ellas. La vuelta es lo mismo con $f^{-1}$. (``Le saqué un puntito a cada uno; restringir nunca pierde continuidad.'')
 \end{proof}
 
-\begin{corolario}[Espacios que no son homeomorfos \fnt{GT \S4.3; MS \S7.5, problema 13(ii)--(iii), pp.\,93--94} \noentra{todavía no dictado en clase}]\label{cc:nohomeo}
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+\draw[blue!60!black,thick] (0,0) .. controls (0.6,0.9) and (1.2,-0.4) .. (1.8,0.3);
+\draw[red!60!black,thick] (1.8,0.3) .. controls (2.4,0.9) and (3.0,-0.3) .. (3.4,0.4);
+\node[pt,fill=white] at (1.8,0.3){}; \node[below] at (1.8,0.2){\scriptsize $x$}; \node at (1.7,-0.9){\scriptsize $X$};
+\draw[->,>=Stealth] (3.9,0.2)--(5.1,0.2) node[midway,above]{\scriptsize $f$ homeo}; \node at (4.5,-0.15){\scriptsize $\tilde f=f|_{X-\{x\}}$};
+\draw[blue!60!black,thick] (5.6,-0.3) .. controls (6.0,0.9) and (6.6,0.9) .. (7.0,0.2);
+\draw[red!60!black,thick] (7.0,0.2) .. controls (7.4,-0.5) and (8.0,-0.4) .. (8.6,0.5);
+\node[pt,fill=white] at (7.0,0.2){}; \node[below] at (7.05,0.1){\scriptsize $f(x)$}; \node at (7.1,-0.9){\scriptsize $Y$};
+\end{tikzpicture}
+\figtit{Figura 26. Invarianza de los puntos de corte (dibujo de la clase 13): al sacar $x$ y $f(x)$, la restricción $\tilde f$ sigue siendo un homeomorfismo, y dos componentes de un lado son dos del otro.}
+\end{figure}
+
+\begin{corolario}[Espacios que no son homeomorfos \fnt{GT \S4.3; MS \S7.5, problema 13(ii)--(iii), pp.\,93--94; clase 13, Cor.\ de la Prop.\ 2.4: $\R\not\cong S^1$}]\label{cc:nohomeo}
 \begin{enumerate}[label=(\alph*),leftmargin=2.2em,itemsep=0pt]
 \item $\R$ no es homeomorfo a $\R^n$ para $n\ge2$; en particular $\R\not\cong\R^2$.
 \item $[0,1]$, $(0,1]$ y $(0,1)$ son dos a dos no homeomorfos; como $(0,1)\cong\R$, tampoco $[0,1]\cong\R$.
-\item $[0,1]$ no es homeomorfo a $\R^2$, ni $S^1$ a ningún intervalo.
+\item $[0,1]$ no es homeomorfo a $\R^2$, ni $S^1$ a ningún intervalo; en particular $\R\not\cong S^1$ (el corolario dictado: en $\R$ todo punto es de corte y $S^1$ no tiene).
 \end{enumerate}
 \lgc{\R\not\cong\R^n\ (n\ge2);\qquad [0,1]\not\cong(0,1]\not\cong(0,1)\cong\R;\qquad [0,1]\not\cong\R^2;\qquad S^1\not\cong J\ (J\subseteq\R\ \text{intervalo}).}
 \end{corolario}
@@ -2658,7 +2767,7 @@ Todo por la Prop.~\ref{cc:invcorte} y el Ejemplo~\ref{cc:ejcorte}. (a) Si $f:\R\
 La conexión sola no alcanza para distinguirlos: todos son conexos y arcoconexos. Lo que los separa es cómo se rompen al sacar un punto. El mismo truco, sacando dos puntos, distingue por ejemplo $S^1$ de la figura ``8''.
 \end{observacion}
 
-\begin{definicion}[Punto de corte local \fnt{GT 4.3.3, p.\,77} \noentra{todavía no dictado en clase}]\label{cc:deflocal}
+\begin{definicion}[Punto de corte local \fnt{GT 4.3.3, p.\,77; clase 13, Def.\ 2.3}]\label{cc:deflocal}
 $x$ es un \emph{punto de corte local de orden $n$} de $X$ si todo entorno $N$ de $x$ contiene otro entorno $N'$ de $x$ tal que $N'-\{x\}$ tiene exactamente $n$ componentes arcoconexas.
 \lgc{x\ \text{de corte local de orden } n\iff \forall N\in\mathcal N_x\ \exists N'\in\mathcal N_x:\ N'\subseteq N\ \wedge\ \#\{\text{comp.\ arcoconexas de } N'-\{x\}\}=n.}
 \end{definicion}
@@ -2667,8 +2776,8 @@ $x$ es un \emph{punto de corte local de orden $n$} de $X$ si todo entorno $N$ de
 El enunciado de \textbf{GT} 4.3.3 dice ``existe otro $N'\subseteq N$'' sin pedir que sea entorno; la demostración de 4.3.5(b) usa que lo es, y sin esa condición la definición no tiene sentido (siempre se podría tomar $N'$ con $n$ puntos aislados).
 \end{observacion}
 
-\begin{ejemplo}[\fnt{GT Ej.\ 4.3.4, p.\,77} \noentra{todavía no dictado en clase}]
-En el rombo con sus dos diagonales (Figura 23), ningún punto es de corte (el grafo sigue arcoconexo al sacar cualquier punto), pero: un punto interior de una arista, como $x$, es de corte local de orden $2$; un vértice del rombo, como $y$ (donde llegan dos lados y una diagonal), es de corte local de orden $3$; y el centro $z$ (cruce de las diagonales) es de corte local de orden $4$.
+\begin{ejemplo}[\fnt{GT Ej.\ 4.3.4, p.\,77}]
+En el rombo con sus dos diagonales (Figura 27), ningún punto es de corte (el grafo sigue arcoconexo al sacar cualquier punto), pero: un punto interior de una arista, como $x$, es de corte local de orden $2$; un vértice del rombo, como $y$ (donde llegan dos lados y una diagonal), es de corte local de orden $3$; y el centro $z$ (cruce de las diagonales) es de corte local de orden $4$.
 \end{ejemplo}
 
 \begin{figure}[ht]
@@ -2681,27 +2790,31 @@ En el rombo con sus dos diagonales (Figura 23), ningún punto es de corte (el gr
 \node[pt] at (1.1,0){}; \node[below] at (1.1,0){\scriptsize $x$};
 \draw[blue!60!black,dashed] (0,0) circle (0.35);
 \end{tikzpicture}
-\figtit{Figura 23. GT Ej.\ 4.3.4. Órdenes de corte locales: $x$ tiene $2$, $y$ tiene $3$, $z$ tiene $4$. Un entorno chico de $z$ (círculo rayado) menos $z$ se parte en $4$ trocitos de segmento; ninguno de los tres puntos es de corte global.}
+\figtit{Figura 27. GT Ej.\ 4.3.4. Órdenes de corte locales: $x$ tiene $2$, $y$ tiene $3$, $z$ tiene $4$. Un entorno chico de $z$ (círculo rayado) menos $z$ se parte en $4$ trocitos de segmento; ninguno de los tres puntos es de corte global.}
 \end{figure}
 
-\begin{proposicion}[Invarianza de los puntos de corte locales \fnt{GT 4.3.5(b), pp.\,77--78} \noentra{todavía no dictado en clase}]
+\begin{proposicion}[Invarianza de los puntos de corte locales \fnt{GT 4.3.5(b), pp.\,77--78; clase 13}]
 Si $f:X\to Y$ es un homeomorfismo, $x$ es de corte local de orden $n$ en $X$ si y sólo si $f(x)$ lo es en $Y$.
 \lgc{f\ \text{homeomorfismo}\ \Rightarrow\ \big(x\ \text{de corte local de orden } n \text{ en } X\iff f(x)\ \text{de corte local de orden } n \text{ en } Y\big).}
 \end{proposicion}
 
 \begin{proof}[Idea]
-Un homeomorfismo lleva entornos de $x$ en entornos de $f(x)$ y viceversa (es abierto y continuo), y restringido a $N'-\{x\}$ es un homeomorfismo sobre $f(N')-\{f(x)\}$; se aplica la Prop.~\ref{cc:invcam}.
+Un homeomorfismo lleva entornos de $x$ en entornos de $f(x)$ y viceversa (es abierto y continuo), y restringido a $N'-\{x\}$ es un homeomorfismo sobre $f(N')-\{f(x)\}$; se aplica la Prop.~\ref{cc:invcam}. ``Es lo mismo, con el laburo de tomarse el entornito.''
 \end{proof}
+
+\begin{observacion}[Cómo se prueba que dos espacios no son homeomorfos \fnt{clase 13, Obs.\ 2.5; CX 19}]
+Primero se cuentan las componentes conexas (Prop.~\ref{cc:invcomp}); si coinciden, se miran los puntos de corte (Prop.~\ref{cc:invcorte}). Para que haya un homeomorfismo tienen que coincidir las dos cosas. Es exactamente el argumento del Ejemplo~\ref{cc:cx19}.
+\end{observacion}
 
 \subsection{Conexo más localmente arcoconexo implica arcoconexo}\label{cc:conexarco}
 
-\noindent\noentra{todavía no dictado en clase} \textbf{GT} 4.4.5--4.4.6 y \textbf{MS} Prop.\ 7.18: la conexión es más débil que la arcoconexión, pero con una hipótesis local se recupera la equivalencia.
+\noindent \textbf{GT} 4.4.5--4.4.6 y \textbf{MS} Prop.\ 7.18: la conexión es más débil que la arcoconexión, pero con una hipótesis local se recupera la equivalencia.
 
 \begin{ejemplo}[Conexo que no es arcoconexo \fnt{GT Ej.\ 4.4.5, p.\,79; MS Ej.\ 7.2, p.\,91; clase 11}]
 La escalera (Ejemplo~\ref{cc:escalera}), el peine reducido (Ejemplos~\ref{ej:peine} y~\ref{cc:peinered}) y el seno del topólogo (Ejemplo~\ref{cc:seno}) son conexos y no arcoconexos. Así, la Prop.~\ref{cc:arcoconexo} no tiene recíproca.
 \end{ejemplo}
 
-\begin{teorema}[Conexo y localmente arcoconexo $\Rightarrow$ arcoconexo \fnt{GT 4.4.6, p.\,79; MS Prop.\ 7.18, p.\,91} \noentra{todavía no dictado en clase}]\label{cc:conexlocarco}
+\begin{teorema}[Conexo y localmente arcoconexo $\Rightarrow$ arcoconexo \fnt{GT 4.4.6, p.\,79; MS Prop.\ 7.18, p.\,91; clase 12, Prop.\ 8.1}]\label{cc:conexlocarco}
 Si $(X,\tp)$ es localmente conexo por caminos, entonces $X$ es conexo si y sólo si es conexo por caminos.
 \lgc{X\ \text{loc.\ arcoconexo}\ \Rightarrow\ \big(X\ \text{conexo}\iff X\ \text{arcoconexo}\big).}
 \end{teorema}
@@ -2711,7 +2824,11 @@ Si $(X,\tp)$ es localmente conexo por caminos, entonces $X$ es conexo si y sólo
 ($\Rightarrow$) Si $X=\emptyset$ no hay nada que probar. Si no, sea $x_0\in X$. Por la Prop.~\ref{cc:compabcam}, $c(x_0)$ es abierta y cerrada, y no es vacía; como $X$ es conexo, $c(x_0)=X$ (Prop.~\ref{pr:conexclopen}). Es decir, todo punto se une con $x_0$ por un camino, y por transitividad (Prop.~\ref{cc:equiv}) dos puntos cualesquiera se unen entre sí.
 \end{proof}
 
-\begin{corolario}[Abiertos conexos de $\R^n$ \fnt{MS Ejemplos 7.3(4), p.\,91} \noentra{todavía no dictado en clase}]\label{cc:abiertosRn}
+\begin{observacion}[Ejercicio típico de final \fnt{clase 12, Obs.\ 8.2--8.3}]
+``Ni un camino tiré: propiedad, propiedad, propiedad''. La docente lo presentó así: \emph{(a) Defina $X$ conexo. (b) Defina $X$ arcoconexo. (c) Enuncie y demuestre la implicación correcta entre ambos conceptos. (d) Indique bajo qué condiciones los dos conceptos son equivalentes, y demuéstrelo.} Los lemas previos (que la componente es abierta y cerrada, Prop.~\ref{cc:compabcam}) ``son de regalo''; lo que se evalúa es arcoconexo $\Rightarrow$ conexo (Prop.~\ref{cc:arcoconexo}) y este teorema. Moraleja para contraejemplos: un conexo no arcoconexo \emph{no puede} ser localmente arcoconexo, ``¡por eso el peine del topólogo no es localmente arcoconexo!''. Sobre $X=\emptyset$: ``si $X$ es vacío nos vamos y no hablamos''; se asume $X\ne\emptyset$ al hablar de (arco)conexidad.
+\end{observacion}
+
+\begin{corolario}[Abiertos conexos de $\R^n$ \fnt{MS Ejemplos 7.3(4), p.\,91}]\label{cc:abiertosRn}
 Todo abierto conexo de $\R^n$ (o de un espacio normado) es arcoconexo. De hecho, dos puntos se unen con una poligonal.
 \lgc{U\subseteq\R^n\ \text{abierto}\ \wedge\ U\ \text{conexo}\ \Rightarrow\ U\ \text{arcoconexo}.}
 \end{corolario}
@@ -2722,23 +2839,23 @@ $U$ es localmente arcoconexo: las bolas contenidas en $U$ son convexas y forman 
 
 \subsection{Componentes conexas y conexión local}\label{cc:compconex}
 
-\noindent\noentra{todavía no dictado en clase} Sigue \textbf{GT} \S4.6 y \textbf{MS} \S7.2. Es la misma construcción que la de las componentes arcoconexas, con ``conexo'' en lugar de ``arcoconexo''; la diferencia importante es que ahora las componentes \emph{siempre} son cerradas (el sándwich sí vale para conexos).
+\noindent Clase 13 (5/10/2026). Sigue \textbf{GT} \S4.6 y \textbf{MS} \S7.2. Aviso de la docente: \textbf{GT} usa la misma letra $C_x$ que para la componente arcoconexa (``medio desubicado''); hay que leer las palabras, porque no siempre coinciden. Los ejemplos en que difieren son los molestos (peine, seno del topólogo); en ejemplos sencillos se pueden pensar iguales. Es la misma construcción que la de las componentes arcoconexas, con ``conexo'' en lugar de ``arcoconexo''; la diferencia importante es que ahora las componentes \emph{siempre} son cerradas (el sándwich sí vale para conexos).
 
-\begin{definicion}[Componente conexa \fnt{GT 4.6.1, p.\,84; MS Def.\ 7.5, p.\,90} \noentra{todavía no dictado en clase}]\label{cc:defcomp}
+\begin{definicion}[Componente conexa \fnt{GT 4.6.1, p.\,84; MS Def.\ 7.5, p.\,90; clase 13, Def.\ 3.1}]\label{cc:defcomp}
 Sea $(X,\tp)$ y $x\in X$. La \emph{componente conexa} de $x$, $C(x)$, es el mayor subconjunto conexo de $X$ que contiene a $x$: es conexo, contiene a $x$, y contiene a todo conexo que contenga a $x$.
 \lgc{C(x)\ \text{conexo}\ \wedge\ x\in C(x)\ \wedge\ \forall A\subseteq X\ \big(A\ \text{conexo}\ \wedge\ x\in A\Rightarrow A\subseteq C(x)\big).}
 \end{definicion}
 
-\begin{lema}[La componente existe \fnt{GT Lema 4.6.2, p.\,84} \noentra{todavía no dictado en clase}]\label{cc:existecomp}
+\begin{lema}[La componente existe \fnt{GT Lema 4.6.2, p.\,84; clase 13, Lema 3.2}]\label{cc:existecomp}
 Para todo $x\in X$, $C(x)$ existe: es la unión de todos los conexos de $X$ que contienen a $x$.
 \lgc{C(x)=\bigcup\{A\subseteq X:\ A\ \text{conexo},\ x\in A\}.}
 \end{lema}
 
 \begin{proof}
-La familia no es vacía ($\{x\}$ es conexo) y todos sus miembros contienen a $x$, así que su unión es conexa (Prop.~\ref{pr:familias}(b)); contiene a $x$ y a cada conexo que contenga a $x$.
+La familia no es vacía ($\{x\}$ es conexo) y todos sus miembros contienen a $x$, así que su unión es conexa (Prop.~\ref{pr:familias}(b)); contiene a $x$ y a cada conexo que contenga a $x$. ``Es una demostración constructiva: agarra la colección de todos los conexos que contienen a $x$, cosa que uno no hace en la vida cotidiana, hay infinitos.'' La imagen: $C(x)$ es hasta dónde se puede seguir agrandando un conexo que contiene a $x$ sin que deje de ser conexo.
 \end{proof}
 
-\begin{proposicion}[Propiedades de las componentes conexas \fnt{GT 4.6.5 y Nota 4.6.4, pp.\,84--85; MS Lema 7.13, Teo.\ 7.14, Prop.\ 7.15(i), p.\,90} \noentra{todavía no dictado en clase}]\label{cc:propcomp}
+\begin{proposicion}[Propiedades de las componentes conexas \fnt{GT 4.6.5 y Nota 4.6.4, pp.\,84--85; MS Lema 7.13, Teo.\ 7.14, Prop.\ 7.15(i), p.\,90; clase 13, Prop.\ 3.4}]\label{cc:propcomp}
 En $(X,\tp)$, para todos $x,y\in X$:
 \begin{enumerate}[label=(\arabic*),leftmargin=2.2em,itemsep=0pt]
 \item $x\in C(x)$ y $C(x)$ es conexo;
@@ -2753,7 +2870,12 @@ En $(X,\tp)$, para todos $x,y\in X$:
 (1) Por definición. (2) $\cl{C(x)}$ es conexo (sándwich, Prop.~\ref{pr:sandwich}) y contiene a $x$, así que $\cl{C(x)}\subseteq C(x)$ por maximalidad; la otra inclusión es de siempre. (3) $C(x)\cup C(y)$ es conexo por ser unión de conexos que se cortan (Prop.~\ref{pr:unionconex}) y contiene a $x$ y a $y$; por maximalidad $C(x)\cup C(y)\subseteq C(x)$ y $\subseteq C(y)$, luego $C(x)=C(y)$. (4) Si $X$ es conexo es él mismo el mayor conexo que contiene a $x$. Si $C(x)=X$, $X$ es conexo por (1).
 \end{proof}
 
-\begin{proposicion}[Un conexo queda dentro de una componente \fnt{MS Prop.\ 7.16, p.\,90; MS \S7.5, problema 9, p.\,93} \noentra{todavía no dictado en clase}]\label{cc:dentrocomp}
+\begin{observacion}[La prueba de (3) que se dictó, y la relación de equivalencia \fnt{clase 13, Prop.\ 3.4 y Obs.\ 3.5}]
+En clase (3) se probó sin uniones, por maximalidad pura: si $z\in C(x)\cap C(y)$, entonces $C(x)$ y $C(y)$ son conexos que contienen a $z$, luego $C(x),C(y)\subseteq C(z)$; y $C(z)$ es un conexo que contiene a $x$ (porque $x\in C(x)\subseteq C(z)$), luego $C(z)\subseteq C(x)$; igual $C(z)\subseteq C(y)$. Así $C(x)=C(z)=C(y)$. ``Me resulta más sencillo decirlo así: si $y\in C(x)$, entonces $C(x)=C(y)$.'' Para (2): ``las componentes conexas son cerradas \emph{siempre}''.
+El camino es el inverso del de las componentes arcoconexas: allá primero la relación y después las clases; acá primero las componentes y, como toda partición induce una relación de equivalencia (``esto lo probamos alguna vez en la vida, en Lógica''), $x\approx y\iff C(x)=C(y)$ es de equivalencia y sus clases son las componentes conexas.
+\end{observacion}
+
+\begin{proposicion}[Un conexo queda dentro de una componente \fnt{MS Prop.\ 7.16, p.\,90; MS \S7.5, problema 9, p.\,93}]\label{cc:dentrocomp}
 Si $C$ es una componente conexa de $X$ y $A\subseteq X$ es conexo, entonces $A\subseteq C$ o $A\cap C=\emptyset$. Además, todo subconjunto no vacío, conexo, abierto y cerrado de $X$ es una componente conexa.
 \lgc{A\ \text{conexo}\Rightarrow A\subseteq C\ \vee\ A\subseteq X-C;\qquad \emptyset\ne A\ \text{conexo, abierto y cerrado}\Rightarrow A=C(a)\ \ \forall a\in A.}
 \end{proposicion}
@@ -2762,7 +2884,7 @@ Si $C$ es una componente conexa de $X$ y $A\subseteq X$ es conexo, entonces $A\s
 Si $A$ corta a $C=C(x)$ en $a$, entonces $C(a)=C$ y $A\subseteq C(a)$ por maximalidad. Para la segunda: si $a\in A$, $A\subseteq C(a)$ por maximalidad; y como $C(a)$ es conexo y corta al abierto-cerrado $A$, queda entero de ese lado (Prop.~\ref{pr:conexlado}): $C(a)\subseteq A$.
 \end{proof}
 
-\begin{proposicion}[Componentes arcoconexas dentro de componentes conexas \fnt{MS \S7.4, p.\,92 (``Def.'' 7.10)} \noentra{todavía no dictado en clase}]\label{cc:cenC}
+\begin{proposicion}[Componentes arcoconexas dentro de componentes conexas \fnt{MS \S7.4, p.\,92 (``Def.'' 7.10)}]\label{cc:cenC}
 Para todo $x\in X$, $c(x)\subseteq C(x)$: cada componente conexa es unión de componentes arcoconexas. En particular, un abierto-cerrado es unión de componentes arcoconexas (\textbf{CX} 17).
 \lgc{\forall x\in X:\ c(x)\subseteq C(x);\qquad A\ \text{abierto y cerrado}\ \Rightarrow\ A=\bigcup_{a\in A}c(a).}
 \end{proposicion}
@@ -2775,7 +2897,7 @@ $c(x)$ es arcoconexo, luego conexo (Prop.~\ref{cc:arcoconexo}), y contiene a $x$
 \textbf{MS} numera este hecho como ``Definición 7.10'', pero es una afirmación demostrable. La inclusión puede ser estricta: en el peine reducido, $C(p)=R$ y $c(p)=\{p\}$.
 \end{observacion}
 
-\begin{proposicion}[Componentes e imagen continua \fnt{GT 4.6.10, p.\,87; MS \S7.5, problema 8, p.\,93; CX 20} \noentra{todavía no dictado en clase}]\label{cc:invcomp}
+\begin{proposicion}[Componentes e imagen continua \fnt{GT 4.6.10, p.\,87; MS \S7.5, problema 8, p.\,93; CX 20; clase 13, Prop.\ 3.11}]\label{cc:invcomp}
 Sea $f:X\to Y$ continua. Entonces $f(C(x))\subseteq C(f(x))$, y si $E$ es una componente conexa de $Y$, $f^{-1}(E)$ es unión de componentes conexas de $X$. Si $f$ es un homeomorfismo, $f(C(x))=C(f(x))$ y $f$ induce una biyección entre las componentes conexas de $X$ y las de $Y$, con componentes correspondientes homeomorfas.
 \lgc{f\ \text{continua}\Rightarrow f(C(x))\subseteq C(f(x))\ \wedge\ f^{-1}(E)=\bigcup_{x\in f^{-1}(E)}C(x);\qquad f\ \text{homeomorfismo}\Rightarrow f(C(x))=C(f(x)).}
 \end{proposicion}
@@ -2784,33 +2906,38 @@ Sea $f:X\to Y$ continua. Entonces $f(C(x))\subseteq C(f(x))$, y si $E$ es una co
 $f(C(x))$ es conexo (Prop.~\ref{pr:imconex}) y contiene a $f(x)$, así que está en $C(f(x))$. Si $x\in f^{-1}(E)$, entonces $E=C(f(x))\supseteq f(C(x))$, o sea $C(x)\subseteq f^{-1}(E)$ (\textbf{CX} 20). Para el homeomorfismo, igual que en la Prop.~\ref{cc:invcam}, aplicando lo anterior a $f^{-1}$; y la restricción de un homeomorfismo a $C(x)$ es un homeomorfismo sobre su imagen $C(f(x))$.
 \end{proof}
 
-\begin{ejemplo}[Componentes conexas \fnt{GT Ej.\ 4.6.3 y 4.6.6, pp.\,84--85; GT Ej.\ 4.6.9(2), p.\,86} \noentra{todavía no dictado en clase}]\label{cc:ejcomp}
+\begin{observacion}[Para qué se usa \fnt{clase 13, Prop.\ 3.11 y Fig.\ 8}]
+``Lo que más se usa es para el \emph{no}'': $\R\not\cong\R-\{0\}$ (una componente contra dos); el plano no es homeomorfo al plano menos una recta (dos componentes), ni éste al plano menos los dos ejes (cuatro). En el parcial puede aparecer ``muy verdadero o falso''. (\textbf{GT} 4.6.10, ``el último teorema del apunte'', deja la demostración como ejercicio análogo a 4.2.7.)
+\end{observacion}
+
+\begin{ejemplo}[Componentes conexas \fnt{GT Ej.\ 4.6.3 y 4.6.6, pp.\,84--85; GT Ej.\ 4.6.9(2), p.\,86; clase 13, Ejs.\ 3.3 y 3.6}]\label{cc:ejcomp}
 \begin{lista}
+\item Si $X$ es conexo, $C(x)=X$ para todo $x$ (el extremo opuesto a $\Q$: $\R$). En $\R-\{0\}$, $C(x)=(0,+\infty)$ si $x>0$ y $C(x)=(-\infty,0)$ si $x<0$.
 \item En $\Q$ (usual) la componente de cada $x$ es $\{x\}$: los únicos conexos no vacíos son los puntos (es totalmente disconexo). Lo mismo en un discreto. Aquí las componentes \emph{no} son abiertas.
 \item Sea $A=\{1/n: n\ge1\}\cup\{0\}$ y $X=A\times\R\subseteq\R^2$. La componente de $(a,y)$ es la recta $\{a\}\times\R$. En efecto, esa recta es conexa, luego está en la componente; y si $(a',y')\in C((a,y))$, la proyección $\pi_1(C((a,y)))$ es un conexo de $A\subseteq\Q$, luego un punto, que tiene que ser $a$: $a'=a$. La componente $\{0\}\times\R$ es cerrada pero no abierta en $X$.
 \item En el peine reducido y en la escalera hay una sola componente conexa (son conexos), pero dos componentes arcoconexas.
 \end{lista}
 \end{ejemplo}
 
-\begin{definicion}[Localmente conexo \fnt{GT 4.6.7, p.\,85} \noentra{todavía no dictado en clase}]\label{cc:deflocconex}
+\begin{definicion}[Localmente conexo \fnt{GT 4.6.7, p.\,85; clase 13, Def.\ 3.7}]\label{cc:deflocconex}
 $(X,\tp)$ es \emph{localmente conexo} si todo entorno de cualquier punto contiene un entorno conexo de ese punto (cada punto tiene una base de entornos conexos).
 \lgc{X\ \text{loc.\ conexo}\iff \forall x\in X\ \forall N\in\mathcal N_x\ \exists N'\in\mathcal N_x:\ N'\subseteq N\ \wedge\ N'\ \text{conexo}.}
 \end{definicion}
 
 \begin{observacion}
-Localmente arcoconexo $\Rightarrow$ localmente conexo, porque los entornos arcoconexos son conexos (Prop.~\ref{cc:arcoconexo}). Ser conexo y ser localmente conexo son independientes (tabla de abajo).
+Localmente arcoconexo $\Rightarrow$ localmente conexo, porque los entornos arcoconexos son conexos (Prop.~\ref{cc:arcoconexo}). Ser conexo y ser localmente conexo son independientes (tabla de abajo). Igual que con caminos, que exista \emph{un} entorno conexo de cada punto no alcanza: dado un $N$ cualquiera hay que conseguir uno conexo más chico. Por ejemplo, $\R-\{0\}$ es localmente conexo y no es conexo, con el mismo intervalo $(x-\varepsilon,x+\varepsilon)$, $\varepsilon<|x|$, del Ejemplo~\ref{cc:Rmenos0} \fnt{clase 13, Ej.\ 3.8}.
 \end{observacion}
 
-\begin{proposicion}[En un localmente conexo las componentes son abiertas \fnt{GT 4.6.8, pp.\,85--86} \noentra{todavía no dictado en clase}]\label{cc:compab}
+\begin{proposicion}[En un localmente conexo las componentes son abiertas \fnt{GT 4.6.8, pp.\,85--86; clase 13, Prop.\ 3.9}]\label{cc:compab}
 Si $(X,\tp)$ es localmente conexo, toda componente conexa $C(x)$ es abierta (y, por la Prop.~\ref{cc:propcomp}, abierta y cerrada).
 \lgc{X\ \text{loc.\ conexo}\ \Rightarrow\ \forall x\in X:\ C(x)\in\tp.}
 \end{proposicion}
 
 \begin{proof}
-Sea $y\in C(x)$, de modo que $C(y)=C(x)$. Aplicando la definición al entorno $N=X$, hay un entorno conexo $N'$ de $y$; como contiene a $y$, $N'\subseteq C(y)=C(x)$. Así $C(x)$ es entorno de cada uno de sus puntos.
+Sea $y\in C(x)$, de modo que $C(y)=C(x)$. Aplicando la definición al entorno $N=X$, hay un entorno conexo $N'$ de $y$; como contiene a $y$, $N'\subseteq C(y)=C(x)$ (``spoiler alert: no se iba a poder escapar''). Así $C(x)$ es entorno de cada uno de sus puntos; en clase, con interiores: $y\in G\subseteq N'^\circ\subseteq C(x)^\circ$.
 \end{proof}
 
-\begin{corolario}[Si hay un número finito de componentes, son abiertas \fnt{CX 23} \noentra{todavía no dictado en clase}]\label{cc:finitas}
+\begin{corolario}[Si hay un número finito de componentes, son abiertas \fnt{CX 23}]\label{cc:finitas}
 Si $X$ tiene una cantidad finita de componentes conexas, cada una es abierta (y cerrada).
 \lgc{X=C_1\cup\dots\cup C_k\ \text{(componentes)}\ \Rightarrow\ \forall i:\ C_i\in\tp.}
 \end{corolario}
@@ -2823,7 +2950,7 @@ $X-C_i$ es la unión de las otras $k-1$ componentes, cada una cerrada (Prop.~\re
 \textbf{CX} 21 (en un compacto con componentes abiertas hay finitas) usa la Prop.~\ref{cc:propcomp}(3): las componentes son un cubrimiento por abiertos disjuntos, del que no se puede sacar ninguno; necesita compacidad, que se ve más adelante. \textbf{CX} 22 (un abierto $U$ de un localmente conexo es localmente conexo) sale de que, si $U$ es abierto, los entornos de $x$ en el subespacio $U$ son exactamente los entornos de $x$ en $X$ contenidos en $U$.
 \end{observacion}
 
-\begin{corolario}[En un localmente arcoconexo, componentes conexas y arcoconexas coinciden \fnt{consecuencia de GT 4.2.6 y MS \S7.4, p.\,92} \noentra{todavía no dictado en clase}]\label{cc:igualcomp}
+\begin{corolario}[En un localmente arcoconexo, componentes conexas y arcoconexas coinciden \fnt{consecuencia de GT 4.2.6 y MS \S7.4, p.\,92}]\label{cc:igualcomp}
 Si $X$ es localmente conexo por caminos, entonces $c(x)=C(x)$ para todo $x$.
 \lgc{X\ \text{loc.\ arcoconexo}\ \Rightarrow\ \forall x\in X:\ c(x)=C(x).}
 \end{corolario}
@@ -2832,16 +2959,27 @@ Si $X$ es localmente conexo por caminos, entonces $c(x)=C(x)$ para todo $x$.
 $c(x)\subseteq C(x)$ siempre (Prop.~\ref{cc:cenC}). Por la Prop.~\ref{cc:compabcam}, $c(x)$ es abierta y cerrada; el conexo $C(x)$ la corta (en $x$), así que $C(x)\subseteq c(x)$ (Prop.~\ref{pr:conexlado}).
 \end{proof}
 
-\begin{ejemplo}[Conexión local \fnt{GT Ej.\ 4.6.9, pp.\,86--87} \noentra{todavía no dictado en clase}]\label{cc:ejlocconex}
+\begin{ejemplo}[Conexión local \fnt{GT Ej.\ 4.6.9, pp.\,86--87; clase 13, Ej.\ 3.10}]\label{cc:ejlocconex}
 \begin{lista}
-\item $\R^n$ es localmente arcoconexo, luego localmente conexo.
-\item $(\R,\text{discreta})$ no es conexo pero sí localmente conexo ($\{x\}$ es un entorno conexo de $x$); sus componentes son los puntos, que acá sí son abiertos.
+\item $\R^n$ es localmente arcoconexo, luego localmente conexo. En general, la forma más cómoda de probar que algo de $\R^2$ es conexo es probar que es arcoconexo: la circunferencia unidad unida con las rectas $y=x$ e $y=-x$ es arcoconexa (cada pedazo es una parametrización y se cortan, Prop.~\ref{cc:uniones}), luego conexa (Figura~28).
+\item $(\R,\text{discreta})$ no es conexo pero sí localmente conexo ($\{x\}=\Bola{x}{\frac12}$ es un entorno conexo de $x$: ``el truco está en que el punto es un entorno''); sus componentes son los puntos, que acá sí son abiertos.
 \item $\Q$ no es conexo ni localmente conexo: sus únicos conexos no vacíos son puntos, que no son entornos de nadie (tienen interior vacío).
-\item El espacio del Ejemplo~\ref{cc:peinecompleto} (y el peine $P$) es conexo, incluso arcoconexo, y no es localmente conexo.
+\item El espacio del Ejemplo~\ref{cc:peinecompleto} (y el peine $P$) es conexo, incluso arcoconexo, y no es localmente conexo: ``en cuanto hago un entornito se me meten rayitas''.
 \end{lista}
 \end{ejemplo}
 
-\begin{ejemplo}[Aplicación: dos subespacios de $\R$ no homeomorfos \fnt{CX 19} \noentra{todavía no dictado en clase}]\label{cc:cx19}
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=0.9]
+\draw[ejes] (-2.2,0)--(2.2,0); \draw[ejes] (0,-2.2)--(0,2.2);
+\draw[blue!60!black,thick] (0,0) circle (1.2); \node[blue!60!black] at (1.25,-1.15){\scriptsize $S^1$};
+\draw[red!60!black,thick] (-2,-2)--(2,2) node[right]{\scriptsize $y=x$};
+\draw[green!45!black,thick] (-2,2)--(2,-2) node[right]{\scriptsize $y=-x$};
+\end{tikzpicture}
+\figtit{Figura 28. Clase 13: la circunferencia con las rectas $y=\pm x$ es unión de tres arcoconexos que se cortan, luego arcoconexa y por lo tanto conexa.}
+\end{figure}
+
+\begin{ejemplo}[Aplicación: dos subespacios de $\R$ no homeomorfos \fnt{CX 19; clase 13, Obs.\ 2.5}]\label{cc:cx19}
 $X=\N\cup\bigcup_{n\in\N}(-n-1,-n)$ e $Y=\N\cup[\frac12,\frac23]\cup\bigcup_{n\in\N}(-n-1,-n)$ no son homeomorfos (con $\N=\{1,2,\dots\}$). Los conexos de un subconjunto de $\R$ son intervalos (\S\ref{sec:bolzano}), así que las componentes conexas de $X$ son los puntos de $\N$ y los intervalos abiertos $(-n-1,-n)$; las de $Y$ son esas y además $[\frac12,\frac23]$. Contar componentes no alcanza (hay infinitas numerables en los dos), pero si $h:Y\to X$ fuera homeomorfismo, $h$ llevaría la componente $[\frac12,\frac23]$ sobre una componente de $X$ homeomorfa a ella (Prop.~\ref{cc:invcomp}): no puede ser un punto, y tampoco un intervalo abierto, porque $[\frac12,\frac23]$ tiene dos puntos que no son de corte y un intervalo abierto ninguno (Prop.~\ref{cc:invcorte}). (Si se toma $0\in\N$, en $X$ e $Y$ aparece además la componente $(-1,0]$, que tiene un solo punto que no es de corte; el argumento no cambia.)
 \end{ejemplo}
 
@@ -2865,20 +3003,54 @@ Falta en la tabla ``conexo, localmente conexo y no arcoconexo'': por el Teorema~
 
 
 %======================================================================
-\section[Compacidad]{Compacidad \noentra{todavía no dictado en clase}}\label{sec:compac}
+\section[Compacidad]{Compacidad}\label{sec:compac}
 
-\noindent \textbf{Todo este capítulo está todavía no dictado en clase}: se incluye para tener el mapa completo, porque la docente anticipó que la topología producto se evalúa ``con conexidad o con compacidad''. Sigue \textbf{GT} cap.~3 (\S\S3.1--3.8, pp.\,44--60), cruzado con \textbf{MS} cap.~6 (pp.\,79--84). El producto de compactos se hace con la topología producto de \S\ref{sec:prod} (lema del tubo), no con la versión métrica de \textbf{GT} 3.5.1. En \textbf{GT} varios enunciados dicen ``(seudo)métrico''; acá se escriben para métricos, que es lo que usan los ejercicios (en un seudométrico se pierde Hausdorff y con él la \S\ref{cp:sub-t2}).
+\noindent Empieza en la clase 13 (5/10/2026) con \textbf{GT} \S3.1. La docente anticipó que la topología producto se evalúa ``con conexidad o con compacidad''. Sigue \textbf{GT} cap.~3 (\S\S3.1--3.8, pp.\,44--60), cruzado con \textbf{MS} cap.~6 (pp.\,79--84). El producto de compactos se hace con la topología producto de \S\ref{sec:prod} (lema del tubo), no con la versión métrica de \textbf{GT} 3.5.1. En \textbf{GT} varios enunciados dicen ``(seudo)métrico''; acá se escriben para métricos, que es lo que usan los ejercicios (en un seudométrico se pierde Hausdorff y con él la \S\ref{cp:sub-t2}).
 
 %----------------------------------------------------------------------
-\subsection[Definición y primeros ejemplos]{Definición y primeros ejemplos \noentra{todavía no dictado en clase}}\label{cp:sub-def}
+\subsection[Definición y primeros ejemplos]{Definición y primeros ejemplos}\label{cp:sub-def}
 
-\begin{definicion}[Recubrimiento, subrecubrimiento \fnt{GT 3.1.1--3.1.3, p.\,44; MS Def.\ 6.1, p.\,79}]
+\noindent ``La compacidad es medio incómoda: conexidad a ojo uno la ve; compacidad no.'' \textbf{GT} abre con un diagrama de la idea intuitiva (Figura~29), que la docente mostró con una advertencia: no quedarse con la idea intuitiva, sino con la definición formal. En $\R^n$ compacto va a resultar lo mismo que \emph{cerrado y acotado} (\S\ref{cp:sub-met}); en métricos, lo mismo que \emph{secuencialmente compacto} (toda sucesión tiene una subsucesión convergente), y ahí va a haber cerrados y acotados no compactos; la definición general, la de espacios topológicos, es la de recubrimientos. ``Probar que algo es cerrado y acotado es muchísimo más fácil que probar que de todo cubrimiento por abiertos se puede extraer un subcubrimiento finito.''
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0,caja/.style={draw,rounded corners,align=center,font=\scriptsize,inner sep=4pt}]
+\node[caja,fill=gray!10] (c) at (0,1.3) {\textbf{COMPACIDAD}};
+\node[caja] (e) at (-4.2,0) {cerrado $+$ acotado\\(espacios euclídeos)};
+\node[caja,fill=blue!6] (t) at (0,0) {de todo recubrimiento por abiertos\\se puede extraer un subrecubrimiento finito\\(espacios topológicos)};
+\node[caja] (m) at (4.4,0) {toda sucesión tiene una\\subsucesión convergente\\(espacios métricos)};
+\draw[->,>=Stealth] (c)--(e); \draw[->,>=Stealth] (c)--(t); \draw[->,>=Stealth] (c)--(m);
+\end{tikzpicture}
+\figtit{Figura 29. El diagrama de GT p.\,44, mostrado en la clase 13. La definición es la del medio; las otras dos son teoremas que valen en su contexto (Heine--Borel y Bolzano--Weierstrass, \S\ref{cp:sub-met}).}
+\end{figure}
+
+\begin{definicion}[Recubrimiento, subrecubrimiento \fnt{GT 3.1.1--3.1.3, p.\,44; MS Def.\ 6.1, p.\,79; clase 13, Def.\ 4.1}]
 Sea $X$ un conjunto y $A\subseteq X$. Un \emph{recubrimiento} de $A$ (en \textbf{MS}: \emph{cubrimiento}) es una familia $\{C_\alpha\}_{\alpha\in\Lambda}$ de subconjuntos de $X$ cuya unión contiene a $A$; si $A=X$, la unión es exactamente $X$. Es un \emph{recubrimiento por abiertos} si cada $C_\alpha$ es abierto. Un \emph{subrecubrimiento} es una subfamilia $\{C_\alpha\}_{\alpha\in\Lambda'}$, con $\Lambda'\subseteq\Lambda$, que todavía cubre a $A$; es \emph{finito} si $\Lambda'$ es finito.
 \lgc{\{C_\alpha\}_{\alpha\in\Lambda}\ \text{recubre } A\iff A\subseteq\textstyle\bigcup_{\alpha\in\Lambda}C_\alpha;\\
 \{C_\alpha\}_{\alpha\in\Lambda'}\ \text{subrecubrimiento}\iff \Lambda'\subseteq\Lambda\ \wedge\ A\subseteq\textstyle\bigcup_{\alpha\in\Lambda'}C_\alpha.}
 \end{definicion}
 
-\begin{definicion}[Compacto \fnt{GT 3.1.4--3.1.5, p.\,44; MS Def.\ 6.2, p.\,79}]\label{cp:def}
+\begin{observacion}[Qué es y qué no es un subcubrimiento \fnt{clase 13, \S4}]
+Un recubrimiento puede ser redundante, superponerse, pasarse de $A$: ``siempre y cuando cubran $A$'' (dos que cubren, infinitos que cubren, todas las bolas $\Bola{x}{1}$ con $x\in A$, partir $A$ en dos). Un subrecubrimiento es quedarse con \emph{algunos} de los mismos conjuntos, indexados por $\Lambda'\subseteq\Lambda$, que sigan cubriendo: ``\emph{no puedo inventar abiertos nuevos}'' (la intersección de dos del recubrimiento no vale), ``tenía los abiertos 1 a 50 y me quedo con el 12, el 15 y el 23''. Todo recubrimiento es su propio subrecubrimiento.
+\end{observacion}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+\draw[thick,fill=gray!8] (0,0) .. controls (0.5,1.4) and (2.8,1.5) .. (3.6,0.6) .. controls (4.2,-0.2) and (2.6,-1.3) .. (1.4,-0.9) .. controls (0.5,-0.7) and (-0.2,-0.6) .. (0,0);
+\node at (1.8,0.15){\scriptsize $A$};
+\foreach \x/\y/\r in {0.3/0.1/0.55, 0.9/0.8/0.6, 1.7/1.0/0.55, 2.6/0.9/0.65, 3.4/0.3/0.6, 2.9/-0.5/0.6, 2.0/-0.7/0.55, 1.1/-0.6/0.55, 1.8/0.1/0.5, 0.6/-0.3/0.4, 2.3/0.3/0.45}
+  \draw[cyan!60!black,thin] (\x,\y) circle (\r);
+\foreach \x/\y/\r in {0.3/0.1/0.55, 0.9/0.8/0.6, 1.7/1.0/0.55, 2.6/0.9/0.65, 3.4/0.3/0.6, 2.9/-0.5/0.6, 2.0/-0.7/0.55, 1.1/-0.6/0.55, 1.8/0.1/0.5}
+  \draw[red!70!black,thick,dashed] (\x,\y) circle (\r);
+\node[right,align=left] at (4.4,0.4){\scriptsize celeste: un recubrimiento de $A$};
+\node[right,align=left] at (4.4,-0.1){\scriptsize rojo: un subrecubrimiento};
+\node[right,align=left] at (4.4,-0.5){\scriptsize (algunos de los mismos, y siguen cubriendo)};
+\end{tikzpicture}
+\figtit{Figura 30. Recubrimiento y subrecubrimiento, como en la pizarra de la clase 13: se eligen algunos de los mismos abiertos, sin inventar nuevos.}
+\end{figure}
+
+\begin{definicion}[Compacto \fnt{GT 3.1.4--3.1.5, p.\,44; MS Def.\ 6.2, p.\,79; clase 13, Def.\ 4.2}]\label{cp:def}
 Sea $(X,\tp)$ un espacio topológico y $A\subseteq X$. $A$ es \emph{compacto} (en $(X,\tp)$) si de \emph{todo} recubrimiento de $A$ por abiertos de $X$ se puede extraer un subrecubrimiento finito. Si $A=X$, se dice que $(X,\tp)$ es un \emph{espacio compacto}.
 \lgc{A\ \text{compacto}\iff \forall\{G_\alpha\}_{\alpha\in\Lambda}\subseteq\tp\ \Big(A\subseteq\textstyle\bigcup_{\alpha\in\Lambda}G_\alpha\\ \Rightarrow\ \exists\alpha_1,\dots,\alpha_n\in\Lambda:\ A\subseteq G_{\alpha_1}\cup\dots\cup G_{\alpha_n}\Big).}
 \end{definicion}
@@ -2887,7 +3059,12 @@ Sea $(X,\tp)$ un espacio topológico y $A\subseteq X$. $A$ es \emph{compacto} (e
 El cuantificador es ``\emph{todo} recubrimiento'': para probar que algo es compacto hay que tomar un recubrimiento abierto \emph{cualquiera} (no uno elegido por uno) y achicarlo a finitos. Para probar que \emph{no} es compacto alcanza con exhibir \emph{un} recubrimiento abierto sin subrecubrimiento finito. Es la misma asimetría que en conexidad, pero dada vuelta: acá lo fácil es romper la compacidad. La imagen mental: un compacto es un conjunto que ``se comporta como si fuera finito'' respecto de los abiertos; los resultados de este capítulo son, casi todos, cosas obvias para conjuntos finitos que siguen valiendo para compactos.
 \end{intuicion}
 
-\begin{lema}[La compacidad es absoluta \fnt{GT 3.1.6, pp.\,44--45; MS Lema 6.1, pp.\,79--80}]\label{cp:absoluta}
+\begin{observacion}[La negación: no compacto \fnt{clase 13, Obs.\ 4.3}]
+$A$ no es compacto si y sólo si \emph{existe} un recubrimiento de $A$ por abiertos del que \emph{no} se puede extraer ningún subrecubrimiento finito. Ojo: compacto no quiere decir que exista un recubrimiento finito (``por ahí existe uno muy amigable''; $\R^2$ se cubre con cuatro abiertos y no es compacto), sino que \emph{cada vez} que te dan un recubrimiento, devolvés uno finito. Probar que algo sí es compacto por la definición ``lo haremos tres veces en la vida'' (el intervalo cerrado); después se usan propiedades.
+\lgc{A\ \text{no compacto}\iff \exists\{G_\alpha\}_{\alpha\in\Lambda}\subseteq\tp:\ A\subseteq\textstyle\bigcup_\alpha G_\alpha\ \wedge\ \forall\Lambda'\subseteq\Lambda\ \text{finito}:\ A\not\subseteq\bigcup_{\alpha\in\Lambda'}G_\alpha.}
+\end{observacion}
+
+\begin{lema}[La compacidad es absoluta \fnt{GT 3.1.6, pp.\,44--45; MS Lema 6.1, pp.\,79--80; clase 13, Obs.\ 4.4}]\label{cp:absoluta}
 Sea $A\subseteq(X,\tp)$. Entonces $A$ es compacto en $(X,\tp)$ si y sólo si el subespacio $(A,\tp_A)$ es un espacio compacto. En particular, si $A\subseteq B\subseteq X$, $A$ es compacto en $X$ sii es compacto en el subespacio $B$.
 \lgc{A\ \text{compacto en } (X,\tp)\iff (A,\tp_A)\ \text{compacto}.}
 \end{lema}
@@ -2900,61 +3077,111 @@ Se traducen los recubrimientos con $\tp_A=\{G\cap A: G\in\tp\}$. ($\Rightarrow$)
 Por el lema, ``$A$ es compacto'' no depende del espacio ambiente (a diferencia de ``$A$ es abierto'', ver \S\ref{sec:sub}), y todo lo que se pruebe para espacios compactos vale para subconjuntos compactos. Además \textbf{MS} (Obs.\ 6.1(2), p.\,80) observa que en la definición alcanza con recubrimientos por abiertos \emph{básicos}: si $\{G_\alpha\}$ es un recubrimiento abierto, cada punto está en un básico metido en algún $G_\alpha$; se extrae un subrecubrimiento finito de esos básicos y se reemplaza cada uno por el $G_\alpha$ que lo contiene.
 \end{observacion}
 
-\begin{proposicion}[Finitos y uniones finitas \fnt{GT Ej.\ 3.1.9 y 3.1.11, p.\,45; MS Obs.\ 6.1(1),(4), p.\,80}]\label{cp:finitos}
+\begin{proposicion}[Finitos y uniones finitas \fnt{GT Ej.\ 3.1.9 y 3.1.11, p.\,45; MS Obs.\ 6.1(1),(4), p.\,80; clase 13, Props.\ 5.2 y 5.5}]\label{cp:finitos}
 En cualquier espacio topológico, todo conjunto finito es compacto, y la unión de una cantidad finita de compactos es compacta.
 \lgc{A\ \text{finito}\Rightarrow A\ \text{compacto};\qquad A_1,\dots,A_m\ \text{compactos}\Rightarrow A_1\cup\dots\cup A_m\ \text{compacto}.}
 \end{proposicion}
 
 \begin{proof}
-Si $A=\{a_1,\dots,a_s\}\subseteq\bigcup_\alpha G_\alpha$, para cada $a_i$ se elige un $G_{\alpha_i}\ni a_i$; los $s$ elegidos cubren $A$. Si $\{G_\alpha\}$ cubre $A_1\cup\dots\cup A_m$, cubre a cada $A_j$; cada uno usa finitos, y la unión de $m$ familias finitas es finita.
+Si $A=\{a_1,\dots,a_s\}\subseteq\bigcup_\alpha G_\alpha$, para cada $a_i$ se elige un $G_{\alpha_i}\ni a_i$; los $s$ elegidos cubren $A$. Si $\{G_\alpha\}$ cubre $A_1\cup\dots\cup A_m$, cubre a cada $A_j$; cada uno usa finitos, y la unión de $m$ familias finitas es finita. Para dos: $A\subseteq G_{\alpha_1}\cup\dots\cup G_{\alpha_n}$ y $B\subseteq G_{\beta_1}\cup\dots\cup G_{\beta_m}$, así que $A\cup B$ se cubre con $n+m$; ``finito más finito da finito''.
 \end{proof}
 
-\begin{ejemplo}[Espacios que no son compactos \fnt{GT Ej.\ 3.1.7, p.\,45; MS Ejemplos 6.1(8) y Contraej.\ 6.1, pp.\,80--81}]\label{cp:nocomp}
+\begin{observacion}[Tarea: ¿y la intersección? \fnt{clase 13, Obs.\ 5.6; guía de compacidad, ej.\ 3}]
+``Cuando está la propiedad de la unión, yo pregunto: ¿vale la intersección?''. \emph{Respuesta:} en un Hausdorff sí (los compactos son cerrados, Cor.~\ref{cp:compcerr}, y un cerrado dentro de un compacto es compacto, Prop.~\ref{cp:cerrcomp}); en general no. Sea $X=\N\cup\{a,b\}$ con la topología: $U$ es abierto si (cuando contiene a $a$ o a $b$) le faltan sólo finitos naturales. $K_1=\N\cup\{a\}$ es compacto (el abierto que cubre a $a$ deja afuera finitos puntos, y se cubre cada uno con otro abierto), igual $K_2=\N\cup\{b\}$, pero $K_1\cap K_2=\N$ es un discreto infinito, no compacto. La guía pide la versión que sí vale siempre: $K$ compacto y $C$ cerrado $\Rightarrow$ $K\cap C$ compacto (ej.~3, \S\ref{cp:sub-cerr}).
+\end{observacion}
+
+\begin{ejemplo}[Espacios que no son compactos \fnt{GT Ej.\ 3.1.7, p.\,45; MS Ejemplos 6.1(8) y Contraej.\ 6.1, pp.\,80--81; clase 13, Ej.\ 5.1 y Obs.\ 7.2}]\label{cp:nocomp}
 \begin{lista}
 \item $(\R^n,\tp_u)$ no es compacto: $\R^n=\bigcup_{k\ge1}\Bola{0}{k}$, y una cantidad finita de esas bolas es la de radio máximo, que no es todo $\R^n$.
-\item $(0,1)$ no es compacto: $\{(\tfrac1k,1)\}_{k\ge2}$ lo recubre, y finitos de ellos dan $(\tfrac1{k_0},1)\ne(0,1)$.
+\item $(0,1)$ no es compacto: $\{(\tfrac1k,1)\}_{k\ge2}$ lo recubre, y finitos de ellos dan $(\tfrac1{k_0},1)\ne(0,1)$. En clase, para $(a,b)$: $\{(a,b-\frac1n)\}_{n}$ (Figura~31).
 \end{lista}
 \end{ejemplo}
+
+\begin{proof}[Demostración dictada de que $\R^n$ no es compacto]
+Basta exhibir un recubrimiento sin subrecubrimiento finito. $\mathcal U=\{\Bola{0}{n}\}_{n\in\N}$: son abiertos (bolas abiertas), infinitos numerables, y cubren, porque dado $x$ hay un natural $n>\norm x$ (``los naturales son más grandes que cualquier número que se les ocurra''). Si hubiera un subrecubrimiento finito $\R^n=\Bola{0}{n_1}\cup\dots\cup\Bola{0}{n_k}$, con $n_0=\max\{n_1,\dots,n_k\}$ la unión es $\Bola{0}{n_0}$ (bolas concéntricas encajadas), acotada; pero $\R^n$ no está acotado: absurdo.
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=0.85]
+\begin{scope}
+\draw[ejes] (-2.4,0)--(2.4,0); \draw[ejes] (0,-2.4)--(0,2.4);
+\foreach \r/\c in {0.6/blue!60!black, 1.2/blue!50!black, 1.8/blue!40!black}{\draw[\c,thick] (0,0) circle (\r);}
+\node at (0.42,0.35){\tiny $1$}; \node at (0.95,0.75){\tiny $2$}; \node at (1.45,1.2){\tiny $3$};
+\node[below] at (0,-2.4){\scriptsize $\R^2=\bigcup_n\Bola{0}{n}$; finitas $=$ la mayor};
+\end{scope}
+\begin{scope}[xshift=7cm,yshift=-0.3cm]
+\draw[thick] (-3,0)--(3,0); \node[pt] at (-3,0){}; \node[below] at (-3,0){\scriptsize $a$}; \node[pt,fill=white] at (3,0){}; \node[below] at (3,0){\scriptsize $b$};
+\foreach \n/\h in {1/0.45,2/0.9,3/1.35,4/1.8,6/2.25}{\draw[red!60!black,thick,{Parenthesis[]-Parenthesis[]}] (-3,\h)--({3-6/(\n+1)},\h);}
+\node[red!60!black,right] at (2.2,1.8){\scriptsize $(a,b-\frac1n)$};
+\node[below,align=center] at (0,-0.3){\scriptsize finitos de éstos nunca llegan hasta $b$};
+\end{scope}
+\end{tikzpicture}
+\figtit{Figura 31. Recubrimientos sin subrecubrimiento finito (pizarra de la clase 13): las bolas concéntricas de $\R^2$ y los intervalos $(a,b-\frac1n)$ en $(a,b)$ (escala ilustrativa).}
+\end{figure}
 
 \begin{ejemplo}[Las topologías de referencia \fnt{GT Ej.\ 3.1.8 y 3.1.10, p.\,45; MS Ejs.\ 6.1(1), (2), (5) y (6), p.\,80}]\label{cp:ejtop}
 \begin{lista}
 \item \emph{Indiscreta}: todo subconjunto es compacto (el único abierto no vacío es $X$, así que cualquier recubrimiento contiene a $X$).
-\item \emph{Discreta}: $A$ es compacto sii es finito. Si $A$ es infinito, $\{\{a\}\}_{a\in A}$ es un recubrimiento abierto en el que ningún elemento sobra, luego no tiene subrecubrimiento finito. En particular, $(\N,\tp_{dis})$ y $(\R,d_D)$ no son compactos.
-\item \emph{Cofinita}: $(X,\tp_{cof})$ es compacto, y de hecho todo subconjunto lo es. Dado un recubrimiento abierto de $A\ne\emptyset$, se toma un $G_{\alpha_0}$ no vacío que corte a $A$; su complemento $X-G_{\alpha_0}$ es finito, y los finitos puntos de $A$ que quedan afuera se cubren con un abierto cada uno.
+\item \emph{Discreta}: $A$ es compacto sii es finito. Si $A$ es infinito, $\{\{a\}\}_{a\in A}$ es un recubrimiento abierto en el que ningún elemento sobra, luego no tiene subrecubrimiento finito. En particular, $(\N,\tp_{dis})$ y $(\R,d_D)$ no son compactos. En clase (Ej.\ 5.3), con la distancia discreta: $\{x\}=B_d(x,\frac12)$ es abierto; ``cada $x$ se cubre solamente con su conjunto: si llego a sacar uno ya hay un $x$ que no se cubre; ni uno puedo sacar''. ``Los discretos no son conexos, no son compactos, no se portan bien.'' Es el ej.~1 de la guía de compacidad.
+\item \emph{Cofinita}: $(X,\tp_{cof})$ es compacto, y de hecho todo subconjunto lo es. Dado un recubrimiento abierto de $A\ne\emptyset$, se toma un $G_{\alpha_0}$ no vacío que corte a $A$; su complemento $X-G_{\alpha_0}$ es finito, y los finitos puntos de $A$ que quedan afuera se cubren con un abierto cada uno. Es la pista para el ej.~2 de la guía de compacidad (cuáles son los compactos en un cofinito).
 \item \emph{Conumerable} sobre $\R$: sólo los finitos son compactos (\textbf{MS}).
 \end{lista}
 \end{ejemplo}
 
-\begin{teorema}[Los intervalos cerrados y acotados son compactos \fnt{GT Ej.\ 3.1.12, p.\,46}]\label{cp:ab}
+\begin{teorema}[Los intervalos cerrados y acotados son compactos \fnt{GT Ej.\ 3.1.12, p.\,46; clase 13, Teo.\ 6.1}]\label{cp:ab}
 En $(\R,\tp_u)$, todo intervalo $[a,b]$ es compacto.
 \lgc{a\le b\ \Rightarrow\ [a,b]\ \text{compacto en } (\R,\tp_u).}
 \end{teorema}
 
-\begin{proof}
-Sea $\{G_\alpha\}$ un recubrimiento de $[a,b]$ por abiertos de $\R$, y sea
-$S=\{x\in[a,b]:\ [a,x]\ \text{se cubre con finitos } G_\alpha\}$. $S\ne\emptyset$ porque $a\in S$ y está acotado por $b$; sea $x_0=\sup S\in[a,b]$. Como $x_0$ está en algún $G_{\alpha'}$ abierto, hay $\varepsilon>0$ con $(x_0-\varepsilon,x_0+\varepsilon)\subseteq G_{\alpha'}$.
-\begin{lista}
-\item $x_0\in S$: por ser supremo hay $x_1\in S$ con $x_0-\varepsilon<x_1\le x_0$; $[a,x_1]$ se cubre con $G_{\alpha_1},\dots,G_{\alpha_n}$ y $[x_1,x_0]\subseteq G_{\alpha'}$, así que $[a,x_0]$ se cubre con $n+1$ de ellos.
-\item $x_0=b$: si fuera $x_0<b$, el mismo cubrimiento finito, agregando $G_{\alpha'}$, cubre $[a,x_0+\varepsilon_0/2]$ con $\varepsilon_0=\min\{\varepsilon,b-x_0\}$, y ese punto está en $S$ y es mayor que el supremo. Absurdo.
-\end{lista}
+\begin{proof}[Demostración, como se dictó]
+Sea $\{G_\alpha\}_{\alpha\in\Lambda}$ un recubrimiento de $[a,b]$ por abiertos de $\R$ (``podrían ser intervalitos, podrían no serlo''), y sea
+\[
+S=\{x\in[a,b]:\ [a,x]\ \text{se cubre con una cantidad finita de los } G_\alpha\}.
+\]
+\emph{Paso 0: $S$ tiene supremo.} $a\in S$, porque $[a,a]=\{a\}$ y $a$ está en algún $G_{\alpha_0}$: un solo abierto alcanza. $S$ es no vacío y acotado por $b$; sea $x_0=\sup S$, con $a\le x_0\le b$. Se prueban dos cosas: $x_0\in S$ y $x_0=b$; con las dos, $b\in S$ y se terminó.
+
+\emph{Paso 1: $x_0\in S$.} $x_0\in[a,b]$ está en algún $G_{\alpha'}$, abierto, así que hay $\varepsilon>0$ con $(x_0-\varepsilon,x_0+\varepsilon)\subseteq G_{\alpha'}$ (ojo: ese intervalo \emph{no} es del recubrimiento, es un abierto que lo tiene). Por ser $x_0$ el supremo hay $x_1\in S$ con $x_0-\varepsilon<x_1\le x_0$, y $[a,x_1]\subseteq G_{\alpha_1}\cup\dots\cup G_{\alpha_n}$. Como $[a,x_0]\subseteq[a,x_1]\cup(x_0-\varepsilon,x_0]$, es $[a,x_0]\subseteq G_{\alpha_1}\cup\dots\cup G_{\alpha_n}\cup G_{\alpha'}$: ``con uno más ya tengo un cubrimiento finito''.
+
+\emph{Paso 2: $x_0=b$.} Si fuera $x_0<b$, hay $\delta>0$ con $[x_0,x_0+\delta)\subseteq[a,b]$. Con $\varepsilon_0=\min\{\delta,\varepsilon\}$, el tramo $[x_0,x_0+\varepsilon_0)$ no se va de $G_{\alpha'}$ ni se pasa de $b$, y $[a,x_0+\frac{\varepsilon_0}2]\subseteq[a,x_0]\cup[x_0,x_0+\varepsilon_0)\subseteq G_{\alpha_1}\cup\dots\cup G_{\alpha_n}\cup G_{\alpha'}$ (``hasta $\varepsilon_0$ la punta no sé si la cubro, pero hasta la mitad seguro''). Entonces $x_0+\frac{\varepsilon_0}2\in S$ y es mayor que el supremo: absurdo.
+
 Luego $b\in S$: $[a,b]$ se cubre con finitos $G_\alpha$.
 \end{proof}
 
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+\draw[thick] (0,0)--(10,0);
+\node[pt] at (0,0){}; \node[below] at (0,-0.1){\scriptsize $a$};
+\node[pt] at (10,0){}; \node[below] at (10,-0.1){\scriptsize $b$};
+\draw[blue!60!black,line width=3pt] (0,0)--(4.6,0); \node[blue!60!black,above] at (2.3,0.1){\scriptsize $[a,x_1]$: finitos $G_\alpha$};
+\node[pt] at (4.6,0){}; \node[below] at (4.6,-0.1){\scriptsize $x_1\in S$};
+\node[pt,fill=red!70!black] at (5.4,0){}; \node[below] at (5.4,-0.12){\scriptsize $x_0=\sup S$};
+\draw[green!45!black,thick,{Parenthesis[]-Parenthesis[]}] (4.2,0.45)--(6.6,0.45); \node[green!45!black,above] at (5.4,0.45){\scriptsize $(x_0-\varepsilon,x_0+\varepsilon)\subseteq G_{\alpha'}$};
+\node[pt,fill=orange!80!black] at (6.0,0){}; \node[below] at (6.25,-0.35){\scriptsize $x_0+\frac{\varepsilon_0}{2}$};
+\end{tikzpicture}
+\figtit{Figura 32. $[a,b]$ es compacto (pizarra de la clase 13): un $x_1\in S$ cerca del supremo ya está cubierto por finitos; agregando el $G_{\alpha'}$ de $x_0$ se cubre hasta $x_0$, e incluso un poco más, lo que fuerza $x_0=b$.}
+\end{figure}
+
 \begin{observacion}
-La demostración usa el axioma del supremo de $\R$ y nada más: es la ``inducción continua'' que avanza por $[a,b]$ mientras se pueda cubrir con finitos. En $\Q$ el mismo argumento falla (el supremo puede no existir), y de hecho $[0,2]\cap\Q$ no es compacto en $\Q$ (Ej.~\ref{cp:ejlc}).
+La demostración usa el axioma del supremo de $\R$ y nada más: es la ``inducción continua'' que avanza por $[a,b]$ mientras se pueda cubrir con finitos. ``En los reales, si tiro un abierto, está lleno de cosas, me guste o no''; en un discreto, $(x_0-\frac12,x_0+\frac12)$ no tiene a nadie más. Es el punto de partida de todo lo que sigue: después vienen el producto de compactos (cajas en $\R^n$) y que un cerrado dentro de un compacto es compacto; ``anótense los números: después hay una propiedad que se demuestra por 3.1.12, 3.1.16 y 3.2.8 directamente''. En $\Q$ el mismo argumento falla (el supremo puede no existir), y de hecho $[0,2]\cap\Q$ no es compacto en $\Q$ (Ej.~\ref{cp:ejlc}).
 \end{observacion}
 
-\begin{proposicion}[En un métrico, compacto implica acotado \fnt{GT 3.1.13, p.\,46}]\label{cp:acotado}
-Sea $(X,d)$ un espacio métrico y $C\subseteq X$ compacto. Entonces $C$ es acotado.
-\lgc{C\ \text{compacto en } (X,d)\ \Rightarrow\ \delta(C)<\infty.}
+\begin{proposicion}[En un métrico, compacto implica acotado \fnt{GT 3.1.13, p.\,46; clase 13, Prop.\ 7.1}]\label{cp:acotado}
+Sea $(X,d)$ un espacio métrico y $C\subseteq X$ compacto. Entonces $C$ es acotado. Equivalentemente (contrarrecíproco): no acotado $\Rightarrow$ no compacto.
+\lgc{C\ \text{compacto en } (X,d)\ \Rightarrow\ \delta(C)<\infty;\qquad C\ \text{no acotado}\ \Rightarrow\ C\ \text{no compacto}.}
 \end{proposicion}
 
 \begin{proof}
-Si $C=\emptyset$ no hay nada que probar. Si no, se fija $x_0\in C$: las bolas $\Bola{x_0}{n}$, $n\ge1$, cubren todo $X$, y en particular a $C$. Se extraen finitas; como están encajadas, $C\subseteq\Bola{x_0}{n_0}$ con $n_0$ el mayor radio. Por la desigualdad triangular, $d(x,x')\le d(x,x_0)+d(x_0,x')<2n_0$ para $x,x'\in C$.
+Si $C=\emptyset$ no hay nada que probar. Si no, se fija $x_0\in C$: las bolas $\Bola{x_0}{n}$, $n\ge1$, cubren todo $X$, y en particular a $C$. Se extraen finitas; como están encajadas, $C\subseteq\Bola{x_0}{n_0}$ con $n_0$ el mayor radio. Por la desigualdad triangular, $d(x,x')\le d(x,x_0)+d(x_0,x')<2n_0$ para $x,x'\in C$. (En clase se ahorró la triangular: estar dentro de una bola ya es la definición equivalente de acotado.)
 \end{proof}
 
+\begin{observacion}[Uso inmediato \fnt{clase 13, \S7}]
+Es la misma prueba que ``$\R^n$ no es compacto'', con centro en un punto cualquiera $x_0$. Da al toque que $[0,+\infty)$ y $\{(x,y)\in\R^2:\ x>0\}$ no son compactos. Pero acotado no alcanza: $(a,b)$ es acotado y no es compacto (Ej.~\ref{cp:nocomp}); ``para ser compacto voy a necesitar que sea cerrado, además de acotado'', y eso vale en algunos espacios, no en todos (\S\ref{cp:sub-t2}). En un espacio topológico general ``acotado'' ni siquiera está definido.
+\end{observacion}
+
 %----------------------------------------------------------------------
-\subsection[Compacidad y cerrados]{Compacidad y cerrados \noentra{todavía no dictado en clase}}\label{cp:sub-cerr}
+\subsection[Compacidad y cerrados]{Compacidad y cerrados}\label{cp:sub-cerr}
 
 \begin{definicion}[Propiedad de intersección finita \fnt{GT 3.2.1, p.\,47; MS Def.\ 6.3, p.\,80}]
 Una familia de conjuntos $\{A_\alpha\}_{\alpha\in\Lambda}$ tiene la \emph{propiedad de intersección finita} (PIF) si toda subfamilia finita tiene intersección no vacía.
@@ -2994,7 +3221,7 @@ $[0,1]$ es compacto y $(0,1)\subseteq[0,1]$ no (Ej.~\ref{cp:nocomp}): un subconj
 \end{contraejemplo}
 
 %----------------------------------------------------------------------
-\subsection[Compacidad y Hausdorff]{Compacidad y Hausdorff \noentra{todavía no dictado en clase}}\label{cp:sub-t2}
+\subsection[Compacidad y Hausdorff]{Compacidad y Hausdorff}\label{cp:sub-t2}
 
 \begin{proposicion}[Separación de un punto y un compacto \fnt{GT 3.3.1 y Nota 3.3.2, p.\,48; MS Lema 6.8, p.\,82}]\label{cp:ptocomp}
 Sea $(X,\tp)$ Hausdorff (\S\ref{sec:sep}), $F\subseteq X$ compacto y $x\notin F$. Entonces existen abiertos disjuntos $U,V$ con $x\in U$ y $F\subseteq V$. Vale en todo espacio métrico.
@@ -3017,7 +3244,7 @@ Para cada $y\in F$ es $y\ne x$, y por $T_2$ hay abiertos disjuntos $U_y\ni x$, $
 \node[violet!70!black] at (-0.8,0.8) {\scriptsize $U=\bigcap_i U_{y_i}$};
 \node[blue!60!black] at (3.0,1.55) {\scriptsize $V=\bigcup_i V_{y_i}$};
 \end{tikzpicture}
-\figtit{Figura 24. Separar un punto de un compacto: se separa $x$ de cada $y\in F$, la compacidad deja finitos $V_{y_i}$ (punteados) y del lado de $x$ se intersecan los finitos $U_{y_i}$. Sin compacidad habría que intersecar infinitos abiertos, y eso puede no ser abierto.}
+\figtit{Figura 33. Separar un punto de un compacto: se separa $x$ de cada $y\in F$, la compacidad deja finitos $V_{y_i}$ (punteados) y del lado de $x$ se intersecan los finitos $U_{y_i}$. Sin compacidad habría que intersecar infinitos abiertos, y eso puede no ser abierto.}
 \end{figure}
 
 \begin{corolario}[En un Hausdorff, compacto implica cerrado \fnt{GT 3.3.3, p.\,48; MS Prop.\ 6.9, p.\,82}]\label{cp:compcerr}
@@ -3062,7 +3289,7 @@ En $(\R,\tp_u)$, un subconjunto $A$ es compacto si y sólo si es cerrado y acota
 \end{proof}
 
 %----------------------------------------------------------------------
-\subsection[Compacidad y continuidad]{Compacidad y continuidad \noentra{todavía no dictado en clase}}\label{cp:sub-cont}
+\subsection[Compacidad y continuidad]{Compacidad y continuidad}\label{cp:sub-cont}
 
 \begin{proposicion}[La imagen continua de un compacto es compacta \fnt{GT 3.4.1, p.\,49; MS Prop.\ 6.4 y Cor.\ 6.5, p.\,81}]\label{cp:imcomp}
 Sea $f:(X,\tp)\to(Y,\tp')$ continua y $A\subseteq X$ compacto. Entonces $f(A)$ es compacto. En particular, si $X$ es compacto y $f$ es sobreyectiva, $Y$ es compacto, y la compacidad es una propiedad topológica.
@@ -3133,7 +3360,7 @@ Sea $F_1\supseteq F_2\supseteq\cdots$ una sucesión de cerrados no vacíos con $
 \end{ejemplo}
 
 %----------------------------------------------------------------------
-\subsection[Compacidad en productos]{Compacidad en productos: lema del tubo y Tychonoff finito \noentra{todavía no dictado en clase}}\label{cp:sub-prod}
+\subsection[Compacidad en productos]{Compacidad en productos: lema del tubo y Tychonoff finito}\label{cp:sub-prod}
 
 \noindent \textbf{GT} \S3.5 prueba que el producto de compactos es compacto sólo para métricos con $\delta^{\max}_n$ (3.5.1) y en la Nota 3.5.5 dice que la demostración ``similar'' vale para la topología producto. Acá se hace directamente con la topología producto de \S\ref{sec:prod}, con el argumento de los tubos (Prop.~\ref{pr:tubos}); la versión métrica sale de que las métricas producto inducen la topología producto (Obs.~\ref{ob:prodfin}).
 
@@ -3173,7 +3400,7 @@ Para cada $y\in Y$, $(x_0,y)\in W$ y $W$ es abierto del producto, así que hay u
 \node at (1.2,0.55) {\scriptsize $\{x_0\}\times Y$};
 \draw[->,>=Stealth,thin] (1.75,0.55)--(3.05,0.75);
 \end{tikzpicture}
-\figtit{Figura 25. El lema del tubo. La fibra compacta $\{x_0\}\times Y$ (negro) se cubre con finitos rectángulos $U_{y_i}\times V_{y_i}\subseteq W$ (rojo); la intersección de sus bases, $U$, da un tubo $U\times Y$ (violeta) todavía dentro de $W$. Es el tubo de la Figura 12, ahora ``engordando'' una fibra.}
+\figtit{Figura 34. El lema del tubo. La fibra compacta $\{x_0\}\times Y$ (negro) se cubre con finitos rectángulos $U_{y_i}\times V_{y_i}\subseteq W$ (rojo); la intersección de sus bases, $U$, da un tubo $U\times Y$ (violeta) todavía dentro de $W$. Es el tubo de la Figura 12, ahora ``engordando'' una fibra.}
 \end{figure}
 
 \begin{observacion}[Sin compacidad no hay tubo]
@@ -3241,7 +3468,7 @@ El enunciado de \textbf{GT} dice ``$A\subseteq\R$'': es $A\subseteq\R^n$. La imp
 \end{observacion}
 
 %----------------------------------------------------------------------
-\subsection[Compacidad en espacios métricos]{Compacidad en espacios métricos \noentra{todavía no dictado en clase}}\label{cp:sub-met}
+\subsection[Compacidad en espacios métricos]{Compacidad en espacios métricos}\label{cp:sub-met}
 
 \begin{definicion}[Subsucesión, compacidad secuencial \fnt{GT 3.6.2--3.6.3, p.\,54; MS Defs.\ 6.4--6.5, p.\,82}]
 Una \emph{subsucesión} de $\{x_n\}_{n\ge1}$ es una sucesión $\{x_{n_k}\}_{k\ge1}$ con $n_1<n_2<\cdots$ índices estrictamente crecientes. $(X,\tp)$ es \emph{secuencialmente compacto} si toda sucesión en $X$ tiene una subsucesión convergente (en $X$). \textbf{GT} llama a esto \emph{propiedad de Bolzano--Weierstrass}; en \textbf{MS} ese nombre se reserva para ``todo subconjunto infinito tiene un punto de acumulación''. En métricos las tres cosas son equivalentes a la compacidad (\textbf{MS} Prop.\ 6.7); en topológicos generales no hay relación entre compacidad y compacidad secuencial.
@@ -3334,7 +3561,7 @@ Sea $X=\{f:[0,1]\to[0,1]\ \text{continua}\}$ con $d_\infty(f,g)=\max_{x\in[0,1]}
 \node[below] at (1,0) {\scriptsize $1$};
 \node[blue!70!black] at (0.36,0.42) {\scriptsize $f_1$};
 \end{tikzpicture}
-\figtit{Figura 26. Las rampas de GT Ej.\ 3.6.9: todas a distancia $\varepsilon$ de $\theta$, con soporte cada vez más angosto. Punto a punto tienden a una función discontinua ($\varepsilon$ en $0$, $0$ en el resto), así que ninguna subsucesión converge uniformemente.}
+\figtit{Figura 35. Las rampas de GT Ej.\ 3.6.9: todas a distancia $\varepsilon$ de $\theta$, con soporte cada vez más angosto. Punto a punto tienden a una función discontinua ($\varepsilon$ en $0$, $0$ en el resto), así que ninguna subsucesión converge uniformemente.}
 \end{figure}
 
 \begin{observacion}[Errata menor de \textbf{GT} 3.6.9]
@@ -3342,7 +3569,7 @@ Sea $X=\{f:[0,1]\to[0,1]\ \text{continua}\}$ con $d_\infty(f,g)=\max_{x\in[0,1]}
 \end{observacion}
 
 %----------------------------------------------------------------------
-\subsection[Compacidad y completitud]{Compacidad y completitud \noentra{todavía no dictado en clase}}\label{cp:sub-compl}
+\subsection[Compacidad y completitud]{Compacidad y completitud}\label{cp:sub-compl}
 
 \begin{definicion}[Sucesión de Cauchy, espacio completo \fnt{GT 3.7.1 y 3.7.4, p.\,58}]
 En $(X,d)$, una sucesión $\{x_n\}$ es \emph{de Cauchy} si sus términos se acercan entre sí: para cada $\varepsilon>0$ hay $n_0$ con $d(x_n,x_{n'})<\varepsilon$ para todos $n,n'\ge n_0$. $(X,d)$ es \emph{completo} si toda sucesión de Cauchy converge en $X$.
@@ -3382,7 +3609,7 @@ La recíproca de la Prop.~\ref{cp:compcompl} es falsa: $\R$ es completo y no com
 \end{observacion}
 
 %----------------------------------------------------------------------
-\subsection[Compacidad local]{Compacidad local \noentra{todavía no dictado en clase}}\label{cp:sub-loc}
+\subsection[Compacidad local]{Compacidad local}\label{cp:sub-loc}
 
 \begin{definicion}[Localmente compacto \fnt{GT 3.8.1, p.\,59}]
 $(X,\tp)$ es \emph{localmente compacto} si cada punto tiene entornos compactos arbitrariamente chicos: para todo $x\in X$ y todo entorno $N$ de $x$ existe un entorno $N'$ de $x$ compacto con $N'\subseteq N$.
@@ -3455,7 +3682,7 @@ Continuidad B & Preimágenes vs.\ imágenes; homeomorfismos; isometrías; $\{f<g
 \multicolumn{2}{@{}l}{\emph{Segundo parcial}}\\
 Productos 1--3 (\textbf{TP} p.\,4) & $\cl{A\times B}=\cl A\times\cl B$ e $\intr(A\times B)=\intr A\times\intr B$; $T_2\times T_2$ es $T_2$; continuidad de $f\times g$ y de $(f,g)$. Trabajar en la base de rectángulos y pensarlos como tubos (\S\ref{sec:prod}).\\
 Conexidad 1--10 (salvo 4) & Desconexiones con $G,H$ del espacio grande; imagen continua; funciones a un discreto; dos puntos en un conexo; uniones (5--7: uno que corta a todos, dos a dos, en cadena); sándwich. El 4 usa Bolzano (\S\ref{sec:bolzano}).\\
-Conexidad 15--23 & Arcoconexidad, componentes conexas y por caminos, conexión local, puntos de corte (\S\ref{sec:conex}, subsecciones finales); el 21 usa compacidad (\S\ref{sec:compac}). Todavía no dictado.\\
+Conexidad 15--23 & Arcoconexidad, componentes conexas y por caminos, conexión local, puntos de corte (\S\ref{sec:conex}, subsecciones finales); el 21 usa compacidad (\S\ref{sec:compac}).\\
 \hline
 \end{tabular}
 \end{center}
@@ -3833,7 +4060,7 @@ y se prueba con $1_A$ en los dos sentidos, usando que $1_A:(A,\tp_1)\to(A,\tp_2)
 \section*{Apéndice C: lo que entra en el segundo parcial}
 \addcontentsline{toc}{section}{Apéndice C: lista para el segundo parcial}
 
-\noindent\emph{Mismo formato que el Apéndice B: cada ítem en lenguaje natural y en lenguaje lógico. Arranca con las clases 9 (producto, 10/9/2026), 10 (conexidad, 24/9/2026) y 11 (intervalos, Bolzano y arcoconexidad, 28/9/2026); la docente anticipó que producto se evalúa ``con conexidad o con compacidad''. La lista se completa a medida que avance la cursada (C.3--C.5 cubren lo que está en la guía teórica y todavía no se dictó en clase). $X\times Y$ lleva siempre la topología producto.}
+\noindent\emph{Mismo formato que el Apéndice B: cada ítem en lenguaje natural y en lenguaje lógico. Cubre las clases 9 (producto, 10/9/2026), 10 (conexidad, 24/9/2026), 11 (intervalos, Bolzano y arcoconexidad, 28/9/2026), 12 (componentes arcoconexas y conexión local por caminos, 1/10/2026) y 13 (puntos de corte, componentes conexas, conexión local y comienzo de compacidad, 5/10/2026), más el resto de la guía teórica. Según la docente, en el parcial va a haber seguro un ejercicio de producto (``de conexos con productos o de compactos con productos'') y, sobre homeomorfismos, ``muy verdadero o falso''; lo más importante es pensar si algo es conexo o no (uniones, cosas en el producto). $X\times Y$ lleva siempre la topología producto.}
 
 \subsection*{C.1 Topología producto}
 
@@ -3972,7 +4199,7 @@ y se prueba con $1_A$ en los dos sentidos, usando que $1_A:(A,\tp_1)\to(A,\tp_2)
 
 \end{itemize}
 
-\subsection*{C.4 Conexión por caminos, componentes y puntos de corte \normalfont\small (clase 11 hasta ``Imagen continua''; el resto, todavía no dictado)}
+\subsection*{C.4 Conexión por caminos, componentes y puntos de corte \normalfont\small (clases 11, 12 y 13)}
 
 \begin{itemize}[leftmargin=1.3em,itemsep=3pt]
 
@@ -4003,13 +4230,19 @@ y se prueba con $1_A$ en los dos sentidos, usando que $1_A:(A,\tp_1)\to(A,\tp_2)
 \ficha{Uniones de arcoconexos} Mismos tres casos que para conexos: uno que corta a todos, dos a dos, o en cadena. \fnt{GT 4.1.10--4.1.12}
 \[ \big(\exists\alpha_0\ \forall\alpha:\ C_\alpha\cap C_{\alpha_0}\ne\emptyset\big)\ \vee\ \big(\forall\alpha,\beta:\ C_\alpha\cap C_\beta\ne\emptyset\big)\ \vee\ \big(\forall n:\ C_n\cap C_{n+1}\ne\emptyset\big)\ \Rightarrow\ \textstyle\bigcup C_\alpha\ \text{arcoconexo}. \]
 
+\ficha{Unión de rectas por el origen} Todas se cruzan en el origen. \fnt{clase 12}
+\[ \textstyle\bigcup_{m\in\Lambda}\{(x,mx):x\in\R\}\ \text{arcoconexo};\qquad A,B\ \text{arcoconexos}\not\Rightarrow A\cap B\ \text{arcoconexo}\ \ (S^1\cap\{y\ge0\},\ S^1\cap\{y\le0\}). \]
+
 \ficha{Componente arcoconexa} El mayor arcoconexo que contiene a $x$; es la clase de $x$ por ``estar unidos por un camino''; forman una partición, pero no tienen por qué ser cerradas. \fnt{GT 4.2.1--4.2.4, Nota 4.2.9}
 \[ c(x)=\{y\in X:\ \exists\ \text{camino de } x \text{ a } y\};\qquad c(x)\cap c(y)\ne\emptyset\Rightarrow c(x)=c(y);\qquad c(x)\subseteq C(x). \]
 
-\ficha{Localmente arcoconexo} Todo entorno contiene un entorno arcoconexo; entonces las componentes arcoconexas son abiertas y cerradas. \fnt{GT 4.2.5--4.2.6}
+\ficha{Contar agujeros} Un homeomorfismo biyecta componentes arcoconexas: $f(c(x))=c(f(x))$. \fnt{GT 4.2.7; clase 12}
+\[ \R\not\cong\R-\{0\}\not\cong\R-\{a,b\}\qquad(1,\ 2\ \text{y}\ 3\ \text{componentes}). \]
+
+\ficha{Localmente arcoconexo} Todo entorno contiene un entorno arcoconexo (no basta que exista uno); entonces las componentes arcoconexas son abiertas y cerradas. $\R-\{0\}$: localmente arcoconexo, no arcoconexo. \fnt{GT 4.2.5--4.2.6; clase 12}
 \[ \forall x\ \forall N\in\mathcal N_x\ \exists N'\in\mathcal N_x:\ N'\subseteq N\ \wedge\ N'\ \text{arcoconexo}\ \Rightarrow\ c(x)\ \text{abierta y cerrada}. \]
 
-\ficha{Conexo y localmente arcoconexo implica arcoconexo} La componente arcoconexa de un punto es abierta, cerrada y no vacía, luego es todo. En particular los abiertos conexos de $\R^n$ son arcoconexos. \fnt{GT 4.4.6; MS Prop.\ 7.18}
+\ficha{Conexo y localmente arcoconexo implica arcoconexo} La componente arcoconexa de un punto es abierta, cerrada y no vacía, luego es todo. En particular los abiertos conexos de $\R^n$ son arcoconexos. Ejercicio típico de final (junto con arcoconexo $\Rightarrow$ conexo). \fnt{GT 4.4.6; MS Prop.\ 7.18; clase 12}
 \[ X\ \text{loc.\ arcoconexo}\ \Rightarrow\ \big(X\ \text{conexo}\iff X\ \text{arcoconexo}\big). \]
 
 \ficha{Peine reducido y escalera} Conexos (sándwich) y no arcoconexos (Bolzano sobre la primera coordenada del camino): no hay sándwich para caminos. \fnt{GT Ej.\ 4.2.8(4), 4.4.5; CX 16}
@@ -4030,7 +4263,7 @@ y se prueba con $1_A$ en los dos sentidos, usando que $1_A:(A,\tp_1)\to(A,\tp_2)
 \ficha{Conexos, abiertos-cerrados y componentes} Un conexo queda dentro de una componente; un abierto-cerrado es unión de componentes (conexas y arcoconexas). \fnt{MS Prop.\ 7.16; CX 17}
 \[ A\ \text{conexo}\Rightarrow A\subseteq C\ \vee\ A\cap C=\emptyset;\qquad A\ \text{abierto y cerrado}\Rightarrow A=\bigcup_{a\in A}c(a)=\bigcup_{a\in A}C(a). \]
 
-\ficha{Componentes e imagen continua} La imagen de una componente cae en una componente; la preimagen de una componente es unión de componentes; un homeomorfismo biyecta componentes homeomorfas. \fnt{GT 4.6.10; CX 19, 20}
+\ficha{Componentes e imagen continua} La imagen de una componente cae en una componente; la preimagen de una componente es unión de componentes; un homeomorfismo biyecta componentes homeomorfas. Para probar que dos espacios no son homeomorfos: primero contar componentes, después puntos de corte. \fnt{GT 4.6.10; CX 19, 20; clase 13}
 \[ f(C(x))\subseteq C(f(x));\qquad f^{-1}(E)=\bigcup_{x\in f^{-1}(E)}C(x);\qquad f\ \text{homeo}\Rightarrow f(C(x))=C(f(x)). \]
 
 \ficha{Localmente conexo} Todo entorno contiene un entorno conexo; entonces las componentes son abiertas. También lo son si hay finitas. \fnt{GT 4.6.7--4.6.8; CX 23}
@@ -4041,21 +4274,24 @@ y se prueba con $1_A$ en los dos sentidos, usando que $1_A:(A,\tp_1)\to(A,\tp_2)
 
 \end{itemize}
 
-\subsection*{C.5 Compacidad \normalfont\small (todavía no dictado)}
+\subsection*{C.5 Compacidad \normalfont\small (desde la clase 13)}
 
 \begin{itemize}[leftmargin=1.3em,itemsep=3pt]
 
-\ficha{Compacto} De todo recubrimiento por abiertos se extrae uno finito; no depende del espacio ambiente. \fnt{GT 3.1.4, 3.1.6}
+\ficha{Compacto} De todo recubrimiento por abiertos se extrae uno finito (con los mismos abiertos, sin inventar nuevos); no depende del espacio ambiente. \fnt{GT 3.1.4, 3.1.6; clase 13}
 \[ A\ \text{compacto}\iff \forall\{G_\alpha\}\subseteq\tp\ \big(A\subseteq\textstyle\bigcup_\alpha G_\alpha\Rightarrow\exists\alpha_1,\dots,\alpha_n:\ A\subseteq G_{\alpha_1}\cup\dots\cup G_{\alpha_n}\big); \]
 \[ A\ \text{compacto en } X\iff(A,\tp_A)\ \text{compacto}. \]
 
-\ficha{Ejemplos de referencia} Finitos y uniones finitas: sí; discreta: sólo finitos; cofinita e indiscreta: todo; $\R^n$ y $(0,1)$: no. \fnt{GT 3.1.7--3.1.11}
-\[ \R^n=\textstyle\bigcup_k\Bola{0}{k};\qquad (0,1)=\bigcup_k(\tfrac1k,1);\qquad (X,\tp_{dis}):\ A\ \text{compacto}\iff A\ \text{finito}. \]
+\ficha{No compacto} Basta exhibir \emph{un} recubrimiento por abiertos sin subrecubrimiento finito; que exista un recubrimiento finito no prueba nada. \fnt{clase 13}
+\[ A\ \text{no compacto}\iff\exists\{G_\alpha\}\subseteq\tp:\ A\subseteq\textstyle\bigcup_\alpha G_\alpha\ \wedge\ \text{ninguna subfamilia finita cubre } A. \]
+
+\ficha{Ejemplos de referencia} Finitos y uniones finitas: sí; discreta: sólo finitos; cofinita e indiscreta: todo; $\R^n$ y $(a,b)$: no. \fnt{GT 3.1.7--3.1.11; clase 13}
+\[ \R^n=\textstyle\bigcup_k\Bola{0}{k};\qquad (a,b)=\bigcup_n(a,b-\tfrac1n);\qquad (X,\tp_{dis}):\ A\ \text{compacto}\iff A\ \text{finito}. \]
 
 \ficha{$[a,b]$ es compacto} Por supremo: el mayor $x$ tal que $[a,x]$ se cubre con finitos es $b$. \fnt{GT 3.1.12}
 \[ S=\{x\in[a,b]:\ [a,x]\ \text{se cubre con finitos } G_\alpha\},\quad \sup S\in S\ \wedge\ \sup S=b. \]
 
-\ficha{Compacto en métrico es acotado} \fnt{GT 3.1.13}
+\ficha{Compacto en métrico es acotado} Bolas concéntricas de centro $x_0$: finitas son la mayor. Al revés: no acotado $\Rightarrow$ no compacto ($[0,+\infty)$). \fnt{GT 3.1.13; clase 13}
 \[ C\ \text{compacto en } (X,d)\Rightarrow \delta(C)<\infty\qquad(C\subseteq\Bola{x_0}{n_0}). \]
 
 \ficha{Compacidad por cerrados (PIF)} \fnt{GT 3.2.2}

@@ -13,9 +13,8 @@ hay que saber enunciar y demostrar.
 
 ## Contenido
 
-El apunte (`03-apunte/Topologia-apunte-compilado.pdf`, 97 páginas) tiene 11 secciones y
-cubre **toda la guía teórica** (caps. 1–4), no sólo lo dictado en clase: lo que todavía
-no se dio está marcado como *todavía no dictado*. Cada enunciado indica la **ubicación exacta en la fuente** (numeración y página), y se
+El apunte (`03-apunte/Topologia-apunte-compilado.pdf`, 104 páginas) tiene 11 secciones y
+cubre **toda la guía teórica** (caps. 1–4), con lo dictado en clase hasta la clase 13 (5/10/2026). Cada enunciado indica la **ubicación exacta en la fuente** (numeración y página), y se
 distingue qué es definición (se admite), qué es proposición o teorema (hay que saber
 demostrarlo) y qué es ejemplo o contraejemplo.
 
@@ -32,13 +31,13 @@ demostrarlo) y qué es ejemplo o contraejemplo.
 **Segundo parcial**
 
 9. Topología producto: base de rectángulos, proyecciones (continuas, abiertas, no cerradas), continuidad hacia un producto, clausura e interior de un producto
-10. Conexidad: abiertos-cerrados, imagen continua, funciones a un discreto, dos puntos en un conexo, uniones y clausura de conexos, frontera, totalmente disconexos, peine del topólogo, producto de conexos; intervalos de ℝ y Bolzano; conexión por caminos, componentes conexas y por caminos, puntos de corte, conexión local
-11. Compacidad: recubrimientos, cerrados y Hausdorff, imagen continua y Weierstrass, lema del tubo y Tychonoff finito, compacidad en métricos (Heine–Borel, Bolzano–Weierstrass, número de Lebesgue, Heine), completitud, compacidad local
+10. Conexidad: abiertos-cerrados, imagen continua, funciones a un discreto, dos puntos en un conexo, uniones y clausura de conexos, frontera, totalmente disconexos, peine del topólogo, producto de conexos; intervalos de ℝ y Bolzano; conexión por caminos, la relación "estar conectados" y uniones de arcoconexos, componentes conexas y por caminos, conexión local, invarianza por homeomorfismos (contar componentes y puntos de corte), conexo + localmente arcoconexo ⇒ arcoconexo
+11. Compacidad: recubrimientos y subrecubrimientos, no compacto, finitos y discretos, [a,b] compacto, compacto ⇒ acotado, cerrados y Hausdorff, imagen continua y Weierstrass, lema del tubo y Tychonoff finito, compacidad en métricos (Heine–Borel, Bolzano–Weierstrass, número de Lebesgue, Heine), completitud, compacidad local
 
 **Apéndices**
 - A. Mapa de los ejercicios de las guías y la herramienta que usa cada uno
 - B. Lista para el primer parcial
-- C. Lista para el segundo parcial: producto y conexidad (dictados), más intervalos y Bolzano, caminos y componentes, y compacidad
+- C. Lista para el segundo parcial: producto, conexidad, intervalos y Bolzano, caminos, componentes y puntos de corte, y compacidad
 - D. Glosario de notación
 - E. Catálogo de topologías de referencia, con una tabla de separación, metrizabilidad y conexidad
 
