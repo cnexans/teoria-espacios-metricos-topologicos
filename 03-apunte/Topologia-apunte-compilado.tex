@@ -62,12 +62,12 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\cl}[1]{\overline{#1}}
 \newcommand{\intr}{\operatorname{int}}
-\newcommand{\fr}{\operatorname{fr}}
+\newcommand{\fr}{\operatorname{Fr}}
 \newcommand{\ext}{\operatorname{ext}}
-\newcommand{\Bola}[2]{B(#1,#2)}
-\newcommand{\Bolac}[2]{B[#1,#2]}
+\newcommand{\Bola}[2]{B_d(#1,#2)}
+\newcommand{\Bolac}[2]{B_d[#1,#2]}
 \newcommand{\norm}[1]{\lVert #1 \rVert}
-\newcommand{\tp}{\tau}
+\newcommand{\tp}{\mathcal{T}}
 
 \title{\textbf{Topología: apunte compilado}\\[2pt]
 \large Definiciones, propiedades y teoremas asociados a las guías de ejercicios\\
@@ -94,7 +94,7 @@ Cada enunciado lleva entre corchetes la fuente y la página, para poder remitirs
 \end{itemize}
 
 \medskip
-\noindent\textbf{Convención de notación.} Salvo que el enunciado diga otra cosa: $(X,\tp)$ e $(Y,\tp')$ son espacios topológicos; $(X,d)$ e $(Y,\rho)$ espacios métricos; $A,B,C\subseteq X$; $G$ un abierto y $F$ un cerrado; $\beta$ una base y $\sigma$ una subbase; $\mathcal N_x$ el sistema de entornos de $x$; $f:X\to Y$ una función, y $f^{-1}(B)$ siempre la \emph{preimagen}. De todos modos, cada enunciado vuelve a nombrar los objetos que usa, para que se pueda leer suelto.
+\noindent\textbf{Convención de notación.} Se usa la notación de \textbf{GT} ($\mathcal T$ para topologías, $B_d(x,\varepsilon)$ para bolas, $\intr A$, $\cl A$, $\operatorname{Fr}A$, $C_x$ para componentes); para productos, que \textbf{GT} no trata en general, la del apunte \textbf{TP} ($\Pi_X$, $\Pi_Y$). Salvo que el enunciado diga otra cosa: $(X,\tp)$ e $(Y,\tp')$ son espacios topológicos; $(X,d)$ e $(Y,\rho)$ espacios métricos; $A,B,C\subseteq X$; $G$ un abierto y $F$ un cerrado; $\beta$ una base y $\sigma$ una subbase; $f:X\to Y$ una función, y $f^{-1}(B)$ siempre la \emph{preimagen}. De todos modos, cada enunciado vuelve a nombrar los objetos que usa, para que se pueda leer suelto.
 
 \noindent Se incluyen demostraciones solo cuando la idea es la que se evalúa (una técnica reusable, un contraejemplo estructural o una equivalencia clave). El resto va enunciado.
 
@@ -458,7 +458,7 @@ En $\R^2$, $d\big((x,x'),(y,y')\big)=|x-y|$ es una seudodistancia (la inducida p
 \begin{definicion}[Interior, abierto, entorno \fnt{GT 1.2.1, p.\,12}]
 $x$ es \emph{punto interior} de $A$ si existe $\varepsilon>0$ con $\Bola{x}{\varepsilon}\subseteq A$; $\intr A$ es el conjunto de tales puntos. $A$ es \emph{abierto} si $A=\intr A$, y $N$ es \emph{entorno} de $x$ si $x\in\intr N$.
 \lgc{x\in\intr A\iff \exists\varepsilon>0:\ \Bola{x}{\varepsilon}\subseteq A;\\
-A\ \text{abierto}\iff A=\intr A;\qquad N\in\mathcal N_x\iff x\in\intr N.}
+A\ \text{abierto}\iff A=\intr A;\qquad N\ \text{entorno de } x\iff x\in\intr N.}
 \end{definicion}
 
 \begin{proposicion}[\fnt{GT 1.2.2 y 1.2.6, pp.\,12 y 15}]
@@ -471,8 +471,8 @@ En $(X,d)$:
 \item $x\in\intr A$ $\iff$ existe un abierto $G$ con $x\in G\subseteq A$.
 \end{lista}
 \lgc{\intr A\subseteq A;\qquad \Bola{x}{\varepsilon}\ \text{es abierta};\qquad
-A\ \text{abierto}\iff \forall x\in A:\ A\in\mathcal N_x;\\
-N\in\mathcal N_x\iff \exists G\ \text{abierto}:\ x\in G\subseteq N;\qquad
+A\ \text{abierto}\iff \forall x\in A:\ A\ \text{entorno de } x;\\
+N\ \text{entorno de } x\iff \exists G\ \text{abierto}:\ x\in G\subseteq N;\qquad
 x\in\intr A\iff \exists G\ \text{abierto}:\ x\in G\subseteq A.}
 \end{proposicion}
 
@@ -666,7 +666,7 @@ Sea $(X,\tp)$ y $A\subseteq X$. Entonces $\intr A$ es abierto y es el \emph{mayo
 
 \begin{proposicion}[Abierto es ser entorno de todos sus puntos \fnt{GT 2.2.6, p.\,21}]\label{hu:abent}
 En $(X,\tp)$, un conjunto $A$ es abierto si y sólo si es entorno de cada uno de sus puntos.
-\lgc{A\in\tp\iff \forall x\in A:\ A\in\mathcal N_x.}
+\lgc{A\in\tp\iff \forall x\in A:\ A\ \text{entorno de } x.}
 \end{proposicion}
 
 \begin{proof}
@@ -958,16 +958,16 @@ $\beta_{sor}=\{[a,b): a<b\}$ genera la recta de Sorgenfrey, también estrictamen
 \begin{teorema}[Axiomas de entorno \fnt{MS Teo.\ 2.7, p.\,28}]
 Sea $(X,\tp)$ y $x\in X$. El sistema de entornos $\mathcal N_x=\{N\subseteq X:\ x\in\intr N\}$ verifica:
 \begin{lista}
-\item (N1) si $N\in\mathcal N_x$ entonces $x\in N$;
-\item (N2) si $N\in\mathcal N_x$ y $N\subseteq M$ entonces $M\in\mathcal N_x$;
+\item (N1) si $N\ \text{entorno de } x$ entonces $x\in N$;
+\item (N2) si $N\ \text{entorno de } x$ y $N\subseteq M$ entonces $M\ \text{entorno de } x$;
 \item (N3) $\mathcal N_x$ es cerrado por intersecciones finitas;
-\item (N4) si $N\in\mathcal N_x$, existe $M\in\mathcal N_x$ con $M\subseteq N$ tal que $N\in\mathcal N_y$ para todo $y\in M$.
+\item (N4) si $N\ \text{entorno de } x$, existe $M\ \text{entorno de } x$ con $M\subseteq N$ tal que $N\in\mathcal N_y$ para todo $y\in M$.
 \end{lista}
 \end{teorema}
 
 \begin{definicion}[Base local \fnt{MS Teo.\ 2.8, p.\,29}]
 $\mathcal B_x\subseteq\mathcal N_x$ es \emph{base de entornos} (o \emph{base local}) en $x$ si todo entorno de $x$ contiene algún elemento de $\mathcal B_x$.
-\lgc{\mathcal B_x\ \text{base local en } x\iff \forall N\in\mathcal N_x\ \exists B\in\mathcal B_x:\ B\subseteq N.}
+\lgc{\mathcal B_x\ \text{base local en } x\iff \forall N\ \text{entorno de } x\ \exists B\in\mathcal B_x:\ B\subseteq N.}
 \end{definicion}
 
 \begin{proposicion}[Bases locales que siempre sirven \fnt{MS Lema 2.9, p.\,30}]
@@ -1159,7 +1159,7 @@ Negando la definición: $f$ \emph{no} es continua en $a$ si existe $\varepsilon_
   (-0.5,-0.35) .. controls (0.1,-0.7) and (0.6,-0.1) .. (0.45,0.3)
   .. controls (0.3,0.65) and (-0.4,0.55) .. (-0.5,-0.35);
 \node[pt] at (-0.05,0.02) {}; \node[below left] at (-0.05,0.0) {\scriptsize $f(a)$};
-\node at (0,-1.45) {\scriptsize $B(f(a),\varepsilon)$};
+\node at (0,-1.45) {\scriptsize $B_\rho(f(a),\varepsilon)$};
 \node at (1.35,0.75) {\scriptsize $f(B(a,\delta))$};
 \node at (0,1.35) {\small $Y$};
 \end{scope}
@@ -1239,11 +1239,11 @@ Entre espacios topológicos $(X,\tp)$, $(Y,\tp')$, $(Z,\tp'')$ y para $A\subsete
 \end{proposicion}
 
 \begin{proposicion}[Criterio de Hausdorff de comparación \fnt{MS Prop.\ 4.3, p.\,52; [AP] Ej.\ 2.8.8 (clase 8)}]\label{pr:idcont}
-Sean $\tp_1$ y $\tp_2$ dos topologías sobre el \emph{mismo} conjunto $X$, y sea $1_X$ la identidad. Entonces $\tp_2\subseteq\tp_1\iff 1_X:(X,\tp_1)\to(X,\tp_2)$ es continua. (Toda comparación de topologías puede leerse como una afirmación de continuidad.)
+Sean $\tp_1$ y $\tp_2$ dos topologías sobre el \emph{mismo} conjunto $X$, y sea $\mathrm{id}_X$ la identidad. Entonces $\tp_2\subseteq\tp_1\iff \mathrm{id}_X:(X,\tp_1)\to(X,\tp_2)$ es continua. (Toda comparación de topologías puede leerse como una afirmación de continuidad.)
 \end{proposicion}
 
 \begin{proof}[Demostración, en una línea]
-La identidad no mueve los puntos, así que $1_X^{-1}(G)=G$ para todo $G\subseteq X$. Entonces ``$1_X$ continua'' significa ``todo $G\in\tp_2$ está en $\tp_1$'', que es $\tp_2\subseteq\tp_1$.
+La identidad no mueve los puntos, así que $\mathrm{id}_X^{-1}(G)=G$ para todo $G\subseteq X$. Entonces ``$\mathrm{id}_X$ continua'' significa ``todo $G\in\tp_2$ está en $\tp_1$'', que es $\tp_2\subseteq\tp_1$.
 \end{proof}
 
 \begin{ejemplo}[La identidad entre topologías concretas \fnt{[AP] Ejs.\ 2.8.8 y 2.8.10 (clase 8)}]\label{ej:iddisc}
@@ -1479,7 +1479,7 @@ Sea $A\subseteq(X,\tp)$ con la topología relativa $\tp_A$, y sea $C\subseteq A$
 \fill[blue!18,draw=blue!60!black,thick] (0.95,0) arc (0:180:0.95) -- cycle;
 \node[pt] at (0,0) {};
 \node[below] at (0,-0.12) {\scriptsize $0$};
-\node[blue!60!black] at (-1.5,-0.75) {\scriptsize $G=B(0,\varepsilon)$};
+\node[blue!60!black] at (-1.5,-0.75) {\scriptsize $G=B_d(0,\varepsilon)$};
 \node at (0,1.15) {\scriptsize $G\cap A$};
 \end{tikzpicture}
 \figtit{Figura 10. El semidisco $G\cap A$ \emph{es} abierto en el subespacio $A$ (es la traza de un abierto de $\R^2$), pero no es abierto en $\R^2$: los puntos del borde inferior no tienen ninguna bola de $\R^2$ contenida en él.}
@@ -1594,7 +1594,7 @@ Salvo aviso, todo producto de este apunte lleva la topología producto.
 \end{definicion}
 
 \begin{observacion}[El error frecuente \fnt{TP p.\,2; clase 9, Obs.\ 3.4 y 4.2}]\label{ob:errorprod}
-Es \emph{falso} que todo abierto de $X\times Y$ sea de la forma $U\times V$: en $\R^2$ un disco es abierto y no es un rectángulo. Tampoco vale $G=\pi_X(G)\times\pi_Y(G)$ (ver la definición de proyección abajo): el producto de las ``sombras'' de $G$ sobre los ejes es un rectángulo en general mucho más grande que $G$. Lo único que se puede asegurar es lo de la definición. Por eso el método de trabajo de toda la sección es: \emph{lo que haya que probar sobre un abierto cualquiera del producto, se prueba sobre los rectángulos y se arrastra por uniones} (o se usa la Prop.~\ref{pr:contbase}).
+Es \emph{falso} que todo abierto de $X\times Y$ sea de la forma $U\times V$: en $\R^2$ un disco es abierto y no es un rectángulo. Tampoco vale $G=\Pi_X(G)\times\Pi_Y(G)$ (ver la definición de proyección abajo): el producto de las ``sombras'' de $G$ sobre los ejes es un rectángulo en general mucho más grande que $G$. Lo único que se puede asegurar es lo de la definición. Por eso el método de trabajo de toda la sección es: \emph{lo que haya que probar sobre un abierto cualquiera del producto, se prueba sobre los rectángulos y se arrastra por uniones} (o se usa la Prop.~\ref{pr:contbase}).
 \end{observacion}
 
 \begin{figure}[ht]
@@ -1607,8 +1607,8 @@ Es \emph{falso} que todo abierto de $X\times Y$ sea de la forma $U\times V$: en 
 \draw[gray!60,dashed] (0.8,0.6) rectangle (4.3,3.1);
 \draw[very thick,gray!70!black] (0.8,0)--(4.3,0);
 \draw[very thick,gray!70!black] (0,0.6)--(0,3.1);
-\node[below] at (2.55,-0.05) {\scriptsize $\pi_X(G)$};
-\node[left] at (-0.05,1.85) {\scriptsize $\pi_Y(G)$};
+\node[below] at (2.55,-0.05) {\scriptsize $\Pi_X(G)$};
+\node[left] at (-0.05,1.85) {\scriptsize $\Pi_Y(G)$};
 % blob G
 \draw[abierto] (0.8,1.2) .. controls (0.9,0.4) and (2.2,0.5) .. (2.6,1.3)
   .. controls (3.0,2.0) and (4.4,1.6) .. (4.3,2.4)
@@ -1624,7 +1624,7 @@ Es \emph{falso} que todo abierto de $X\times Y$ sea de la forma $U\times V$: en 
 \node[pt,fill=gray!70!black] at (1.3,2.85) {};
 \node[above] at (1.3,3.12) {\scriptsize no está en $G$};
 \end{tikzpicture}
-\figtit{Figura 11. Un abierto $G$ de $X\times Y$ no es un rectángulo, ni es el producto $\pi_X(G)\times\pi_Y(G)$ de sus sombras (el rectángulo gris, que agrega puntos que no están en $G$). Lo único seguro: cada punto de $G$ tiene un rectángulo básico $U\times V$ alrededor, dentro de $G$.}
+\figtit{Figura 11. Un abierto $G$ de $X\times Y$ no es un rectángulo, ni es el producto $\Pi_X(G)\times\Pi_Y(G)$ de sus sombras (el rectángulo gris, que agrega puntos que no están en $G$). Lo único seguro: cada punto de $G$ tiene un rectángulo básico $U\times V$ alrededor, dentro de $G$.}
 \end{figure}
 
 \begin{observacion}[Finitos factores, $\R^n$, y por qué no infinitos \fnt{TP p.\,2; MS Ejemplos 5.3, p.\,66; clase 9, Obs.\ 3.5--3.6} \noentra{se enuncia, no se demuestra}]\label{ob:prodfin}
@@ -1639,18 +1639,18 @@ Es \emph{falso} que todo abierto de $X\times Y$ sea de la forma $U\times V$: en 
 \subsection{Proyecciones}
 
 \begin{definicion}[Proyecciones \fnt{TP p.\,1; MS Prop.\ 5.9, p.\,66}]
-Las \emph{proyecciones} de $X\times Y$ son $\pi_X:X\times Y\to X$, $\pi_X(x,y)=x$, y $\pi_Y:X\times Y\to Y$, $\pi_Y(x,y)=y$. (En \textbf{TP}: $\Pi_X,\Pi_Y$; en \textbf{MS}: $p_X,p_Y$; en \textbf{GT}, para $\R^n$: $p_i$.)
-\lgc{\pi_X(x,y)=x;\qquad \pi_Y(x,y)=y.}
+Las \emph{proyecciones} de $X\times Y$ son $\Pi_X:X\times Y\to X$, $\Pi_X(x,y)=x$, y $\Pi_Y:X\times Y\to Y$, $\Pi_Y(x,y)=y$. (En \textbf{TP}: $\Pi_X,\Pi_Y$; en \textbf{MS}: $p_X,p_Y$; en \textbf{GT}, para $\R^n$: $p_i$.)
+\lgc{\Pi_X(x,y)=x;\qquad \Pi_Y(x,y)=y.}
 \end{definicion}
 
 \begin{proposicion}[Tubos \fnt{TP pp.\,1--2; clase 9, Teo.\ 4.3}]\label{pr:tubos}
-Para $U\subseteq X$ y $V\subseteq Y$, la preimagen de $U$ por $\pi_X$ es el tubo vertical $U\times Y$, la de $V$ por $\pi_Y$ es el tubo horizontal $X\times V$, y todo rectángulo es la intersección de sus dos tubos. Además, proyectar un rectángulo con lados no vacíos devuelve el lado.
-\lgc{\pi_X^{-1}(U)=U\times Y;\qquad \pi_Y^{-1}(V)=X\times V;\qquad U\times V=\pi_X^{-1}(U)\cap\pi_Y^{-1}(V);\\
-V\ne\emptyset\Rightarrow \pi_X(U\times V)=U;\qquad U\ne\emptyset\Rightarrow \pi_Y(U\times V)=V.}
+Para $U\subseteq X$ y $V\subseteq Y$, la preimagen de $U$ por $\Pi_X$ es el tubo vertical $U\times Y$, la de $V$ por $\Pi_Y$ es el tubo horizontal $X\times V$, y todo rectángulo es la intersección de sus dos tubos. Además, proyectar un rectángulo con lados no vacíos devuelve el lado.
+\lgc{\Pi_X^{-1}(U)=U\times Y;\qquad \Pi_Y^{-1}(V)=X\times V;\qquad U\times V=\Pi_X^{-1}(U)\cap\Pi_Y^{-1}(V);\\
+V\ne\emptyset\Rightarrow \Pi_X(U\times V)=U;\qquad U\ne\emptyset\Rightarrow \Pi_Y(U\times V)=V.}
 \end{proposicion}
 
 \begin{proof}
-$\pi_X^{-1}(U)=\{(x,y): \pi_X(x,y)\in U\}=\{(x,y): x\in U\}=U\times Y$, e igual con $\pi_Y$. Luego $(U\times Y)\cap(X\times V)=(U\cap X)\times(Y\cap V)=U\times V$. Si $V\ne\emptyset$, para cada $x\in U$ se elige $y\in V$ y resulta $x=\pi_X(x,y)$.
+$\Pi_X^{-1}(U)=\{(x,y): \Pi_X(x,y)\in U\}=\{(x,y): x\in U\}=U\times Y$, e igual con $\Pi_Y$. Luego $(U\times Y)\cap(X\times V)=(U\cap X)\times(Y\cap V)=U\times V$. Si $V\ne\emptyset$, para cada $x\in U$ se elige $y\in V$ y resulta $x=\Pi_X(x,y)$.
 \end{proof}
 
 \begin{figure}[ht]
@@ -1664,7 +1664,7 @@ $\pi_X^{-1}(U)=\{(x,y): \pi_X(x,y)\in U\}=\{(x,y): x\in U\}=U\times Y$, e igual 
 \draw[very thick,blue!60!black] (1.0,0)--(2.0,0);
 \node[below] at (1.5,0) {\scriptsize $U$};
 \node at (1.5,1.4) {\scriptsize $U\times Y$};
-\node at (1.7,-0.9) {\small $\pi_X^{-1}(U)$};
+\node at (1.7,-0.9) {\small $\Pi_X^{-1}(U)$};
 \end{scope}
 \begin{scope}[xshift=5cm]
 \draw[ejes] (-0.2,0)--(3.6,0) node[right]{\scriptsize $X$};
@@ -1674,7 +1674,7 @@ $\pi_X^{-1}(U)=\{(x,y): \pi_X(x,y)\in U\}=\{(x,y): x\in U\}=U\times Y$, e igual 
 \draw[very thick,red!60!black] (0,1.0)--(0,1.9);
 \node[left] at (0,1.45) {\scriptsize $V$};
 \node at (2.4,1.45) {\scriptsize $X\times V$};
-\node at (1.7,-0.9) {\small $\pi_Y^{-1}(V)$};
+\node at (1.7,-0.9) {\small $\Pi_Y^{-1}(V)$};
 \end{scope}
 \begin{scope}[xshift=10cm]
 \draw[ejes] (-0.2,0)--(3.6,0) node[right]{\scriptsize $X$};
@@ -1692,35 +1692,35 @@ $\pi_X^{-1}(U)=\{(x,y): \pi_X(x,y)\in U\}=\{(x,y): x\in U\}=U\times Y$, e igual 
 
 \begin{teorema}[La menos fina con proyecciones continuas \fnt{TP p.\,2; clase 9, Teo.\ 4.3; GT 2.8.11, p.\,38}]\label{th:menosfina}
 \begin{enumerate}[label=(\roman*),leftmargin=2.2em,itemsep=0pt]
-\item $\pi_X:(X\times Y,\tp_{X\times Y})\to(X,\tp_X)$ y $\pi_Y:(X\times Y,\tp_{X\times Y})\to(Y,\tp_Y)$ son continuas;
-\item si $\sigma$ es otra topología en $X\times Y$ que hace continuas a $\pi_X$ y $\pi_Y$, entonces $\tp_{X\times Y}\subseteq\sigma$.
+\item $\Pi_X:(X\times Y,\tp_{X\times Y})\to(X,\tp_X)$ y $\Pi_Y:(X\times Y,\tp_{X\times Y})\to(Y,\tp_Y)$ son continuas;
+\item si $\sigma$ es otra topología en $X\times Y$ que hace continuas a $\Pi_X$ y $\Pi_Y$, entonces $\tp_{X\times Y}\subseteq\sigma$.
 \end{enumerate}
-\lgc{\pi_X,\pi_Y\ \text{continuas en } \tp_{X\times Y};\qquad
-\big(\pi_X,\pi_Y\ \text{continuas en } \sigma\big)\ \Rightarrow\ \tp_{X\times Y}\subseteq\sigma;\\
-\tp_{X\times Y}=\min\big\{\sigma\ \text{topología en } X\times Y:\ \pi_X,\pi_Y\ \text{continuas}\big\}.}
+\lgc{\Pi_X,\Pi_Y\ \text{continuas en } \tp_{X\times Y};\qquad
+\big(\Pi_X,\Pi_Y\ \text{continuas en } \sigma\big)\ \Rightarrow\ \tp_{X\times Y}\subseteq\sigma;\\
+\tp_{X\times Y}=\min\big\{\sigma\ \text{topología en } X\times Y:\ \Pi_X,\Pi_Y\ \text{continuas}\big\}.}
 \end{teorema}
 
 \begin{proof}
-(i) Si $U\in\tp_X$, $\pi_X^{-1}(U)=U\times Y$ es un rectángulo abierto (Prop.~\ref{pr:tubos}), luego abierto. Igual para $\pi_Y$.
-(ii) Sea $G\in\tp_{X\times Y}$; se escribe $G=\bigcup_\alpha U_\alpha\times V_\alpha$ y, como $\sigma$ es cerrada por uniones, basta ver cada $U_\alpha\times V_\alpha\in\sigma$ (\emph{truco: bajar el problema a la base}). Pero $U_\alpha\times V_\alpha=\pi_X^{-1}(U_\alpha)\cap\pi_Y^{-1}(V_\alpha)$ es intersección de dos abiertos de $\sigma$, por ser las proyecciones continuas en $\sigma$.
+(i) Si $U\in\tp_X$, $\Pi_X^{-1}(U)=U\times Y$ es un rectángulo abierto (Prop.~\ref{pr:tubos}), luego abierto. Igual para $\Pi_Y$.
+(ii) Sea $G\in\tp_{X\times Y}$; se escribe $G=\bigcup_\alpha U_\alpha\times V_\alpha$ y, como $\sigma$ es cerrada por uniones, basta ver cada $U_\alpha\times V_\alpha\in\sigma$ (\emph{truco: bajar el problema a la base}). Pero $U_\alpha\times V_\alpha=\Pi_X^{-1}(U_\alpha)\cap\Pi_Y^{-1}(V_\alpha)$ es intersección de dos abiertos de $\sigma$, por ser las proyecciones continuas en $\sigma$.
 \end{proof}
 
 \begin{observacion}[Subbase de tubos, y la analogía con el subespacio \fnt{TP p.\,1; clase 9, Obs.\ 4.4}]
-Los tubos $\{\pi_X^{-1}(U)\}\cup\{\pi_Y^{-1}(V)\}$ forman una \emph{subbase} de $\tp_{X\times Y}$ cuyas intersecciones finitas son los rectángulos. Es el mismo esquema que la topología de subespacio (\S\ref{sec:sub}): allí, la menos fina que hace continua a la \emph{inclusión} $i:A\to X$; acá, la menos fina que hace continuas a las \emph{proyecciones}. La discreta sobre $X\times Y$ también las hace continuas, pero ``no conserva información'' de $X$ e $Y$.
+Los tubos $\{\Pi_X^{-1}(U)\}\cup\{\Pi_Y^{-1}(V)\}$ forman una \emph{subbase} de $\tp_{X\times Y}$ cuyas intersecciones finitas son los rectángulos. Es el mismo esquema que la topología de subespacio (\S\ref{sec:sub}): allí, la menos fina que hace continua a la \emph{inclusión} $i:A\to X$; acá, la menos fina que hace continuas a las \emph{proyecciones}. La discreta sobre $X\times Y$ también las hace continuas, pero ``no conserva información'' de $X$ e $Y$.
 \end{observacion}
 
 \begin{teorema}[Continuidad hacia un producto \fnt{TP p.\,3; MS Prop.\ 5.10, p.\,66; GT 2.8.12, p.\,39}]\label{th:contprod}
-Sea $Z$ un espacio topológico y $f:Z\to X\times Y$. Entonces $f$ es continua si y sólo si sus dos coordenadas $\pi_X\circ f:Z\to X$ y $\pi_Y\circ f:Z\to Y$ son continuas.
-\lgc{f:Z\to X\times Y\ \text{continua}\iff \pi_X\circ f\ \text{continua}\ \wedge\ \pi_Y\circ f\ \text{continua}.}
+Sea $Z$ un espacio topológico y $f:Z\to X\times Y$. Entonces $f$ es continua si y sólo si sus dos coordenadas $\Pi_X\circ f:Z\to X$ y $\Pi_Y\circ f:Z\to Y$ son continuas.
+\lgc{f:Z\to X\times Y\ \text{continua}\iff \Pi_X\circ f\ \text{continua}\ \wedge\ \Pi_Y\circ f\ \text{continua}.}
 \end{teorema}
 
 \begin{proof}
-($\Rightarrow$) Composición de continuas: $f$ lo es por hipótesis y $\pi_X,\pi_Y$ por el Teo.~\ref{th:menosfina}(i).
+($\Rightarrow$) Composición de continuas: $f$ lo es por hipótesis y $\Pi_X,\Pi_Y$ por el Teo.~\ref{th:menosfina}(i).
 ($\Leftarrow$) Por la Prop.~\ref{pr:contbase} basta ver que la preimagen de cada rectángulo $U\times V$ ($U\in\tp_X$, $V\in\tp_Y$) es abierta en $Z$:
 \[
-f^{-1}(U\times V)=f^{-1}\big(\pi_X^{-1}(U)\cap\pi_Y^{-1}(V)\big)=f^{-1}\big(\pi_X^{-1}(U)\big)\cap f^{-1}\big(\pi_Y^{-1}(V)\big)=(\pi_X\circ f)^{-1}(U)\cap(\pi_Y\circ f)^{-1}(V),
+f^{-1}(U\times V)=f^{-1}\big(\Pi_X^{-1}(U)\cap\Pi_Y^{-1}(V)\big)=f^{-1}\big(\Pi_X^{-1}(U)\big)\cap f^{-1}\big(\Pi_Y^{-1}(V)\big)=(\Pi_X\circ f)^{-1}(U)\cap(\Pi_Y\circ f)^{-1}(V),
 \]
-usando los tubos, que la preimagen respeta intersecciones, y que $f^{-1}(\pi_X^{-1}(U))=(\pi_X\circ f)^{-1}(U)$ (ambos son $\{z: \pi_X(f(z))\in U\}$). Los dos últimos conjuntos son abiertos por hipótesis, y su intersección también.
+usando los tubos, que la preimagen respeta intersecciones, y que $f^{-1}(\Pi_X^{-1}(U))=(\Pi_X\circ f)^{-1}(U)$ (ambos son $\{z: \Pi_X(f(z))\in U\}$). Los dos últimos conjuntos son abiertos por hipótesis, y su intersección también.
 \end{proof}
 
 \begin{figure}[ht]
@@ -1731,10 +1731,10 @@ usando los tubos, que la preimagen respeta intersecciones, y que $f^{-1}(\pi_X^{
 \node (X) at (6.2,0.95) {$X$};
 \node (Y) at (6.2,-0.95) {$Y$};
 \draw[->,>=Stealth,thick] (Z)--(P) node[midway,above]{\scriptsize $f$};
-\draw[->,>=Stealth] (P)--(X) node[midway,above]{\scriptsize $\pi_X$};
-\draw[->,>=Stealth] (P)--(Y) node[midway,below]{\scriptsize $\pi_Y$};
-\draw[->,>=Stealth,dashed,blue!60!black] (Z) to[bend left=28] node[midway,above]{\scriptsize $\pi_X\circ f$} (X);
-\draw[->,>=Stealth,dashed,blue!60!black] (Z) to[bend right=28] node[midway,below]{\scriptsize $\pi_Y\circ f$} (Y);
+\draw[->,>=Stealth] (P)--(X) node[midway,above]{\scriptsize $\Pi_X$};
+\draw[->,>=Stealth] (P)--(Y) node[midway,below]{\scriptsize $\Pi_Y$};
+\draw[->,>=Stealth,dashed,blue!60!black] (Z) to[bend left=28] node[midway,above]{\scriptsize $\Pi_X\circ f$} (X);
+\draw[->,>=Stealth,dashed,blue!60!black] (Z) to[bend right=28] node[midway,below]{\scriptsize $\Pi_Y\circ f$} (Y);
 \end{tikzpicture}
 \figtit{Figura 13. Una función hacia un producto es continua exactamente cuando sus dos coordenadas lo son. Es la propiedad universal del subespacio (\S\ref{sec:sub}) ``para el otro lado'': allá la flecha auxiliar era la inclusión, que entra a $X$; acá son las proyecciones, que salen del producto.}
 \end{figure}
@@ -1755,20 +1755,20 @@ x\mapsto(x,y_0)\ \text{y}\ y\mapsto(x_0,y)\ \text{continuas}.}
 \end{corolario}
 
 \begin{proof}
-Por el Teo.~\ref{th:contprod}, basta mirar coordenadas: las de $(f,h)$ son $f$ y $h$; las de $f\times g$ son $f\circ\pi_X$ y $g\circ\pi_Y$ (composiciones de continuas); las de $x\mapsto(x,y_0)$ son la identidad de $X$ y la constante $y_0$.
+Por el Teo.~\ref{th:contprod}, basta mirar coordenadas: las de $(f,h)$ son $f$ y $h$; las de $f\times g$ son $f\circ\Pi_X$ y $g\circ\Pi_Y$ (composiciones de continuas); las de $x\mapsto(x,y_0)$ son la identidad de $X$ y la constante $y_0$.
 \end{proof}
 
 \begin{proposicion}[Las proyecciones son abiertas \fnt{TP p.\,3; MS Prop.\ 5.9, p.\,66; versión general de GT Ej.\ 2.8.16, p.\,40}]\label{pr:proyab}
-$\pi_X$ y $\pi_Y$ son aplicaciones abiertas: la imagen de un abierto del producto es abierta en el factor.
-\lgc{\forall G\in\tp_{X\times Y}:\ \pi_X(G)\in\tp_X\ \wedge\ \pi_Y(G)\in\tp_Y.}
+$\Pi_X$ y $\Pi_Y$ son aplicaciones abiertas: la imagen de un abierto del producto es abierta en el factor.
+\lgc{\forall G\in\tp_{X\times Y}:\ \Pi_X(G)\in\tp_X\ \wedge\ \Pi_Y(G)\in\tp_Y.}
 \end{proposicion}
 
 \begin{proof}
-Sea $G=\bigcup_\alpha U_\alpha\times V_\alpha$. La imagen de una unión es la unión de las imágenes (vale para cualquier función), así que $\pi_X(G)=\bigcup_\alpha\pi_X(U_\alpha\times V_\alpha)$. Cada $\pi_X(U_\alpha\times V_\alpha)$ es $U_\alpha$ si $V_\alpha\ne\emptyset$, y $\emptyset$ si no (Prop.~\ref{pr:tubos}): en ambos casos, abierto. Una unión de abiertos es abierta.
+Sea $G=\bigcup_\alpha U_\alpha\times V_\alpha$. La imagen de una unión es la unión de las imágenes (vale para cualquier función), así que $\Pi_X(G)=\bigcup_\alpha\Pi_X(U_\alpha\times V_\alpha)$. Cada $\Pi_X(U_\alpha\times V_\alpha)$ es $U_\alpha$ si $V_\alpha\ne\emptyset$, y $\emptyset$ si no (Prop.~\ref{pr:tubos}): en ambos casos, abierto. Una unión de abiertos es abierta.
 \end{proof}
 
 \begin{contraejemplo}[Las proyecciones no son cerradas \fnt{GT Ej.\ 2.8.16(1), p.\,40; TP p.\,4; MS Obs.\ 5.4, p.\,66}]
-En $\R^2=\R\times\R$ (usual $=$ producto), la rama de hipérbola $F=\{(x,y): y=\tfrac1x,\ x>0\}$ es cerrada, pero $\pi_X(F)=(0,+\infty)$ no es cerrado en $\R$: el $0$ es adherente y no está. ``No cerrada'' no quiere decir que nunca dé cerrado (un rectángulo cerrado se proyecta en un cerrado), sino que \emph{no siempre}. En \textbf{MS} el mismo ejemplo con la hipérbola completa: $\pi_X(\{xy=1\})=\R-\{0\}$.
+En $\R^2=\R\times\R$ (usual $=$ producto), la rama de hipérbola $F=\{(x,y): y=\tfrac1x,\ x>0\}$ es cerrada, pero $\Pi_X(F)=(0,+\infty)$ no es cerrado en $\R$: el $0$ es adherente y no está. ``No cerrada'' no quiere decir que nunca dé cerrado (un rectángulo cerrado se proyecta en un cerrado), sino que \emph{no siempre}. En \textbf{MS} el mismo ejemplo con la hipérbola completa: $\Pi_X(\{xy=1\})=\R-\{0\}$.
 \end{contraejemplo}
 
 \begin{observacion}[Dos formas de ver que $F$ es cerrado]
@@ -1785,7 +1785,7 @@ Sean $A\subseteq X$ y $B\subseteq Y$. Entonces la clausura del producto es el pr
 \end{proposicion}
 
 \begin{proof}
-\emph{Clausura}, $\subseteq$: $\cl A\times\cl B=\pi_X^{-1}(\cl A)\cap\pi_Y^{-1}(\cl B)$ es cerrado (preimágenes de cerrados por continuas) y contiene a $A\times B$; como $\cl{A\times B}$ es el menor cerrado que lo contiene, está incluido. $\supseteq$: sea $(x,y)$ con $x\in\cl A$, $y\in\cl B$. Alcanza con ver que todo rectángulo básico $U\times V\ni(x,y)$ corta a $A\times B$ (todo abierto que contiene al punto contiene un básico que lo contiene). Como $x\in\cl A$ y $U\ni x$ es abierto, hay $a\in U\cap A$; igual hay $b\in V\cap B$; y $(a,b)\in(U\times V)\cap(A\times B)$.
+\emph{Clausura}, $\subseteq$: $\cl A\times\cl B=\Pi_X^{-1}(\cl A)\cap\Pi_Y^{-1}(\cl B)$ es cerrado (preimágenes de cerrados por continuas) y contiene a $A\times B$; como $\cl{A\times B}$ es el menor cerrado que lo contiene, está incluido. $\supseteq$: sea $(x,y)$ con $x\in\cl A$, $y\in\cl B$. Alcanza con ver que todo rectángulo básico $U\times V\ni(x,y)$ corta a $A\times B$ (todo abierto que contiene al punto contiene un básico que lo contiene). Como $x\in\cl A$ y $U\ni x$ es abierto, hay $a\in U\cap A$; igual hay $b\in V\cap B$; y $(a,b)\in(U\times V)\cap(A\times B)$.
 
 \emph{Interior}, $\supseteq$: $\intr A\times\intr B$ es un rectángulo abierto contenido en $A\times B$. $\subseteq$: si $(x,y)\in\intr(A\times B)$, hay un básico con $(x,y)\in U\times V\subseteq A\times B$; como $V\ni y$ no es vacío, $U\subseteq A$, luego $x\in\intr A$; igual $y\in\intr B$.
 \end{proof}
@@ -1925,7 +1925,7 @@ Por el contrarrecíproco: si $f(A)$ no es conexo, $A$ tampoco. Por la Prop.~\ref
 \end{figure}
 
 \begin{corolario}[Topología menos fina \fnt{MS Lema 7.2, p.\,88}]
-Si $(X,\tp_1)$ es conexo y $\tp_2\subseteq\tp_1$, entonces $(X,\tp_2)$ es conexo: es la imagen de $1_X:(X,\tp_1)\to(X,\tp_2)$, continua por la Prop.~\ref{pr:idcont}. (Con menos abiertos, cuesta más desconectar.)
+Si $(X,\tp_1)$ es conexo y $\tp_2\subseteq\tp_1$, entonces $(X,\tp_2)$ es conexo: es la imagen de $\mathrm{id}_X:(X,\tp_1)\to(X,\tp_2)$, continua por la Prop.~\ref{pr:idcont}. (Con menos abiertos, cuesta más desconectar.)
 \end{corolario}
 
 \begin{definicion}[Espacio discreto \fnt{GT 4.5.2 y Ej.\ 4.5.3, p.\,81}]
@@ -2045,7 +2045,7 @@ Si $A\cap\fr B=\emptyset$, entonces $A\subseteq\intr B\cup\ext B$ (partición de
 \end{proof}
 
 \begin{proposicion}[El gráfico de una continua \fnt{CX 8}]
-Si $X$ es conexo y $f:X\to Y$ es continua, su gráfico $\{(x,f(x)): x\in X\}$ es conexo en $X\times Y$: es la imagen de $x\mapsto(x,f(x))$, continua por tener coordenadas $1_X$ y $f$ (Teo.~\ref{th:contprod}).
+Si $X$ es conexo y $f:X\to Y$ es continua, su gráfico $\{(x,f(x)): x\in X\}$ es conexo en $X\times Y$: es la imagen de $x\mapsto(x,f(x))$, continua por tener coordenadas $\mathrm{id}_X$ y $f$ (Teo.~\ref{th:contprod}).
 \lgc{X\ \text{conexo}\ \wedge\ f\ \text{continua}\ \Rightarrow\ \{(x,f(x)):\ x\in X\}\ \text{conexo}.}
 \end{proposicion}
 
@@ -2095,7 +2095,7 @@ Si $X$ e $Y$ son conexos, $X\times Y$ (con la topología producto) es conexo. Re
 
 \begin{proof}
 Por la Prop.~\ref{pr:dospuntos}, dados $(x_1,y_1),(x_2,y_2)$ hay que meterlos en un conexo. La función $y\mapsto(x_2,y)$ de $Y$ en $X\times Y$ es continua (coordenadas: constante e identidad, Cor.~\ref{co:fxg}), así que su imagen $\{x_2\}\times Y$ es conexa (Prop.~\ref{pr:imconex}); igual $X\times\{y_1\}$, imagen de $x\mapsto(x,y_1)$. Las dos se cortan en $(x_2,y_1)$, luego la ``cruz'' $C=(X\times\{y_1\})\cup(\{x_2\}\times Y)$ es conexa (Prop.~\ref{pr:unionconex}), y contiene a $(x_1,y_1)$ y a $(x_2,y_2)$.
-Recíproca: si $X\times Y\ne\emptyset$, $\pi_X$ es continua y sobreyectiva, así que $X=\pi_X(X\times Y)$ es conexo.
+Recíproca: si $X\times Y\ne\emptyset$, $\Pi_X$ es continua y sobreyectiva, así que $X=\Pi_X(X\times Y)$ es conexo.
 \end{proof}
 
 \begin{figure}[ht]
@@ -2400,19 +2400,19 @@ Como se dictó: se trabaja con la correstricción $\tilde f:A\to f(A)$, continua
 \end{proof}
 
 \begin{definicion}[Camino inverso y yuxtaposición \fnt{GT 4.1.9, pp.\,65--66; clase 12, Prop.\ 2.1}]\label{cc:yuxta}
-Sean $\alpha$ un camino de $x$ a $y$ y $\beta$ un camino de $y$ a $z$ en $X$ (el extremo de $\alpha$ es el origen de $\beta$). El \emph{camino inverso} de $\alpha$ es $\alpha^-$ (la docente escribe $\bar\alpha$: ``$\alpha^{-1}$ no me gusta, no es una inversa''), que recorre $\alpha$ al revés; la \emph{yuxtaposición} (o \emph{concatenación}: ``empalmo una con la otra'') $\alpha*\beta$ recorre $\alpha$ a doble velocidad en la primera mitad del tiempo y $\beta$ en la segunda:
-\lgc{\alpha^-(t)=\alpha(1-t);\qquad (\alpha*\beta)(t)=\begin{cases}\alpha(2t) & \text{si } 0\le t\le\frac12,\\ \beta(2t-1) & \text{si } \frac12\le t\le 1.\end{cases}}
+Sean $\alpha$ un camino de $x$ a $y$ y $\beta$ un camino de $y$ a $z$ en $X$ (el extremo de $\alpha$ es el origen de $\beta$). El \emph{camino inverso} de $\alpha$ es $\bar\alpha$ (la docente escribe $\bar\alpha$: ``$\alpha^{-1}$ no me gusta, no es una inversa''), que recorre $\alpha$ al revés; la \emph{yuxtaposición} (o \emph{concatenación}: ``empalmo una con la otra'') $\gamma$ recorre $\alpha$ a doble velocidad en la primera mitad del tiempo y $\beta$ en la segunda:
+\lgc{\bar\alpha(t)=\alpha(1-t);\qquad (\gamma)(t)=\begin{cases}\alpha(2t) & \text{si } 0\le t\le\frac12,\\ \beta(2t-1) & \text{si } \frac12\le t\le 1.\end{cases}}
 \end{definicion}
 
 \begin{proposicion}[``Estar unidos por un camino'' es de equivalencia \fnt{GT 4.1.9, pp.\,65--66; MS Def.\ 7.9, p.\,92; clase 12, Prop.\ 2.1}]\label{cc:equiv}
-En $(X,\tp)$, la relación $x\sim y$ si existe un camino en $X$ de $x$ a $y$ es reflexiva, simétrica y transitiva. Más precisamente: los caminos constantes son caminos; si $\alpha$ es un camino de $x$ a $y$, $\alpha^-$ es un camino de $y$ a $x$; y si además $\beta$ es un camino de $y$ a $z$, $\alpha*\beta$ es un camino de $x$ a $z$.
+En $(X,\tp)$, la relación $x\sim y$ si existe un camino en $X$ de $x$ a $y$ es reflexiva, simétrica y transitiva. Más precisamente: los caminos constantes son caminos; si $\alpha$ es un camino de $x$ a $y$, $\bar\alpha$ es un camino de $y$ a $x$; y si además $\beta$ es un camino de $y$ a $z$, $\gamma$ es un camino de $x$ a $z$.
 \lgc{x\sim y\iff \exists\alpha:[0,1]\to X\ \text{continua}:\ \alpha(0)=x\ \wedge\ \alpha(1)=y;\\
 x\sim x;\qquad x\sim y\Rightarrow y\sim x;\qquad x\sim y\ \wedge\ y\sim z\Rightarrow x\sim z.}
 \end{proposicion}
 
 \begin{proof}
-Reflexiva: el camino constante $\alpha(t)=x$ es continuo. Simétrica: $\alpha^-=\alpha\circ\rho$ con $\rho(t)=1-t$ continua de $[0,1]$ en $[0,1]$, y $\alpha^-(0)=\alpha(1)=y$, $\alpha^-(1)=\alpha(0)=x$.
-Transitiva: $\alpha*\beta$ está bien definida porque en $t=\frac12$ las dos fórmulas dan $\alpha(1)=y=\beta(0)$. Su restricción a $[0,\frac12]$ es $\alpha\circ(t\mapsto2t)$ y su restricción a $[\frac12,1]$ es $\beta\circ(t\mapsto2t-1)$, ambas continuas; como $[0,\frac12]$ y $[\frac12,1]$ son \emph{dos} cerrados que cubren $[0,1]$, el Lema del pegado (versión (b), con finitos cerrados; \S\ref{sec:unif}) da que $\alpha*\beta$ es continua. Además $(\alpha*\beta)(0)=\alpha(0)=x$ y $(\alpha*\beta)(1)=\beta(1)=z$.
+Reflexiva: el camino constante $\alpha(t)=x$ es continuo. Simétrica: $\bar\alpha=\alpha\circ\rho$ con $\rho(t)=1-t$ continua de $[0,1]$ en $[0,1]$, y $\bar\alpha(0)=\alpha(1)=y$, $\bar\alpha(1)=\alpha(0)=x$.
+Transitiva: $\gamma$ está bien definida porque en $t=\frac12$ las dos fórmulas dan $\alpha(1)=y=\beta(0)$. Su restricción a $[0,\frac12]$ es $\alpha\circ(t\mapsto2t)$ y su restricción a $[\frac12,1]$ es $\beta\circ(t\mapsto2t-1)$, ambas continuas; como $[0,\frac12]$ y $[\frac12,1]$ son \emph{dos} cerrados que cubren $[0,1]$, el Lema del pegado (versión (b), con finitos cerrados; \S\ref{sec:unif}) da que $\gamma$ es continua. Además $(\gamma)(0)=\alpha(0)=x$ y $(\gamma)(1)=\beta(1)=z$.
 \end{proof}
 
 \begin{figure}[ht]
@@ -2421,7 +2421,7 @@ Transitiva: $\alpha*\beta$ está bien definida porque en $t=\frac12$ las dos fó
 \draw[thick] (0,0)--(4,0); \node[pt] at (0,0){}; \node[pt] at (2,0){}; \node[pt] at (4,0){};
 \node[below] at (0,0){\scriptsize $0$}; \node[below] at (2,0){\scriptsize $\frac12$}; \node[below] at (4,0){\scriptsize $1$};
 \draw[blue!60!black,very thick] (0,0)--(2,0); \draw[red!60!black,very thick] (2,0)--(4,0);
-\draw[->,>=Stealth] (4.4,0.2)--(5.6,0.6) node[midway,above]{\scriptsize $\alpha*\beta$};
+\draw[->,>=Stealth] (4.4,0.2)--(5.6,0.6) node[midway,above]{\scriptsize $\gamma$};
 \node[pt] (x) at (6.2,-0.3){}; \node[pt] (y) at (8.2,0.9){}; \node[pt] (z) at (10.2,0.0){};
 \node[left] at (x){\scriptsize $x$}; \node[above] at (y){\scriptsize $y$}; \node[right] at (z){\scriptsize $z$};
 \draw[blue!60!black,very thick] (6.2,-0.3) .. controls (6.8,0.9) and (7.4,-0.2) .. (8.2,0.9) node[pos=0.5,below right]{\scriptsize $\alpha$};
@@ -2435,7 +2435,7 @@ Transitiva: $\alpha*\beta$ está bien definida porque en $t=\frac12$ las dos fó
 \end{observacion}
 
 \begin{observacion}
-Gracias a la transitividad, para probar que $X$ es arcoconexo alcanza con fijar un punto $x_0$ y unir \emph{cada} $x$ con $x_0$: si $\alpha_x$ va de $x_0$ a $x$, entonces $\alpha_x^-*\alpha_y$ va de $x$ a $y$. Es el análogo por caminos de la Prop.~\ref{pr:dospuntos}.
+Gracias a la transitividad, para probar que $X$ es arcoconexo alcanza con fijar un punto $x_0$ y unir \emph{cada} $x$ con $x_0$: si $\alpha_x$ va de $x_0$ a $x$, entonces $\bar\alpha_x*\alpha_y$ va de $x$ a $y$. Es el análogo por caminos de la Prop.~\ref{pr:dospuntos}.
 \end{observacion}
 
 \begin{proposicion}[Uniones de arcoconexos \fnt{GT 4.1.10--4.1.12, pp.\,67--68; clase 12, Props.\ 3.1--3.6}]\label{cc:uniones}
@@ -2498,7 +2498,7 @@ Sean $\alpha$ un camino de $x_0$ a $x_1$ en $X$ y $\beta$ uno de $y_0$ a $y_1$ e
 \end{proof}
 
 \begin{observacion}[Productos \fnt{GT Nota 4.1.8, p.\,65 y Prop.\ 4.1.7, p.\,64; MS Teo.\ 7.21, p.\,92}]
-\textbf{GT} 4.1.7 prueba que el producto de dos (seudo)métricos arcoconexos es arcoconexo con $\delta^{\max}_2$, y la Nota 4.1.8 aclara que vale igual con $\delta_2^{\mathrm{taxi}}$, con $\delta_2^{\mathrm{eucl}}$, con la topología producto general y con finitos factores. La versión con topología producto es el Teorema~\ref{cc:prodarco}. La recíproca también vale, como para conexos (\textbf{MS} Teo.\ 7.21): si $X\times Y\ne\emptyset$ es arcoconexo, $X=\pi_X(X\times Y)$ e $Y=\pi_Y(X\times Y)$ lo son por la Prop.~\ref{cc:imarco}.
+\textbf{GT} 4.1.7 prueba que el producto de dos (seudo)métricos arcoconexos es arcoconexo con $\delta^{\max}_2$, y la Nota 4.1.8 aclara que vale igual con $\delta_2^{\mathrm{taxi}}$, con $\delta_2^{\mathrm{eucl}}$, con la topología producto general y con finitos factores. La versión con topología producto es el Teorema~\ref{cc:prodarco}. La recíproca también vale, como para conexos (\textbf{MS} Teo.\ 7.21): si $X\times Y\ne\emptyset$ es arcoconexo, $X=\Pi_X(X\times Y)$ e $Y=\Pi_Y(X\times Y)$ lo son por la Prop.~\ref{cc:imarco}.
 \end{observacion}
 
 \begin{ejemplo}[Espacios arcoconexos conocidos \fnt{GT Ej.\ 4.1.13, pp.\,68--69; MS Ejemplos 7.3, p.\,91}]\label{cc:ejarco}
@@ -2516,44 +2516,44 @@ La única idea que la docente resaltó: ``$f$ de arcoconexo es arcoconexo y los 
 
 \subsection{Componentes conexas por caminos y conexión local por caminos}\label{cc:compcam}
 
-\noindent Clase 12 (1/10/2026), más \textbf{GT} 4.4.6 (\S\ref{cc:conexarco}). Sigue \textbf{GT} \S4.2 y \textbf{MS} \S7.4. \textbf{GT} escribe $C_x$ tanto para la componente conexa por caminos como para la componente conexa (\S4.6); acá, como en \textbf{MS}, se distinguen: $c(x)$ para la de caminos y $C(x)$ para la conexa.
+\noindent Clase 12 (1/10/2026), más \textbf{GT} 4.4.6 (\S\ref{cc:conexarco}). Sigue \textbf{GT} \S4.2 y \textbf{MS} \S7.4. Como en \textbf{GT}, $C_x$ denota la componente arcoconexa de $x$ en esta subsección y la componente conexa en \S\ref{cc:compconex}; cuando aparecen las dos juntas se dice en palabras cuál es cuál (``hay que leer las palabras'', la docente).
 
 \begin{definicion}[Componente conexa por caminos \fnt{GT 4.2.1, p.\,70; MS Def.\ 7.9, p.\,92; clase 12, Def.\ 4.1}]\label{cc:defcompcam}
-Sea $(X,\tp)$ y $x\in X$. La \emph{componente conexa por caminos} (o \emph{componente arcoconexa}) de $x$, $c(x)$, es el mayor subconjunto arcoconexo de $X$ que contiene a $x$: es arcoconexo, contiene a $x$, y contiene a todo arcoconexo que contenga a $x$.
-\lgc{c(x)\ \text{arcoconexo}\ \wedge\ x\in c(x)\ \wedge\ \forall A\subseteq X\ \big(A\ \text{arcoconexo}\ \wedge\ x\in A\Rightarrow A\subseteq c(x)\big).}
+Sea $(X,\tp)$ y $x\in X$. La \emph{componente conexa por caminos} (o \emph{componente arcoconexa}) de $x$, $C_x$, es el mayor subconjunto arcoconexo de $X$ que contiene a $x$: es arcoconexo, contiene a $x$, y contiene a todo arcoconexo que contenga a $x$.
+\lgc{C_x\ \text{arcoconexo}\ \wedge\ x\in C_x\ \wedge\ \forall A\subseteq X\ \big(A\ \text{arcoconexo}\ \wedge\ x\in A\Rightarrow A\subseteq C_x\big).}
 \end{definicion}
 
 \begin{proposicion}[Existe y es la clase de equivalencia de $x$ \fnt{GT Lema 4.2.2 y Prop.\ 4.2.3, p.\,70}]\label{cc:existecam}
-Para todo $x\in X$ la componente $c(x)$ existe: es la unión de todos los arcoconexos que contienen a $x$. Y coincide con la clase de $x$ para la relación $\sim$ de la Prop.~\ref{cc:equiv}, es decir, con el conjunto de puntos que se pueden unir con $x$ por un camino en $X$.
-\lgc{c(x)=\bigcup\{A\subseteq X:\ A\ \text{arcoconexo},\ x\in A\}=\{y\in X:\ \exists\ \text{camino en } X \text{ de } x \text{ a } y\}.}
+Para todo $x\in X$ la componente $C_x$ existe: es la unión de todos los arcoconexos que contienen a $x$. Y coincide con la clase de $x$ para la relación $\sim$ de la Prop.~\ref{cc:equiv}, es decir, con el conjunto de puntos que se pueden unir con $x$ por un camino en $X$.
+\lgc{C_x=\bigcup\{A\subseteq X:\ A\ \text{arcoconexo},\ x\in A\}=\{y\in X:\ \exists\ \text{camino en } X \text{ de } x \text{ a } y\}.}
 \end{proposicion}
 
 \begin{proof}
-La familia de arcoconexos que contienen a $x$ no es vacía ($\{x\}$ está) y todos se cortan en $x$; por la Prop.~\ref{cc:uniones}(b) su unión $D$ es arcoconexa, contiene a $x$, y contiene a cada miembro de la familia: es el mayor, $D=c(x)$.
-Sea $Z=\{y:\ x\sim y\}$. Si $y\in c(x)$, hay un camino de $x$ a $y$ dentro de $c(x)$, que es en particular un camino en $X$: $y\in Z$. Si $z\in Z$ y $\alpha$ es un camino en $X$ de $x$ a $z$, su imagen $\alpha([0,1])$ es arcoconexa (Prop.~\ref{cc:imarco}, porque $[0,1]$ lo es) y contiene a $x$ y $z$; luego $\alpha([0,1])\subseteq c(x)$ y $z\in c(x)$.
+La familia de arcoconexos que contienen a $x$ no es vacía ($\{x\}$ está) y todos se cortan en $x$; por la Prop.~\ref{cc:uniones}(b) su unión $D$ es arcoconexa, contiene a $x$, y contiene a cada miembro de la familia: es el mayor, $D=C_x$.
+Sea $Z=\{y:\ x\sim y\}$. Si $y\in C_x$, hay un camino de $x$ a $y$ dentro de $C_x$, que es en particular un camino en $X$: $y\in Z$. Si $z\in Z$ y $\alpha$ es un camino en $X$ de $x$ a $z$, su imagen $\alpha([0,1])$ es arcoconexa (Prop.~\ref{cc:imarco}, porque $[0,1]$ lo es) y contiene a $x$ y $z$; luego $\alpha([0,1])\subseteq C_x$ y $z\in C_x$.
 \end{proof}
 
 \begin{observacion}[La definición de la docente: al revés que \textbf{GT} \fnt{clase 12, Def.\ 4.1, Prop.\ 4.4 y Obs.\ 4.5}]
-En clase la componente arcoconexa se \emph{define} como la clase de equivalencia de $x$, $c(x)=\{y\in X:\ \text{existe un camino de } x \text{ a } y\}$: ``para mí no tiene discusión si existe o no: es una clase de equivalencia de una relación de equivalencia, y alguien, cuando estudié relaciones, me dijo que existía''. Lo que se demuestra después es que \emph{es el mayor arcoconexo que contiene a $x$}:
+En clase la componente arcoconexa se \emph{define} como la clase de equivalencia de $x$, $C_x=\{y\in X:\ \text{existe un camino de } x \text{ a } y\}$: ``para mí no tiene discusión si existe o no: es una clase de equivalencia de una relación de equivalencia, y alguien, cuando estudié relaciones, me dijo que existía''. Lo que se demuestra después es que \emph{es el mayor arcoconexo que contiene a $x$}:
 \begin{lista}
-\item \emph{$c(x)$ es arcoconexo.} Si $y,z\in c(x)$, entonces $x\sim y$ y $x\sim z$; por simetría y transitividad $y\sim z$: hay un camino $\gamma$ de $y$ a $z$. Ese camino no sale de $c(x)$: si $w=\gamma(t)$, el tramo $\gamma|_{[0,t]}$ reparametrizado une $y$ con $w$, así que $x\sim w$ y $w\in c(x)$. (``Cada componente arcoconexa es un arcoconexo en su vida privada.'')
-\item \emph{Es el más grande.} Si $D$ es arcoconexo y $x\in D$, para cada $y\in D$ hay un camino de $x$ a $y$ (en $D\subseteq X$): $x\sim y$, $y\in c(x)$. Luego $D\subseteq c(x)$.
+\item \emph{$C_x$ es arcoconexo.} Si $y,z\in C_x$, entonces $x\sim y$ y $x\sim z$; por simetría y transitividad $y\sim z$: hay un camino $\gamma$ de $y$ a $z$. Ese camino no sale de $C_x$: si $w=\gamma(t)$, el tramo $\gamma|_{[0,t]}$ reparametrizado une $y$ con $w$, así que $x\sim w$ y $w\in C_x$. (``Cada componente arcoconexa es un arcoconexo en su vida privada.'')
+\item \emph{Es el más grande.} Si $D$ es arcoconexo y $x\in D$, para cada $y\in D$ hay un camino de $x$ a $y$ (en $D\subseteq X$): $x\sim y$, $y\in C_x$. Luego $D\subseteq C_x$.
 \end{lista}
-Las propiedades de la Prop.~\ref{cc:propcam} (no vacías, $x\in c(x)$, si se cortan coinciden, $X=\bigcup_x c(x)$) salen gratis de ser clases de equivalencia. Las dos definiciones son equivalentes justamente por la Prop.~\ref{cc:existecam}.
+Las propiedades de la Prop.~\ref{cc:propcam} (no vacías, $x\in C_x$, si se cortan coinciden, $X=\bigcup_x C_x$) salen gratis de ser clases de equivalencia. Las dos definiciones son equivalentes justamente por la Prop.~\ref{cc:existecam}.
 \end{observacion}
 
 \begin{ejemplo}[Rectas verticales $x=n$ \fnt{clase 12, Ej.\ 4.3}]\label{cc:verticalesn}
-En $\R^2$ sea $X=\{(x,y):\ x=n \text{ para algún } n\in\N\}$, la unión de las rectas verticales $x=n$. La componente arcoconexa de $(2,1)$ es la recta $\{2\}\times\R$ entera: $c(2,1)=c(2,2)=c(2,\pi)$; la de $(3,1)$ es $\{3\}\times\R$, y así una componente por cada $n$. Cualquier representante nombra la misma clase; ``esto se porta como $\N$: que sea una raya entera no me hace la diferencia''. (Es el ejemplo del espacio cociente, que no se trabaja en el curso.)
-\lgc{X=\N\times\R\subseteq\R^2:\qquad c(n,y)=\{n\}\times\R\quad\forall n\in\N,\ \forall y\in\R.}
+En $\R^2$ sea $X=\{(x,y):\ x=n \text{ para algún } n\in\N\}$, la unión de las rectas verticales $x=n$. La componente arcoconexa de $(2,1)$ es la recta $\{2\}\times\R$ entera: $C_{2,1}=C_{2,2}=C_{2,\pi}$; la de $(3,1)$ es $\{3\}\times\R$, y así una componente por cada $n$. Cualquier representante nombra la misma clase; ``esto se porta como $\N$: que sea una raya entera no me hace la diferencia''. (Es el ejemplo del espacio cociente, que no se trabaja en el curso.)
+\lgc{X=\N\times\R\subseteq\R^2:\qquad C_{n,y}=\{n\}\times\R\quad\forall n\in\N,\ \forall y\in\R.}
 \end{ejemplo}
 
 \begin{observacion}
-Atención con la segunda descripción: el camino de $x$ a $y$ se busca en todo $X$, pero entonces automáticamente se queda dentro de $c(x)$ (toda su imagen está en $c(x)$).
+Atención con la segunda descripción: el camino de $x$ a $y$ se busca en todo $X$, pero entonces automáticamente se queda dentro de $C_x$ (toda su imagen está en $C_x$).
 \end{observacion}
 
 \begin{proposicion}[Propiedades de las componentes arcoconexas \fnt{GT 4.2.4, p.\,71; MS Def.\ 7.9, p.\,92; clase 12, Prop.\ 4.2}]\label{cc:propcam}
-En $(X,\tp)$: $x\in c(x)$; $c(x)$ es arcoconexo; $c(x)$ es la clase de $x$ por $\sim$; y dos componentes arcoconexas o son iguales o son disjuntas. Es decir, las componentes arcoconexas forman una partición de $X$ (\textbf{MS} llama $\pi_0(X)$ al conjunto de esas clases).
-\lgc{x\in c(x);\qquad c(x)\cap c(y)\ne\emptyset\ \Rightarrow\ c(x)=c(y);\qquad X=\bigcup_{x\in X}c(x).}
+En $(X,\tp)$: $x\in C_x$; $C_x$ es arcoconexo; $C_x$ es la clase de $x$ por $\sim$; y dos componentes arcoconexas o son iguales o son disjuntas. Es decir, las componentes arcoconexas forman una partición de $X$.
+\lgc{x\in C_x;\qquad C_x\cap C_y\ne\emptyset\ \Rightarrow\ C_x=C_y;\qquad X=\bigcup_{x\in X}C_x.}
 \end{proposicion}
 
 \begin{proof}
@@ -2561,16 +2561,16 @@ Todo sale de que son las clases de equivalencia de $\sim$ (Prop.~\ref{cc:existec
 \end{proof}
 
 \begin{proposicion}[Una imagen continua cae en una componente \fnt{GT 4.2.7, pp.\,71--72; clase 12, Prop.\ 7.1}]\label{cc:invcam}
-Si $f:X\to Y$ es continua, $f(c(x))\subseteq c(f(x))$. Si $f$ es un homeomorfismo, $f(c(x))=c(f(x))$, y $f$ induce una biyección $c(x)\mapsto f(c(x))$ entre las componentes arcoconexas de $X$ y las de $Y$. En particular, el número de componentes arcoconexas es un invariante topológico.
-\lgc{f\ \text{continua}\Rightarrow f(c(x))\subseteq c(f(x));\qquad f\ \text{homeomorfismo}\Rightarrow f(c(x))=c(f(x)).}
+Si $f:X\to Y$ es continua, $f(C_x)\subseteq C_{f(x)}$. Si $f$ es un homeomorfismo, $f(C_x)=C_{f(x)}$, y $f$ induce una biyección $C_x\mapsto f(C_x)$ entre las componentes arcoconexas de $X$ y las de $Y$. En particular, el número de componentes arcoconexas es un invariante topológico.
+\lgc{f\ \text{continua}\Rightarrow f(C_x)\subseteq C_{f(x)};\qquad f\ \text{homeomorfismo}\Rightarrow f(C_x)=C_{f(x)}.}
 \end{proposicion}
 
 \begin{proof}
-$f(c(x))$ es arcoconexo (Prop.~\ref{cc:imarco}) y contiene a $f(x)$, luego está en $c(f(x))$. Si $f$ es homeomorfismo, lo mismo con $f^{-1}$ da $f^{-1}(c(f(x)))\subseteq c(x)$, o sea $c(f(x))\subseteq f(c(x))$. La correspondencia $c(x)\mapsto c(f(x))$ tiene inversa $c(y)\mapsto c(f^{-1}(y))$.
+$f(C_x)$ es arcoconexo (Prop.~\ref{cc:imarco}) y contiene a $f(x)$, luego está en $C_{f(x)}$. Si $f$ es homeomorfismo, lo mismo con $f^{-1}$ da $f^{-1}(C_{f(x)})\subseteq C_x$, o sea $C_{f(x)}\subseteq f(C_x)$. La correspondencia $C_x\mapsto C_{f(x)}$ tiene inversa $C_y\mapsto C_{f^{-1}(y)}$.
 \end{proof}
 
 \begin{observacion}[Cómo se dictó y para qué se usa \fnt{clase 12, \S7}]
-La ida sólo necesita $f$ continua. La vuelta ``es medio trampa, usa que es homeomorfismo'': $f^{-1}:Y\to X$ es una \emph{función} continua (``estoy usando fuertemente el biyectivo: no estoy haciendo preimagen''), así que $f^{-1}(c(f(x)))$ es un arcoconexo que contiene a $x$ y cae en $c(x)$; aplicando $f$, otra vez por la biyección, $c(f(x))\subseteq f(c(x))$. ``Si fuese una función continua sólo de ida, no alcanza: necesito ida y vuelta.''
+La ida sólo necesita $f$ continua. La vuelta ``es medio trampa, usa que es homeomorfismo'': $f^{-1}:Y\to X$ es una \emph{función} continua (``estoy usando fuertemente el biyectivo: no estoy haciendo preimagen''), así que $f^{-1}(C_{f(x)})$ es un arcoconexo que contiene a $x$ y cae en $C_x$; aplicando $f$, otra vez por la biyección, $C_{f(x)}\subseteq f(C_x)$. ``Si fuese una función continua sólo de ida, no alcanza: necesito ida y vuelta.''
 La consecuencia es la herramienta para probar que dos espacios \emph{no} son homeomorfos, ``sin hacer muchas cuentas'': $\R-\{0\}$ tiene dos componentes arcoconexas y $\R$ una, así que $\R-\{0\}\not\cong\R$; y $\R$ menos dos puntos, con tres, no es homeomorfo a ninguno de los dos (Figura~23). ``Es la idea intuitiva que uno tiene de topología: contar agujeros.'' Contar agujeros de verdad en espacios más elaborados excede el curso: el toro tiene una sola componente, como el plano, y los distingue ser \emph{simplemente conexo} (en $\R^2$ todo lacito se contrae a un punto; en el toro, uno que da la vuelta no).
 \end{observacion}
 
@@ -2588,7 +2588,7 @@ La consecuencia es la herramienta para probar que dos espacios \emph{no} son hom
 
 \begin{definicion}[Localmente conexo por caminos \fnt{GT 4.2.5, p.\,71; MS Def.\ 7.8, p.\,91; clase 12, Def.\ 5.1}]\label{cc:deflocarco}
 $(X,\tp)$ es \emph{localmente conexo por caminos} (localmente arcoconexo) si todo entorno de cualquier punto contiene un entorno arcoconexo de ese punto; es decir, si cada punto tiene una base de entornos formada por arcoconexos (así lo define \textbf{MS}).
-\lgc{X\ \text{loc.\ arcoconexo}\iff \forall x\in X\ \forall N\in\mathcal N_x\ \exists N'\in\mathcal N_x:\ N'\subseteq N\ \wedge\ N'\ \text{arcoconexo}.}
+\lgc{X\ \text{loc.\ arcoconexo}\iff \forall x\in X\ \forall N\ \text{entorno de } x\ \exists N'\ \text{entorno de } x:\ N'\subseteq N\ \wedge\ N'\ \text{arcoconexo}.}
 \end{definicion}
 
 \begin{intuicion}
@@ -2601,16 +2601,16 @@ Si $X$ es localmente arcoconexo, cada punto tiene \emph{algún} entorno arcocone
 
 \begin{ejemplo}[$\R-\{0\}$: localmente arcoconexo, no arcoconexo \fnt{clase 12, Ej.\ 5.2}]\label{cc:Rmenos0}
 $X=\R-\{0\}$ (usual) no es arcoconexo: no es un intervalo ($-1,1\in X$ y $0\notin X$), luego no es conexo (\S\ref{sec:bolzano}) y menos arcoconexo. Pero es localmente arcoconexo: dados $x\in X$ y un entorno $N$ de $x$ (que puede tener el mismo agujero), hay $G$ abierto con $x\in G\subseteq N$ y un $\varepsilon>0$ con $(x-\varepsilon,x+\varepsilon)\subseteq G$; achicándolo a $\varepsilon<|x|$, $N'=(x-\varepsilon,x+\varepsilon)$ no llega al $0$, es entorno de $x$, está en $N$ y es un intervalo, luego arcoconexo. ``Siempre existe un intervalo en torno a algo que no llegue al cero.''
-\lgc{x\in\R-\{0\},\ N\in\mathcal N_x\ \Rightarrow\ \exists\,0<\varepsilon<|x|:\ N'=(x-\varepsilon,x+\varepsilon)\subseteq N,\ N'\ \text{arcoconexo}.}
+\lgc{x\in\R-\{0\},\ N\ \text{entorno de } x\ \Rightarrow\ \exists\,0<\varepsilon<|x|:\ N'=(x-\varepsilon,x+\varepsilon)\subseteq N,\ N'\ \text{arcoconexo}.}
 \end{ejemplo}
 
 \begin{proposicion}[En un localmente arcoconexo las componentes arcoconexas son abiertas y cerradas \fnt{GT 4.2.6, p.\,71; clase 12, Prop.\ 6.1}]\label{cc:compabcam}
-Si $(X,\tp)$ es localmente conexo por caminos, cada componente arcoconexa $c(x)$ es abierta y cerrada en $X$.
-\lgc{X\ \text{loc.\ arcoconexo}\ \Rightarrow\ \forall x\in X:\ c(x)\in\tp\ \wedge\ c(x)\ \text{cerrado}.}
+Si $(X,\tp)$ es localmente conexo por caminos, cada componente arcoconexa $C_x$ es abierta y cerrada en $X$.
+\lgc{X\ \text{loc.\ arcoconexo}\ \Rightarrow\ \forall x\in X:\ C_x\in\tp\ \wedge\ C_x\ \text{cerrado}.}
 \end{proposicion}
 
 \begin{proof}
-Abierta: sea $y\in c(x)$; entonces $c(y)=c(x)$ (Prop.~\ref{cc:propcam}). Aplicando la definición al entorno $N=X$ de $y$ se obtiene un entorno $N'$ de $y$ arcoconexo; como contiene a $y$, $N'\subseteq c(y)=c(x)$. Así $c(x)$ es entorno de cada uno de sus puntos, o sea abierto.
+Abierta: sea $y\in C_x$; entonces $C_y=C_x$ (Prop.~\ref{cc:propcam}). Aplicando la definición al entorno $N=X$ de $y$ se obtiene un entorno $N'$ de $y$ arcoconexo; como contiene a $y$, $N'\subseteq C_y=C_x$. Así $C_x$ es entorno de cada uno de sus puntos, o sea abierto.
 Cerrada: su complemento es la unión de las demás componentes (son una partición), cada una abierta por lo anterior.
 \end{proof}
 
@@ -2619,23 +2619,23 @@ La demostración de \textbf{GT} para ``cerrada'' pasa por la clausura; la de arr
 \end{observacion}
 
 \begin{proof}[Demostración dictada en clase (como \textbf{GT}: interior y clausura)]
-Sólo se usa la forma débil de la hipótesis: todo $y$ tiene un entorno arcoconexo $N$, y entonces hay $G\in\tp$ con $y\in G\subseteq N$, así que $y\in N^\circ$.
+Sólo se usa la forma débil de la hipótesis: todo $y$ tiene un entorno arcoconexo $N$, y entonces hay $G\in\tp$ con $y\in G\subseteq N$, así que $y\in\intr N$.
 
-\emph{Abierta: $c(x)\subseteq c(x)^\circ$.} Sea $y\in c(x)$; como $y\in c(y)$, es $c(x)=c(y)$. $N$ es un arcoconexo que contiene a $y$, luego $N\subseteq c(y)$ (es el mayor), y por monotonía del interior $y\in G=G^\circ\subseteq N^\circ\subseteq c(y)^\circ=c(x)^\circ$.
+\emph{Abierta: $C_x\subseteq\intr C_x$.} Sea $y\in C_x$; como $y\in C_y$, es $C_x=C_y$. $N$ es un arcoconexo que contiene a $y$, luego $N\subseteq C_y$ (es el mayor), y por monotonía del interior $y\in G=\intr G\subseteq\intr N\subseteq\intr C_y=\intr C_x$.
 
-\emph{Cerrada: $\cl{c(x)}\subseteq c(x)$.} Sea $y\in\cl{c(x)}$ y $N$ un entorno arcoconexo de $y$. $N^\circ$ es un abierto que contiene a $y$, adherente a $c(x)$, así que $N^\circ\cap c(x)\ne\emptyset$, y con más razón $N\cap c(x)\ne\emptyset$. (``¿Por qué el interior? Porque necesitaba un abierto para la definición de clausura; pero el arcoconexo es $N$, zapallos.'') Entonces $N\cup c(x)$ es unión de dos arcoconexos que se cortan, arcoconexa, y contiene a $x$; por ser $c(x)$ el mayor, $N\cup c(x)\subseteq c(x)$, y como la otra inclusión es obvia, $N\cup c(x)=c(x)$: ``absorbe''. Luego $y\in N\subseteq c(x)$. (Para ``cerrada'' no se sabe de antemano que $y\in c(x)$, por eso se pasa por $N\cup c(x)$ y no por $c(y)$.)
+\emph{Cerrada: $\cl{C_x}\subseteq C_x$.} Sea $y\in\cl{C_x}$ y $N$ un entorno arcoconexo de $y$. $\intr N$ es un abierto que contiene a $y$, adherente a $C_x$, así que $\intr N\cap C_x\ne\emptyset$, y con más razón $N\cap C_x\ne\emptyset$. (``¿Por qué el interior? Porque necesitaba un abierto para la definición de clausura; pero el arcoconexo es $N$, zapallos.'') Entonces $N\cup C_x$ es unión de dos arcoconexos que se cortan, arcoconexa, y contiene a $x$; por ser $C_x$ el mayor, $N\cup C_x\subseteq C_x$, y como la otra inclusión es obvia, $N\cup C_x=C_x$: ``absorbe''. Luego $y\in N\subseteq C_x$. (Para ``cerrada'' no se sabe de antemano que $y\in C_x$, por eso se pasa por $N\cup C_x$ y no por $C_y$.)
 \end{proof}
 
 \begin{figure}[ht]
 \centering
 \begin{tikzpicture}[scale=1.0]
-\draw[blue!60!black,thick,fill=blue!6] (0,0) ellipse (2.2 and 1.1); \node[blue!60!black] at (-1.7,1.05){\scriptsize $c(x)$};
+\draw[blue!60!black,thick,fill=blue!6] (0,0) ellipse (2.2 and 1.1); \node[blue!60!black] at (-1.7,1.05){\scriptsize $C_x$};
 \node[pt] at (-0.8,-0.1){}; \node[below] at (-0.8,-0.1){\scriptsize $x$};
 \draw[red!60!black,thick,fill=red!8,fill opacity=0.7] (2.25,0.2) circle (0.7); \node[red!60!black] at (2.5,-0.75){\scriptsize $N$ arcoconexo};
-\node[pt] at (2.2,0.2){}; \node[above] at (2.25,0.95){\scriptsize $y\in\cl{c(x)}$}; \draw[gray,thin] (2.2,0.2)--(2.25,0.95);
-\node[right,align=left] at (3.6,0.3){\scriptsize $N\cap c(x)\ne\emptyset$\\ \scriptsize $\Rightarrow N\cup c(x)$ arcoconexo $\ni x$\\ \scriptsize $\Rightarrow N\cup c(x)\subseteq c(x)\Rightarrow y\in c(x)$};
+\node[pt] at (2.2,0.2){}; \node[above] at (2.25,0.95){\scriptsize $y\in\cl{C_x}$}; \draw[gray,thin] (2.2,0.2)--(2.25,0.95);
+\node[right,align=left] at (3.6,0.3){\scriptsize $N\cap C_x\ne\emptyset$\\ \scriptsize $\Rightarrow N\cup C_x$ arcoconexo $\ni x$\\ \scriptsize $\Rightarrow N\cup C_x\subseteq C_x\Rightarrow y\in C_x$};
 \end{tikzpicture}
-\figtit{Figura 24. Por qué $c(x)$ es cerrada en un localmente arcoconexo (dibujo de la clase 12): un punto adherente $y$ tiene un entorno arcoconexo $N$ que pisa a $c(x)$; la unión es un arcoconexo que contiene a $x$, cabe en $c(x)$, y arrastra a $y$ con ella.}
+\figtit{Figura 24. Por qué $C_x$ es cerrada en un localmente arcoconexo (dibujo de la clase 12): un punto adherente $y$ tiene un entorno arcoconexo $N$ que pisa a $C_x$; la unión es un arcoconexo que contiene a $x$, cabe en $C_x$, y arrastra a $y$ con ella.}
 \end{figure}
 
 \begin{ejemplo}[Localmente arcoconexos \fnt{GT Ej.\ 4.2.8(1)--(2), p.\,72; CX 18; clase 12, Obs.\ 5.6}]\label{cc:ejlocarco}
@@ -2659,7 +2659,7 @@ Con la notación del Ejemplo~\ref{ej:peine}: $E=(K\times[0,1])\cup([0,1]\times\{
 \begin{proof}
 Sea $\alpha:[0,1]\to R$ un camino con $\alpha(0)=p$; se ve que $\alpha$ es constante, así que ningún punto de $E$ se une con $p$. Sea $S=\alpha^{-1}(\{p\})$, que contiene a $0$.
 $S$ es cerrado en $[0,1]$: $\{p\}$ es cerrado (en un métrico los puntos son cerrados) y $\alpha$ es continua.
-$S$ es abierto en $[0,1]$: sea $t\in S$. Los puntos de $R$ en $W=\Bola{p}{\frac12}$ son $p$ y trozos de dientes $\{1/n\}\times(\frac12,1]$ (la base está a distancia $1$ de $p$). Por continuidad hay un intervalo $J\ni t$, abierto en $[0,1]$, con $\alpha(J)\subseteq W$. Si existiera $s\in J$ con $\alpha(s)\ne p$, sería $\alpha(s)=(1/n,y)$ para algún $n$. La primera coordenada $g=\pi_1\circ\alpha$ es continua en el intervalo de extremos $t$ y $s$ (contenido en $J$), con $g(t)=0$ y $g(s)=1/n$; por el teorema de Bolzano (del Análisis) toma el valor $\lambda=\frac{1}{n+1/2}\in(\frac1{n+1},\frac1n)$ en algún punto de $J$. Pero ningún punto de $R\cap W$ tiene primera coordenada $\lambda$. Absurdo: $\alpha(J)=\{p\}$ y $J\subseteq S$.
+$S$ es abierto en $[0,1]$: sea $t\in S$. Los puntos de $R$ en $W=\Bola{p}{\frac12}$ son $p$ y trozos de dientes $\{1/n\}\times(\frac12,1]$ (la base está a distancia $1$ de $p$). Por continuidad hay un intervalo $J\ni t$, abierto en $[0,1]$, con $\alpha(J)\subseteq W$. Si existiera $s\in J$ con $\alpha(s)\ne p$, sería $\alpha(s)=(1/n,y)$ para algún $n$. La primera coordenada $g=p_1\circ\alpha$ es continua en el intervalo de extremos $t$ y $s$ (contenido en $J$), con $g(t)=0$ y $g(s)=1/n$; por el teorema de Bolzano (del Análisis) toma el valor $\lambda=\frac{1}{n+1/2}\in(\frac1{n+1},\frac1n)$ en algún punto de $J$. Pero ningún punto de $R\cap W$ tiene primera coordenada $\lambda$. Absurdo: $\alpha(J)=\{p\}$ y $J\subseteq S$.
 Como $[0,1]$ es conexo (\S\ref{sec:bolzano}) y $S$ es abierto, cerrado y no vacío, $S=[0,1]$: $\alpha$ es constante en $p$.
 \end{proof}
 
@@ -2677,7 +2677,7 @@ En $\R^2$ sean $A_0=OY$ (el eje vertical), $A_n=\{1/n\}\times\R$ para $n\ge1$, y
 \end{ejemplo}
 
 \begin{proof}[Demostración de que no es arcoconexo]
-Supongamos que $\alpha:[0,1]\to X$ es continua con $\alpha(0)=q\in H$ y $\alpha(1)\in A_0$. La segunda coordenada $\pi_2\circ\alpha:[0,1]\to\R$ es continua, luego acotada (teorema de Weierstrass del Análisis): $|\pi_2(\alpha(t))|\le M$ para todo $t$. La primera coordenada de $q$ es positiva; se elige $n_0>M$ con $\frac1{n_0}<\pi_1(q)$ y $\lambda\in(\frac1{n_0+1},\frac1{n_0})$. Por Bolzano (del Análisis) aplicado a $\pi_1\circ\alpha$, que vale $\pi_1(q)>\lambda$ en $0$ y $0<\lambda$ en $1$, hay $t$ con $\pi_1(\alpha(t))=\lambda$. Pero los puntos de $X$ con primera coordenada $\lambda$ están sólo en el peldaño $B_{n_0}$, a altura $n_0>M$: absurdo.
+Supongamos que $\alpha:[0,1]\to X$ es continua con $\alpha(0)=q\in H$ y $\alpha(1)\in A_0$. La segunda coordenada $p_2\circ\alpha:[0,1]\to\R$ es continua, luego acotada (teorema de Weierstrass del Análisis): $|p_2(\alpha(t))|\le M$ para todo $t$. La primera coordenada de $q$ es positiva; se elige $n_0>M$ con $\frac1{n_0}<p_1(q)$ y $\lambda\in(\frac1{n_0+1},\frac1{n_0})$. Por Bolzano (del Análisis) aplicado a $p_1\circ\alpha$, que vale $p_1(q)>\lambda$ en $0$ y $0<\lambda$ en $1$, hay $t$ con $p_1(\alpha(t))=\lambda$. Pero los puntos de $X$ con primera coordenada $\lambda$ están sólo en el peldaño $B_{n_0}$, a altura $n_0>M$: absurdo.
 \end{proof}
 
 \begin{observacion}[Erratas de GT en 4.2.8(4)]
@@ -2707,7 +2707,7 @@ En la demostración impresa, $V$ debe ser $\{(x,y): x>\lambda\}$ (dice $y>\lambd
 \begin{definicion}[Punto de corte y orden \fnt{GT 4.3.1, p.\,76; MS \S7.5, problema 13, p.\,93; clase 13, Def.\ 2.1}]\label{cc:defcorte}
 Sea $(X,\tp)$ \emph{arcoconexo} y $x\in X$ (la hipótesis no está en \textbf{GT}: la agregó la docente, ``la gracia es que haya sido arcoconexo antes''). $x$ es un \emph{punto de corte} de $X$ si $X-\{x\}$ (con la topología de subespacio) no es arcoconexo. El \emph{orden de corte} de $x$ es la cantidad de componentes arcoconexas de $X-\{x\}$ (un punto que no es de corte, en un $X$ arcoconexo, tiene orden $1$).
 \lgc{x\ \text{punto de corte de } X\iff X-\{x\}\ \text{no es arcoconexo};\\
-\operatorname{ord}(x)=\#\,\{\text{componentes arcoconexas de } X-\{x\}\}.}
+\text{orden de corte de } x=\#\,\{\text{componentes arcoconexas de } X-\{x\}\}.}
 \end{definicion}
 
 \begin{observacion}
@@ -2729,7 +2729,7 @@ Sea $(X,\tp)$ \emph{arcoconexo} y $x\in X$ (la hipótesis no está en \textbf{GT
 
 \begin{proposicion}[Invarianza de los puntos de corte \fnt{GT 4.3.5(a), pp.\,77--78; MS \S7.5, problema 13(i), p.\,93; clase 13, Prop.\ 2.4}]\label{cc:invcorte}
 Sea $f:X\to Y$ un homeomorfismo. Entonces $x$ es punto de corte de orden $n$ de $X$ si y sólo si $f(x)$ es punto de corte de orden $n$ de $Y$. En consecuencia $f$ lleva biyectivamente los puntos de corte de $X$ (de cada orden) sobre los de $Y$, y los que no son de corte sobre los que no son de corte: la cantidad de puntos de cada tipo es un invariante topológico.
-\lgc{f:X\to Y\ \text{homeomorfismo}\ \Rightarrow\ \forall x\in X:\ \operatorname{ord}_X(x)=\operatorname{ord}_Y(f(x)).}
+\lgc{f:X\to Y\ \text{homeomorfismo}\ \Rightarrow\ \forall x\in X:\ \text{orden de corte de } x \text{ en } X=\text{orden de corte de } f(x) \text{ en } Y.}
 \end{proposicion}
 
 \begin{proof}
@@ -2769,7 +2769,7 @@ La conexión sola no alcanza para distinguirlos: todos son conexos y arcoconexos
 
 \begin{definicion}[Punto de corte local \fnt{GT 4.3.3, p.\,77; clase 13, Def.\ 2.3}]\label{cc:deflocal}
 $x$ es un \emph{punto de corte local de orden $n$} de $X$ si todo entorno $N$ de $x$ contiene otro entorno $N'$ de $x$ tal que $N'-\{x\}$ tiene exactamente $n$ componentes arcoconexas.
-\lgc{x\ \text{de corte local de orden } n\iff \forall N\in\mathcal N_x\ \exists N'\in\mathcal N_x:\ N'\subseteq N\ \wedge\ \#\{\text{comp.\ arcoconexas de } N'-\{x\}\}=n.}
+\lgc{x\ \text{de corte local de orden } n\iff \forall N\ \text{entorno de } x\ \exists N'\ \text{entorno de } x:\ N'\subseteq N\ \wedge\ \#\{\text{comp.\ arcoconexas de } N'-\{x\}\}=n.}
 \end{definicion}
 
 \begin{observacion}[Errata de GT]
@@ -2821,7 +2821,7 @@ Si $(X,\tp)$ es localmente conexo por caminos, entonces $X$ es conexo si y sólo
 
 \begin{proof}
 ($\Leftarrow$) Es la Prop.~\ref{cc:arcoconexo}, que no usa la hipótesis local.
-($\Rightarrow$) Si $X=\emptyset$ no hay nada que probar. Si no, sea $x_0\in X$. Por la Prop.~\ref{cc:compabcam}, $c(x_0)$ es abierta y cerrada, y no es vacía; como $X$ es conexo, $c(x_0)=X$ (Prop.~\ref{pr:conexclopen}). Es decir, todo punto se une con $x_0$ por un camino, y por transitividad (Prop.~\ref{cc:equiv}) dos puntos cualesquiera se unen entre sí.
+($\Rightarrow$) Si $X=\emptyset$ no hay nada que probar. Si no, sea $x_0\in X$. Por la Prop.~\ref{cc:compabcam}, $C_{x_0}$ es abierta y cerrada, y no es vacía; como $X$ es conexo, $C_{x_0}=X$ (Prop.~\ref{pr:conexclopen}). Es decir, todo punto se une con $x_0$ por un camino, y por transitividad (Prop.~\ref{cc:equiv}) dos puntos cualesquiera se unen entre sí.
 \end{proof}
 
 \begin{observacion}[Ejercicio típico de final \fnt{clase 12, Obs.\ 8.2--8.3}]
@@ -2842,68 +2842,68 @@ $U$ es localmente arcoconexo: las bolas contenidas en $U$ son convexas y forman 
 \noindent Clase 13 (5/10/2026). Sigue \textbf{GT} \S4.6 y \textbf{MS} \S7.2. Aviso de la docente: \textbf{GT} usa la misma letra $C_x$ que para la componente arcoconexa (``medio desubicado''); hay que leer las palabras, porque no siempre coinciden. Los ejemplos en que difieren son los molestos (peine, seno del topólogo); en ejemplos sencillos se pueden pensar iguales. Es la misma construcción que la de las componentes arcoconexas, con ``conexo'' en lugar de ``arcoconexo''; la diferencia importante es que ahora las componentes \emph{siempre} son cerradas (el sándwich sí vale para conexos).
 
 \begin{definicion}[Componente conexa \fnt{GT 4.6.1, p.\,84; MS Def.\ 7.5, p.\,90; clase 13, Def.\ 3.1}]\label{cc:defcomp}
-Sea $(X,\tp)$ y $x\in X$. La \emph{componente conexa} de $x$, $C(x)$, es el mayor subconjunto conexo de $X$ que contiene a $x$: es conexo, contiene a $x$, y contiene a todo conexo que contenga a $x$.
-\lgc{C(x)\ \text{conexo}\ \wedge\ x\in C(x)\ \wedge\ \forall A\subseteq X\ \big(A\ \text{conexo}\ \wedge\ x\in A\Rightarrow A\subseteq C(x)\big).}
+Sea $(X,\tp)$ y $x\in X$. La \emph{componente conexa} de $x$, $C_x$, es el mayor subconjunto conexo de $X$ que contiene a $x$: es conexo, contiene a $x$, y contiene a todo conexo que contenga a $x$.
+\lgc{C_x\ \text{conexo}\ \wedge\ x\in C_x\ \wedge\ \forall A\subseteq X\ \big(A\ \text{conexo}\ \wedge\ x\in A\Rightarrow A\subseteq C_x\big).}
 \end{definicion}
 
 \begin{lema}[La componente existe \fnt{GT Lema 4.6.2, p.\,84; clase 13, Lema 3.2}]\label{cc:existecomp}
-Para todo $x\in X$, $C(x)$ existe: es la unión de todos los conexos de $X$ que contienen a $x$.
-\lgc{C(x)=\bigcup\{A\subseteq X:\ A\ \text{conexo},\ x\in A\}.}
+Para todo $x\in X$, $C_x$ existe: es la unión de todos los conexos de $X$ que contienen a $x$.
+\lgc{C_x=\bigcup\{A\subseteq X:\ A\ \text{conexo},\ x\in A\}.}
 \end{lema}
 
 \begin{proof}
-La familia no es vacía ($\{x\}$ es conexo) y todos sus miembros contienen a $x$, así que su unión es conexa (Prop.~\ref{pr:familias}(b)); contiene a $x$ y a cada conexo que contenga a $x$. ``Es una demostración constructiva: agarra la colección de todos los conexos que contienen a $x$, cosa que uno no hace en la vida cotidiana, hay infinitos.'' La imagen: $C(x)$ es hasta dónde se puede seguir agrandando un conexo que contiene a $x$ sin que deje de ser conexo.
+La familia no es vacía ($\{x\}$ es conexo) y todos sus miembros contienen a $x$, así que su unión es conexa (Prop.~\ref{pr:familias}(b)); contiene a $x$ y a cada conexo que contenga a $x$. ``Es una demostración constructiva: agarra la colección de todos los conexos que contienen a $x$, cosa que uno no hace en la vida cotidiana, hay infinitos.'' La imagen: $C_x$ es hasta dónde se puede seguir agrandando un conexo que contiene a $x$ sin que deje de ser conexo.
 \end{proof}
 
 \begin{proposicion}[Propiedades de las componentes conexas \fnt{GT 4.6.5 y Nota 4.6.4, pp.\,84--85; MS Lema 7.13, Teo.\ 7.14, Prop.\ 7.15(i), p.\,90; clase 13, Prop.\ 3.4}]\label{cc:propcomp}
 En $(X,\tp)$, para todos $x,y\in X$:
 \begin{enumerate}[label=(\arabic*),leftmargin=2.2em,itemsep=0pt]
-\item $x\in C(x)$ y $C(x)$ es conexo;
-\item $C(x)$ es \emph{cerrado} en $X$;
-\item si $C(x)\cap C(y)\ne\emptyset$, entonces $C(x)=C(y)$: las componentes conexas forman una partición de $X$;
-\item $X$ es conexo si y sólo si tiene una sola componente, $C(x)=X$ para todo $x$.
+\item $x\in C_x$ y $C_x$ es conexo;
+\item $C_x$ es \emph{cerrado} en $X$;
+\item si $C_x\cap C_y\ne\emptyset$, entonces $C_x=C_y$: las componentes conexas forman una partición de $X$;
+\item $X$ es conexo si y sólo si tiene una sola componente, $C_x=X$ para todo $x$.
 \end{enumerate}
-\lgc{C(x)=\cl{C(x)};\qquad C(x)\cap C(y)\ne\emptyset\Rightarrow C(x)=C(y);\qquad X\ \text{conexo}\iff\forall x:\ C(x)=X.}
+\lgc{C_x=\cl{C_x};\qquad C_x\cap C_y\ne\emptyset\Rightarrow C_x=C_y;\qquad X\ \text{conexo}\iff\forall x:\ C_x=X.}
 \end{proposicion}
 
 \begin{proof}
-(1) Por definición. (2) $\cl{C(x)}$ es conexo (sándwich, Prop.~\ref{pr:sandwich}) y contiene a $x$, así que $\cl{C(x)}\subseteq C(x)$ por maximalidad; la otra inclusión es de siempre. (3) $C(x)\cup C(y)$ es conexo por ser unión de conexos que se cortan (Prop.~\ref{pr:unionconex}) y contiene a $x$ y a $y$; por maximalidad $C(x)\cup C(y)\subseteq C(x)$ y $\subseteq C(y)$, luego $C(x)=C(y)$. (4) Si $X$ es conexo es él mismo el mayor conexo que contiene a $x$. Si $C(x)=X$, $X$ es conexo por (1).
+(1) Por definición. (2) $\cl{C_x}$ es conexo (sándwich, Prop.~\ref{pr:sandwich}) y contiene a $x$, así que $\cl{C_x}\subseteq C_x$ por maximalidad; la otra inclusión es de siempre. (3) $C_x\cup C_y$ es conexo por ser unión de conexos que se cortan (Prop.~\ref{pr:unionconex}) y contiene a $x$ y a $y$; por maximalidad $C_x\cup C_y\subseteq C_x$ y $\subseteq C_y$, luego $C_x=C_y$. (4) Si $X$ es conexo es él mismo el mayor conexo que contiene a $x$. Si $C_x=X$, $X$ es conexo por (1).
 \end{proof}
 
 \begin{observacion}[La prueba de (3) que se dictó, y la relación de equivalencia \fnt{clase 13, Prop.\ 3.4 y Obs.\ 3.5}]
-En clase (3) se probó sin uniones, por maximalidad pura: si $z\in C(x)\cap C(y)$, entonces $C(x)$ y $C(y)$ son conexos que contienen a $z$, luego $C(x),C(y)\subseteq C(z)$; y $C(z)$ es un conexo que contiene a $x$ (porque $x\in C(x)\subseteq C(z)$), luego $C(z)\subseteq C(x)$; igual $C(z)\subseteq C(y)$. Así $C(x)=C(z)=C(y)$. ``Me resulta más sencillo decirlo así: si $y\in C(x)$, entonces $C(x)=C(y)$.'' Para (2): ``las componentes conexas son cerradas \emph{siempre}''.
-El camino es el inverso del de las componentes arcoconexas: allá primero la relación y después las clases; acá primero las componentes y, como toda partición induce una relación de equivalencia (``esto lo probamos alguna vez en la vida, en Lógica''), $x\approx y\iff C(x)=C(y)$ es de equivalencia y sus clases son las componentes conexas.
+En clase (3) se probó sin uniones, por maximalidad pura: si $z\in C_x\cap C_y$, entonces $C_x$ y $C_y$ son conexos que contienen a $z$, luego $C_x,C_y\subseteq C_z$; y $C_z$ es un conexo que contiene a $x$ (porque $x\in C_x\subseteq C_z$), luego $C_z\subseteq C_x$; igual $C_z\subseteq C_y$. Así $C_x=C_z=C_y$. ``Me resulta más sencillo decirlo así: si $y\in C_x$, entonces $C_x=C_y$.'' Para (2): ``las componentes conexas son cerradas \emph{siempre}''.
+El camino es el inverso del de las componentes arcoconexas: allá primero la relación y después las clases; acá primero las componentes y, como toda partición induce una relación de equivalencia (``esto lo probamos alguna vez en la vida, en Lógica''), $x\approx y\iff C_x=C_y$ es de equivalencia y sus clases son las componentes conexas.
 \end{observacion}
 
 \begin{proposicion}[Un conexo queda dentro de una componente \fnt{MS Prop.\ 7.16, p.\,90; MS \S7.5, problema 9, p.\,93}]\label{cc:dentrocomp}
 Si $C$ es una componente conexa de $X$ y $A\subseteq X$ es conexo, entonces $A\subseteq C$ o $A\cap C=\emptyset$. Además, todo subconjunto no vacío, conexo, abierto y cerrado de $X$ es una componente conexa.
-\lgc{A\ \text{conexo}\Rightarrow A\subseteq C\ \vee\ A\subseteq X-C;\qquad \emptyset\ne A\ \text{conexo, abierto y cerrado}\Rightarrow A=C(a)\ \ \forall a\in A.}
+\lgc{A\ \text{conexo}\Rightarrow A\subseteq C\ \vee\ A\subseteq X-C;\qquad \emptyset\ne A\ \text{conexo, abierto y cerrado}\Rightarrow A=C_a\ \ \forall a\in A.}
 \end{proposicion}
 
 \begin{proof}
-Si $A$ corta a $C=C(x)$ en $a$, entonces $C(a)=C$ y $A\subseteq C(a)$ por maximalidad. Para la segunda: si $a\in A$, $A\subseteq C(a)$ por maximalidad; y como $C(a)$ es conexo y corta al abierto-cerrado $A$, queda entero de ese lado (Prop.~\ref{pr:conexlado}): $C(a)\subseteq A$.
+Si $A$ corta a $C=C_x$ en $a$, entonces $C_a=C$ y $A\subseteq C_a$ por maximalidad. Para la segunda: si $a\in A$, $A\subseteq C_a$ por maximalidad; y como $C_a$ es conexo y corta al abierto-cerrado $A$, queda entero de ese lado (Prop.~\ref{pr:conexlado}): $C_a\subseteq A$.
 \end{proof}
 
 \begin{proposicion}[Componentes arcoconexas dentro de componentes conexas \fnt{MS \S7.4, p.\,92 (``Def.'' 7.10)}]\label{cc:cenC}
-Para todo $x\in X$, $c(x)\subseteq C(x)$: cada componente conexa es unión de componentes arcoconexas. En particular, un abierto-cerrado es unión de componentes arcoconexas (\textbf{CX} 17).
-\lgc{\forall x\in X:\ c(x)\subseteq C(x);\qquad A\ \text{abierto y cerrado}\ \Rightarrow\ A=\bigcup_{a\in A}c(a).}
+Para todo $x\in X$, la componente arcoconexa de $x$ está contenida en la componente conexa de $x$: cada componente conexa es unión de componentes arcoconexas. En particular, un abierto-cerrado es unión de componentes arcoconexas (\textbf{CX} 17).
+\lgc{\forall x\in X:\ (\text{comp.\ arcoconexa de } x)\subseteq(\text{comp.\ conexa de } x);\\ A\ \text{abierto y cerrado}\ \Rightarrow\ A=\textstyle\bigcup_{a\in A}(\text{comp.\ arcoconexa de } a).}
 \end{proposicion}
 
 \begin{proof}
-$c(x)$ es arcoconexo, luego conexo (Prop.~\ref{cc:arcoconexo}), y contiene a $x$: por maximalidad $c(x)\subseteq C(x)$. Para \textbf{CX} 17: si $a\in A$, el conexo $c(a)$ corta al abierto-cerrado $A$, así que $c(a)\subseteq A$ (Prop.~\ref{pr:conexlado}).
+La componente arcoconexa de $x$ es arcoconexa, luego conexa (Prop.~\ref{cc:arcoconexo}), y contiene a $x$: por maximalidad está contenida en la componente conexa de $x$. Para \textbf{CX} 17: si $a\in A$, la componente arcoconexa $C_a$ es conexa y corta al abierto-cerrado $A$, así que $C_a\subseteq A$ (Prop.~\ref{pr:conexlado}).
 \end{proof}
 
 \begin{observacion}
-\textbf{MS} numera este hecho como ``Definición 7.10'', pero es una afirmación demostrable. La inclusión puede ser estricta: en el peine reducido, $C(p)=R$ y $c(p)=\{p\}$.
+\textbf{MS} numera este hecho como ``Definición 7.10'', pero es una afirmación demostrable. La inclusión puede ser estricta: en el peine reducido, la componente conexa de $p$ es $R$ y la arcoconexa es $\{p\}$.
 \end{observacion}
 
 \begin{proposicion}[Componentes e imagen continua \fnt{GT 4.6.10, p.\,87; MS \S7.5, problema 8, p.\,93; CX 20; clase 13, Prop.\ 3.11}]\label{cc:invcomp}
-Sea $f:X\to Y$ continua. Entonces $f(C(x))\subseteq C(f(x))$, y si $E$ es una componente conexa de $Y$, $f^{-1}(E)$ es unión de componentes conexas de $X$. Si $f$ es un homeomorfismo, $f(C(x))=C(f(x))$ y $f$ induce una biyección entre las componentes conexas de $X$ y las de $Y$, con componentes correspondientes homeomorfas.
-\lgc{f\ \text{continua}\Rightarrow f(C(x))\subseteq C(f(x))\ \wedge\ f^{-1}(E)=\bigcup_{x\in f^{-1}(E)}C(x);\qquad f\ \text{homeomorfismo}\Rightarrow f(C(x))=C(f(x)).}
+Sea $f:X\to Y$ continua. Entonces $f(C_x)\subseteq C_{f(x)}$, y si $E$ es una componente conexa de $Y$, $f^{-1}(E)$ es unión de componentes conexas de $X$. Si $f$ es un homeomorfismo, $f(C_x)=C_{f(x)}$ y $f$ induce una biyección entre las componentes conexas de $X$ y las de $Y$, con componentes correspondientes homeomorfas.
+\lgc{f\ \text{continua}\Rightarrow f(C_x)\subseteq C_{f(x)}\ \wedge\ f^{-1}(E)=\bigcup_{x\in f^{-1}(E)}C_x;\qquad f\ \text{homeomorfismo}\Rightarrow f(C_x)=C_{f(x)}.}
 \end{proposicion}
 
 \begin{proof}
-$f(C(x))$ es conexo (Prop.~\ref{pr:imconex}) y contiene a $f(x)$, así que está en $C(f(x))$. Si $x\in f^{-1}(E)$, entonces $E=C(f(x))\supseteq f(C(x))$, o sea $C(x)\subseteq f^{-1}(E)$ (\textbf{CX} 20). Para el homeomorfismo, igual que en la Prop.~\ref{cc:invcam}, aplicando lo anterior a $f^{-1}$; y la restricción de un homeomorfismo a $C(x)$ es un homeomorfismo sobre su imagen $C(f(x))$.
+$f(C_x)$ es conexo (Prop.~\ref{pr:imconex}) y contiene a $f(x)$, así que está en $C_{f(x)}$. Si $x\in f^{-1}(E)$, entonces $E=C_{f(x)}\supseteq f(C_x)$, o sea $C_x\subseteq f^{-1}(E)$ (\textbf{CX} 20). Para el homeomorfismo, igual que en la Prop.~\ref{cc:invcam}, aplicando lo anterior a $f^{-1}$; y la restricción de un homeomorfismo a $C_x$ es un homeomorfismo sobre su imagen $C_{f(x)}$.
 \end{proof}
 
 \begin{observacion}[Para qué se usa \fnt{clase 13, Prop.\ 3.11 y Fig.\ 8}]
@@ -2912,16 +2912,16 @@ $f(C(x))$ es conexo (Prop.~\ref{pr:imconex}) y contiene a $f(x)$, así que está
 
 \begin{ejemplo}[Componentes conexas \fnt{GT Ej.\ 4.6.3 y 4.6.6, pp.\,84--85; GT Ej.\ 4.6.9(2), p.\,86; clase 13, Ejs.\ 3.3 y 3.6}]\label{cc:ejcomp}
 \begin{lista}
-\item Si $X$ es conexo, $C(x)=X$ para todo $x$ (el extremo opuesto a $\Q$: $\R$). En $\R-\{0\}$, $C(x)=(0,+\infty)$ si $x>0$ y $C(x)=(-\infty,0)$ si $x<0$.
+\item Si $X$ es conexo, $C_x=X$ para todo $x$ (el extremo opuesto a $\Q$: $\R$). En $\R-\{0\}$, $C_x=(0,+\infty)$ si $x>0$ y $C_x=(-\infty,0)$ si $x<0$.
 \item En $\Q$ (usual) la componente de cada $x$ es $\{x\}$: los únicos conexos no vacíos son los puntos (es totalmente disconexo). Lo mismo en un discreto. Aquí las componentes \emph{no} son abiertas.
-\item Sea $A=\{1/n: n\ge1\}\cup\{0\}$ y $X=A\times\R\subseteq\R^2$. La componente de $(a,y)$ es la recta $\{a\}\times\R$. En efecto, esa recta es conexa, luego está en la componente; y si $(a',y')\in C((a,y))$, la proyección $\pi_1(C((a,y)))$ es un conexo de $A\subseteq\Q$, luego un punto, que tiene que ser $a$: $a'=a$. La componente $\{0\}\times\R$ es cerrada pero no abierta en $X$.
+\item Sea $A=\{1/n: n\ge1\}\cup\{0\}$ y $X=A\times\R\subseteq\R^2$. La componente de $(a,y)$ es la recta $\{a\}\times\R$. En efecto, esa recta es conexa, luego está en la componente; y si $(a',y')\in C_{(a,y)}$, la proyección $p_1(C_{(a,y)})$ es un conexo de $A\subseteq\Q$, luego un punto, que tiene que ser $a$: $a'=a$. La componente $\{0\}\times\R$ es cerrada pero no abierta en $X$.
 \item En el peine reducido y en la escalera hay una sola componente conexa (son conexos), pero dos componentes arcoconexas.
 \end{lista}
 \end{ejemplo}
 
 \begin{definicion}[Localmente conexo \fnt{GT 4.6.7, p.\,85; clase 13, Def.\ 3.7}]\label{cc:deflocconex}
 $(X,\tp)$ es \emph{localmente conexo} si todo entorno de cualquier punto contiene un entorno conexo de ese punto (cada punto tiene una base de entornos conexos).
-\lgc{X\ \text{loc.\ conexo}\iff \forall x\in X\ \forall N\in\mathcal N_x\ \exists N'\in\mathcal N_x:\ N'\subseteq N\ \wedge\ N'\ \text{conexo}.}
+\lgc{X\ \text{loc.\ conexo}\iff \forall x\in X\ \forall N\ \text{entorno de } x\ \exists N'\ \text{entorno de } x:\ N'\subseteq N\ \wedge\ N'\ \text{conexo}.}
 \end{definicion}
 
 \begin{observacion}
@@ -2929,12 +2929,12 @@ Localmente arcoconexo $\Rightarrow$ localmente conexo, porque los entornos arcoc
 \end{observacion}
 
 \begin{proposicion}[En un localmente conexo las componentes son abiertas \fnt{GT 4.6.8, pp.\,85--86; clase 13, Prop.\ 3.9}]\label{cc:compab}
-Si $(X,\tp)$ es localmente conexo, toda componente conexa $C(x)$ es abierta (y, por la Prop.~\ref{cc:propcomp}, abierta y cerrada).
-\lgc{X\ \text{loc.\ conexo}\ \Rightarrow\ \forall x\in X:\ C(x)\in\tp.}
+Si $(X,\tp)$ es localmente conexo, toda componente conexa $C_x$ es abierta (y, por la Prop.~\ref{cc:propcomp}, abierta y cerrada).
+\lgc{X\ \text{loc.\ conexo}\ \Rightarrow\ \forall x\in X:\ C_x\in\tp.}
 \end{proposicion}
 
 \begin{proof}
-Sea $y\in C(x)$, de modo que $C(y)=C(x)$. Aplicando la definición al entorno $N=X$, hay un entorno conexo $N'$ de $y$; como contiene a $y$, $N'\subseteq C(y)=C(x)$ (``spoiler alert: no se iba a poder escapar''). Así $C(x)$ es entorno de cada uno de sus puntos; en clase, con interiores: $y\in G\subseteq N'^\circ\subseteq C(x)^\circ$.
+Sea $y\in C_x$, de modo que $C_y=C_x$. Aplicando la definición al entorno $N=X$, hay un entorno conexo $N'$ de $y$; como contiene a $y$, $N'\subseteq C_y=C_x$ (``spoiler alert: no se iba a poder escapar''). Así $C_x$ es entorno de cada uno de sus puntos; en clase, con interiores: $y\in G\subseteq\intr N'\subseteq\intr C_x$.
 \end{proof}
 
 \begin{corolario}[Si hay un número finito de componentes, son abiertas \fnt{CX 23}]\label{cc:finitas}
@@ -2951,12 +2951,12 @@ $X-C_i$ es la unión de las otras $k-1$ componentes, cada una cerrada (Prop.~\re
 \end{observacion}
 
 \begin{corolario}[En un localmente arcoconexo, componentes conexas y arcoconexas coinciden \fnt{consecuencia de GT 4.2.6 y MS \S7.4, p.\,92}]\label{cc:igualcomp}
-Si $X$ es localmente conexo por caminos, entonces $c(x)=C(x)$ para todo $x$.
-\lgc{X\ \text{loc.\ arcoconexo}\ \Rightarrow\ \forall x\in X:\ c(x)=C(x).}
+Si $X$ es localmente conexo por caminos, entonces para todo $x$ la componente arcoconexa de $x$ coincide con su componente conexa.
+\lgc{X\ \text{loc.\ arcoconexo}\ \Rightarrow\ \forall x\in X:\ \text{comp.\ arcoconexa de } x=\text{comp.\ conexa de } x.}
 \end{corolario}
 
 \begin{proof}
-$c(x)\subseteq C(x)$ siempre (Prop.~\ref{cc:cenC}). Por la Prop.~\ref{cc:compabcam}, $c(x)$ es abierta y cerrada; el conexo $C(x)$ la corta (en $x$), así que $C(x)\subseteq c(x)$ (Prop.~\ref{pr:conexlado}).
+La arcoconexa está contenida en la conexa siempre (Prop.~\ref{cc:cenC}). Por la Prop.~\ref{cc:compabcam}, la componente arcoconexa de $x$ es abierta y cerrada; la componente conexa de $x$ es un conexo que la corta (en $x$), así que queda entera adentro (Prop.~\ref{pr:conexlado}).
 \end{proof}
 
 \begin{ejemplo}[Conexión local \fnt{GT Ej.\ 4.6.9, pp.\,86--87; clase 13, Ej.\ 3.10}]\label{cc:ejlocconex}
@@ -3301,7 +3301,7 @@ Sea $f(A)\subseteq\bigcup_\alpha G_\alpha$ con $G_\alpha\in\tp'$. Entonces $A\su
 \end{proof}
 
 \begin{corolario}[Menos abiertos, más compacto \fnt{MS Obs.\ 6.1(3), p.\,80}]
-Si $A$ es compacto en $(X,\tp_1)$ y $\tp_2\subseteq\tp_1$, entonces $A$ es compacto en $(X,\tp_2)$: es la imagen de $A$ por $1_X:(X,\tp_1)\to(X,\tp_2)$, continua por la Prop.~\ref{pr:idcont}. (Con menos abiertos hay menos recubrimientos que achicar.)
+Si $A$ es compacto en $(X,\tp_1)$ y $\tp_2\subseteq\tp_1$, entonces $A$ es compacto en $(X,\tp_2)$: es la imagen de $A$ por $\mathrm{id}_X:(X,\tp_1)\to(X,\tp_2)$, continua por la Prop.~\ref{pr:idcont}. (Con menos abiertos hay menos recubrimientos que achicar.)
 \lgc{A\ \text{compacto en } (X,\tp_1)\ \wedge\ \tp_2\subseteq\tp_1\Rightarrow A\ \text{compacto en } (X,\tp_2).}
 \end{corolario}
 
@@ -3340,7 +3340,7 @@ $f$ es cerrada (Prop.~\ref{cp:cerrada}); una biyección continua y cerrada es ho
 \textbf{GT} pide que $X$ e $Y$ sean los dos compactos y Hausdorff; como dice su Nota 3.4.4, sólo se usa que $X$ sea compacto e $Y$ Hausdorff. Las dos hipótesis son necesarias:
 \begin{lista}
 \item sin compacidad del dominio: $t\mapsto(\cos t,\sin t)$ de $[0,2\pi)$ en $S^1$ es biyectiva y continua y no es homeomorfismo (\S\ref{sec:homeo}; \textbf{MS} Contraej.\ 6.4, p.\,83). $[0,2\pi)$ no es compacto: justamente, el ``agujero'' en $2\pi$ es lo que rompe la continuidad de la inversa;
-\item sin Hausdorff en el codominio: $1_X:(X,\tp_{dis})\to(X,\tp_{ind})$ con $X$ finito de dos puntos o más es biyectiva y continua, el dominio es compacto (finito) y no es homeomorfismo.
+\item sin Hausdorff en el codominio: $\mathrm{id}_X:(X,\tp_{dis})\to(X,\tp_{ind})$ con $X$ finito de dos puntos o más es biyectiva y continua, el dominio es compacto (finito) y no es homeomorfismo.
 \end{lista}
 \end{observacion}
 
@@ -3420,7 +3420,7 @@ Los $\{U_x\}_{x\in X}$ recubren $X$, compacto: $X=U_{x_1}\cup\dots\cup U_{x_m}$.
 X\times Y=\textstyle\bigcup_{j=1}^m U_{x_j}\times Y\subseteq\bigcup_{j=1}^m W_{x_j},
 \]
 y cada $W_{x_j}$ es unión de finitos $W_\alpha$: en total, finitos $W_\alpha$ cubren $X\times Y$.
-Recíproca: $\pi_X$ es continua y, si $X\times Y\ne\emptyset$, sobreyectiva; así $X=\pi_X(X\times Y)$ es compacto (Prop.~\ref{cp:imcomp}). Igual $Y$.
+Recíproca: $\Pi_X$ es continua y, si $X\times Y\ne\emptyset$, sobreyectiva; así $X=\Pi_X(X\times Y)$ es compacto (Prop.~\ref{cp:imcomp}). Igual $Y$.
 \end{proof}
 
 \begin{intuicion}
@@ -3432,12 +3432,12 @@ Si $A\subseteq X$ y $B\subseteq Y$ son compactos, $A\times B$ es compacto en $X\
 \end{observacion}
 
 \begin{proposicion}[Proyección a lo largo de un factor compacto \fnt{MS \S6.5, Problema 7, p.\,84}]\label{cp:proycerr}
-Si $X$ es compacto, la proyección $\pi_Y:X\times Y\to Y$ es cerrada. (Compárese con la hipérbola de \S\ref{sec:prod}: allí el factor que se ``aplasta'' es $\R$, no compacto.)
-\lgc{X\ \text{compacto}\ \Rightarrow\ \forall F\ \text{cerrado de } X\times Y:\ \pi_Y(F)\ \text{cerrado de } Y.}
+Si $X$ es compacto, la proyección $\Pi_Y:X\times Y\to Y$ es cerrada. (Compárese con la hipérbola de \S\ref{sec:prod}: allí el factor que se ``aplasta'' es $\R$, no compacto.)
+\lgc{X\ \text{compacto}\ \Rightarrow\ \forall F\ \text{cerrado de } X\times Y:\ \Pi_Y(F)\ \text{cerrado de } Y.}
 \end{proposicion}
 
 \begin{proof}
-Sea $F$ cerrado y $y_0\notin\pi_Y(F)$. Entonces la fibra $X\times\{y_0\}$ no corta a $F$: está en el abierto $W=(X\times Y)-F$. Por el lema del tubo (con los papeles de los factores cambiados) hay $V\ni y_0$ abierto con $X\times V\subseteq W$, es decir, $X\times V$ no corta a $F$, o sea $V\cap\pi_Y(F)=\emptyset$. Así $Y-\pi_Y(F)$ es abierto.
+Sea $F$ cerrado y $y_0\notin\Pi_Y(F)$. Entonces la fibra $X\times\{y_0\}$ no corta a $F$: está en el abierto $W=(X\times Y)-F$. Por el lema del tubo (con los papeles de los factores cambiados) hay $V\ni y_0$ abierto con $X\times V\subseteq W$, es decir, $X\times V$ no corta a $F$, o sea $V\cap\Pi_Y(F)=\emptyset$. Así $Y-\Pi_Y(F)$ es abierto.
 \end{proof}
 
 \begin{corolario}[Cajas compactas \fnt{GT 3.5.2, p.\,52}]\label{cp:cajas}
@@ -3613,7 +3613,7 @@ La recíproca de la Prop.~\ref{cp:compcompl} es falsa: $\R$ es completo y no com
 
 \begin{definicion}[Localmente compacto \fnt{GT 3.8.1, p.\,59}]
 $(X,\tp)$ es \emph{localmente compacto} si cada punto tiene entornos compactos arbitrariamente chicos: para todo $x\in X$ y todo entorno $N$ de $x$ existe un entorno $N'$ de $x$ compacto con $N'\subseteq N$.
-\lgc{X\ \text{localmente compacto}\iff \forall x\in X\ \forall N\in\mathcal N_x\ \exists N'\in\mathcal N_x:\ N'\subseteq N\ \wedge\ N'\ \text{compacto}.}
+\lgc{X\ \text{localmente compacto}\iff \forall x\in X\ \forall N\ \text{entorno de } x\ \exists N'\ \text{entorno de } x:\ N'\subseteq N\ \wedge\ N'\ \text{compacto}.}
 \end{definicion}
 
 \begin{proposicion}[Caracterización en métricos \fnt{GT 3.8.2, p.\,59}]\label{cp:lcmet}
@@ -3624,7 +3624,7 @@ Para un espacio métrico $(X,d)$ son equivalentes:
 \item cada $x\in X$ tiene \emph{algún} entorno compacto.
 \end{enumerate}
 En particular, todo métrico compacto es localmente compacto ($N=X$ en (3)).
-\lgc{(1)\iff \forall x\ \exists\varepsilon>0:\ \Bolac{x}{\varepsilon}\ \text{compacta}\iff \forall x\ \exists N\in\mathcal N_x:\ N\ \text{compacto}.}
+\lgc{(1)\iff \forall x\ \exists\varepsilon>0:\ \Bolac{x}{\varepsilon}\ \text{compacta}\iff \forall x\ \exists N\ \text{entorno de } x:\ N\ \text{compacto}.}
 \end{proposicion}
 
 \begin{proof}[Idea]
@@ -3776,7 +3776,7 @@ Casos: $f(t)=\min\{1,t\}$, $f(t)=\frac{t}{1+t}$, $f(t)=\min\{t,r\}$.
 \begin{itemize}[leftmargin=1.3em,itemsep=3pt]
 
 \ficha{Interior, abierto, entorno (versión métrica)} Un punto es interior si tiene margen dentro del conjunto. \fnt{GT 1.2.1, 1.2.6}
-\[ x\in\intr A\iff \exists\varepsilon>0:\ \Bola{x}{\varepsilon}\subseteq A;\qquad A\ \text{abierto}\iff A=\intr A;\qquad N\in\mathcal N_x\iff x\in\intr N. \]
+\[ x\in\intr A\iff \exists\varepsilon>0:\ \Bola{x}{\varepsilon}\subseteq A;\qquad A\ \text{abierto}\iff A=\intr A;\qquad N\ \text{entorno de } x\iff x\in\intr N. \]
 
 \ficha{Propiedades de los abiertos} Las tres que después se toman como axiomas. \fnt{GT 1.2.8}
 \[ \emptyset,X\ \text{abiertos};\qquad \bigcup_{i\in I}G_i\ \text{abierto};\qquad \bigcap_{k=1}^{n}G_k\ \text{abierto}. \]
@@ -3818,7 +3818,7 @@ Casos: $f(t)=\min\{1,t\}$, $f(t)=\frac{t}{1+t}$, $f(t)=\min\{t,r\}$.
 \[ x\in\intr A\iff \exists G\in\tp:\ x\in G\subseteq A;\qquad \intr A=\bigcup\{G\in\tp: G\subseteq A\};\qquad A\in\tp\iff A=\intr A. \]
 
 \ficha{Entorno, punto aislado, de acumulación, adherente} \fnt{GT 2.2.5, 2.2.7, 2.3.1, 2.3.4}
-\[ N\in\mathcal N_x\iff \exists G\in\tp:\ x\in G\subseteq N;\qquad
+\[ N\ \text{entorno de } x\iff \exists G\in\tp:\ x\in G\subseteq N;\qquad
 x\ \text{aislado de } A\iff \exists G\in\tp:\ G\cap A=\{x\}; \]
 \[ x\in A'\iff \forall G\in\tp\ \big(x\in G\Rightarrow G\cap(A-\{x\})\ne\emptyset\big);\qquad
 x\in\cl A\iff \forall G\in\tp\ \big(x\in G\Rightarrow G\cap A\ne\emptyset\big). \]
@@ -3866,7 +3866,7 @@ x\in\cl A\iff \forall G\in\tp\ \big(x\in G\Rightarrow G\cap A\ne\emptyset\big). 
 \[ X\ \text{infinito}\ \Rightarrow\ \neg\,\exists\,d\ \text{seudodistancia}:\ \tp_d=\tp_{cof}. \]
 
 \ficha{Abierto $=$ entorno de todos sus puntos} \fnt{GT 2.2.6}
-\[ A\in\tp\iff \forall x\in A:\ A\in\mathcal N_x. \]
+\[ A\in\tp\iff \forall x\in A:\ A\ \text{entorno de } x. \]
 
 \ficha{Interior, clausura y frontera de ejemplos} \fnt{GT Ej.\ 2.6.6}
 \[ \intr\Z=\emptyset,\ \cl\Z=\fr\Z=\Z;\qquad \intr[a,b)=(a,b),\ \cl{[a,b)}=[a,b],\ \fr[a,b)=\{a,b\}; \]
@@ -3956,7 +3956,7 @@ La implicación $\Rightarrow$ vale en cualquier espacio topológico; la $\Leftar
 
 \ficha{Propiedades generales} \fnt{GT 2.8.6}
 \[ f\ \text{constante}\ \Rightarrow\ f\ \text{continua};\quad
-1_X:(X,\tp)\to(X,\tp)\ \text{continua};\quad
+\mathrm{id}_X:(X,\tp)\to(X,\tp)\ \text{continua};\quad
 f,g\ \text{continuas}\Rightarrow g\circ f\ \text{continua}; \]
 \[ f\ \text{continua}\ \Rightarrow\ f|_A:(A,\tp_A)\to Y\ \text{continua};\qquad
 \text{en particular } i:(A,\tp_A)\to(X,\tp)\ \text{es continua}. \]
@@ -3968,8 +3968,8 @@ f,g\ \text{continuas}\Rightarrow g\circ f\ \text{continua}; \]
 \[ f\ \text{continua}\ \Rightarrow\ \widetilde f:(X,\tp)\to\big(f(X),\tp'|_{f(X)}\big),\ \widetilde f(x)=f(x),\ \text{es continua}. \]
 
 \ficha{La identidad entre dos topologías} La identidad es continua exactamente cuando la topología de salida es la más fina. \fnt{GT Ej.\ 2.8.8}
-\[ 1_X:(X,\tp_1)\to(X,\tp_2)\ \text{continua}\iff \tp_2\subseteq\tp_1;\qquad
-\big(1_X\ \text{continua en ambos sentidos}\big)\iff \tp_1=\tp_2. \]
+\[ \mathrm{id}_X:(X,\tp_1)\to(X,\tp_2)\ \text{continua}\iff \tp_2\subseteq\tp_1;\qquad
+\big(\mathrm{id}_X\ \text{continua en ambos sentidos}\big)\iff \tp_1=\tp_2. \]
 
 \ficha{Homeomorfismo} Dos espacios que son el mismo salvo el nombre de los puntos. \fnt{GT 2.8.9}
 \[ f\ \text{homeomorfismo}\iff f\ \text{biyectiva}\ \wedge\ f\ \text{continua}\ \wedge\ f^{-1}\ \text{continua}. \]
@@ -4076,23 +4076,23 @@ y se prueba con $1_A$ en los dos sentidos, usando que $1_A:(A,\tp_1)\to(A,\tp_2)
 \[ G\in\tp_{X\times Y}\iff G=\bigcup_{\alpha}U_\alpha\times V_\alpha\iff \forall (x,y)\in G\ \exists U\in\tp_X\ \exists V\in\tp_Y:\ (x,y)\in U\times V\subseteq G. \]
 
 \ficha{El error frecuente} Un abierto del producto no es un rectángulo, ni el producto de sus proyecciones. \fnt{TP p.\,2}
-\[ G\in\tp_{X\times Y}\ \not\Rightarrow\ G=U\times V;\qquad G\ne\pi_X(G)\times\pi_Y(G)\ \text{en general}. \]
+\[ G\in\tp_{X\times Y}\ \not\Rightarrow\ G=U\times V;\qquad G\ne\Pi_X(G)\times\Pi_Y(G)\ \text{en general}. \]
 
 \ficha{Tubos} La preimagen por una proyección es un tubo, y un rectángulo es la intersección de dos tubos.
-\[ \pi_X^{-1}(U)=U\times Y;\qquad \pi_Y^{-1}(V)=X\times V;\qquad U\times V=\pi_X^{-1}(U)\cap\pi_Y^{-1}(V). \]
+\[ \Pi_X^{-1}(U)=U\times Y;\qquad \Pi_Y^{-1}(V)=X\times V;\qquad U\times V=\Pi_X^{-1}(U)\cap\Pi_Y^{-1}(V). \]
 
 \ficha{La menos fina que hace continuas a las proyecciones} Las proyecciones son continuas, y cualquier otra topología que lo logre tiene más abiertos. \fnt{TP p.\,2; GT 2.8.11}
-\[ \pi_X,\pi_Y\ \text{continuas};\qquad \big(\pi_X,\pi_Y:(X\times Y,\sigma)\to X,Y\ \text{continuas}\big)\Rightarrow \tp_{X\times Y}\subseteq\sigma. \]
+\[ \Pi_X,\Pi_Y\ \text{continuas};\qquad \big(\Pi_X,\Pi_Y:(X\times Y,\sigma)\to X,Y\ \text{continuas}\big)\Rightarrow \tp_{X\times Y}\subseteq\sigma. \]
 
 \ficha{Continuidad hacia un producto} Una función al producto es continua exactamente cuando sus dos coordenadas lo son. \fnt{TP p.\,3; MS Prop.\ 5.10; GT 2.8.12}
-\[ f:Z\to X\times Y\ \text{continua}\iff \pi_X\circ f\ \text{y}\ \pi_Y\circ f\ \text{continuas}. \]
+\[ f:Z\to X\times Y\ \text{continua}\iff \Pi_X\circ f\ \text{y}\ \Pi_Y\circ f\ \text{continuas}. \]
 
 \ficha{Funciones armadas coordenada a coordenada} \fnt{TP ej.\ 3}
 \[ f,g\ \text{continuas}\ \Rightarrow\ (f,g):x\mapsto\big(f(x),g(x)\big)\ \text{y}\ f\times g:(x,y)\mapsto\big(f(x),g(y)\big)\ \text{continuas}; \]
 \[ x\mapsto(x,y_0)\ \text{y}\ y\mapsto(x_0,y)\ \text{continuas (copias de los factores dentro del producto)}. \]
 
 \ficha{Proyecciones abiertas, no cerradas} La sombra de un abierto es abierta; la de un cerrado puede no ser cerrada. \fnt{TP pp.\,3--4; GT Ej.\ 2.8.16; MS Prop.\ 5.9, Obs.\ 5.4}
-\[ G\in\tp_{X\times Y}\Rightarrow \pi_X(G)\in\tp_X;\qquad F=\{y=\tfrac1x,\ x>0\}\ \text{cerrado},\ \ \pi_X(F)=(0,+\infty)\ \text{no cerrado}. \]
+\[ G\in\tp_{X\times Y}\Rightarrow \Pi_X(G)\in\tp_X;\qquad F=\{y=\tfrac1x,\ x>0\}\ \text{cerrado},\ \ \Pi_X(F)=(0,+\infty)\ \text{no cerrado}. \]
 
 \ficha{Clausura e interior de un producto} Se calculan coordenada a coordenada. \fnt{TP ej.\ 1; MS Prop.\ 5.11}
 \[ \cl{A\times B}=\cl A\times\cl B;\qquad \intr(A\times B)=\intr A\times\intr B. \]
@@ -4225,7 +4225,7 @@ y se prueba con $1_A$ en los dos sentidos, usando que $1_A:(A,\tp_1)\to(A,\tp_2)
 \[ X,Y\ \text{arcoconexos}\Rightarrow X\times Y\ \text{arcoconexo};\qquad \gamma(t)=(\alpha(t),\beta(t))\ \text{continua por coordenadas}. \]
 
 \ficha{Yuxtaposición} Estar unidos por un camino es de equivalencia; la transitiva pega dos caminos con el lema del pegado (dos cerrados). \fnt{GT 4.1.9}
-\[ \alpha^-(t)=\alpha(1-t);\qquad (\alpha*\beta)(t)=\alpha(2t)\ \ (t\le\tfrac12),\quad \beta(2t-1)\ \ (t\ge\tfrac12). \]
+\[ \bar\alpha(t)=\alpha(1-t);\qquad (\gamma)(t)=\alpha(2t)\ \ (t\le\tfrac12),\quad \beta(2t-1)\ \ (t\ge\tfrac12). \]
 
 \ficha{Uniones de arcoconexos} Mismos tres casos que para conexos: uno que corta a todos, dos a dos, o en cadena. \fnt{GT 4.1.10--4.1.12}
 \[ \big(\exists\alpha_0\ \forall\alpha:\ C_\alpha\cap C_{\alpha_0}\ne\emptyset\big)\ \vee\ \big(\forall\alpha,\beta:\ C_\alpha\cap C_\beta\ne\emptyset\big)\ \vee\ \big(\forall n:\ C_n\cap C_{n+1}\ne\emptyset\big)\ \Rightarrow\ \textstyle\bigcup C_\alpha\ \text{arcoconexo}. \]
@@ -4234,13 +4234,13 @@ y se prueba con $1_A$ en los dos sentidos, usando que $1_A:(A,\tp_1)\to(A,\tp_2)
 \[ \textstyle\bigcup_{m\in\Lambda}\{(x,mx):x\in\R\}\ \text{arcoconexo};\qquad A,B\ \text{arcoconexos}\not\Rightarrow A\cap B\ \text{arcoconexo}\ \ (S^1\cap\{y\ge0\},\ S^1\cap\{y\le0\}). \]
 
 \ficha{Componente arcoconexa} El mayor arcoconexo que contiene a $x$; es la clase de $x$ por ``estar unidos por un camino''; forman una partición, pero no tienen por qué ser cerradas. \fnt{GT 4.2.1--4.2.4, Nota 4.2.9}
-\[ c(x)=\{y\in X:\ \exists\ \text{camino de } x \text{ a } y\};\qquad c(x)\cap c(y)\ne\emptyset\Rightarrow c(x)=c(y);\qquad c(x)\subseteq C(x). \]
+\[ C_x=\{y\in X:\ \exists\ \text{camino de } x \text{ a } y\};\qquad C_x\cap C_y\ne\emptyset\Rightarrow C_x=C_y;\qquad C_x\subseteq\text{comp.\ conexa de } x. \]
 
-\ficha{Contar agujeros} Un homeomorfismo biyecta componentes arcoconexas: $f(c(x))=c(f(x))$. \fnt{GT 4.2.7; clase 12}
+\ficha{Contar agujeros} Un homeomorfismo biyecta componentes arcoconexas: $f(C_x)=C_{f(x)}$. \fnt{GT 4.2.7; clase 12}
 \[ \R\not\cong\R-\{0\}\not\cong\R-\{a,b\}\qquad(1,\ 2\ \text{y}\ 3\ \text{componentes}). \]
 
 \ficha{Localmente arcoconexo} Todo entorno contiene un entorno arcoconexo (no basta que exista uno); entonces las componentes arcoconexas son abiertas y cerradas. $\R-\{0\}$: localmente arcoconexo, no arcoconexo. \fnt{GT 4.2.5--4.2.6; clase 12}
-\[ \forall x\ \forall N\in\mathcal N_x\ \exists N'\in\mathcal N_x:\ N'\subseteq N\ \wedge\ N'\ \text{arcoconexo}\ \Rightarrow\ c(x)\ \text{abierta y cerrada}. \]
+\[ \forall x\ \forall N\ \text{entorno de } x\ \exists N'\ \text{entorno de } x:\ N'\subseteq N\ \wedge\ N'\ \text{arcoconexo}\ \Rightarrow\ C_x\ \text{abierta y cerrada}. \]
 
 \ficha{Conexo y localmente arcoconexo implica arcoconexo} La componente arcoconexa de un punto es abierta, cerrada y no vacía, luego es todo. En particular los abiertos conexos de $\R^n$ son arcoconexos. Ejercicio típico de final (junto con arcoconexo $\Rightarrow$ conexo). \fnt{GT 4.4.6; MS Prop.\ 7.18; clase 12}
 \[ X\ \text{loc.\ arcoconexo}\ \Rightarrow\ \big(X\ \text{conexo}\iff X\ \text{arcoconexo}\big). \]
@@ -4249,25 +4249,25 @@ y se prueba con $1_A$ en los dos sentidos, usando que $1_A:(A,\tp_1)\to(A,\tp_2)
 \[ E\subseteq R\subseteq\cl E,\ E\ \text{arcoconexo},\ R\ \text{conexo no arcoconexo};\qquad \cl H=X\ \text{no arcoconexo}. \]
 
 \ficha{Punto de corte} $x$ es de corte si al sacarlo el espacio deja de ser arcoconexo; su orden es la cantidad de componentes arcoconexas que quedan. \fnt{GT 4.3.1}
-\[ x\ \text{de corte}\iff X-\{x\}\ \text{no arcoconexo};\qquad \operatorname{ord}(x)=\#\ \text{componentes arcoconexas de } X-\{x\}. \]
+\[ x\ \text{de corte}\iff X-\{x\}\ \text{no arcoconexo};\qquad \text{orden de corte de } x=\#\ \text{componentes arcoconexas de } X-\{x\}. \]
 
 \ficha{Invarianza de los puntos de corte} Un homeomorfismo restringido a $X-\{x\}$ es homeomorfismo sobre $Y-\{f(x)\}$ y conserva las componentes. \fnt{GT 4.3.5}
-\[ f\ \text{homeomorfismo}\ \Rightarrow\ \operatorname{ord}_X(x)=\operatorname{ord}_Y(f(x)). \]
+\[ f\ \text{homeomorfismo}\ \Rightarrow\ \text{orden de corte de } x \text{ en } X=\text{orden de corte de } f(x) \text{ en } Y. \]
 
 \ficha{No homeomorfos por puntos de corte} En $\R$ todo punto es de corte y en $\R^2$ ninguno; $[0,1]$, $(0,1]$, $(0,1)$ tienen $2$, $1$ y $0$ puntos que no son de corte; $S^1$ no tiene puntos de corte. \fnt{GT 4.3.2, 4.3.5; MS \S7.5 probl.\ 13}
 \[ \R\not\cong\R^n\ (n\ge2);\qquad [0,1]\not\cong(0,1]\not\cong(0,1)\cong\R;\qquad [0,1]\not\cong\R^2;\qquad S^1\not\cong\text{intervalo}. \]
 
 \ficha{Componente conexa} El mayor conexo que contiene a $x$; forman una partición y son siempre cerradas (sándwich). \fnt{GT 4.6.1--4.6.5; MS Lema 7.13, Teo.\ 7.14}
-\[ C(x)=\bigcup\{A\ \text{conexo}:\ x\in A\};\qquad C(x)=\cl{C(x)};\qquad C(x)\cap C(y)\ne\emptyset\Rightarrow C(x)=C(y). \]
+\[ C_x=\bigcup\{A\ \text{conexo}:\ x\in A\};\qquad C_x=\cl{C_x};\qquad C_x\cap C_y\ne\emptyset\Rightarrow C_x=C_y. \]
 
 \ficha{Conexos, abiertos-cerrados y componentes} Un conexo queda dentro de una componente; un abierto-cerrado es unión de componentes (conexas y arcoconexas). \fnt{MS Prop.\ 7.16; CX 17}
-\[ A\ \text{conexo}\Rightarrow A\subseteq C\ \vee\ A\cap C=\emptyset;\qquad A\ \text{abierto y cerrado}\Rightarrow A=\bigcup_{a\in A}c(a)=\bigcup_{a\in A}C(a). \]
+\[ A\ \text{conexo}\Rightarrow A\subseteq C\ \vee\ A\cap C=\emptyset;\qquad A\ \text{abierto y cerrado}\Rightarrow A=\text{unión de las componentes (conexas o arcoconexas) de sus puntos}. \]
 
 \ficha{Componentes e imagen continua} La imagen de una componente cae en una componente; la preimagen de una componente es unión de componentes; un homeomorfismo biyecta componentes homeomorfas. Para probar que dos espacios no son homeomorfos: primero contar componentes, después puntos de corte. \fnt{GT 4.6.10; CX 19, 20; clase 13}
-\[ f(C(x))\subseteq C(f(x));\qquad f^{-1}(E)=\bigcup_{x\in f^{-1}(E)}C(x);\qquad f\ \text{homeo}\Rightarrow f(C(x))=C(f(x)). \]
+\[ f(C_x)\subseteq C_{f(x)};\qquad f^{-1}(E)=\bigcup_{x\in f^{-1}(E)}C_x;\qquad f\ \text{homeo}\Rightarrow f(C_x)=C_{f(x)}. \]
 
 \ficha{Localmente conexo} Todo entorno contiene un entorno conexo; entonces las componentes son abiertas. También lo son si hay finitas. \fnt{GT 4.6.7--4.6.8; CX 23}
-\[ X\ \text{loc.\ conexo}\ \Rightarrow\ C(x)\in\tp;\qquad \#\{\text{componentes}\}<\infty\ \Rightarrow\ C(x)\in\tp. \]
+\[ X\ \text{loc.\ conexo}\ \Rightarrow\ C_x\in\tp;\qquad \#\{\text{componentes}\}<\infty\ \Rightarrow\ C_x\in\tp. \]
 
 \ficha{Conexo no localmente conexo} Rectas verticales en $x=1/n$ más los ejes: arcoconexo, pero cerca de $(0,y_0)$, $y_0\ne0$, ningún entorno chico es conexo. \fnt{GT Ej.\ 4.2.8(3), 4.6.9(4); CX 15}
 \[ X=OX\cup OY\cup\textstyle\bigcup_n\{\frac1n\}\times\R\ \ \text{arcoconexo, no loc.\ conexo}. \]
@@ -4326,7 +4326,7 @@ y se prueba con $1_A$ en los dos sentidos, usando que $1_A:(A,\tp_1)\to(A,\tp_2)
 
 \ficha{Tychonoff finito} \fnt{GT 3.5.1, Nota 3.5.5; MS Teo.\ 6.6}
 \[ X,Y\ \text{compactos}\iff X\times Y\ \text{compacto}\quad(X\times Y\ne\emptyset); \]
-\[ X\ \text{compacto}\Rightarrow\pi_Y:X\times Y\to Y\ \text{cerrada}. \]
+\[ X\ \text{compacto}\Rightarrow\Pi_Y:X\times Y\to Y\ \text{cerrada}. \]
 
 \ficha{Heine--Borel} En $\R^n$ (no en cualquier métrico) compacto es cerrado y acotado. \fnt{GT 3.3.6, 3.5.3}
 \[ A\subseteq(\R^n,\tp_u):\ A\ \text{compacto}\iff A\ \text{cerrado}\ \wedge\ A\ \text{acotado}; \]
@@ -4352,7 +4352,7 @@ y se prueba con $1_A$ en los dos sentidos, usando que $1_A:(A,\tp_1)\to(A,\tp_2)
 \[ \R\ \text{completo no compacto};\qquad (0,1)\cong\R\ \text{no completo}. \]
 
 \ficha{Localmente compacto} Entornos compactos arbitrariamente chicos; en métricos, alguna bola cerrada compacta en cada punto. \fnt{GT 3.8.1--3.8.6}
-\[ \forall x\ \forall N\in\mathcal N_x\ \exists N'\in\mathcal N_x:\ N'\subseteq N\ \wedge\ N'\ \text{compacto};\qquad \R^n,\ (0,1),\ \text{discretos: sí};\quad \Q:\ \text{no}. \]
+\[ \forall x\ \forall N\ \text{entorno de } x\ \exists N'\ \text{entorno de } x:\ N'\subseteq N\ \wedge\ N'\ \text{compacto};\qquad \R^n,\ (0,1),\ \text{discretos: sí};\quad \Q:\ \text{no}. \]
 
 \end{itemize}
 
@@ -4396,8 +4396,8 @@ y se prueba con $1_A$ en los dos sentidos, usando que $1_A:(A,\tp_1)\to(A,\tp_2)
 \gl{$d|_A$}{Restricción de $d$ a $A\times A$: la métrica heredada por un subconjunto.}
 \gl{$\norm{v}$}{Norma de $v$. $\norm{\cdot}_{\text{taxi}}$, $\norm{\cdot}_{\max}$: normas asociadas a esas distancias.}
 \gl{$(u,v)$}{Producto interno de $u$ y $v$. Otros textos: $\langle u,v\rangle$ o $u\cdot v$.}
-\gl{$\Bola{x}{r}$}{Bola \emph{abierta} de centro $x$ y radio $r$: $\{y: d(x,y)<r\}$.}
-\gl{$\Bolac{x}{r}$}{Bola \emph{cerrada}: $\{y: d(x,y)\le r\}$. Notar corchetes vs.\ paréntesis.}
+\gl{$\Bola{x}{\varepsilon}$}{Bola \emph{abierta} de centro $x$ y radio $\varepsilon$: $\{y: d(x,y)<\varepsilon\}$ (\textbf{GT}).}
+\gl{$\Bolac{x}{\varepsilon}$}{Bola \emph{cerrada}: $\{y: d(x,y)\le\varepsilon\}$. Notar corchetes vs.\ paréntesis.}
 \gl{$d(x,A)$}{Distancia de un punto a un conjunto: $\inf\{d(x,a):a\in A\}$.}
 \gl{$d(A,B)$}{Distancia entre conjuntos: $\inf\{d(a,b): a\in A,\ b\in B\}$.}
 \gl{$\delta(A)$}{Diámetro de $A$: $\sup\{d(a,b): a,b\in A\}$. $A$ acotado $\iff \delta(A)<\infty$.}
@@ -4407,8 +4407,8 @@ y se prueba con $1_A$ en los dos sentidos, usando que $1_A:(A,\tp_1)\to(A,\tp_2)
 \gl{$\norm{\cdot}_e$}{Norma euclídea de $\R^n$, $\big(\sum_i x_i^2\big)^{1/2}$; su distancia es $d_e$.}
 \hline
 \gltit{Espacios topológicos}
-\gl{$(X,\tp)$}{Espacio topológico. Otras letras para topologías: $\tp'$, $\tp^\ast$, $\mathcal T$.}
-\gl{$\tp_u$, $\tp_e$}{Topología usual o euclídea de $\R$ o $\R^n$ (en \textbf{GT} aparece como ``euclídea'').}
+\gl{$(X,\tp)$}{Espacio topológico (\textbf{GT}). Otras letras para topologías: $\tp'$, $\tp''$, $\tp^\ast$. \textbf{MS} y algunas notas escriben $\tau$.}
+\gl{$\tp_u$, $\tp_e$}{Topología usual o euclídea de $\R$ o $\R^n$. \textbf{GT} no le pone símbolo: escribe $(\R,\text{euclídea})$, y lo mismo $(\R,\text{discreta})$, $(X,\text{cofinita})$.}
 \gl{$\tp_d$}{Topología inducida por la distancia $d$ (la que tiene por base a las bolas).}
 \gl{$\tp_{dis},\ \tp_{ind}$}{Discreta ($=\mathcal P(X)$) e indiscreta ($=\{\emptyset,X\}$).}
 \gl{$\tp_{cof},\ \tp_{conum}$}{Cofinita (o de Zariski) y conumerable.}
@@ -4418,14 +4418,14 @@ y se prueba con $1_A$ en los dos sentidos, usando que $1_A:(A,\tp_1)\to(A,\tp_2)
 \gl{$\tp_\beta$}{Topología generada por la base $\beta$.}
 \gl{$\beta,\ \sigma$}{Base y subbase de una topología.}
 \gl{$\tp\subseteq\tp'$}{$\tp'$ es \emph{más fina} que $\tp$ (tiene al menos los mismos abiertos).}
-\gl{$\mathcal N_x$, $\mathcal B_x$}{Sistema de entornos de $x$; base local (base de entornos) en $x$.}
+\gl{$\mathcal N_x$, $\mathcal B_x$}{Sistema de entornos de $x$; base local en $x$. Sólo en la definición de base local (\textbf{GT} no tiene símbolo: dice ``$N$ entorno de $x$'', como el resto de este apunte).}
 \hline
 \gltit{Operadores sobre conjuntos}
 \gl{$\intr A$}{Interior de $A$: el mayor abierto contenido en $A$.}
-\gl{$A^{\circ}$}{Lo mismo que $\intr A$. Es la notación de \textbf{GT}, de \textbf{MS} y la que usan los enunciados de parcial; en este apunte se escribe $\intr A$.}
+\gl{$A^{\circ}$}{Lo mismo que $\intr A$ (la escriben \textbf{MS} y algunos enunciados de parcial; \textbf{GT} y este apunte escriben $\intr A$).}
 \gl{$\cl{A}$}{Clausura o adherencia de $A$: el menor cerrado que contiene a $A$.}
 \gl{$A'$}{Conjunto derivado: los puntos de acumulación de $A$.}
-\gl{$\fr A$}{Frontera de $A$: $\cl{A}\cap\cl{X-A}=\cl{A}-\intr A$.}
+\gl{$\fr A$}{Frontera de $A$ (\textbf{GT}): $\cl{A}\cap\cl{X-A}=\cl{A}-\intr A$.}
 \gl{$\partial A$}{Lo mismo que $\fr A$. Notación habitual en los enunciados de parcial.}
 \gl{$\ext A$}{Exterior de $A$: $\intr(X-A)$.}
 \gl{$i(A),\ c(A)$}{Operadores de Kuratowski: $i(A)=\intr(\cl{A})=(\cl A)^{\circ}$ y $c(A)=\cl{\intr A}=\cl{A^{\circ}}$. En general son distintos e incomparables.}
@@ -4440,7 +4440,7 @@ y se prueba con $1_A$ en los dos sentidos, usando que $1_A:(A,\tp_1)\to(A,\tp_2)
 \gl{$f|_A$}{Restricción de $f$ al subespacio $A$ del dominio.}
 \gl{$f|^{A}$}{Correstricción: la misma función vista con codominio $A$ (requiere $f(X)\subseteq A$).}
 \gl{$\widetilde f$}{Correstricción a la imagen: $\widetilde f:X\to f(X)$.}
-\gl{$1_X$, $\mathrm{id}$}{Identidad de $X$. En \textbf{GT} aparece como $\mathrm{id}$.}
+\gl{$\mathrm{id}_X$, $\mathrm{id}$}{Identidad de $X$. En \textbf{GT} aparece como $\mathrm{id}$.}
 \gl{$i:A\to X$}{Inclusión de un subconjunto: $i(a)=a$.}
 \gl{$p_i$}{Proyección $i$-ésima $\R^n\to\R$.}
 \gl{$\chi_A$}{Función característica de $A$: vale $1$ en $A$ y $0$ fuera.}
@@ -4458,8 +4458,8 @@ y se prueba con $1_A$ en los dos sentidos, usando que $1_A:(A,\tp_1)\to(A,\tp_2)
 \gl{$X\times Y$}{Producto cartesiano: pares $(x,y)$. Como espacio, lleva la topología producto.}
 \gl{$\tp_{X\times Y}$, $\tp_{prod}$}{Topología producto. En \textbf{MS}: $\tp_X\times\tp_Y$ o $\tp_{Tyc}$ (de Tychonov).}
 \gl{$\beta_{X\times Y}$}{Base de rectángulos abiertos $U\times V$, con $U\in\tp_X$, $V\in\tp_Y$.}
-\gl{$\pi_X,\ \pi_Y$}{Proyecciones $\pi_X(x,y)=x$, $\pi_Y(x,y)=y$. En \textbf{TP}: $\Pi_X,\Pi_Y$; en \textbf{MS}: $p_X,p_Y$; en \textbf{GT} ($\R^n$): $p_i$.}
-\gl{$U\times Y$, $X\times V$}{Tubos: $\pi_X^{-1}(U)$ y $\pi_Y^{-1}(V)$.}
+\gl{$\Pi_X,\ \Pi_Y$}{Proyecciones $\Pi_X(x,y)=x$, $\Pi_Y(x,y)=y$ (notación de \textbf{TP}). En \textbf{GT}, para $\R^n$: $p_i(x_1,\dots,x_n)=x_i$; en \textbf{MS}: $p_X,p_Y$.}
+\gl{$U\times Y$, $X\times V$}{Tubos: $\Pi_X^{-1}(U)$ y $\Pi_Y^{-1}(V)$.}
 \gl{$(f,g)$}{Función a un producto armada por coordenadas: $x\mapsto(f(x),g(x))$.}
 \gl{$f\times g$}{Producto de funciones: $(x,y)\mapsto(f(x),g(y))$.}
 \gl{$\{x_0\}\times Y$, $X\times\{y_0\}$}{Copias de $Y$ y de $X$ dentro del producto (``rectas'' vertical y horizontal).}
@@ -4470,13 +4470,11 @@ y se prueba con $1_A$ en los dos sentidos, usando que $1_A:(A,\tp_1)\to(A,\tp_2)
 \gltit{Caminos y componentes}
 \gl{$\alpha:[0,1]\to X$}{Camino: función continua desde $[0,1]$ usual; va de $\alpha(0)$ (origen) a $\alpha(1)$ (extremo).}
 \gl{arcoconexo}{En \textbf{CX}: conexo por caminos (\textbf{GT}, \textbf{MS}). No se pide que el camino sea inyectivo.}
-\gl{$\alpha^-$}{Camino inverso: $\alpha^-(t)=\alpha(1-t)$, recorre $\alpha$ al revés.}
-\gl{$\alpha*\beta$}{Yuxtaposición: primero $\alpha$ y después $\beta$, cada uno en la mitad del tiempo; requiere $\alpha(1)=\beta(0)$.}
+\gl{$\bar\alpha$}{Camino inverso (\textbf{GT}, la docente): $\bar\alpha(t)=\alpha(1-t)$, recorre $\alpha$ al revés. No es una inversa.}
+\gl{$\gamma$}{Yuxtaposición o concatenación de $\alpha$ y $\beta$ (\textbf{GT} 4.1.9 la llama $\gamma$): primero $\alpha$ y después $\beta$, cada uno en la mitad del tiempo; requiere $\alpha(1)=\beta(0)$.}
 \gl{$x\sim y$}{$x$ e $y$ se unen por un camino en $X$ (relación de equivalencia).}
-\gl{$c(x)$}{Componente arcoconexa (conexa por caminos) de $x$: la clase de $x$ por $\sim$. Notación de \textbf{MS}; \textbf{GT} escribe $C_x$.}
-\gl{$\pi_0(X)$}{En \textbf{MS}: el conjunto de las componentes arcoconexas de $X$.}
-\gl{$C(x)$}{Componente conexa de $x$: el mayor conexo que contiene a $x$. Notación de \textbf{MS}; \textbf{GT} escribe también $C_x$.}
-\gl{$\operatorname{ord}(x)$}{Orden de corte de $x$: cantidad de componentes arcoconexas de $X-\{x\}$ (notación de este apunte).}
+\gl{$C_x$}{Componente de $x$. Como en \textbf{GT}, la misma letra sirve para la componente arcoconexa (la clase de $x$ por $\sim$, el mayor arcoconexo que contiene a $x$; \S\ref{cc:compcam}) y para la componente conexa (el mayor conexo que contiene a $x$; \S\ref{cc:compconex}): hay que leer las palabras. Cuando aparecen las dos juntas se dicen en palabras. (\textbf{MS} escribe $c(x)$ y $C(x)$.)}
+\gl{orden de corte}{Cantidad de componentes arcoconexas de $X-\{x\}$ (\textbf{GT} 4.3.1; sin símbolo).}
 \gl{$OX$, $OY$}{En \textbf{GT}: los ejes coordenados de $\R^2$.}
 \hline
 \gltit{Compacidad}
@@ -4484,7 +4482,7 @@ y se prueba con $1_A$ en los dos sentidos, usando que $1_A:(A,\tp_1)\to(A,\tp_2)
 \gl{$\{G_{\alpha_1},\dots,G_{\alpha_n}\}$}{Subrecubrimiento finito: finitos miembros del recubrimiento que todavía cubren.}
 \gl{PIF}{Propiedad de intersección finita: toda subfamilia finita tiene intersección no vacía.}
 \gl{$\{x_{n_k}\}_{k\ge1}$}{Subsucesión de $\{x_n\}$: índices $n_1<n_2<\cdots$ estrictamente crecientes.}
-\gl{$U\times Y$ (tubo)}{En el lema del tubo: abierto de la forma $\pi_X^{-1}(U)$ que contiene a la fibra $\{x_0\}\times Y$.}
+\gl{$U\times Y$ (tubo)}{En el lema del tubo: abierto de la forma $\Pi_X^{-1}(U)$ que contiene a la fibra $\{x_0\}\times Y$.}
 \gl{$\varepsilon$ de Lebesgue}{Número de Lebesgue de un recubrimiento abierto: toda bola de radio $\varepsilon$ cae entera en algún miembro.}
 \gl{$d_\infty$}{Distancia del supremo entre funciones: $d_\infty(f,g)=\sup_x|f(x)-g(x)|$ ($=\max$ si son continuas en $[0,1]$).}
 \gl{$\theta$}{Función idénticamente nula (el ``origen'' de un espacio de funciones).}

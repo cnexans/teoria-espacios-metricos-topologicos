@@ -62,12 +62,12 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\cl}[1]{\overline{#1}}
 \newcommand{\intr}{\operatorname{int}}
-\newcommand{\fr}{\operatorname{fr}}
+\newcommand{\fr}{\operatorname{Fr}}
 \newcommand{\ext}{\operatorname{ext}}
-\newcommand{\Bola}[2]{B(#1,#2)}
-\newcommand{\Bolac}[2]{B[#1,#2]}
+\newcommand{\Bola}[2]{B_d(#1,#2)}
+\newcommand{\Bolac}[2]{B_d[#1,#2]}
 \newcommand{\norm}[1]{\lVert #1 \rVert}
-\newcommand{\tp}{\tau}
+\newcommand{\tp}{\mathcal{T}}
 
 \title{\textbf{Topología: apunte compilado}\\[2pt]
 \large Definiciones, propiedades y teoremas asociados a las guías de ejercicios\\
@@ -519,7 +519,7 @@ Si $A\subseteq X$ y $B\subseteq Y$, entonces $\cl{A\times B}=\cl A\times\cl B$ e
 \end{ejercicio}
 
 \begin{proof}
-Es la Prop.\ 9.17 del apunte. Resumen: $\cl A\times\cl B=\pi_X^{-1}(\cl A)\cap\pi_Y^{-1}(\cl B)$ es un cerrado que contiene a $A\times B$ (da $\subseteq$); y si $x\in\cl A$, $y\in\cl B$, todo básico $U\times V\ni(x,y)$ corta a $A\times B$ porque $U$ corta a $A$ y $V$ corta a $B$ (da $\supseteq$). Para el interior: $\intr A\times\intr B$ es un básico dentro de $A\times B$; y si $(x,y)\in U\times V\subseteq A\times B$, entonces $U\subseteq A$ y $V\subseteq B$.
+Es la Prop.\ 9.17 del apunte. Resumen: $\cl A\times\cl B=\Pi_X^{-1}(\cl A)\cap\Pi_Y^{-1}(\cl B)$ es un cerrado que contiene a $A\times B$ (da $\subseteq$); y si $x\in\cl A$, $y\in\cl B$, todo básico $U\times V\ni(x,y)$ corta a $A\times B$ porque $U$ corta a $A$ y $V$ corta a $B$ (da $\supseteq$). Para el interior: $\intr A\times\intr B$ es un básico dentro de $A\times B$; y si $(x,y)\in U\times V\subseteq A\times B$, entonces $U\subseteq A$ y $V\subseteq B$.
 \end{proof}
 
 \begin{ejercicio}[Hausdorff por Hausdorff \fnt{TP p.\,4, ej.\ 2}]
@@ -535,7 +535,7 @@ Apunte, Prop.\ 9.19: dos puntos distintos difieren en una coordenada; se separa 
 \end{ejercicio}
 
 \begin{proof}
-Por el Teorema 9.12 del apunte basta mirar las coordenadas. (a): $\pi_Z\circ(f\times g)=f\circ\pi_X$ y $\pi_W\circ(f\times g)=g\circ\pi_Y$, composiciones de continuas. (b): las coordenadas son $f$ y $g$. Directamente con la base también sale: $(f\times g)^{-1}(U\times V)=f^{-1}(U)\times g^{-1}(V)$ es un rectángulo abierto, y $(f,g)^{-1}(U\times V)=f^{-1}(U)\cap g^{-1}(V)$ es abierto.
+Por el Teorema 9.12 del apunte basta mirar las coordenadas. (a): $\Pi_Z\circ(f\times g)=f\circ\Pi_X$ y $\Pi_W\circ(f\times g)=g\circ\Pi_Y$, composiciones de continuas. (b): las coordenadas son $f$ y $g$. Directamente con la base también sale: $(f\times g)^{-1}(U\times V)=f^{-1}(U)\times g^{-1}(V)$ es un rectángulo abierto, y $(f,g)^{-1}(U\times V)=f^{-1}(U)\cap g^{-1}(V)$ es abierto.
 \end{proof}
 
 \begin{ejercicio}[Producto menos un rectángulo \fnt{\texttt{Producto-de-Conexos.pdf}, p.\,2}]
@@ -589,7 +589,7 @@ $X$ es conexo si y sólo si todo $A\subseteq X$ con $A\ne\emptyset$ y $A\ne X$ t
 El enunciado impreso pide sólo $A\ne X$, pero hay que excluir también $A=\emptyset$, cuya frontera siempre es vacía. Por la Prop.\ 3.20, $\fr A=\emptyset$ sii $A$ es abierto y cerrado. Entonces ``ningún $A\ne\emptyset,X$ tiene frontera vacía'' dice ``no hay abiertos-cerrados propios'', que es la conexidad (Prop.\ 10.5).
 \end{proof}
 
-\begin{ejercicio}[Bolzano \fnt{CX 4} \noentra{usa los intervalos de $\R$, todavía no dictados}]
+\begin{ejercicio}[Bolzano \fnt{CX 4}]
 $X$ es conexo si y sólo si toda $f:X\to(\R,\tp_e)$ continua que toma un valor negativo y uno positivo se anula.
 \end{ejercicio}
 
@@ -610,7 +610,7 @@ Si $X$ es conexo y $f:X\to Y$ es continua, el gráfico $G=\{(x,f(x)): x\in X\}$ 
 \end{ejercicio}
 
 \begin{proof}
-$G$ es la imagen de $h:X\to X\times Y$, $h(x)=(x,f(x))$. Sus coordenadas son $1_X$ y $f$, continuas, así que $h$ es continua (Teo.\ 9.12), y la imagen continua de un conexo es conexa (Prop.\ 10.8).
+$G$ es la imagen de $h:X\to X\times Y$, $h(x)=(x,f(x))$. Sus coordenadas son $\mathrm{id}_X$ y $f$, continuas, así que $h$ es continua (Teo.\ 9.12), y la imagen continua de un conexo es conexa (Prop.\ 10.8).
 \end{proof}
 
 \begin{ejercicio}[Conexidad y finura \fnt{CX 9}]
@@ -618,7 +618,7 @@ Si $\tp$ es más fina que $\tp'$ ($\tp'\subseteq\tp$): $(X,\tp)$ conexo $\Righta
 \end{ejercicio}
 
 \begin{proof}
-$1_X:(X,\tp)\to(X,\tp')$ es continua (Prop.\ 7.13) y sobreyectiva: la imagen de un conexo es conexa. O directamente: una desconexión de $(X,\tp')$ lo sería también de $(X,\tp)$, que tiene más abiertos. Contraejemplos de la recíproca: $\R$ usual es conexo y $\R$ discreto (o Sorgenfrey, donde $[a,b)$ es abierto y cerrado) no lo es.
+$\mathrm{id}_X:(X,\tp)\to(X,\tp')$ es continua (Prop.\ 7.13) y sobreyectiva: la imagen de un conexo es conexa. O directamente: una desconexión de $(X,\tp')$ lo sería también de $(X,\tp)$, que tiene más abiertos. Contraejemplos de la recíproca: $\R$ usual es conexo y $\R$ discreto (o Sorgenfrey, donde $[a,b)$ es abierto y cerrado) no lo es.
 \end{proof}
 
 \begin{ejercicio}[La cofinita es conexa \fnt{CX 10}]
@@ -674,7 +674,7 @@ Con $G\cap H=\emptyset$ y $A\subseteq G\cup H$, la Prop.\ 10.3 dice que $A$ no e
 Es la versión topológica de ``para cruzar de adentro hacia afuera hay que pasar por el borde''. En $\R$ con $A$ un intervalo, es el teorema del valor intermedio.
 \end{intuicion}
 
-\begin{ejercicio}[Peine del topólogo \fnt{\texttt{Peine-del-Topologo.pdf}} \noentra{usa que $[0,1]$ es conexo; la arcoconexidad no está dictada}]
+\begin{ejercicio}[Peine del topólogo \fnt{\texttt{Peine-del-Topologo.pdf}} \noentra{usa que $[0,1]$ es conexo}]
 Sea $K=\{1/n: n\in\N\}$. El \emph{peine} $P=(\{0\}\times[0,1])\cup(K\times[0,1])\cup([0,1]\times\{0\})\subseteq\R^2$ es conexo, y el \emph{peine reducido} $R=\{(0,1)\}\cup(K\times[0,1])\cup([0,1]\times\{0\})$ también.
 \end{ejercicio}
 
