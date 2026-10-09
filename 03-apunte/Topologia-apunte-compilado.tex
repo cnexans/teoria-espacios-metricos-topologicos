@@ -94,7 +94,7 @@ Cada enunciado lleva entre corchetes la fuente y la página, para poder remitirs
 \end{itemize}
 
 \medskip
-\noindent\textbf{Convención de notación.} Se usa la notación de \textbf{GT} ($\mathcal T$ para topologías, $B_d(x,\varepsilon)$ para bolas, $\intr A$, $\cl A$, $\operatorname{Fr}A$, $C_x$ para componentes); para productos, que \textbf{GT} no trata en general, la del apunte \textbf{TP} ($\Pi_X$, $\Pi_Y$). Salvo que el enunciado diga otra cosa: $(X,\tp)$ e $(Y,\tp')$ son espacios topológicos; $(X,d)$ e $(Y,\rho)$ espacios métricos; $A,B,C\subseteq X$; $G$ un abierto y $F$ un cerrado; $\beta$ una base y $\sigma$ una subbase; $f:X\to Y$ una función, y $f^{-1}(B)$ siempre la \emph{preimagen}. De todos modos, cada enunciado vuelve a nombrar los objetos que usa, para que se pueda leer suelto.
+\noindent\textbf{Convención de notación.} Se usa la notación de \textbf{GT} ($\mathcal T$ para topologías, $B_d(x,\varepsilon)$ para bolas, $\intr A$ (o $A^\circ$, que usa la docente), $\cl A$, $\operatorname{Fr}A$, $C_x$ para componentes); para productos, que \textbf{GT} no trata en general, la del apunte \textbf{TP} ($\Pi_X$, $\Pi_Y$). Salvo que el enunciado diga otra cosa: $(X,\tp)$ e $(Y,\tp')$ son espacios topológicos; $(X,d)$ e $(Y,\rho)$ espacios métricos; $A,B,C\subseteq X$; $G$ un abierto y $F$ un cerrado; $\beta$ una base y $\sigma$ una subbase; $f:X\to Y$ una función, y $f^{-1}(B)$ siempre la \emph{preimagen}. De todos modos, cada enunciado vuelve a nombrar los objetos que usa, para que se pueda leer suelto.
 
 \noindent Se incluyen demostraciones solo cuando la idea es la que se evalúa (una técnica reusable, un contraejemplo estructural o una equivalencia clave). El resto va enunciado.
 
@@ -2619,11 +2619,11 @@ La demostración de \textbf{GT} para ``cerrada'' pasa por la clausura; la de arr
 \end{observacion}
 
 \begin{proof}[Demostración dictada en clase (como \textbf{GT}: interior y clausura)]
-Sólo se usa la forma débil de la hipótesis: todo $y$ tiene un entorno arcoconexo $N$, y entonces hay $G\in\tp$ con $y\in G\subseteq N$, así que $y\in\intr N$.
+Sólo se usa la forma débil de la hipótesis: todo $y$ tiene un entorno arcoconexo $N$, y entonces hay $G\in\tp$ con $y\in G\subseteq N$, así que $y\in N^\circ$.
 
-\emph{Abierta: $C_x\subseteq\intr C_x$.} Sea $y\in C_x$; como $y\in C_y$, es $C_x=C_y$. $N$ es un arcoconexo que contiene a $y$, luego $N\subseteq C_y$ (es el mayor), y por monotonía del interior $y\in G=\intr G\subseteq\intr N\subseteq\intr C_y=\intr C_x$.
+\emph{Abierta: $C_x\subseteq C_x^\circ$.} Sea $y\in C_x$; como $y\in C_y$, es $C_x=C_y$. $N$ es un arcoconexo que contiene a $y$, luego $N\subseteq C_y$ (es el mayor), y por monotonía del interior $y\in G=G^\circ\subseteq N^\circ\subseteq C_y^\circ=C_x^\circ$.
 
-\emph{Cerrada: $\cl{C_x}\subseteq C_x$.} Sea $y\in\cl{C_x}$ y $N$ un entorno arcoconexo de $y$. $\intr N$ es un abierto que contiene a $y$, adherente a $C_x$, así que $\intr N\cap C_x\ne\emptyset$, y con más razón $N\cap C_x\ne\emptyset$. (``¿Por qué el interior? Porque necesitaba un abierto para la definición de clausura; pero el arcoconexo es $N$, zapallos.'') Entonces $N\cup C_x$ es unión de dos arcoconexos que se cortan, arcoconexa, y contiene a $x$; por ser $C_x$ el mayor, $N\cup C_x\subseteq C_x$, y como la otra inclusión es obvia, $N\cup C_x=C_x$: ``absorbe''. Luego $y\in N\subseteq C_x$. (Para ``cerrada'' no se sabe de antemano que $y\in C_x$, por eso se pasa por $N\cup C_x$ y no por $C_y$.)
+\emph{Cerrada: $\cl{C_x}\subseteq C_x$.} Sea $y\in\cl{C_x}$ y $N$ un entorno arcoconexo de $y$. $N^\circ$ es un abierto que contiene a $y$, adherente a $C_x$, así que $N^\circ\cap C_x\ne\emptyset$, y con más razón $N\cap C_x\ne\emptyset$. (``¿Por qué el interior? Porque necesitaba un abierto para la definición de clausura; pero el arcoconexo es $N$, zapallos.'') Entonces $N\cup C_x$ es unión de dos arcoconexos que se cortan, arcoconexa, y contiene a $x$; por ser $C_x$ el mayor, $N\cup C_x\subseteq C_x$, y como la otra inclusión es obvia, $N\cup C_x=C_x$: ``absorbe''. Luego $y\in N\subseteq C_x$. (Para ``cerrada'' no se sabe de antemano que $y\in C_x$, por eso se pasa por $N\cup C_x$ y no por $C_y$.)
 \end{proof}
 
 \begin{figure}[ht]
@@ -2934,7 +2934,7 @@ Si $(X,\tp)$ es localmente conexo, toda componente conexa $C_x$ es abierta (y, p
 \end{proposicion}
 
 \begin{proof}
-Sea $y\in C_x$, de modo que $C_y=C_x$. Aplicando la definición al entorno $N=X$, hay un entorno conexo $N'$ de $y$; como contiene a $y$, $N'\subseteq C_y=C_x$ (``spoiler alert: no se iba a poder escapar''). Así $C_x$ es entorno de cada uno de sus puntos; en clase, con interiores: $y\in G\subseteq\intr N'\subseteq\intr C_x$.
+Sea $y\in C_x$, de modo que $C_y=C_x$. Aplicando la definición al entorno $N=X$, hay un entorno conexo $N'$ de $y$; como contiene a $y$, $N'\subseteq C_y=C_x$ (``spoiler alert: no se iba a poder escapar''). Así $C_x$ es entorno de cada uno de sus puntos; en clase, con interiores: $y\in G\subseteq N'^\circ\subseteq C_x^\circ$.
 \end{proof}
 
 \begin{corolario}[Si hay un número finito de componentes, son abiertas \fnt{CX 23}]\label{cc:finitas}
@@ -4422,7 +4422,7 @@ y se prueba con $1_A$ en los dos sentidos, usando que $1_A:(A,\tp_1)\to(A,\tp_2)
 \hline
 \gltit{Operadores sobre conjuntos}
 \gl{$\intr A$}{Interior de $A$: el mayor abierto contenido en $A$.}
-\gl{$A^{\circ}$}{Lo mismo que $\intr A$ (la escriben \textbf{MS} y algunos enunciados de parcial; \textbf{GT} y este apunte escriben $\intr A$).}
+\gl{$A^{\circ}$}{Lo mismo que $\intr A$: notación alternativa, igual de válida. La usan la docente en clase, \textbf{MS} y los enunciados de parcial; \textbf{GT} escribe $\intr A$. En este apunte aparecen las dos.}
 \gl{$\cl{A}$}{Clausura o adherencia de $A$: el menor cerrado que contiene a $A$.}
 \gl{$A'$}{Conjunto derivado: los puntos de acumulación de $A$.}
 \gl{$\fr A$}{Frontera de $A$ (\textbf{GT}): $\cl{A}\cap\cl{X-A}=\cl{A}-\intr A$.}
